@@ -6,6 +6,7 @@ import Store = require('electron-store');
 
 import { Analytics } from './analytics/analytics';
 import * as log from './log';
+import { Updates } from './updates/updates';
 
 // Module to control application life
 const app: Electron.App = electron.app;
@@ -16,13 +17,13 @@ let mainWindow: Electron.BrowserWindow | undefined;
 
 // For information about Application User Model ID (AUMID), please see
 // https://github.com/electron-userland/electron-builder/wiki/NSIS
-app.setAppUserModelId('com.fantasticfiasco.magellan');
+app.setAppUserModelId('com.fantasticfiasco.axis-searchlight');
 
 log.info(`Main - start app with version ${app.getVersion()}`);
 
 function createWindow() {
     // Create the browser window
-    mainWindow = new electron.BrowserWindow({ title: 'Magellan' });
+    mainWindow = new electron.BrowserWindow({ title: 'AXIS Searchlight' });
 
     // Size
     const size = store.get('window.size');
@@ -91,3 +92,9 @@ const store = new Store({
 
 // Analytics
 const analytics = new Analytics(store.get('analytics.userId'));
+
+// Updates
+const updates = new Updates();
+app.on('ready', () => {
+    updates.checkForUpdates();
+});

@@ -8,7 +8,7 @@ import * as config from './config.json';
  * Class reporting to Universal Analytics.
  */
 export class Analytics {
-    private readonly appName = 'Magellan';
+    private readonly appName = 'AXIS Searchlight';
     private readonly visitor?: ua.Visitor;
 
     /**
