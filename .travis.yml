@@ -1,0 +1,26 @@
+osx_image: xcode8.3
+
+dist: trusty
+sudo: false
+
+language: node_js
+node_js: "8"
+
+os:
+  - osx
+
+cache:
+  yarn: true
+
+before_install:
+  - yarn global add greenkeeper-lockfile@1
+
+before_script:
+  - greenkeeper-lockfile-update
+
+script:
+  - echo -e "$(curl --silent https://raw.githubusercontent.com/FantasticFiasco/logo/master/logo.ansi)"
+  - yarn build && yarn lint
+
+after_script:
+  - greenkeeper-lockfile-upload

@@ -1,0 +1,14 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+  "editor.formatOnSave": true,
+  "files.exclude": {
+    "**/*.js": {
+      "when": "$(basename).ts"
+    },
+    "**/*.js.map": true,
+    "**/npm-debug.log": true
+  },
+  "tslint.autoFixOnSave": true,
+  "tslint.exclude": "**/test/**/*.ts",
+  "typescript.tsdk": "node_modules/typescript/lib"
+}

@@ -1,0 +1,15 @@
+## npm packages
+**/node_modules/*
+
+## TypeScript
+**/*.js.map
+
+## JavaScript
+src/**/*.js
+
+## Node
+**/npm-*.log*
+**/*.tgz
+
+## Deliverables directory
+dist
