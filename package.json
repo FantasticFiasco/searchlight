@@ -23,7 +23,28 @@
   },
   "author": "Mattias Kindborg <mattias.kindborg@gmail.com> (https://twitter.com/FantasticFiasco)",
   "license": "GPL-3.0",
-  "scripts": {},
-  "dependencies": {},
-  "devDependencies": {}
+  "main": "./src/main.js",
+  "scripts": {
+    "build": "tsc",
+    "prestart": "yarn build",
+    "start": "electron .",
+    "lint": "tslint \"./src/**/*.ts\"",
+    "analytics": "json -I -f ./src/analytics/config.json -e this.trackingId='process.env.UNIVERSAL_ANALYTICS_TRACKING_ID'"
+  },
+  "dependencies": {
+    "@fantasticfiasco/expect": "1.0.0",
+    "electron-log": "2.2.7",
+    "electron-store": "1.2.0",
+    "universal-analytics": "0.4.13",
+    "uuid": "3.1.0"
+  },
+  "devDependencies": {
+    "@types/electron-store": "1.2.0",
+    "@types/universal-analytics": "0.4.0",
+    "@types/uuid": "3.4.0",
+    "electron": "1.6.11",
+    "json": "9.0.6",
+    "tslint": "5.5.0",
+    "typescript": "2.4.2"
+  }
 }

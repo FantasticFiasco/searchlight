@@ -10,5 +10,5 @@
   },
   "tslint.autoFixOnSave": true,
   "tslint.exclude": "**/test/**/*.ts",
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "./node_modules/typescript/lib"
 }
