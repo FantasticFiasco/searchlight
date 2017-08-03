@@ -1,8 +1,8 @@
 import * as electron from 'electron';
+import Store from 'electron-store';
 import * as path from 'path';
 import * as url from 'url';
 import * as uuid from 'uuid';
-import Store = require('electron-store');
 
 import { Analytics } from './analytics/analytics';
 import * as log from './log';

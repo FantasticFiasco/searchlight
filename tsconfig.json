@@ -1,17 +1,3 @@
 {
-  "compilerOptions": {
-    "target": "ES2015",
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "sourceMap": true,
-    "strict": true,
-    "removeComments": true,
-    "strictNullChecks": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true
-  },
-  "include": [
-    "./src/**/*"
-  ],
-  "compileOnSave": true
+  "extends": "./node_modules/electron-webpack/tsconfig-base.json"
 }
