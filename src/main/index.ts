@@ -6,7 +6,7 @@ import Store = require('electron-store');
 
 import { Analytics } from './analytics/analytics';
 import * as log from './log';
-import { Updates } from './updates/updates';
+import { Updates } from './updates';
 
 // Module to control application life
 const app: Electron.App = electron.app;
@@ -34,7 +34,7 @@ function createWindow() {
 
     // Load main view
     mainWindow.loadURL(url.format({
-        pathname: path.join(__dirname, 'app', 'index.html'),
+        pathname: path.join(__dirname, '..', 'renderer', 'index.html'),
         protocol: 'file:',
         slashes: true,
     }));
