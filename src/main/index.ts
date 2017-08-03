@@ -1,12 +1,14 @@
 import * as electron from 'electron';
-import * as path from 'path';
-import * as url from 'url';
+import Store from 'electron-store';
 import * as uuid from 'uuid';
-import Store = require('electron-store');
 
 import { Analytics } from './analytics/analytics';
+import * as environment from './environment';
 import * as log from './log';
-import { Updates } from './updates/updates';
+import { Updates } from './updates';
+
+// Constants
+const appName = 'AXIS Searchlight';
 
 // Module to control application life
 const app: Electron.App = electron.app;
@@ -23,21 +25,10 @@ log.info(`Main - start app with version ${app.getVersion()}`);
 
 function createWindow() {
     // Create the browser window
-    mainWindow = new electron.BrowserWindow({ title: 'AXIS Searchlight' });
-
-    // Size
-    const size = store.get('window.size');
-    mainWindow.setSize(size[0], size[1]);
-    mainWindow.on('resize', () => {
-        store.set('window.size', mainWindow!.getSize());
-    });
+    mainWindow = new electron.BrowserWindow({ title: appName });
 
     // Load main view
-    mainWindow.loadURL(url.format({
-        pathname: path.join(__dirname, 'app', 'index.html'),
-        protocol: 'file:',
-        slashes: true,
-    }));
+    mainWindow.loadURL(environment.isDev() ? 'http://localhost:9080' : `file://${__dirname}/index.html`);
 
     // Open the DevTools
     // mainWindow.webContents.openDevTools({ mode: 'undocked' });
@@ -81,9 +72,6 @@ app.on('activate', () => {
 // Store
 const store = new Store({
     defaults: {
-        window: {
-            size: [800, 600],
-        },
         analytics: {
             userId: uuid.v4(),
         },
@@ -91,7 +79,7 @@ const store = new Store({
 });
 
 // Analytics
-const analytics = new Analytics(store.get('analytics.userId'));
+const analytics = new Analytics(appName, store.get('analytics.userId'));
 
 // Updates
 const updates = new Updates();
