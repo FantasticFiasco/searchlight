@@ -23,12 +23,13 @@
   },
   "author": "Mattias Kindborg <mattias.kindborg@gmail.com> (https://twitter.com/FantasticFiasco)",
   "license": "GPL-3.0",
-  "main": "./src/main/index.js",
+  "main": "main.js",
   "scripts": {
     "dev": "electron-webpack dev",
     "compile": "electron-webpack",
-    "analytics": "json -I -f ./src/analytics/config.json -e this.trackingId='process.env.UNIVERSAL_ANALYTICS_TRACKING_ID'",
-    "dist": "yarn compile && electron-builder",
+    "lint": "tslint './src/**/*.ts'",
+    "analytics": "json -I -f ./src/main/analytics/config.json -e this.trackingId='process.env.UNIVERSAL_ANALYTICS_TRACKING_ID'",
+    "dist": "yarn compile && electron-builder -p never",
     "dist-dir": "yarn dist -- --dir -c.compression=store -c.mac.identity=null"
   },
   "dependencies": {
@@ -48,9 +49,11 @@
     "electron-builder": "19.18.1",
     "electron-webpack": "0.10.0",
     "electron-webpack-ts": "1.0.3",
+    "electron-webpack-vue": "1.0.5",
     "json": "9.0.6",
     "tslint": "5.5.0",
     "typescript": "2.4.2",
+    "vue": "2.4.2",
     "webpack": "3.4.1"
   }
 }
