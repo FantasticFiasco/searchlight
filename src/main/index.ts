@@ -36,9 +36,11 @@ function createWindow() {
         // array if your app supports multi windows, this is the time when you
         // should delete the corresponding element.
         mainWindow = undefined;
+
+        analytics.reportEvent('window', 'home.closed');
     });
 
-    analytics.reportScreenView('Home');
+    analytics.reportScreenView('home');
 }
 
 // This method will be called when Electron has finished initialization and is
