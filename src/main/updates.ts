@@ -2,7 +2,7 @@ import { ProgressInfo } from 'electron-builder-http';
 import { autoUpdater, UpdateCheckResult } from 'electron-updater';
 
 import { VersionInfo } from 'electron-builder-http/out/updateInfo';
-import * as log from './../log';
+import * as log from './log';
 
 export class Updates {
     constructor() {

@@ -19,7 +19,7 @@ before_script:
 
 script:
   - echo -e "$(curl --silent https://raw.githubusercontent.com/FantasticFiasco/logo/master/logo.ansi)"
-  - yarn build && yarn lint
+  - yarn compile && yarn lint
 
 after_script:
   - greenkeeper-lockfile-upload
