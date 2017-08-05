@@ -3,12 +3,12 @@ import Store from 'electron-store';
 import * as uuid from 'uuid';
 
 import { Analytics } from './analytics/analytics';
+import * as environment from './environment';
 import * as log from './log';
 import { Updates } from './updates';
 
 // Constants
 const appName = 'AXIS Searchlight';
-const isDev = process.env.NODE_ENV === 'development';
 
 // Module to control application life
 const app: Electron.App = electron.app;
@@ -28,7 +28,7 @@ function createWindow() {
     mainWindow = new electron.BrowserWindow({ title: appName });
 
     // Load main view
-    mainWindow.loadURL(isDev ? 'http://localhost:9080' : `file://${__dirname}/index.html`);
+    mainWindow.loadURL(environment.isDev() ? 'http://localhost:9080' : `file://${__dirname}/index.html`);
 
     // Open the DevTools
     // mainWindow.webContents.openDevTools({ mode: 'undocked' });
