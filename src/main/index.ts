@@ -1,4 +1,4 @@
-import * as electron from 'electron';
+import { app, BrowserWindow } from 'electron';
 import Store from 'electron-store';
 import * as uuid from 'uuid';
 
@@ -9,9 +9,6 @@ import { Updates } from './updates';
 
 // Constants
 const appName = 'AXIS Searchlight';
-
-// Module to control application life
-const app: Electron.App = electron.app;
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -25,7 +22,7 @@ log.info(`Main - start app with version ${app.getVersion()}`);
 
 function createWindow() {
     // Create the browser window
-    mainWindow = new electron.BrowserWindow({ title: appName });
+    mainWindow = new BrowserWindow({ title: appName });
 
     // Load main view
     mainWindow.loadURL(environment.isDev() ? 'http://localhost:9080' : `file://${__dirname}/index.html`);
