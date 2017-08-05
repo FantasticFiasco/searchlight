@@ -25,7 +25,7 @@ log.info(`Main - start app with version ${app.getVersion()}`);
 
 function createWindow() {
     // Create the browser window
-    mainWindow = new electron.BrowserWindow();
+    mainWindow = new electron.BrowserWindow({ title: appName });
 
     // Load main view
     mainWindow.loadURL(isDev ? 'http://localhost:9080' : `file://${__dirname}/index.html`);
