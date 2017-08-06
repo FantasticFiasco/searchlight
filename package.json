@@ -32,6 +32,17 @@
     "dist": "yarn compile && electron-builder -p never",
     "dist-dir": "yarn dist -- --dir -c.compression=store -c.mac.identity=null"
   },
+  "build": {
+    "appId": "com.fantasticfiasco.axis-searchlight",
+    "productName": "AXIS Searchlight",
+    "compression": "maximum",
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "perMachine": "true"
+    }
+  },
   "dependencies": {
     "@fantasticfiasco/expect": "1.0.0",
     "electron-log": "2.2.7",
@@ -47,7 +58,7 @@
     "@types/uuid": "3.4.0",
     "electron": "1.6.11",
     "electron-builder": "19.18.1",
-    "electron-webpack": "0.10.2",
+    "electron-webpack": "0.10.3",
     "electron-webpack-ts": "1.0.3",
     "electron-webpack-vue": "1.0.5",
     "json": "9.0.6",

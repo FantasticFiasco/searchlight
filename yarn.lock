@@ -2091,9 +2091,9 @@ electron-webpack-vue@1.0.5:
     vue-style-loader "^3.0.1"
     vue-template-compiler "^2.4.2"
 
-electron-webpack@0.10.2:
-  version "0.10.2"
-  resolved "https://registry.yarnpkg.com/electron-webpack/-/electron-webpack-0.10.2.tgz#881d305d02ef1ae0eb8ecba0feba325db1f7c336"
+electron-webpack@0.10.3:
+  version "0.10.3"
+  resolved "https://registry.yarnpkg.com/electron-webpack/-/electron-webpack-0.10.3.tgz#036179b75211130b00a6929416f91e41ecd1350f"
   dependencies:
     "@types/webpack-env" "^1.13.0"
     async-exit-hook "^2.0.1"
@@ -2110,8 +2110,8 @@ electron-webpack@0.10.2:
     fs-extra-p "^4.4.0"
     html-loader "^0.5.0"
     html-webpack-plugin "^2.30.1"
-    lazy-val "^1.0.1"
-    read-config-file "^0.1.3"
+    lazy-val "^1.0.2"
+    read-config-file "^1.0.4"
     semver "^5.4.1"
     source-map-support "^0.4.15"
     style-loader "^0.18.2"
@@ -3210,7 +3210,7 @@ js-tokens@^3.0.0:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"
 
-js-yaml@^3.4.3, js-yaml@^3.9.0:
+js-yaml@^3.4.3, js-yaml@^3.9.0, js-yaml@^3.9.1:
   version "3.9.1"
   resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.9.1.tgz#08775cebdfdd359209f0d2acd383c8f86a6904a0"
   dependencies:
@@ -3323,7 +3323,7 @@ lazy-cache@^1.0.3:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/lazy-cache/-/lazy-cache-1.0.4.tgz#a1d78fc3a50474cb80845d3b3b6e1da49a446e8e"
 
-lazy-val@^1.0.1:
+lazy-val@^1.0.1, lazy-val@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/lazy-val/-/lazy-val-1.0.2.tgz#d9b07fb1fce54cbc99b3c611de431b83249369b6"
 
@@ -4492,6 +4492,16 @@ read-config-file@^0.1.3:
     fs-extra-p "^4.4.0"
     js-yaml "^3.9.0"
     json5 "^0.5.1"
+
+read-config-file@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/read-config-file/-/read-config-file-1.0.4.tgz#e9f00bb02551581019a2c2a54da9a1d58f33c697"
+  dependencies:
+    bluebird-lst "^1.0.2"
+    fs-extra-p "^4.4.0"
+    js-yaml "^3.9.1"
+    json5 "^0.5.1"
+    lazy-val "^1.0.1"
 
 read-pkg-up@^1.0.1:
   version "1.0.1"
