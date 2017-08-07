@@ -83,5 +83,7 @@ const analytics = new Analytics(appName, store.get('analytics.userId'));
 // Updates
 const updates = new Updates();
 app.on('ready', () => {
-    updates.checkForUpdates();
+    if (!environment.isDev()) {
+        updates.checkForUpdates();
+    }
 });
