@@ -8,6 +8,8 @@ import * as config from './config.json';
  * Class reporting to Universal Analytics.
  */
 export class Analytics {
+    private static readonly UserIdFormat = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
     private readonly appName: string;
     private readonly visitor: ua.Visitor;
 
@@ -18,7 +20,7 @@ export class Analytics {
      */
     constructor(appName: string, userId: string) {
         expect.toExist(appName);
-        expect.toExist(userId);
+        expect.toBeTrue(Analytics.UserIdFormat.test(userId));
 
         log.info('Analytics - user id', userId);
 
