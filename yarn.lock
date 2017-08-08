@@ -1954,6 +1954,14 @@ electron-builder-http@19.18.1, electron-builder-http@~19.18.1:
     debug "^2.6.8"
     fs-extra-p "^4.4.0"
 
+electron-builder-http@~19.20.0:
+  version "19.20.0"
+  resolved "https://registry.yarnpkg.com/electron-builder-http/-/electron-builder-http-19.20.0.tgz#e473dd4c16e9cd70653aaa93a23a53179e0dba8c"
+  dependencies:
+    bluebird-lst "^1.0.2"
+    debug "^2.6.8"
+    fs-extra-p "^4.4.0"
+
 electron-builder-util@19.18.1, electron-builder-util@~19.18.1:
   version "19.18.1"
   resolved "https://registry.yarnpkg.com/electron-builder-util/-/electron-builder-util-19.18.1.tgz#750240376c18beabf19eb53abf2d8ac51e767e2d"
@@ -2085,16 +2093,17 @@ electron-to-chromium@^1.2.7, electron-to-chromium@^1.3.17:
   version "1.3.17"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.17.tgz#41c13457cc7166c5c15e767ae61d86a8cacdee5d"
 
-electron-updater@2.8.1:
-  version "2.8.1"
-  resolved "https://registry.yarnpkg.com/electron-updater/-/electron-updater-2.8.1.tgz#3a7add30a63b54b8c09e0320fca1c45b6e3b5ddf"
+electron-updater@2.8.5:
+  version "2.8.5"
+  resolved "https://registry.yarnpkg.com/electron-updater/-/electron-updater-2.8.5.tgz#daf2f44441ebd423f34dd585f8d628dc6ee70f4e"
   dependencies:
     bluebird-lst "^1.0.2"
     debug "^2.6.8"
-    electron-builder-http "~19.18.1"
+    electron-builder-http "~19.20.0"
     electron-is-dev "^0.3.0"
     fs-extra-p "^4.4.0"
-    js-yaml "^3.9.0"
+    js-yaml "^3.9.1"
+    lazy-val "^1.0.2"
     lodash.isequal "^4.5.0"
     semver "^5.4.1"
     source-map-support "^0.4.15"
