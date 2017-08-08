@@ -25,12 +25,13 @@
   "license": "GPL-3.0",
   "main": "main.js",
   "scripts": {
-    "dev": "electron-webpack dev",
+    "postinstall": "electron-webpack dll",
     "compile": "electron-webpack",
+    "dev": "electron-webpack dev",
     "lint": "tslint './src/**/*.ts'",
     "analytics": "json -I -f ./src/main/analytics/config.json -e this.trackingId='process.env.UNIVERSAL_ANALYTICS_TRACKING_ID'",
-    "dist": "yarn compile && electron-builder -p never",
-    "dist-dir": "yarn dist -- --dir -c.compression=store -c.mac.identity=null"
+    "dist": "yarn compile && electron-builder --publish never",
+    "dist-dir": "yarn compile && electron-builder --dir -c.compression=store -c.mac.identity=null"
   },
   "build": {
     "appId": "com.fantasticfiasco.axis-searchlight",
@@ -41,6 +42,13 @@
     },
     "nsis": {
       "perMachine": "true"
+    }
+  },
+  "electronWebpack": {
+    "renderer": {
+      "dll": [
+        "vue"
+      ]
     }
   },
   "dependencies": {
