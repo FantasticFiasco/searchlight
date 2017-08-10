@@ -8,19 +8,24 @@ import * as config from './config.json';
  * Class reporting to Universal Analytics.
  */
 export class Analytics {
-    private readonly appName = 'AXIS Searchlight';
-    private readonly visitor?: ua.Visitor;
+    private static readonly UserIdFormat = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
+    private readonly appName: string;
+    private readonly visitor: ua.Visitor;
 
     /**
      * Initializes a new instance of the class.
+     * @param appName name of the application
      * @param userId user id formatted as uuid
      */
-    constructor(userId: string) {
-        const trackingId = (config as any).trackingId;
-        if (trackingId) {
-            log.info('Analytics - user id', userId);
-            this.visitor = new ua.Visitor(trackingId, userId, { https: true });
-        }
+    constructor(appName: string, userId: string) {
+        expect.toExist(appName);
+        expect.toBeTrue(Analytics.UserIdFormat.test(userId));
+
+        log.info('Analytics - user id', userId);
+
+        this.appName = appName;
+        this.visitor = new ua.Visitor((config as any).trackingId, userId, { https: true });
     }
 
     /**
@@ -32,9 +37,7 @@ export class Analytics {
         expect.toExist(key);
         expect.toExist(value);
 
-        if (this.visitor) {
-            this.visitor.set(key, value);
-        }
+        this.visitor.set(key, value);
     }
 
     /**
@@ -44,9 +47,7 @@ export class Analytics {
     public reportScreenView(screenName: string) {
         expect.toExist(screenName);
 
-        if (this.visitor) {
-            this.visitor.screenview(screenName, this.appName, this.errorHandler);
-        }
+        this.visitor.screenview(screenName, this.appName, this.errorHandler);
     }
 
     /**
@@ -58,9 +59,7 @@ export class Analytics {
         expect.toExist(category);
         expect.toExist(action);
 
-        if (this.visitor) {
-            this.visitor.event(category, action, this.errorHandler);
-        }
+        this.visitor.event(category, action, this.errorHandler);
     }
 
     /**
@@ -75,9 +74,7 @@ export class Analytics {
         expect.toExist(action);
         expect.toExist(label);
 
-        if (this.visitor) {
-            this.visitor.event(category, action, label, value, this.errorHandler);
-        }
+        this.visitor.event(category, action, label, value, this.errorHandler);
     }
 
     /**
@@ -88,9 +85,7 @@ export class Analytics {
     public reportException(description: string, fatal: boolean = false) {
         expect.toExist(description);
 
-        if (this.visitor) {
-            this.visitor.exception(description, fatal, this.errorHandler);
-        }
+        this.visitor.exception(description, fatal, this.errorHandler);
     }
 
     /**
@@ -104,9 +99,7 @@ export class Analytics {
         expect.toExist(variable);
         expect.toBeTrue(time >= 0);
 
-        if (this.visitor) {
-            this.visitor.timing(category, variable, time, this.errorHandler);
-        }
+        this.visitor.timing(category, variable, time, this.errorHandler);
     }
 
     private errorHandler(error: Error | null, count: number) {

@@ -1,15 +1,14 @@
-import * as electron from 'electron';
-import * as path from 'path';
-import * as url from 'url';
+import { app, BrowserWindow } from 'electron';
+import Store from 'electron-store';
 import * as uuid from 'uuid';
-import Store = require('electron-store');
 
 import { Analytics } from './analytics/analytics';
+import * as environment from './environment';
 import * as log from './log';
-import { Updates } from './updates/updates';
+import { Updates } from './updates';
 
-// Module to control application life
-const app: Electron.App = electron.app;
+// Constants
+const appName = 'AXIS Searchlight';
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -23,21 +22,10 @@ log.info(`Main - start app with version ${app.getVersion()}`);
 
 function createWindow() {
     // Create the browser window
-    mainWindow = new electron.BrowserWindow({ title: 'AXIS Searchlight' });
-
-    // Size
-    const size = store.get('window.size');
-    mainWindow.setSize(size[0], size[1]);
-    mainWindow.on('resize', () => {
-        store.set('window.size', mainWindow!.getSize());
-    });
+    mainWindow = new BrowserWindow({ title: appName });
 
     // Load main view
-    mainWindow.loadURL(url.format({
-        pathname: path.join(__dirname, 'app', 'index.html'),
-        protocol: 'file:',
-        slashes: true,
-    }));
+    mainWindow.loadURL(environment.isDev() ? 'http://localhost:9080' : `file://${__dirname}/index.html`);
 
     // Open the DevTools
     // mainWindow.webContents.openDevTools({ mode: 'undocked' });
@@ -48,9 +36,11 @@ function createWindow() {
         // array if your app supports multi windows, this is the time when you
         // should delete the corresponding element.
         mainWindow = undefined;
+
+        analytics.reportEvent('window', 'home.closed');
     });
 
-    analytics.reportScreenView('Home');
+    analytics.reportScreenView('home');
 }
 
 // This method will be called when Electron has finished initialization and is
@@ -81,9 +71,6 @@ app.on('activate', () => {
 // Store
 const store = new Store({
     defaults: {
-        window: {
-            size: [800, 600],
-        },
         analytics: {
             userId: uuid.v4(),
         },
@@ -91,10 +78,12 @@ const store = new Store({
 });
 
 // Analytics
-const analytics = new Analytics(store.get('analytics.userId'));
+const analytics = new Analytics(appName, store.get('analytics.userId'));
 
 // Updates
 const updates = new Updates();
 app.on('ready', () => {
-    updates.checkForUpdates();
+    if (!environment.isDev()) {
+        updates.checkForUpdates();
+    }
 });
