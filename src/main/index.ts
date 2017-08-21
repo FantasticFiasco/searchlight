@@ -1,4 +1,5 @@
 import { app, BrowserWindow } from 'electron';
+import Debug from 'electron-debug';
 import Store from 'electron-store';
 import * as uuid from 'uuid';
 
@@ -18,11 +19,17 @@ let mainWindow: Electron.BrowserWindow | undefined;
 // https://github.com/electron-userland/electron-builder/wiki/NSIS
 app.setAppUserModelId('com.fantasticfiasco.axis-searchlight');
 
+// Dev tools in development mode
+Debug({ enabled: true });
+
 log.info(`Main - start app with version ${app.getVersion()}`);
 
 function createWindow() {
     // Create the browser window
     mainWindow = new BrowserWindow({ title: appName });
+
+    // Electron type definitions are wrong, they do not support null as argument to setMenu
+    (mainWindow as any).setMenu(null);
 
     // Load main view
     mainWindow.loadURL(environment.isDev() ? 'http://localhost:9080' : `file://${__dirname}/index.html`);

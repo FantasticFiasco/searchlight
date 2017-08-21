@@ -53,6 +53,7 @@
   },
   "dependencies": {
     "@fantasticfiasco/expect": "1.0.0",
+    "electron-debug": "1.4.0",
     "electron-log": "2.2.7",
     "electron-store": "1.2.0",
     "electron-updater": "2.8.7",
@@ -61,6 +62,7 @@
     "uuid": "3.1.0"
   },
   "devDependencies": {
+    "@types/electron-debug": "1.1.0",
     "@types/electron-store": "1.2.0",
     "@types/universal-analytics": "0.4.0",
     "@types/uuid": "3.4.0",
