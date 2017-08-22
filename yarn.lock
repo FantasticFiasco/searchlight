@@ -46,9 +46,9 @@
   version "7.0.39"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-7.0.39.tgz#8aced4196387038113f6f9aa4014ab4c51edab3c"
 
-"@types/universal-analytics@0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@types/universal-analytics/-/universal-analytics-0.4.0.tgz#28b3ce38940ed7e4993deb959a3a3877790c1020"
+"@types/universal-analytics@0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@types/universal-analytics/-/universal-analytics-0.4.1.tgz#ee61121b0a898b0bea5eeb247200898e0fa8f09c"
 
 "@types/uuid@3.4.1":
   version "3.4.1"
