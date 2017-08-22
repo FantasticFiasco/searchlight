@@ -50,9 +50,9 @@
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/@types/universal-analytics/-/universal-analytics-0.4.1.tgz#ee61121b0a898b0bea5eeb247200898e0fa8f09c"
 
-"@types/uuid@3.4.0":
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-3.4.0.tgz#91639516fbb892ed3737a2bdc1b030d02b4a09c1"
+"@types/uuid@3.4.1":
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-3.4.1.tgz#1b8d5e318ba733f63042b7e58bbf5b8552eaa43f"
   dependencies:
     "@types/node" "*"
 
