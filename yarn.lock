@@ -1884,6 +1884,12 @@ debug@^3.0.0:
   dependencies:
     ms "2.0.0"
 
+debug@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-3.0.1.tgz#0564c612b521dc92d9f2988f0549e34f9c98db64"
+  dependencies:
+    ms "2.0.0"
+
 decamelize@^1.0.0, decamelize@^1.1.1, decamelize@^1.1.2:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/decamelize/-/decamelize-1.2.0.tgz#f6534d15148269b20352e7bee26f501f9a191290"
@@ -2292,9 +2298,9 @@ electron-webpack-vue@1.0.5:
     vue-style-loader "^3.0.1"
     vue-template-compiler "^2.4.2"
 
-electron-webpack@1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/electron-webpack/-/electron-webpack-1.0.1.tgz#e9493f4957e44a9d6ee6ad54678f6105bc5f8a73"
+electron-webpack@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/electron-webpack/-/electron-webpack-1.1.0.tgz#c174993226ebe4bd77e91e03c038eeb16ddb6c36"
   dependencies:
     "@types/webpack-env" "^1.13.0"
     ajv "^5.2.2"
@@ -2305,7 +2311,7 @@ electron-webpack@1.0.1:
     chalk "^2.1.0"
     crocket "^0.9.11"
     css-loader "^0.28.5"
-    debug "^3.0.0"
+    debug "^3.0.1"
     electron-devtools-installer "^2.2.0"
     electron-webpack-js "^1.0.3"
     extract-text-webpack-plugin "^3.0.0"
@@ -2315,7 +2321,7 @@ electron-webpack@1.0.1:
     html-webpack-plugin "^2.30.1"
     lazy-val "^1.0.2"
     node-loader "^0.6.0"
-    read-config-file "^1.0.5"
+    read-config-file "^1.1.0"
     semver "^5.4.1"
     source-map-support "^0.4.16"
     style-loader "^0.18.2"
@@ -4815,6 +4821,18 @@ read-config-file@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/read-config-file/-/read-config-file-1.0.5.tgz#9992d2a4d24a993518e7eb6f3c30c0562264c367"
   dependencies:
+    bluebird-lst "^1.0.3"
+    fs-extra-p "^4.4.0"
+    js-yaml "^3.9.1"
+    json5 "^0.5.1"
+    lazy-val "^1.0.2"
+
+read-config-file@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/read-config-file/-/read-config-file-1.1.0.tgz#c4abafc547571dfbaee0d0bf54ea174ffef8c3cf"
+  dependencies:
+    ajv "^5.2.2"
+    ajv-keywords "^2.1.0"
     bluebird-lst "^1.0.3"
     fs-extra-p "^4.4.0"
     js-yaml "^3.9.1"
