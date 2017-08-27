@@ -7,22 +7,25 @@
 
 <script lang="ts">
 import { remote } from 'electron';
-import Vue, { ComponentOptions } from 'vue';
+import Vue from 'vue'
+import Component from 'vue-class-component';
 
-export default {
-    methods: {
-        nodeVersion() {
-            return process.versions.node;
-        },
-        chromeVersion() {
-            return process.versions.chrome;
-        },
-        electronVersion() {
-            return process.versions.electron;
-        },
-        appVersion() {
-            return remote.app.getVersion();
-        },
-    },
-} as ComponentOptions<Vue>
+@Component({})
+export default class App extends Vue {
+    nodeVersion() {
+        return process.versions.node;
+    }
+
+    chromeVersion() {
+        return process.versions.chrome;
+    }
+
+    electronVersion() {
+        return process.versions.electron;
+    }
+
+    appVersion() {
+        return remote.app.getVersion();
+    }
+}
 </script>
