@@ -4,8 +4,10 @@
         We are using Node.js {{ nodeVersion() }}, Chromium {{ chromeVersion() }}, Electron {{ electronVersion() }} and app version {{ appVersion() }}.
     </div>
 </template>
+
 <script lang="ts">
 import { remote } from 'electron';
+import Vue, { ComponentOptions } from 'vue';
 
 export default {
     methods: {
@@ -22,5 +24,5 @@ export default {
             return remote.app.getVersion();
         },
     },
-}
+} as ComponentOptions<Vue>
 </script>
