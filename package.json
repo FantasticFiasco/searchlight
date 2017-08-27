@@ -69,7 +69,7 @@
     "devtron": "1.4.0",
     "electron": "1.7.5",
     "electron-builder": "19.24.1",
-    "electron-webpack": "1.0.1",
+    "electron-webpack": "1.1.0",
     "electron-webpack-ts": "1.0.3",
     "electron-webpack-vue": "1.0.5",
     "json": "9.0.6",
