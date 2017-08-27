@@ -68,7 +68,7 @@
     "@types/uuid": "3.4.1",
     "devtron": "1.4.0",
     "electron": "1.7.5",
-    "electron-builder": "19.24.1",
+    "electron-builder": "19.26.0",
     "electron-webpack": "1.0.1",
     "electron-webpack-ts": "1.0.3",
     "electron-webpack-vue": "1.0.5",
