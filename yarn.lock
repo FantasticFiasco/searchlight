@@ -2129,13 +2129,11 @@ electron-builder-http@~19.21.0:
     debug "^3.0.0"
     fs-extra-p "^4.4.0"
 
-electron-builder@19.26.0:
-  version "19.26.0"
-  resolved "https://registry.yarnpkg.com/electron-builder/-/electron-builder-19.26.0.tgz#92a98aa915d91e75da6e32b0da8f4e58d0b03e70"
+electron-builder@19.26.2:
+  version "19.26.2"
+  resolved "https://registry.yarnpkg.com/electron-builder/-/electron-builder-19.26.2.tgz#391ae6db2894889ad9ef27672a8a9ca14f7b7bac"
   dependencies:
     "7zip-bin" "^2.2.3"
-    ajv "^5.2.2"
-    ajv-keywords "^2.1.0"
     asar-integrity "0.1.2"
     bluebird-lst "^1.0.3"
     builder-util "1.0.1"
@@ -2160,7 +2158,7 @@ electron-builder@19.26.0:
     minimatch "^3.0.4"
     normalize-package-data "^2.4.0"
     plist "^2.1.0"
-    read-config-file "^1.0.5"
+    read-config-file "1.1.0"
     sanitize-filename "^1.6.1"
     semver "^5.4.1"
     temp-file "^2.0.2"
@@ -4819,17 +4817,7 @@ rc@^1.0.1, rc@^1.1.2, rc@^1.1.6, rc@^1.1.7, rc@^1.2.1:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-read-config-file@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/read-config-file/-/read-config-file-1.0.5.tgz#9992d2a4d24a993518e7eb6f3c30c0562264c367"
-  dependencies:
-    bluebird-lst "^1.0.3"
-    fs-extra-p "^4.4.0"
-    js-yaml "^3.9.1"
-    json5 "^0.5.1"
-    lazy-val "^1.0.2"
-
-read-config-file@^1.1.0:
+read-config-file@1.1.0, read-config-file@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/read-config-file/-/read-config-file-1.1.0.tgz#c4abafc547571dfbaee0d0bf54ea174ffef8c3cf"
   dependencies:
