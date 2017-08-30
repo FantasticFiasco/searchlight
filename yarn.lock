@@ -2306,9 +2306,9 @@ electron-webpack-vue@1.0.5:
     vue-style-loader "^3.0.1"
     vue-template-compiler "^2.4.2"
 
-electron-webpack@1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/electron-webpack/-/electron-webpack-1.1.0.tgz#c174993226ebe4bd77e91e03c038eeb16ddb6c36"
+electron-webpack@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/electron-webpack/-/electron-webpack-1.2.0.tgz#b632d2efc6ebee2184a22219c9489362b67a1e04"
   dependencies:
     "@types/webpack-env" "^1.13.0"
     ajv "^5.2.2"
