@@ -2129,9 +2129,9 @@ electron-builder-http@~19.21.0:
     debug "^3.0.0"
     fs-extra-p "^4.4.0"
 
-electron-builder@19.26.3:
-  version "19.26.3"
-  resolved "https://registry.yarnpkg.com/electron-builder/-/electron-builder-19.26.3.tgz#f9324ab5f0cd6c36e3f7a3b94fcbe122fa62a3c6"
+electron-builder@19.27.1:
+  version "19.27.1"
+  resolved "https://registry.yarnpkg.com/electron-builder/-/electron-builder-19.27.1.tgz#21682e7050d312214cb106aaff4c6cf49cba1aa8"
   dependencies:
     "7zip-bin" "^2.2.3"
     asar-integrity "0.1.2"
@@ -2161,7 +2161,7 @@ electron-builder@19.26.3:
     read-config-file "1.1.0"
     sanitize-filename "^1.6.1"
     semver "^5.4.1"
-    temp-file "^2.0.2"
+    temp-file "^2.0.3"
     update-notifier "^2.2.0"
     uuid-1345 "^0.99.6"
     yargs "^8.0.2"
@@ -5536,6 +5536,15 @@ tar@^2.2.1:
 temp-file@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/temp-file/-/temp-file-2.0.2.tgz#952951ae822b05b1c4374cdfac289495b5eeff7a"
+  dependencies:
+    async-exit-hook "^2.0.1"
+    bluebird-lst "^1.0.3"
+    fs-extra-p "^4.4.0"
+    lazy-val "^1.0.2"
+
+temp-file@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/temp-file/-/temp-file-2.0.3.tgz#0de2540629fc77a6406ca56f50214d1f224947ac"
   dependencies:
     async-exit-hook "^2.0.1"
     bluebird-lst "^1.0.3"
