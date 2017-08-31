@@ -1764,9 +1764,9 @@ css-color-names@0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/css-color-names/-/css-color-names-0.0.4.tgz#808adc2e79cf84738069b646cb20ec27beb629e0"
 
-css-loader@^0.28.5:
-  version "0.28.5"
-  resolved "https://registry.yarnpkg.com/css-loader/-/css-loader-0.28.5.tgz#dd02bb91b94545710212ef7f6aaa66663113d754"
+css-loader@^0.28.7:
+  version "0.28.7"
+  resolved "https://registry.yarnpkg.com/css-loader/-/css-loader-0.28.7.tgz#5f2ee989dd32edd907717f953317656160999c1b"
   dependencies:
     babel-code-frame "^6.11.0"
     css-selector-tokenizer "^0.7.0"
@@ -2306,9 +2306,9 @@ electron-webpack-vue@1.0.5:
     vue-style-loader "^3.0.1"
     vue-template-compiler "^2.4.2"
 
-electron-webpack@1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/electron-webpack/-/electron-webpack-1.3.0.tgz#0ffe43634d79c30f9588fb5c3ff4a7b03b1f5d95"
+electron-webpack@1.3.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/electron-webpack/-/electron-webpack-1.3.1.tgz#e560f759c21a1ae20569fde8d4e5c41545f4f2b3"
   dependencies:
     "@types/webpack-env" "^1.13.0"
     ajv "^5.2.2"
@@ -2318,7 +2318,7 @@ electron-webpack@1.3.0:
     bluebird-lst "^1.0.3"
     chalk "^2.1.0"
     crocket "^0.9.11"
-    css-loader "^0.28.5"
+    css-loader "^0.28.7"
     debug "^3.0.1"
     electron-devtools-installer "^2.2.0"
     electron-webpack-js "^1.0.3"
