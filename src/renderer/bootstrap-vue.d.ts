@@ -3,7 +3,7 @@ declare module 'bootstrap-vue' {
 
     class BootstrapVue implements PluginObject<{}> {
         [key: string]: any;
-        install: PluginFunction<{}>;
+        public install: PluginFunction<{}>;
     }
 
     export default new BootstrapVue();
