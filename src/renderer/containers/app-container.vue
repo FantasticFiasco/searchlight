@@ -7,6 +7,7 @@
                 </div>
             </main>
         </div>
+        <Footer/>
     </div>
 </template>
 
@@ -14,7 +15,13 @@
 import Vue from 'vue'
 import Component from 'vue-class-component';
 
-@Component
+import Footer from '../components/footer.vue'
+
+@Component({
+    components: {
+        Footer,
+    }
+})
 export default class AppContainer extends Vue {
 }
 </script>
