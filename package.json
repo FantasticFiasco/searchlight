@@ -28,7 +28,8 @@
     "postinstall": "electron-webpack dll",
     "compile": "electron-webpack",
     "dev": "electron-webpack dev",
-    "lint": "tslint --fix './src/**/*.ts'",
+    "lint": "tslint './src/**/*.ts'",
+    "lint:fix": "tslint --fix './src/**/*.ts'",
     "analytics": "json -I -f ./src/main/analytics/config.json -e this.trackingId='process.env.UNIVERSAL_ANALYTICS_TRACKING_ID'",
     "dist": "yarn compile && electron-builder",
     "dist-dir": "yarn compile && electron-builder --dir -c.compression=store -c.mac.identity=null"
