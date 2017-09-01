@@ -1,7 +1,8 @@
 <template>
     <div>
         <h1>Hello World!</h1>
-        We are using Node.js {{ nodeVersion() }}, Chromium {{ chromeVersion() }}, Electron {{ electronVersion() }} and app version {{ appVersion() }}.
+        <p>We are using Node.js {{ nodeVersion() }}, Chromium {{ chromeVersion() }}, Electron {{ electronVersion() }} and app version {{ appVersion() }}.</p>
+        <p v-for="i in 100">{{ i }}</p>
     </div>
 </template>
 

@@ -1,6 +1,7 @@
 <template>
     <div>
         <p>Settings</p>
+        <p v-for="i in 100">{{ i }}</p>
     </div>
 </template>
 
