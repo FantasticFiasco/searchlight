@@ -1,1 +1,8 @@
 // Here you can add other styles
+body {
+    @extend .app;
+    @extend .header-fixed;
+    @extend .sidebar-fixed;
+    @extend .aside-menu-fixed;
+    @extend .aside-menu-hidden;
+}
