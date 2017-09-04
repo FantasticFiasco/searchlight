@@ -7,6 +7,7 @@
                     <router-view></router-view>
                 </div>
             </main>
+            <Aside/>
         </div>
         <Footer/>
     </div>
@@ -16,11 +17,13 @@
 import Vue from 'vue'
 import Component from 'vue-class-component';
 
+import Aside from '../components/aside.vue'
 import Footer from '../components/footer.vue'
 import Header from '../components/header.vue'
 
 @Component({
     components: {
+        Aside,
         Footer,
         Header,
     }
