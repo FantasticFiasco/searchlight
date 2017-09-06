@@ -65,7 +65,7 @@
     "@types/electron-debug": "1.1.0",
     "@types/electron-store": "1.2.0",
     "@types/universal-analytics": "0.4.1",
-    "@types/uuid": "3.4.1",
+    "@types/uuid": "3.4.2",
     "devtron": "1.4.0",
     "electron": "1.7.5",
     "electron-builder": "19.27.3",
