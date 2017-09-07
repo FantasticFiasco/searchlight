@@ -2227,9 +2227,9 @@ electron-localshortcut@^3.0.0:
     keyboardevent-from-electron-accelerator "^0.7.0"
     keyboardevents-areequal "^0.2.1"
 
-electron-log@2.2.7:
-  version "2.2.7"
-  resolved "https://registry.yarnpkg.com/electron-log/-/electron-log-2.2.7.tgz#8da0d2586b53b175392ae6b91dc510a67c195341"
+electron-log@2.2.8:
+  version "2.2.8"
+  resolved "https://registry.yarnpkg.com/electron-log/-/electron-log-2.2.8.tgz#2296cccd8da046268a199c1a302dcb8cb16f2b72"
 
 electron-osx-sign@0.4.7:
   version "0.4.7"
