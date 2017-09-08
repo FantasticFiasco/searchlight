@@ -6,10 +6,12 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from 'vue';
 import Component from 'vue-class-component';
 
-@Component
+@Component({
+    name: 'settings',
+})
 export default class Settings extends Vue {
 }
 </script>

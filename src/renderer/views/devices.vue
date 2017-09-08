@@ -8,10 +8,12 @@
 
 <script lang="ts">
 import { remote } from 'electron';
-import Vue from 'vue'
+import Vue from 'vue';
 import Component from 'vue-class-component';
 
-@Component
+@Component({
+    name: 'devices',
+})
 export default class Devices extends Vue {
     nodeVersion() {
         return process.versions.node;
