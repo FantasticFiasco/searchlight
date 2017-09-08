@@ -2311,9 +2311,9 @@ electron-webpack-js@^1.0.3:
     babel-plugin-syntax-dynamic-import "^6.18.0"
     babel-preset-env "^1.6.0"
 
-electron-webpack-ts@1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/electron-webpack-ts/-/electron-webpack-ts-1.1.1.tgz#bbc421d1f9412b48032a41b73eb78514737a8c47"
+electron-webpack-ts@1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/electron-webpack-ts/-/electron-webpack-ts-1.1.2.tgz#6cf3c9bd39ea25540a07254de24434955c413a8d"
   dependencies:
     fork-ts-checker-webpack-plugin "^0.2.8"
     ts-loader "^2.3.6"
