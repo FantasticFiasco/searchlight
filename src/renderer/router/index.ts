@@ -10,23 +10,23 @@ Vue.use(Router);
 export default new Router({
     routes: [
         {
-            name: 'home',
+            name: 'Home',
             path: '/',
-            redirect: { name: 'devices' },
+            redirect: { name: 'Devices' },
             component: AppContainer,
             children: [
                 {
-                    name: 'devices',
+                    name: 'Devices',
                     path: 'devices',
                     component: Devices,
                 },
                 {
-                    name: 'settings',
+                    name: 'Settings',
                     path: 'settings',
                     component: Settings,
                 },
                 {
-                    name: 'about',
+                    name: 'About',
                     path: 'about',
                     component: About,
                 },
