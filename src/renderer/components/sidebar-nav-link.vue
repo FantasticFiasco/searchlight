@@ -11,15 +11,24 @@ import Component from 'vue-class-component';
 @Component({
     name: 'sidebar-nav-link',
     props: {
-        name: String,
-        url: String,
-        icon: String,
+        name: {
+            type: String,
+            default: ''
+        },
+        url: {
+            type: String,
+            default: ''
+        },
+        icon: {
+            type: String,
+            default: ''
+        },
     },
 })
 export default class SidebarNavLink extends Vue {
-    name: string = '';
-    url: string = '';
-    icon: string = '';
+    name: string;
+    url: string;
+    icon: string;
 }
 </script>
 

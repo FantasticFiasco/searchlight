@@ -30,9 +30,9 @@ import SidebarNavLink from './sidebar-nav-link.vue';
             required: true,
         },
     },
-    components: [
+    components: {
         SidebarNavLink,
-    ],
+    },
 })
 export default class Sidebar extends Vue {
     navItems: Array<IView>;
