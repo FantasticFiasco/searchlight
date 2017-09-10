@@ -7,7 +7,6 @@
         <p>Electron: {{ electronVersion }}</p>
         <p>Node.js: {{ nodeVersion }}</p>
         <p>Chromium: {{ chromeVersion }}</p>
-        <p v-for="i in 100">{{ i }}</p>
     </div>
 </template>
 
