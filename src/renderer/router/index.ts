@@ -8,6 +8,7 @@ import Settings from './../views/settings.vue';
 Vue.use(Router);
 
 export default new Router({
+    linkActiveClass: 'open active',
     routes: [
         {
             name: 'Home',
