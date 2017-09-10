@@ -1,6 +1,8 @@
 <template>
     <div>
         <h1>About</h1>
+        <p>Developed with
+            <i class="icon-heart"></i> by the Open Source community</p>
         <p>Application: {{ appVersion }}</p>
         <p>Electron: {{ electronVersion }}</p>
         <p>Node.js: {{ nodeVersion }}</p>
