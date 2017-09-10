@@ -15,13 +15,13 @@ import Component from 'vue-class-component';
 })
 export default class Header extends Vue {
     mobileSidebarToggle(e: Event) {
-        e.preventDefault()
-        document.body.classList.toggle('sidebar-mobile-show')
+        e.preventDefault();
+        document.body.classList.toggle('sidebar-mobile-show');
     }
 
     sidebarMinimize(e: Event) {
-        e.preventDefault()
-        document.body.classList.toggle('sidebar-minimized')
+        e.preventDefault();
+        document.body.classList.toggle('sidebar-minimized');
     }
 }
 </script>

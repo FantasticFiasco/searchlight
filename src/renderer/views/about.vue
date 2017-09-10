@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="animated fadeIn">
         <h1>About</h1>
         <p>Developed with
             <i class="icon-heart"></i> by the Open Source community</p>
@@ -7,6 +7,7 @@
         <p>Electron: {{ electronVersion }}</p>
         <p>Node.js: {{ nodeVersion }}</p>
         <p>Chromium: {{ chromeVersion }}</p>
+        <p v-for="i in 100">{{ i }}</p>
     </div>
 </template>
 
