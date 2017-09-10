@@ -4,7 +4,6 @@
         <div class="app-body">
             <Sidebar :navItems="nav" />
             <main class="main">
-                <Breadcrumb :list="list" />
                 <div class="container-fluid">
                     <router-view></router-view>
                 </div>
@@ -16,10 +15,8 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { RouteRecord } from 'vue-router';
 import Component from 'vue-class-component';
 
-import Breadcrumb from '../components/breadcrumb.vue'
 import Footer from '../components/footer.vue'
 import Header from '../components/header.vue'
 import Sidebar from '../components/sidebar.vue'
@@ -31,7 +28,6 @@ import { SettingsView } from '../views/settings-view';
 @Component({
     name: 'app-container',
     components: {
-        Breadcrumb,
         Footer,
         Header,
         Sidebar,
@@ -50,10 +46,6 @@ export default class AppContainer extends Vue {
         }
 
         return "unknown name";
-    }
-
-    get list(): RouteRecord[] {
-        return this.$route.matched;
     }
 }
 </script>
