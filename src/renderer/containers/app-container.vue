@@ -9,7 +9,6 @@
                     <router-view></router-view>
                 </div>
             </main>
-            <Aside/>
         </div>
         <Footer/>
     </div>
@@ -20,7 +19,6 @@ import Vue from 'vue';
 import { RouteRecord } from 'vue-router';
 import Component from 'vue-class-component';
 
-import Aside from '../components/aside.vue'
 import Breadcrumb from '../components/breadcrumb.vue'
 import Footer from '../components/footer.vue'
 import Header from '../components/header.vue'
@@ -33,7 +31,6 @@ import { SettingsView } from '../views/settings-view';
 @Component({
     name: 'app-container',
     components: {
-        Aside,
         Breadcrumb,
         Footer,
         Header,
