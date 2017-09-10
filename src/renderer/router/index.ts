@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import Router from 'vue-router';
+import Router, { Route } from 'vue-router';
 import AppContainer from './../containers/app-container.vue';
 import About from './../views/about.vue';
 import Devices from './../views/devices.vue';
@@ -8,7 +8,12 @@ import Settings from './../views/settings.vue';
 Vue.use(Router);
 
 export default new Router({
-    linkActiveClass: 'open active',
+    mode: 'history',
+    linkActiveClass: 'active',
+    scrollBehavior: (to: Route, from: Route) => ({
+        x: 0,
+        y: 0,
+    }),
     routes: [
         {
             name: 'Home',
