@@ -1,5 +1,5 @@
 <template>
-    <div class="app">
+    <div>
         <Header/>
         <div class="app-body">
             <Sidebar :navItems="nav" />
