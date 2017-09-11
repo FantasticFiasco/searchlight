@@ -29,6 +29,7 @@
     "compile": "electron-webpack",
     "dev": "electron-webpack dev",
     "lint": "tslint './src/**/*.ts'",
+    "lint:fix": "tslint --fix './src/**/*.ts'",
     "analytics": "json -I -f ./src/main/analytics/config.json -e this.trackingId='process.env.UNIVERSAL_ANALYTICS_TRACKING_ID'",
     "dist": "yarn compile && electron-builder",
     "dist-dir": "yarn compile && electron-builder --dir -c.compression=store -c.mac.identity=null"
@@ -47,6 +48,7 @@
   "electronWebpack": {
     "renderer": {
       "dll": [
+        "bootstrap-vue",
         "vue"
       ]
     }
@@ -57,6 +59,7 @@
     "electron-log": "2.2.9",
     "electron-store": "1.2.0",
     "electron-updater": "2.8.9",
+    "simple-line-icons": "2.4.1",
     "source-map-support": "0.4.18",
     "universal-analytics": "0.4.15",
     "uuid": "3.1.0"
@@ -66,6 +69,7 @@
     "@types/electron-store": "1.2.0",
     "@types/universal-analytics": "0.4.1",
     "@types/uuid": "3.4.2",
+    "bootstrap-vue": "1.0.0-beta.5",
     "devtron": "1.4.0",
     "electron": "1.7.6",
     "electron-builder": "19.27.7",
@@ -73,9 +77,13 @@
     "electron-webpack-ts": "1.1.2",
     "electron-webpack-vue": "1.0.5",
     "json": "9.0.6",
+    "node-sass": "4.5.3",
+    "sass-loader": "6.0.6",
     "tslint": "5.7.0",
     "typescript": "2.5.2",
     "vue": "2.4.2",
+    "vue-class-component": "5.0.2",
+    "vue-router": "2.7.0",
     "webpack": "3.5.6",
     "webpack-build-notifier": "0.1.16"
   }

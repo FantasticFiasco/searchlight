@@ -1,26 +1,26 @@
 <template>
-    <div id="app">
-        <h1>Hello World!</h1>
-        We are using Node.js {{ nodeVersion() }}, Chromium {{ chromeVersion() }}, Electron {{ electronVersion() }} and app version {{ appVersion() }}.
-    </div>
+    <router-view>
+    </router-view>
 </template>
-<script lang="ts">
-import { remote } from 'electron';
 
-export default {
-    methods: {
-        nodeVersion() {
-            return process.versions.node;
-        },
-        chromeVersion() {
-            return process.versions.chrome;
-        },
-        electronVersion() {
-            return process.versions.electron;
-        },
-        appVersion() {
-            return remote.app.getVersion();
-        },
-    },
+<script lang="ts">
+import Vue from 'vue';
+import Component from 'vue-class-component';
+
+@Component({
+    name: 'app',
+})
+export default class App extends Vue {
 }
 </script>
+
+<style>
+// Import Simple Line Icons Set
+$simple-line-font-path: "~simple-line-icons/fonts/";
+@import "~simple-line-icons/css/simple-line-icons.css";
+</style>
+
+<style lang="scss">
+// Import Main styles for this application
+@import "./scss/style";
+</style>
