@@ -4,6 +4,7 @@ import Store from 'electron-store';
 import * as uuid from 'uuid';
 
 import { Analytics } from './analytics/analytics';
+import { Discovery } from './discovery';
 import * as environment from './environment';
 import * as log from './log';
 import { Updates } from './updates';
@@ -102,4 +103,13 @@ app.on('ready', () => {
     if (!environment.isDev()) {
         updates.checkForUpdates();
     }
+});
+
+// Discovery
+const discovery = new Discovery();
+app.on('ready', async () => {
+    await discovery.start();
+});
+app.on('quit', async () => {
+    await discovery.stop();
 });
