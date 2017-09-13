@@ -1,49 +1,55 @@
+import * as expect from '@fantasticfiasco/expect';
 import * as Axis from 'axis-discovery';
+import { ipcMain } from 'electron';
+
+import * as ChannelNames from 'common/channel-names';
 
 /**
  * Class discovering Axis devices on the network.
  */
 export class Discovery {
     private readonly discovery: Axis.Discovery;
-    private searchInterval: NodeJS.Timer;
+    private readonly webContents: Electron.WebContents;
 
     /**
      * Initializes a new instance of the class.
      */
-    constructor() {
+    constructor(webContents: Electron.WebContents) {
+        expect.toExist(webContents);
+
         this.discovery = new Axis.Discovery();
-        this.discovery.onHello(this.onHello);
-        this.discovery.onGoodbye(this.onGoodbye);
+        this.discovery.onHello((device: Axis.Device) => this.onHello(device));
+        this.discovery.onGoodbye((device: Axis.Device) => this.onGoodbye(device));
+        this.webContents = webContents;
+
+        // Register for messages sent from the renderer
+        ipcMain.on(ChannelNames.DISCOVERY_SEARCH, async () => await this.onSearch());
     }
 
     /**
      * Start listen for device advertisements on all network interface
      * addresses and repeatedly trigger a search for devices.
      */
-    public async start(): Promise<void> {
-        await this.discovery.start();
-
-        // Trigger a new search every 10 seconds
-        this.searchInterval = setInterval(
-            async () => this.discovery.search(),
-            10000);
+    public start(): Promise<void> {
+        return this.discovery.start();
     }
 
     /**
      * Stop listening for device advertisements.
      */
-    public async stop(): Promise<void> {
-        await this.discovery.stop();
+    public stop(): Promise<void> {
+        return this.discovery.stop();
+    }
 
-        // Stop search trigger
-        clearInterval(this.searchInterval);
+    private onSearch(): Promise<void> {
+        return this.discovery.search();
     }
 
     private onHello(device: Axis.Device) {
-        console.log('hello', device);
+        this.webContents.send(ChannelNames.DISCOVERY_DEVICE_HELLO, device);
     }
 
     private onGoodbye(device: Axis.Device) {
-        console.log('goodbye', device);
+        this.webContents.send(ChannelNames.DISCOVERY_DEVICE_GOODBYE, device);
     }
 }

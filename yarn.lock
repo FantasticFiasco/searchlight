@@ -307,7 +307,7 @@ aws4@^1.2.1:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.6.0.tgz#83ef5ca860b2b32e4a0deedee8c771b9db57471e"
 
-axis-discovery-bonjour@^1.0.0:
+axis-discovery-bonjour@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/axis-discovery-bonjour/-/axis-discovery-bonjour-1.0.0.tgz#a1a89d5a55881bb059704eb2919e76e8c52374f5"
   dependencies:
@@ -315,7 +315,7 @@ axis-discovery-bonjour@^1.0.0:
     bonjour FantasticFiasco/bonjour#66851c5
     debug "2.6.8"
 
-axis-discovery-ssdp@^4.0.1:
+axis-discovery-ssdp@4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/axis-discovery-ssdp/-/axis-discovery-ssdp-4.0.1.tgz#b637004bf8804b2a2ce4fdf9cb0aba934f2c49cc"
   dependencies:
@@ -325,7 +325,7 @@ axis-discovery-ssdp@^4.0.1:
     request "2.81.0"
     xml2js "0.4.17"
 
-axis-discovery@^1.0.0:
+axis-discovery@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/axis-discovery/-/axis-discovery-1.0.0.tgz#64ac723b52aab647f74fb855630b0885c58bed15"
   dependencies:
@@ -1033,18 +1033,7 @@ bn.js@^4.0.0, bn.js@^4.1.0, bn.js@^4.1.1, bn.js@^4.4.0:
   version "4.11.8"
   resolved "https://registry.yarnpkg.com/bn.js/-/bn.js-4.11.8.tgz#2cde09eb5ee341f484746bb0309b3253b1b1442f"
 
-bonjour@^3.5.0:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/bonjour/-/bonjour-3.5.0.tgz#8e890a183d8ee9a2393b3844c691a42bcf7bc9f5"
-  dependencies:
-    array-flatten "^2.1.0"
-    deep-equal "^1.0.1"
-    dns-equal "^1.0.0"
-    dns-txt "^2.0.2"
-    multicast-dns "^6.0.1"
-    multicast-dns-service-types "^1.1.0"
-
-"bonjour@github:FantasticFiasco/bonjour#66851c5":
+bonjour@^3.5.0, "bonjour@github:FantasticFiasco/bonjour#66851c5":
   version "3.5.0"
   resolved "https://codeload.github.com/FantasticFiasco/bonjour/tar.gz/66851c5eb0360fc9297eef40d18196487a71c48a"
   dependencies:
@@ -4036,13 +4025,6 @@ multicast-dns-service-types@^1.1.0:
 multicast-dns@FantasticFiasco/multicast-dns#1b0bb3d:
   version "6.1.1"
   resolved "https://codeload.github.com/FantasticFiasco/multicast-dns/tar.gz/1b0bb3da37a07fb9771e2244999c21989dab84c2"
-  dependencies:
-    dns-packet "^1.0.1"
-    thunky "^0.1.0"
-
-multicast-dns@^6.0.1:
-  version "6.1.1"
-  resolved "https://registry.yarnpkg.com/multicast-dns/-/multicast-dns-6.1.1.tgz#6e7de86a570872ab17058adea7160bbeca814dde"
   dependencies:
     dns-packet "^1.0.1"
     thunky "^0.1.0"
