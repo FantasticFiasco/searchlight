@@ -26,7 +26,11 @@ log.info(`Main - start app with version ${app.getVersion()}`);
 
 function createWindow() {
     // Create the browser window
-    mainWindow = new BrowserWindow({ title: appName });
+    mainWindow = new BrowserWindow({
+        title: appName,
+        backgroundColor: '#e4e5e6',
+        show: false,
+    });
 
     // Electron type definitions are wrong, they do not support null as argument to setMenu
     (mainWindow as any).setMenu(null);
@@ -36,6 +40,11 @@ function createWindow() {
 
     // Open the DevTools
     // mainWindow.webContents.openDevTools({ mode: 'undocked' });
+
+    // Show main window when Electron has loaded, thus preventing UI flickering
+    mainWindow.on('ready-to-show', () => {
+        mainWindow!.show();
+    });
 
     // Emitted when the window is closed
     mainWindow.on('closed', () => {
