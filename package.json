@@ -81,7 +81,7 @@
     "sass-loader": "6.0.6",
     "tslint": "5.7.0",
     "typescript": "2.5.2",
-    "vue": "2.4.2",
+    "vue": "2.4.4",
     "vue-class-component": "5.0.2",
     "vue-router": "2.7.0",
     "webpack": "3.5.6",
