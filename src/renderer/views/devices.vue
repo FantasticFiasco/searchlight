@@ -6,25 +6,32 @@
 </template>
 
 <script lang="ts">
-import { ipcRenderer } from 'electron';
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import { Device } from 'axis-discovery';
 
-import * as ChannelNames from 'common/channel-names';
+import { DiscoveryService } from '../services/discovery-service';
 
 @Component({
     name: 'devices',
 })
 export default class Devices extends Vue {
+    private readonly discoveryService: DiscoveryService;
+
     constructor() {
         super();
 
-        ipcRenderer.send('discovery.search');
+        this.discoveryService = new DiscoveryService;
+        this.discoveryService.onHello((device: Device) => this.onHello(device));
+        this.discoveryService.onGoodbye((device: Device) => this.onGoodbye(device));
+    }
 
-        ipcRenderer.on(ChannelNames.DISCOVERY_DEVICE_HELLO, (device: Device) => {
-            console.log('hello', device);
-        });
+    private onHello(device: Device) {
+        console.log('hello', device);
+    }
+
+    private onGoodbye(device: Device) {
+        console.log('goodbye', device);
     }
 }
 </script>

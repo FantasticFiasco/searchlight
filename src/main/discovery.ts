@@ -3,6 +3,7 @@ import * as Axis from 'axis-discovery';
 import { ipcMain } from 'electron';
 
 import * as ChannelNames from 'common/channel-names';
+import * as log from './log';
 
 /**
  * Class discovering Axis devices on the network.
@@ -31,6 +32,7 @@ export class Discovery {
      * addresses and repeatedly trigger a search for devices.
      */
     public start(): Promise<void> {
+        log.info('Discovery - start');
         return this.discovery.start();
     }
 
@@ -38,18 +40,22 @@ export class Discovery {
      * Stop listening for device advertisements.
      */
     public stop(): Promise<void> {
+        log.info('Discovery - stop');
         return this.discovery.stop();
     }
 
     private onSearch(): Promise<void> {
+        log.info('Discovery - search');
         return this.discovery.search();
     }
 
     private onHello(device: Axis.Device) {
+        log.debug(`Discovery - hello from ${device.macAddress}`);
         this.webContents.send(ChannelNames.DISCOVERY_DEVICE_HELLO, device);
     }
 
     private onGoodbye(device: Axis.Device) {
+        log.debug(`Discovery - goodbye from ${device.macAddress}`);
         this.webContents.send(ChannelNames.DISCOVERY_DEVICE_GOODBYE, device);
     }
 }
