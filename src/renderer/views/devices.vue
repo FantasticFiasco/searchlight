@@ -22,8 +22,17 @@ export default class Devices extends Vue {
         super();
 
         this.discoveryService = new DiscoveryService;
+    }
+
+    public mounted() {
         this.discoveryService.onHello((device: Device) => this.onHello(device));
         this.discoveryService.onGoodbye((device: Device) => this.onGoodbye(device));
+
+        // Trigger the initial search
+        this.discoveryService.search();
+
+        // Trigger a new search every 10 seconds
+        setInterval(() => this.discoveryService.search(), 10000);
     }
 
     private onHello(device: Device) {
