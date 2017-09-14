@@ -1,7 +1,7 @@
 <template>
     <div class="animated fadeIn">
         <h1>Devices</h1>
-        <p v-for="i in 100">{{ i }}</p>
+        <p v-for="device in devices" :key="device.serialNumber">{{ device }}</p>
     </div>
 </template>
 
@@ -20,9 +20,10 @@ export default class Devices extends Vue {
 
     constructor() {
         super();
-
         this.discoveryService = new DiscoveryService;
     }
+
+    public devices: Device[] = [];
 
     public mounted() {
         this.discoveryService.onHello((device: Device) => this.onHello(device));
@@ -36,11 +37,26 @@ export default class Devices extends Vue {
     }
 
     private onHello(device: Device) {
-        console.log('hello', device);
+        const index = this.findIndex(device);
+        if (index === -1) {
+            // Add device
+            this.devices.push(device);
+        } else {
+            // Replace device
+            this.devices.splice(index, 1, device);
+        }
     }
 
     private onGoodbye(device: Device) {
-        console.log('goodbye', device);
+        const index = this.findIndex(device);
+        if (index > -1) {
+            // Remove device
+            this.devices.splice(index, 1);
+        }
+    }
+
+    private findIndex(device: Device): number {
+        return this.devices.findIndex((knownDevice: Device) => knownDevice.macAddress === device.macAddress);
     }
 }
 </script>

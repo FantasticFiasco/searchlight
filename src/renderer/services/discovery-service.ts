@@ -19,10 +19,10 @@ export class DiscoveryService {
 
         ipcRenderer.on(
             ChannelNames.DISCOVERY_DEVICE_HELLO,
-            (device: Device) => this.sendHello(device));
+            (event: any, device: Device) => this.sendHello(device));
         ipcRenderer.on(
             ChannelNames.DISCOVERY_DEVICE_GOODBYE,
-            (device: Device) => this.sendGoodbye(device));
+            (event: any, device: Device) => this.sendGoodbye(device));
     }
 
     /**
