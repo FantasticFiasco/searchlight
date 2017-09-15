@@ -1,19 +1,23 @@
 <template>
     <div class="animated fadeIn">
-        <h1>Devices</h1>
-        <p v-for="device in devices" :key="device.serialNumber">{{ device }}</p>
+        <Device v-for="device in devices" :key="device.serialNumber" :device="device">
+        </Device>
     </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import { Device } from 'axis-discovery';
+import * as Axis from 'axis-discovery';
 
 import { DiscoveryService } from '../services/discovery-service';
+import Device from '../components/device.vue';
 
 @Component({
     name: 'devices',
+    components: {
+        Device
+    },
 })
 export default class Devices extends Vue {
     private readonly discoveryService: DiscoveryService;
@@ -23,11 +27,11 @@ export default class Devices extends Vue {
         this.discoveryService = new DiscoveryService;
     }
 
-    public devices: Device[] = [];
+    public devices: Axis.Device[] = [];
 
     public mounted() {
-        this.discoveryService.onHello((device: Device) => this.onHello(device));
-        this.discoveryService.onGoodbye((device: Device) => this.onGoodbye(device));
+        this.discoveryService.onHello((device: Axis.Device) => this.onHello(device));
+        this.discoveryService.onGoodbye((device: Axis.Device) => this.onGoodbye(device));
 
         // Trigger the initial search
         this.discoveryService.search();
@@ -36,7 +40,7 @@ export default class Devices extends Vue {
         setInterval(() => this.discoveryService.search(), 10000);
     }
 
-    private onHello(device: Device) {
+    private onHello(device: Axis.Device) {
         const index = this.findIndex(device);
         if (index === -1) {
             // Add device
@@ -47,7 +51,7 @@ export default class Devices extends Vue {
         }
     }
 
-    private onGoodbye(device: Device) {
+    private onGoodbye(device: Axis.Device) {
         const index = this.findIndex(device);
         if (index > -1) {
             // Remove device
@@ -55,8 +59,8 @@ export default class Devices extends Vue {
         }
     }
 
-    private findIndex(device: Device): number {
-        return this.devices.findIndex((knownDevice: Device) => knownDevice.macAddress === device.macAddress);
+    private findIndex(device: Axis.Device): number {
+        return this.devices.findIndex((knownDevice: Axis.Device) => knownDevice.macAddress === device.macAddress);
     }
 }
 </script>

@@ -14,12 +14,12 @@ import Component from 'vue-class-component';
     name: 'header',
 })
 export default class Header extends Vue {
-    mobileSidebarToggle(e: Event) {
+    public mobileSidebarToggle(e: Event) {
         e.preventDefault();
         document.body.classList.toggle('sidebar-mobile-show');
     }
 
-    sidebarMinimize(e: Event) {
+    public sidebarMinimize(e: Event) {
         e.preventDefault();
         document.body.classList.toggle('sidebar-minimized');
     }
