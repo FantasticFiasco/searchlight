@@ -3,8 +3,8 @@ import Debug from 'electron-debug';
 import Store from 'electron-store';
 import * as uuid from 'uuid';
 
-import { Analytics } from './analytics/analytics';
-import { Discovery } from './discovery';
+import { Analytics } from './analytics';
+import { Discovery, DiscoveryMock } from './discovery';
 import * as environment from './environment';
 import * as log from './log';
 import { Updates } from './updates';
@@ -40,11 +40,13 @@ function createWindow() {
     mainWindow.loadURL(environment.isDev() ? 'http://localhost:9080' : `file://${__dirname}/index.html`);
 
     // Start discovery
-    discovery = new Discovery(mainWindow.webContents);
+    discovery = environment.isDev() ?
+        new DiscoveryMock(mainWindow.webContents) :
+        new Discovery(mainWindow.webContents);
     discovery.start();
 
     // Open the DevTools
-    // mainWindow.webContents.openDevTools({ mode: 'undocked' });
+    mainWindow.webContents.openDevTools({ mode: 'undocked' });
 
     // Show main window when Electron has loaded, thus preventing UI flickering
     mainWindow.on('ready-to-show', () => {
@@ -114,4 +116,4 @@ app.on('ready', () => {
 });
 
 // Discovery
-let discovery: Discovery | undefined;
+let discovery: Discovery | DiscoveryMock | undefined;
