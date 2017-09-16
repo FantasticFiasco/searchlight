@@ -51,15 +51,25 @@ export class DiscoveryMock implements IDiscovery {
     }
 
     private createDevice(index: number): Axis.Device {
+        const address = `10.10.1.${index}`;
+        const linkLocalAddress = `192.168.1.${index}`;
+        const port = Math.random() > 0.5 ? 80 : 443;
+        const macAddress = `ACCCABCDEFG${index}`;
+        const friendlyName = 'Name ' + Array(Math.floor(20 * Math.random())).join('a') + '-end';
+        const modelName = 'AXIS M1014';
+        const modelDescription = 'AXIS M1014 Fixed Network Camera';
+        const modelNumber = 'M1014';
+        const presentationUrl = `http://${address}:${port}/`;
+
         return new Axis.Device(
-            `10.10.1.${index}`,
-            undefined,
-            80,
-            `ACCC0000000${index}`,
-            `Camera ${index}`,
-            'AXIS M1014',
-            'AXIS M1014 Fixed Network Camera',
-            'M1014',
-            `http://10.10.1.${index}:80/`);
+            address,
+            linkLocalAddress,
+            port,
+            macAddress,
+            friendlyName,
+            modelName,
+            modelDescription,
+            modelNumber,
+            presentationUrl);
     }
 }
