@@ -1,6 +1,6 @@
 <template>
     <div class="animated fadeIn">
-        <Device v-for="device in devices" :key="device.serialNumber" :device="device">
+        <Device v-for="device in sortedDevices" :key="device.serialNumber" :device="device">
         </Device>
     </div>
 </template>
@@ -28,6 +28,20 @@ export default class Devices extends Vue {
     }
 
     public devices: Axis.Device[] = [];
+
+    public get sortedDevices() {
+        return this.devices.sort((a: Axis.Device, b: Axis.Device) => {
+            if (a.friendlyName === undefined) {
+                return -1;
+            }
+
+            if (b.friendlyName === undefined) {
+                return 1;
+            }
+
+            return a.friendlyName.localeCompare(b.friendlyName);
+        });
+    }
 
     public mounted() {
         this.discoveryService.onHello((device: Axis.Device) => this.onHello(device));

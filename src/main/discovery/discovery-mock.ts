@@ -12,6 +12,8 @@ import { IDiscovery } from './';
  */
 export class DiscoveryMock implements IDiscovery {
     private readonly webContents: Electron.WebContents;
+    private readonly connectedDevices: Axis.Device[];
+    private readonly disconnectedDevices: Axis.Device[];
 
     /**
      * Initializes a new instance of the class.
@@ -20,9 +22,17 @@ export class DiscoveryMock implements IDiscovery {
         expect.toExist(webContents);
 
         this.webContents = webContents;
+        this.connectedDevices = [];
+        this.disconnectedDevices = [];
 
         // Register for messages sent from the renderer
         ipcMain.on(ChannelNames.DISCOVERY_SEARCH, () => this.onSearch());
+
+        for (let index = 1; index <= 5; index++) {
+            this.connectedDevices.push(this.createDevice(index));
+        }
+
+        setInterval(() => this.onSimulateConnectionStatus(), 5000);
     }
 
     /**
@@ -45,8 +55,35 @@ export class DiscoveryMock implements IDiscovery {
     private onSearch() {
         log.info('DiscoveryMock - search');
 
-        for (let index = 0; index < 9; index++) {
-            this.webContents.send(ChannelNames.DISCOVERY_DEVICE_HELLO, this.createDevice(index));
+        for (const device of this.connectedDevices) {
+            this.webContents.send(ChannelNames.DISCOVERY_DEVICE_HELLO, device);
+        }
+    }
+
+    private onSimulateConnectionStatus() {
+        const result = Math.random();
+
+        if (result < 0.5) {
+            log.info('DiscoveryMock - skip connect/disconnect simulation');
+            return;
+        }
+
+        if (result < 0.75 && this.connectedDevices.length > 0) {
+            log.info('DiscoveryMock - simulate disconnection');
+
+            const index = Math.floor(this.connectedDevices.length * Math.random());
+            const disconnectedDevice = this.connectedDevices.splice(index, 1)[0];
+            this.disconnectedDevices.push(disconnectedDevice);
+
+            this.webContents.send(ChannelNames.DISCOVERY_DEVICE_GOODBYE, disconnectedDevice);
+        } else if (this.disconnectedDevices.length > 0) {
+            log.info('DiscoveryMock - simulate connection');
+
+            const index = Math.floor(this.disconnectedDevices.length * Math.random());
+            const connectedDevice = this.disconnectedDevices.splice(index, 1)[0];
+            this.connectedDevices.push(connectedDevice);
+
+            this.webContents.send(ChannelNames.DISCOVERY_DEVICE_HELLO, connectedDevice);
         }
     }
 

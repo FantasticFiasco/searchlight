@@ -1,7 +1,10 @@
 <template>
-    <p>
-        Device called '{{ name }}'
-    </p>
+    <b-card class="bg-success">
+        <div class="card-body pb-0">
+            <h5>{{ name }}</h5>
+            <p>{{ model }}</p>
+        </div>
+    </b-card>
 </template>
 
 <script lang="ts">
@@ -27,6 +30,14 @@ export default class Device extends Vue {
         }
 
         return 'unknown';
+    }
+
+    public get model(): string {
+        if (this.device.modelDescription) {
+            return this.device.modelDescription;
+        }
+
+        return "";
     }
 }
 </script>
