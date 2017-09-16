@@ -55,7 +55,7 @@ export class DiscoveryMock implements IDiscovery {
         const linkLocalAddress = `192.168.1.${index}`;
         const port = Math.random() > 0.5 ? 80 : 443;
         const macAddress = `ACCCABCDEFG${index}`;
-        const friendlyName = 'Name ' + Array(Math.floor(20 * Math.random())).join('a') + '-end';
+        const friendlyName = 'Name |' + Array(Math.floor(40 * Math.random())).join('a') + '|';
         const modelName = 'AXIS M1014';
         const modelDescription = 'AXIS M1014 Fixed Network Camera';
         const modelNumber = 'M1014';
