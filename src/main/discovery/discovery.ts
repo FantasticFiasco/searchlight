@@ -4,11 +4,12 @@ import { ipcMain } from 'electron';
 
 import * as ChannelNames from 'common/channel-names';
 import * as log from '../log';
+import { IDiscovery } from './';
 
 /**
  * Class discovering Axis devices on the network.
  */
-export class Discovery {
+export class Discovery implements IDiscovery {
     private readonly discovery: Axis.Discovery;
     private readonly webContents: Electron.WebContents;
 
@@ -50,8 +51,6 @@ export class Discovery {
     }
 
     private onHello(device: Axis.Device) {
-        console.log(device);
-
         log.debug(`Discovery - hello from ${device.macAddress}`);
         this.webContents.send(ChannelNames.DISCOVERY_DEVICE_HELLO, device);
     }

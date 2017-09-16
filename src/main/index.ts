@@ -4,7 +4,7 @@ import Store from 'electron-store';
 import * as uuid from 'uuid';
 
 import { Analytics } from './analytics';
-import { Discovery, DiscoveryMock } from './discovery';
+import { Discovery, DiscoveryMock, IDiscovery } from './discovery';
 import * as environment from './environment';
 import * as log from './log';
 import { Updates } from './updates';
@@ -43,6 +43,7 @@ function createWindow() {
     discovery = environment.isDev() ?
         new DiscoveryMock(mainWindow.webContents) :
         new Discovery(mainWindow.webContents);
+
     discovery.start();
 
     // Open the DevTools
@@ -116,4 +117,4 @@ app.on('ready', () => {
 });
 
 // Discovery
-let discovery: Discovery | DiscoveryMock | undefined;
+let discovery: IDiscovery | undefined;

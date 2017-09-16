@@ -4,12 +4,13 @@ import { ipcMain } from 'electron';
 
 import * as ChannelNames from 'common/channel-names';
 import * as log from '../log';
+import { IDiscovery } from './';
 
 /**
- * Class mocking discovering Axis devices on the network for development
+ * Class mocking discovered Axis devices on the network for development
  * purpose.
  */
-export class DiscoveryMock {
+export class DiscoveryMock implements IDiscovery {
     private readonly webContents: Electron.WebContents;
 
     /**
