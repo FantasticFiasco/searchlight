@@ -1054,14 +1054,14 @@ boom@2.x.x:
   dependencies:
     hoek "2.x.x"
 
-bootstrap-vue@1.0.0-beta.5:
-  version "1.0.0-beta.5"
-  resolved "https://registry.yarnpkg.com/bootstrap-vue/-/bootstrap-vue-1.0.0-beta.5.tgz#d9d676eff697aa46e75e389e4aefb306e103ffa2"
+bootstrap-vue@1.0.0-beta.8:
+  version "1.0.0-beta.8"
+  resolved "https://registry.yarnpkg.com/bootstrap-vue/-/bootstrap-vue-1.0.0-beta.8.tgz#f303e8d0583117b3c3d1a79a8a1dbc3715ac4a16"
   dependencies:
     bootstrap "^4.0.0-beta"
     jquery "^3.0.0"
-    popper.js "^1.12.3"
-    tether latest
+    lodash.startcase "^4.4.0"
+    popper.js "^1.12.5"
     vue "^2.4.2"
     vue-functional-data-merge "^1.0.6"
 
@@ -3771,6 +3771,10 @@ lodash.some@^4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/lodash.some/-/lodash.some-4.6.0.tgz#1bb9f314ef6b8baded13b549169b2a945eb68e4d"
 
+lodash.startcase@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/lodash.startcase/-/lodash.startcase-4.4.0.tgz#9436e34ed26093ed7ffae1936144350915d9add8"
+
 lodash.startswith@^4.2.1:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/lodash.startswith/-/lodash.startswith-4.2.1.tgz#c598c4adce188a27e53145731cdc6c0e7177600c"
@@ -4523,7 +4527,7 @@ plist@^2.1.0:
     xmlbuilder "8.2.2"
     xmldom "0.1.x"
 
-popper.js@^1.12.3:
+popper.js@^1.12.5:
   version "1.12.5"
   resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.12.5.tgz#229e4dea01629e1f1a1e26991ffade5024220fa6"
 
@@ -5745,10 +5749,6 @@ term-size@^1.2.0:
   resolved "https://registry.yarnpkg.com/term-size/-/term-size-1.2.0.tgz#458b83887f288fc56d6fffbfad262e26638efa69"
   dependencies:
     execa "^0.7.0"
-
-tether@latest:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/tether/-/tether-1.4.0.tgz#0f9fa171f75bf58485d8149e94799d7ae74d1c1a"
 
 throttleit@0.0.2:
   version "0.0.2"
