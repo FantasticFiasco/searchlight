@@ -3,7 +3,7 @@
         <nav class="sidebar-nav">
             <div slot="header"></div>
             <ul class="nav">
-                <li class="nav-item" v-for="(item, index) in navItems" :key="item.url">
+                <li class="nav-item" v-for="item in navItems" :key="item.url">
                     <template>
                         <SidebarNavLink :name="item.name" :url="item.url" :icon="item.icon" />
                     </template>

@@ -10,11 +10,15 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import * as Axis from 'axis-discovery';
 
+import { DISCOVERY_SERVICE } from '../dependency-injection';
 import { DiscoveryService } from '../services';
 import Device from '../components/device.vue';
 
 @Component({
     name: 'devices',
+    inject: {
+        'discoveryService': DISCOVERY_SERVICE,
+    },
     components: {
         Device
     },
@@ -25,7 +29,6 @@ export default class Devices extends Vue {
 
     constructor() {
         super();
-        this.discoveryService = new DiscoveryService;
         this.devices = [];
     }
 

@@ -22,7 +22,7 @@ import * as Axis from 'axis-discovery';
     },
 })
 export default class Device extends Vue {
-    public device: Axis.Device;
+    private readonly device: Axis.Device;
 
     public get name(): string {
         return this.device.friendlyName || '';
