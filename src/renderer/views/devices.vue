@@ -10,7 +10,7 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import * as Axis from 'axis-discovery';
 
-import { DiscoveryService } from '../services/discovery-service';
+import { DiscoveryService } from '../services';
 import Device from '../components/device.vue';
 
 @Component({
@@ -21,13 +21,13 @@ import Device from '../components/device.vue';
 })
 export default class Devices extends Vue {
     private readonly discoveryService: DiscoveryService;
+    private readonly devices: Axis.Device[];
 
     constructor() {
         super();
         this.discoveryService = new DiscoveryService;
+        this.devices = [];
     }
-
-    public devices: Axis.Device[] = [];
 
     public get sortedDevices() {
         return this.devices.sort((a: Axis.Device, b: Axis.Device) => {
@@ -74,7 +74,8 @@ export default class Devices extends Vue {
     }
 
     private findIndex(device: Axis.Device): number {
-        return this.devices.findIndex((knownDevice: Axis.Device) => knownDevice.macAddress === device.macAddress);
+        return this.devices.findIndex((knownDevice: Axis.Device) =>
+            knownDevice.macAddress === device.macAddress);
     }
 }
 </script>

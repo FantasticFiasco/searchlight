@@ -64,7 +64,7 @@ export class DiscoveryMock implements IDiscovery {
         const result = Math.random();
 
         if (result < 0.5) {
-            log.info('DiscoveryMock - skip connect/disconnect simulation');
+            log.info('DiscoveryMock - no connect/disconnect update');
             return;
         }
 

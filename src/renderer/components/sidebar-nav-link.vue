@@ -13,15 +13,18 @@ import Component from 'vue-class-component';
     props: {
         name: {
             type: String,
-            default: ''
+            required: true,
+            default: '',
         },
         url: {
             type: String,
-            default: ''
+            required: true,
+            default: '',
         },
         icon: {
             type: String,
-            default: ''
+            required: true,
+            default: '',
         },
     },
 })

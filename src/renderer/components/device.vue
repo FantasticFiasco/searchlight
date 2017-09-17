@@ -1,6 +1,6 @@
 <template>
     <b-card class="bg-success">
-        <div class="card-body pb-0">
+        <div class="card-body">
             <h5>{{ name }}</h5>
             <p>{{ model }}</p>
         </div>
@@ -25,19 +25,11 @@ export default class Device extends Vue {
     public device: Axis.Device;
 
     public get name(): string {
-        if (this.device.friendlyName) {
-            return this.device.friendlyName;
-        }
-
-        return 'unknown';
+        return this.device.friendlyName || '';
     }
 
     public get model(): string {
-        if (this.device.modelDescription) {
-            return this.device.modelDescription;
-        }
-
-        return "";
+        return this.device.modelDescription || '';
     }
 }
 </script>
