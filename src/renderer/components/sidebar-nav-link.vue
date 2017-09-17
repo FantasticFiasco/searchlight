@@ -13,22 +13,25 @@ import Component from 'vue-class-component';
     props: {
         name: {
             type: String,
-            default: ''
+            required: true,
+            default: '',
         },
         url: {
             type: String,
-            default: ''
+            required: true,
+            default: '',
         },
         icon: {
             type: String,
-            default: ''
+            required: true,
+            default: '',
         },
     },
 })
 export default class SidebarNavLink extends Vue {
-    name: string;
-    url: string;
-    icon: string;
+    public name: string;
+    public url: string;
+    public icon: string;
 }
 </script>
 

@@ -1,1 +1,0 @@
-This directory is part of the `electron-webpack` [project structure](https://webpack.electron.build/project-structure).

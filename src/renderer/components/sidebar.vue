@@ -35,9 +35,9 @@ import SidebarNavLink from './sidebar-nav-link.vue';
     },
 })
 export default class Sidebar extends Vue {
-    navItems: Array<IView>;
+    public navItems: Array<IView>;
 
-    handleClick(e: Event) {
+    public handleClick(e: Event) {
         e.preventDefault();
 
         const nodeTarget = e.target as Node;
