@@ -37,7 +37,7 @@ export class DiscoveryMock implements IDiscovery {
 
     /**
      * Start listen for device advertisements on all network interface
-     * addresses and repeatedly trigger a search for devices.
+     * addresses.
      */
     public start(): Promise<void> {
         log.info('DiscoveryMock - start');
