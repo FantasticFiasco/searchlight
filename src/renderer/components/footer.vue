@@ -1,6 +1,8 @@
 <template>
     <footer class="app-footer">
-        {{ count }} device / ? devices
+        <div v-if="count === 0">No devices found</div>
+        <div v-if="count === 1">1 device found</div>
+        <div v-if="count > 1">{{ count }} devices found</div>
     </footer>
 </template>
 
