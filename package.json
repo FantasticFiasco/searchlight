@@ -51,10 +51,7 @@
         "axis-discovery",
         "bootstrap-vue",
         "simple-line-icons",
-        "vue",
-        "vue-class-component",
-        "vue-router",
-        "vuex"
+        "vue"
       ]
     }
   },
