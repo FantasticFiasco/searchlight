@@ -26,6 +26,12 @@ export const addOrUpdateDevice: Mutation<State> = (state: State, device: Axis.De
 };
 
 /**
+ * The action adding or updating a device in the store depending on whether it
+ * already exists.
+ */
+export const ADD_OR_UPDATE_DEVICE_MUTATION = addOrUpdateDevice.name;
+
+/**
  * Removes a device from the store.
  * @param state The current state of the store
  * @param device The device to remove from the store
@@ -40,6 +46,11 @@ export const removeDevice: Mutation<State> = (state: State, device: Axis.Device)
         state.devices.splice(index, 1);
     }
 };
+
+/**
+ * The action removing a device from the store.
+ */
+export const REMOVE_DEVICE_MUTATION = removeDevice.name;
 
 function indexOf(device: Axis.Device, amongDevices: Axis.Device[]): number {
     return amongDevices.findIndex((existingDevice: Axis.Device) =>

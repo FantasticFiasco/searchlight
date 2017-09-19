@@ -9,7 +9,6 @@
 import Vue from 'vue';
 import 'vuex';
 import Component from 'vue-class-component';
-import * as Axis from 'axis-discovery';
 
 import { DISCOVERY_SERVICE } from '../dependency-injection';
 import { DiscoveryService } from '../services';
@@ -32,22 +31,11 @@ export default class Devices extends Vue {
     }
 
     public mounted() {
-        this.discoveryService.onHello((device: Axis.Device) => this.onHello(device));
-        this.discoveryService.onGoodbye((device: Axis.Device) => this.onGoodbye(device));
-
         // Trigger the initial search
         this.discoveryService.search();
 
         // Trigger a new search every 10 seconds
         setInterval(() => this.discoveryService.search(), 10000);
-    }
-
-    private onHello(device: Axis.Device) {
-        this.$store.commit('addOrUpdateDevice', device);
-    }
-
-    private onGoodbye(device: Axis.Device) {
-        this.$store.commit('removeDevice', device);
     }
 }
 </script>
