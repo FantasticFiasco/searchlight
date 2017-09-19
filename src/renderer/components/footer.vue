@@ -1,8 +1,8 @@
 <template>
     <footer class="app-footer">
-        <div v-if="count === 0">No devices found</div>
-        <div v-if="count === 1">1 device found</div>
-        <div v-if="count > 1">{{ count }} devices found</div>
+        <div v-if="deviceCount === 0">No devices found</div>
+        <div v-if="deviceCount === 1">1 device found</div>
+        <div v-if="deviceCount > 1">{{ deviceCount }} devices found</div>
     </footer>
 </template>
 
@@ -15,8 +15,8 @@ import Component from 'vue-class-component';
     name: 'footer',
 })
 export default class Footer extends Vue {
-    public get count() {
-        return this.$store.state.devices.length;
+    public get deviceCount() {
+        return this.$store.getters.deviceCount;
     }
 }
 </script>

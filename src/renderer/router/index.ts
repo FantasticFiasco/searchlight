@@ -7,7 +7,7 @@ import Settings from './../views/settings.vue';
 
 Vue.use(Router);
 
-export default new Router({
+export const router = new Router({
     mode: 'history',
     linkActiveClass: 'active',
     scrollBehavior: (to: Route, from: Route) => ({

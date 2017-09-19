@@ -1,12 +1,13 @@
 <template>
     <div class="animated fadeIn">
-        <Device v-for="device in sortedDevices" :key="device.serialNumber" :device="device">
+        <Device v-for="device in devices" :key="device.serialNumber" :device="device">
         </Device>
     </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
+import 'vuex';
 import Component from 'vue-class-component';
 import * as Axis from 'axis-discovery';
 
@@ -25,25 +26,9 @@ import Device from '../components/device.vue';
 })
 export default class Devices extends Vue {
     private readonly discoveryService: DiscoveryService;
-    private readonly devices: Axis.Device[];
 
-    constructor() {
-        super();
-        this.devices = [];
-    }
-
-    public get sortedDevices() {
-        return this.devices.sort((a: Axis.Device, b: Axis.Device) => {
-            if (a.friendlyName === undefined) {
-                return -1;
-            }
-
-            if (b.friendlyName === undefined) {
-                return 1;
-            }
-
-            return a.friendlyName.localeCompare(b.friendlyName);
-        });
+    public get devices() {
+        return this.$store.getters.sortedDevices;
     }
 
     public mounted() {
@@ -58,27 +43,11 @@ export default class Devices extends Vue {
     }
 
     private onHello(device: Axis.Device) {
-        const index = this.findIndex(device);
-        if (index === -1) {
-            // Add device
-            this.devices.push(device);
-        } else {
-            // Replace device
-            this.devices.splice(index, 1, device);
-        }
+        this.$store.commit('addOrUpdateDevice', device);
     }
 
     private onGoodbye(device: Axis.Device) {
-        const index = this.findIndex(device);
-        if (index > -1) {
-            // Remove device
-            this.devices.splice(index, 1);
-        }
-    }
-
-    private findIndex(device: Axis.Device): number {
-        return this.devices.findIndex((knownDevice: Axis.Device) =>
-            knownDevice.macAddress === device.macAddress);
+        this.$store.commit('removeDevice', device);
     }
 }
 </script>
