@@ -16,7 +16,7 @@ import Component from 'vue-class-component';
 })
 export default class Footer extends Vue {
     public get deviceCount() {
-        return this.$store.getters.deviceCount;
+        return this.$store.state.devices.length;
     }
 }
 </script>

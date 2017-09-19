@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Vuex, { Store } from 'vuex';
 
-import { deviceCount, sortedDevices } from './getters';
 import { addOrUpdateDevice, removeDevice } from './mutations';
 import { State } from './state';
 
@@ -14,10 +13,6 @@ export const store = new Store<State>({
     mutations: {
         addOrUpdateDevice,
         removeDevice,
-    },
-    getters: {
-        deviceCount,
-        sortedDevices,
     },
     strict: debug,
 });

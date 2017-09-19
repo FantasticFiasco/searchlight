@@ -9,6 +9,7 @@
 import Vue from 'vue';
 import 'vuex';
 import Component from 'vue-class-component';
+import * as Axis from 'axis-discovery';
 
 import { DISCOVERY_SERVICE } from '../dependency-injection';
 import { DiscoveryService } from '../services';
@@ -27,7 +28,18 @@ export default class Devices extends Vue {
     private readonly discoveryService: DiscoveryService;
 
     public get devices() {
-        return this.$store.getters.sortedDevices;
+        // Vuex prohibits modifying state outside of store modifiers, thus the 'slice'
+        return this.$store.state.devices.slice().sort((a: Axis.Device, b: Axis.Device) => {
+            if (a.friendlyName === undefined) {
+                return -1;
+            }
+
+            if (b.friendlyName === undefined) {
+                return 1;
+            }
+
+            return a.friendlyName.localeCompare(b.friendlyName);
+        });
     }
 
     public mounted() {
