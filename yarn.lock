@@ -1054,13 +1054,12 @@ boom@2.x.x:
   dependencies:
     hoek "2.x.x"
 
-bootstrap-vue@1.0.0-beta.8:
-  version "1.0.0-beta.8"
-  resolved "https://registry.yarnpkg.com/bootstrap-vue/-/bootstrap-vue-1.0.0-beta.8.tgz#f303e8d0583117b3c3d1a79a8a1dbc3715ac4a16"
+bootstrap-vue@1.0.0-beta.7:
+  version "1.0.0-beta.7"
+  resolved "https://registry.yarnpkg.com/bootstrap-vue/-/bootstrap-vue-1.0.0-beta.7.tgz#dab0eb35421df80fe0966849b8e992f0ec0a270e"
   dependencies:
     bootstrap "^4.0.0-beta"
     jquery "^3.0.0"
-    lodash.startcase "^4.4.0"
     popper.js "^1.12.5"
     vue "^2.4.2"
     vue-functional-data-merge "^1.0.6"
@@ -3770,10 +3769,6 @@ lodash.mergewith@^4.6.0:
 lodash.some@^4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/lodash.some/-/lodash.some-4.6.0.tgz#1bb9f314ef6b8baded13b549169b2a945eb68e4d"
-
-lodash.startcase@^4.4.0:
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/lodash.startcase/-/lodash.startcase-4.4.0.tgz#9436e34ed26093ed7ffae1936144350915d9add8"
 
 lodash.startswith@^4.2.1:
   version "4.2.1"
