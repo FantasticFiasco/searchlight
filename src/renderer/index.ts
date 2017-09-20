@@ -1,14 +1,17 @@
 import BootstrapVue from 'bootstrap-vue';
 import Vue from 'vue';
+
 import App from './app.vue';
-import Router from './router';
+import { router } from './router';
+import { store } from './store';
 
 Vue.use(BootstrapVue);
 
 // tslint:disable:no-unused-expression
 new Vue({
     el: '#app',
-    router: Router,
+    store,
+    router,
     render: (h) => h(App),
 });
 

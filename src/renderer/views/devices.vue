@@ -1,12 +1,13 @@
 <template>
     <div class="animated fadeIn">
-        <Device v-for="device in sortedDevices" :key="device.serialNumber" :device="device">
+        <Device v-for="device in devices" :key="device.serialNumber" :device="device">
         </Device>
     </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
+import 'vuex';
 import Component from 'vue-class-component';
 import * as Axis from 'axis-discovery';
 
@@ -25,15 +26,10 @@ import Device from '../components/device.vue';
 })
 export default class Devices extends Vue {
     private readonly discoveryService: DiscoveryService;
-    private readonly devices: Axis.Device[];
 
-    constructor() {
-        super();
-        this.devices = [];
-    }
-
-    public get sortedDevices() {
-        return this.devices.sort((a: Axis.Device, b: Axis.Device) => {
+    public get devices() {
+        // Vuex prohibits modifying state outside of store modifiers, thus the 'slice'
+        return this.$store.state.devices.slice().sort((a: Axis.Device, b: Axis.Device) => {
             if (a.friendlyName === undefined) {
                 return -1;
             }
@@ -47,38 +43,11 @@ export default class Devices extends Vue {
     }
 
     public mounted() {
-        this.discoveryService.onHello((device: Axis.Device) => this.onHello(device));
-        this.discoveryService.onGoodbye((device: Axis.Device) => this.onGoodbye(device));
-
         // Trigger the initial search
         this.discoveryService.search();
 
         // Trigger a new search every 10 seconds
         setInterval(() => this.discoveryService.search(), 10000);
-    }
-
-    private onHello(device: Axis.Device) {
-        const index = this.findIndex(device);
-        if (index === -1) {
-            // Add device
-            this.devices.push(device);
-        } else {
-            // Replace device
-            this.devices.splice(index, 1, device);
-        }
-    }
-
-    private onGoodbye(device: Axis.Device) {
-        const index = this.findIndex(device);
-        if (index > -1) {
-            // Remove device
-            this.devices.splice(index, 1);
-        }
-    }
-
-    private findIndex(device: Axis.Device): number {
-        return this.devices.findIndex((knownDevice: Axis.Device) =>
-            knownDevice.macAddress === device.macAddress);
     }
 }
 </script>
