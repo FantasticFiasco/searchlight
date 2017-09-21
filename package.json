@@ -74,7 +74,7 @@
     "@types/electron-store": "1.2.0",
     "@types/universal-analytics": "0.4.1",
     "@types/uuid": "3.4.2",
-    "bootstrap-vue": "1.0.0-beta.7",
+    "bootstrap-vue": "1.0.0-beta.9",
     "devtron": "1.4.0",
     "electron": "1.7.6",
     "electron-builder": "19.27.7",
