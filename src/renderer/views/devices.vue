@@ -1,7 +1,10 @@
 <template>
     <div class="animated fadeIn">
-        <Device v-for="device in devices" :key="device.serialNumber" :device="device">
-        </Device>
+        <div class="row">
+            <div class="col-sm-6 col-lg-3" v-for="device in devices" :key="device.macAddress">
+                <Device :device="device" />
+            </div>
+        </div>
     </div>
 </template>
 
