@@ -12,11 +12,11 @@
 import Vue from 'vue';
 import 'vuex';
 import Component from 'vue-class-component';
-import * as Axis from 'axis-discovery';
 
 import { DISCOVERY_SERVICE } from '../dependency-injection';
 import { DiscoveryService } from '../services';
 import Device from '../components/device.vue';
+import { Device as DeviceModel } from '../models';
 
 @Component({
     name: 'devices',
@@ -32,16 +32,8 @@ export default class Devices extends Vue {
 
     public get devices() {
         // Vuex prohibits modifying state outside of store modifiers, thus the 'slice'
-        return this.$store.state.devices.slice().sort((a: Axis.Device, b: Axis.Device) => {
-            if (a.friendlyName === undefined) {
-                return -1;
-            }
-
-            if (b.friendlyName === undefined) {
-                return 1;
-            }
-
-            return a.friendlyName.localeCompare(b.friendlyName);
+        return this.$store.state.devices.slice().sort((a: DeviceModel, b: DeviceModel) => {
+            return a.name.localeCompare(b.name);
         });
     }
 

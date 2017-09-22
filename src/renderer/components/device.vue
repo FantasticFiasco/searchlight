@@ -1,5 +1,5 @@
 <template>
-    <b-card class="bg-primary" :no-body="true">
+    <b-card :class="isConnected ? 'bg-primary' : 'bg-danger'" :no-body="true">
         <div class="card-body pb-0">
             <b-dropdown class="float-right" variant="transparent p-0" right>
                 <template slot="button-content">
@@ -19,27 +19,30 @@
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import * as Axis from 'axis-discovery';
+import { Device as DeviceModel } from '../models';
 
 @Component({
     name: 'device',
     props: {
         device: {
-            type: Axis.Device,
+            type: DeviceModel,
             required: true,
         },
     },
 })
 export default class Device extends Vue {
-    private readonly device: Axis.Device;
+    private readonly device: DeviceModel;
 
     public get name(): string {
-        return this.device.friendlyName || '';
+        return this.device.name;
     }
 
     public get model(): string {
-        return this.device.modelDescription || '';
+        return this.device.model;
+    }
+
+    public get isConnected(): boolean {
+        return this.device.isConnected;
     }
 }
 </script>
-

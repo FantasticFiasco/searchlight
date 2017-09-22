@@ -32,7 +32,7 @@ export class DiscoveryMock implements IDiscovery {
             this.connectedDevices.push(this.createDevice(index));
         }
 
-        // setInterval(() => this.onSimulateConnectionStatus(), 5000);
+        setInterval(() => this.onSimulateConnectionStatus(), 5000);
     }
 
     /**
