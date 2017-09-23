@@ -1,5 +1,5 @@
 <template>
-    <b-card :class="isConnected ? 'bg-primary' : 'bg-danger'" :no-body="true">
+    <b-card :class="isResponsive ? 'bg-primary' : 'bg-danger'" :no-body="true">
         <div class="card-body pb-0">
             <b-dropdown class="float-right" variant="transparent p-0" right>
                 <template slot="button-content">
@@ -19,19 +19,19 @@
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import { Device as DeviceModel } from '../models';
+import { Device as Model, NetworkStatus } from '../models';
 
 @Component({
     name: 'device',
     props: {
         device: {
-            type: DeviceModel,
+            type: Model,
             required: true,
         },
     },
 })
 export default class Device extends Vue {
-    private readonly device: DeviceModel;
+    private readonly device: Model;
 
     public get name(): string {
         return this.device.name;
@@ -41,8 +41,8 @@ export default class Device extends Vue {
         return this.device.model;
     }
 
-    public get isConnected(): boolean {
-        return this.device.isConnected;
+    public get isResponsive(): boolean {
+        return this.device.networkStatus === NetworkStatus.responsive;
     }
 }
 </script>

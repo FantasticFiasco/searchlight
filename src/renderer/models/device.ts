@@ -1,3 +1,5 @@
+import { NetworkStatus } from './network-status';
+
 /**
  * Class describing a device.
  */
@@ -20,8 +22,8 @@ export class Device {
          */
         public model: string,
         /**
-         * Whether the device is connected to the network.
+         * The network status of the device.
          */
-        public isConnected: boolean) {
+        public networkStatus: NetworkStatus) {
     }
 }

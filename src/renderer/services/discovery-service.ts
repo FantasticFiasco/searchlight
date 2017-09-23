@@ -2,7 +2,10 @@ import * as Axis from 'axis-discovery';
 import { ipcRenderer } from 'electron';
 
 import * as ChannelNames from 'common/channel-names';
-import { Device } from '../models';
+import {
+    Device,
+    NetworkStatus,
+} from '../models';
 import {
     ADD_OR_UPDATE_DEVICE_MUTATION,
     store,
@@ -34,18 +37,18 @@ export class DiscoveryService {
     }
 
     private onHello(device: Axis.Device) {
-        store.commit(ADD_OR_UPDATE_DEVICE_MUTATION, this.toDevice(device, true));
+        store.commit(ADD_OR_UPDATE_DEVICE_MUTATION, this.toDevice(device, NetworkStatus.responsive));
     }
 
     private onGoodbye(device: Axis.Device) {
-        store.commit(ADD_OR_UPDATE_DEVICE_MUTATION, this.toDevice(device, false));
+        store.commit(ADD_OR_UPDATE_DEVICE_MUTATION, this.toDevice(device, NetworkStatus.unresponsive));
     }
 
-    private toDevice(device: Axis.Device, isConnected: boolean): Device {
+    private toDevice(device: Axis.Device, networkStatus: NetworkStatus): Device {
         return new Device(
             device.macAddress,
             device.friendlyName || '',
             device.modelDescription || '',
-            isConnected);
+            networkStatus);
     }
 }
