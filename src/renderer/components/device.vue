@@ -5,10 +5,7 @@
                 <template slot="button-content">
                     <i class="icon-settings"></i>
                 </template>
-                <b-dropdown-item>Action</b-dropdown-item>
-                <b-dropdown-item>Another action</b-dropdown-item>
-                <b-dropdown-item>Something else here...</b-dropdown-item>
-                <b-dropdown-item disabled>Disabled action</b-dropdown-item>
+                <b-dropdown-item @click="remove">Remove</b-dropdown-item>
             </b-dropdown>
             <h4 class="mb-0">{{ name }}</h4>
             <p>{{ model }}</p>
@@ -18,8 +15,10 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import 'vuex';
 import Component from 'vue-class-component';
 import { Device as Model, NetworkStatus } from '../models';
+import { REMOVE_DEVICE_MUTATION } from '../store';
 
 @Component({
     name: 'device',
@@ -43,6 +42,10 @@ export default class Device extends Vue {
 
     public get isResponsive(): boolean {
         return this.device.networkStatus === NetworkStatus.responsive;
+    }
+
+    public removeDevice(e: Event) {
+        this.$store.commit(REMOVE_DEVICE_MUTATION, this.device);
     }
 }
 </script>
