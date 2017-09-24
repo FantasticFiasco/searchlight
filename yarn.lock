@@ -2283,12 +2283,12 @@ electron-webpack-js@^1.0.3:
     babel-plugin-syntax-dynamic-import "^6.18.0"
     babel-preset-env "^1.6.0"
 
-electron-webpack-ts@1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/electron-webpack-ts/-/electron-webpack-ts-1.1.2.tgz#6cf3c9bd39ea25540a07254de24434955c413a8d"
+electron-webpack-ts@1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/electron-webpack-ts/-/electron-webpack-ts-1.1.3.tgz#5c95d1eb5dac88b67baff135e0b94424873090a1"
   dependencies:
     fork-ts-checker-webpack-plugin "^0.2.8"
-    ts-loader "^2.3.6"
+    ts-loader "^2.3.7"
 
 electron-webpack-vue@1.0.5:
   version "1.0.5"
@@ -5915,9 +5915,9 @@ truncate-utf8-bytes@^1.0.0:
   dependencies:
     utf8-byte-length "^1.0.1"
 
-ts-loader@^2.3.6:
-  version "2.3.6"
-  resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-2.3.6.tgz#0e88aa7fe93f19da176301a577a3f760d35a750a"
+ts-loader@^2.3.7:
+  version "2.3.7"
+  resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-2.3.7.tgz#a9028ced473bee12f28a75f9c5b139979d33f2fc"
   dependencies:
     chalk "^2.0.1"
     enhanced-resolve "^3.0.0"
