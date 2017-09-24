@@ -3,7 +3,8 @@ import Debug from 'electron-debug';
 import Store from 'electron-store';
 import * as uuid from 'uuid';
 
-import { Analytics } from './analytics/analytics';
+import { Analytics } from './analytics';
+import { Discovery, DiscoveryMock, IDiscovery } from './discovery';
 import * as environment from './environment';
 import * as log from './log';
 import { Updates } from './updates';
@@ -26,7 +27,11 @@ log.info(`Main - start app with version ${app.getVersion()}`);
 
 function createWindow() {
     // Create the browser window
-    mainWindow = new BrowserWindow({ title: appName });
+    mainWindow = new BrowserWindow({
+        title: appName,
+        backgroundColor: '#e4e5e6',
+        show: false,
+    });
 
     // Electron type definitions are wrong, they do not support null as argument to setMenu
     (mainWindow as any).setMenu(null);
@@ -34,11 +39,27 @@ function createWindow() {
     // Load main view
     mainWindow.loadURL(environment.isDev() ? 'http://localhost:9080' : `file://${__dirname}/index.html`);
 
+    // Start discovery
+    discovery = environment.isDev() ?
+        new DiscoveryMock(mainWindow.webContents) :
+        new Discovery(mainWindow.webContents);
+
+    discovery.start();
+
     // Open the DevTools
-    // mainWindow.webContents.openDevTools({ mode: 'undocked' });
+    mainWindow.webContents.openDevTools({ mode: 'undocked' });
+
+    // Show main window when Electron has loaded, thus preventing UI flickering
+    mainWindow.on('ready-to-show', () => {
+        mainWindow!.show();
+    });
 
     // Emitted when the window is closed
     mainWindow.on('closed', () => {
+        // Stop discovery
+        discovery!.stop();
+        discovery = undefined;
+
         // Dereference the window object, usually you would store windows in an
         // array if your app supports multi windows, this is the time when you
         // should delete the corresponding element.
@@ -55,20 +76,20 @@ function createWindow() {
 // event occurs.
 app.on('ready', createWindow);
 
+app.on('activate', () => {
+    // On OS X it's common to re-create a window in the app when the dock icon
+    // is clicked and there are no other windows open.
+    if (mainWindow === null) {
+        createWindow();
+    }
+});
+
 // Quit when all windows are closed
 app.on('window-all-closed', () => {
     // On OS X it is common for applications and their menu bar to stay active
     // until the user quits explicitly with Cmd + Q
     if (process.platform !== 'darwin') {
         app.quit();
-    }
-});
-
-app.on('activate', () => {
-    // On OS X it's common to re-create a window in the app when the dock icon
-    // is clicked and there are no other windows open.
-    if (mainWindow === null) {
-        createWindow();
     }
 });
 
@@ -94,3 +115,6 @@ app.on('ready', () => {
         updates.checkForUpdates();
     }
 });
+
+// Discovery
+let discovery: IDiscovery | undefined;
