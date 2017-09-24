@@ -1,12 +1,15 @@
 <template>
-    <b-card :class="isResponsive ? 'bg-primary' : 'bg-danger'" :no-body="true">
-        <div class="card-body pb-0">
+    <b-card :no-body="true">
+        <div :class="['card-header', isResponsive ? 'bg-primary' : 'bg-danger']">
             <b-dropdown class="float-right" variant="transparent p-0" right>
                 <template slot="button-content">
                     <i class="icon-settings"></i>
                 </template>
                 <b-dropdown-item @click="remove">Remove</b-dropdown-item>
             </b-dropdown>
+            <img :src="iconUrl" alt="Device icon" />
+        </div>
+        <div class="card-body pb-0">
             <h4 class="mb-0">{{ name }}</h4>
             <p>{{ model }}</p>
         </div>
@@ -40,11 +43,15 @@ export default class Device extends Vue {
         return this.device.model;
     }
 
+    public get iconUrl(): string {
+        return this.device.iconUrl;
+    }
+
     public get isResponsive(): boolean {
         return this.device.networkStatus === NetworkStatus.responsive;
     }
 
-    public removeDevice(e: Event) {
+    public remove(e: Event) {
         this.$store.commit(REMOVE_DEVICE_MUTATION, this.device);
     }
 }

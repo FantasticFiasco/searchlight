@@ -22,8 +22,23 @@ export class Device {
          */
         public model: string,
         /**
+         * The model number of the device.
+         */
+        public modelNumber: string | undefined,
+        /**
          * The network status of the device.
          */
         public networkStatus: NetworkStatus) {
+    }
+
+    /**
+     * The URL to an icon of the device.
+     */
+    public get iconUrl(): string | undefined {
+        if (this.modelNumber === undefined) {
+            return undefined;
+        }
+
+        return `https://www.axis.com/images/scaled/300/sites/default/files/${this.modelNumber.toLowerCase()}.png`;
     }
 }

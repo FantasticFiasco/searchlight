@@ -49,6 +49,7 @@ export class DiscoveryService {
             device.macAddress,
             device.friendlyName || '',
             device.modelDescription || '',
+            device.modelNumber,
             networkStatus);
     }
 }
