@@ -56,7 +56,7 @@
   dependencies:
     "@types/node" "*"
 
-"@types/webpack-env@^1.13.0":
+"@types/webpack-env@^1.13.1":
   version "1.13.1"
   resolved "https://registry.yarnpkg.com/@types/webpack-env/-/webpack-env-1.13.1.tgz#b45c222e24301bd006e3edfc762cc6b51bda236a"
 
@@ -213,6 +213,13 @@ array-flatten@1.1.1:
 array-flatten@^2.1.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/array-flatten/-/array-flatten-2.1.1.tgz#426bb9da84090c1838d812c8150af20a8331e296"
+
+array-includes@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/array-includes/-/array-includes-3.0.3.tgz#184b48f62d92d7452bb31b323165c7f8bd02266d"
+  dependencies:
+    define-properties "^1.1.2"
+    es-abstract "^1.7.0"
 
 array-union@^1.0.1:
   version "1.0.2"
@@ -1771,6 +1778,13 @@ css-color-names@0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/css-color-names/-/css-color-names-0.0.4.tgz#808adc2e79cf84738069b646cb20ec27beb629e0"
 
+css-hot-loader@^1.3.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/css-hot-loader/-/css-hot-loader-1.3.1.tgz#83be8f11db98f4508ce920367a67772f583cd6b4"
+  dependencies:
+    loader-utils "^1.1.0"
+    normalize-url "^1.9.1"
+
 css-loader@^0.28.7:
   version "0.28.7"
   resolved "https://registry.yarnpkg.com/css-loader/-/css-loader-0.28.7.tgz#5f2ee989dd32edd907717f953317656160999c1b"
@@ -1918,6 +1932,13 @@ deep-equal@^1.0.1, deep-equal@~1.0.1:
 deep-extend@~0.4.0:
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/deep-extend/-/deep-extend-0.4.2.tgz#48b699c27e334bf89f10892be432f6e4c7d34a7f"
+
+default-gateway@^2.2.2:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/default-gateway/-/default-gateway-2.5.0.tgz#78e24dbd2e1df7490c2b8050515b8e816bfa7da5"
+  dependencies:
+    execa "^0.7.0"
+    ip-regex "^2.1.0"
 
 define-properties@^1.1.2:
   version "1.1.2"
@@ -2274,7 +2295,7 @@ electron-updater@2.8.9:
     uuid-1345 "^0.99.6"
     xelement "^1.0.16"
 
-electron-webpack-js@^1.0.3:
+electron-webpack-js@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/electron-webpack-js/-/electron-webpack-js-1.0.4.tgz#95a976cc3d4508f1745ca081e41ce3fc81cc3c5f"
   dependencies:
@@ -2300,11 +2321,11 @@ electron-webpack-vue@1.0.5:
     vue-style-loader "^3.0.1"
     vue-template-compiler "^2.4.2"
 
-electron-webpack@1.3.1:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/electron-webpack/-/electron-webpack-1.3.1.tgz#e560f759c21a1ae20569fde8d4e5c41545f4f2b3"
+electron-webpack@1.6.1:
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/electron-webpack/-/electron-webpack-1.6.1.tgz#e3342da085e7d5861c47c5faeefb709f0dbc0505"
   dependencies:
-    "@types/webpack-env" "^1.13.0"
+    "@types/webpack-env" "^1.13.1"
     ajv "^5.2.2"
     ajv-keywords "^2.1.0"
     async-exit-hook "^2.0.1"
@@ -2312,25 +2333,26 @@ electron-webpack@1.3.1:
     bluebird-lst "^1.0.3"
     chalk "^2.1.0"
     crocket "^0.9.11"
+    css-hot-loader "^1.3.1"
     css-loader "^0.28.7"
     debug "^3.0.1"
     electron-devtools-installer "^2.2.0"
-    electron-webpack-js "^1.0.3"
+    electron-webpack-js "^1.0.4"
     extract-text-webpack-plugin "^3.0.0"
     file-loader "^0.11.2"
-    fs-extra-p "^4.4.0"
+    fs-extra-p "^4.4.2"
     html-loader "^0.5.1"
     html-webpack-plugin "^2.30.1"
     lazy-val "^1.0.2"
     node-loader "^0.6.0"
-    read-config-file "^1.1.0"
+    read-config-file "^1.1.1"
     semver "^5.4.1"
-    source-map-support "^0.4.16"
+    source-map-support "^0.4.18"
     style-loader "^0.18.2"
     url-loader "^0.5.9"
     virtual-module-webpack-plugin "^0.3.0"
-    webpack-dev-server "^2.7.1"
-    yargs "^8.0.2"
+    webpack-dev-server "^2.8.2"
+    yargs "^9.0.1"
 
 electron@1.7.8:
   version "1.7.8"
@@ -2389,7 +2411,7 @@ error-ex@^1.2.0:
   dependencies:
     is-arrayish "^0.2.1"
 
-es-abstract@^1.5.0:
+es-abstract@^1.5.0, es-abstract@^1.7.0:
   version "1.8.2"
   resolved "https://registry.yarnpkg.com/es-abstract/-/es-abstract-1.8.2.tgz#25103263dc4decbda60e0c737ca32313518027ee"
   dependencies:
@@ -3265,11 +3287,12 @@ int64-buffer@^0.1.9:
   version "0.1.9"
   resolved "https://registry.yarnpkg.com/int64-buffer/-/int64-buffer-0.1.9.tgz#9e039da043b24f78b196b283e04653ef5e990f61"
 
-internal-ip@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/internal-ip/-/internal-ip-1.2.0.tgz#ae9fbf93b984878785d50a8de1b356956058cf5c"
+internal-ip@^2.0.2:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/internal-ip/-/internal-ip-2.0.3.tgz#ed3cf9b671ac7ff23037bfacad42eb439cd9546c"
   dependencies:
-    meow "^3.3.0"
+    default-gateway "^2.2.2"
+    ipaddr.js "^1.5.2"
 
 interpret@^1.0.0:
   version "1.0.3"
@@ -3285,6 +3308,10 @@ invert-kv@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/invert-kv/-/invert-kv-1.0.0.tgz#104a8e4aaca6d3d8cd157a8ef8bfab2d7a3ffdb6"
 
+ip-regex@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/ip-regex/-/ip-regex-2.1.0.tgz#fa78bf5d2e6913c911ce9f819ee5146bb6d844e9"
+
 ip@^1.1.0, ip@^1.1.5:
   version "1.1.5"
   resolved "https://registry.yarnpkg.com/ip/-/ip-1.1.5.tgz#bdded70114290828c0a039e72ef25f5aaec4354a"
@@ -3292,6 +3319,10 @@ ip@^1.1.0, ip@^1.1.5:
 ipaddr.js@1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/ipaddr.js/-/ipaddr.js-1.4.0.tgz#296aca878a821816e5b85d0a285a99bcff4582f0"
+
+ipaddr.js@^1.5.2:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/ipaddr.js/-/ipaddr.js-1.5.2.tgz#d4b505bde9946987ccf0fc58d9010ff9607e3fa0"
 
 is-absolute-url@^2.0.0:
   version "2.1.0"
@@ -3490,6 +3521,10 @@ is-upper-case@^1.1.0:
 is-utf8@^0.2.0:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/is-utf8/-/is-utf8-0.2.1.tgz#4b0da1442104d1b336340e80797e865cf39f7d72"
+
+is-wsl@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/is-wsl/-/is-wsl-1.1.0.tgz#1f16e4aa22b04d1336b66188a66af3c600c3a66d"
 
 isarray@0.0.1:
   version "0.0.1"
@@ -3976,7 +4011,7 @@ memory-fs@^0.4.0, memory-fs@~0.4.1:
     errno "^0.1.3"
     readable-stream "^2.0.1"
 
-meow@^3.1.0, meow@^3.3.0, meow@^3.7.0:
+meow@^3.1.0, meow@^3.7.0:
   version "3.7.0"
   resolved "https://registry.yarnpkg.com/meow/-/meow-3.7.0.tgz#72cb668b425228290abbfa856892587308a801fb"
   dependencies:
@@ -4276,7 +4311,7 @@ normalize-range@^0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/normalize-range/-/normalize-range-0.1.2.tgz#2d10c06bdfd312ea9777695a4d28439456b75942"
 
-normalize-url@^1.4.0:
+normalize-url@^1.4.0, normalize-url@^1.9.1:
   version "1.9.1"
   resolved "https://registry.yarnpkg.com/normalize-url/-/normalize-url-1.9.1.tgz#2cc0d66b31ea23036458436e3620d85954c66c3c"
   dependencies:
@@ -4373,12 +4408,11 @@ once@^1.3.0, once@^1.3.3:
   dependencies:
     wrappy "1"
 
-opn@4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/opn/-/opn-4.0.2.tgz#7abc22e644dff63b0a96d5ab7f2790c0f01abc95"
+opn@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/opn/-/opn-5.1.0.tgz#72ce2306a17dbea58ff1041853352b4a8fc77519"
   dependencies:
-    object-assign "^4.0.1"
-    pinkie-promise "^2.0.0"
+    is-wsl "^1.1.0"
 
 original@>=0.0.5:
   version "1.0.0"
@@ -5028,7 +5062,7 @@ rc@^1.0.1, rc@^1.1.2, rc@^1.1.6, rc@^1.1.7, rc@^1.2.1:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-read-config-file@1.1.1:
+read-config-file@1.1.1, read-config-file@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/read-config-file/-/read-config-file-1.1.1.tgz#26b3d38a3ccbdacae9c168dc479828e68878a5d6"
   dependencies:
@@ -5037,18 +5071,6 @@ read-config-file@1.1.1:
     bluebird-lst "^1.0.3"
     fs-extra-p "^4.4.0"
     js-yaml "^3.10.0"
-    json5 "^0.5.1"
-    lazy-val "^1.0.2"
-
-read-config-file@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/read-config-file/-/read-config-file-1.1.0.tgz#c4abafc547571dfbaee0d0bf54ea174ffef8c3cf"
-  dependencies:
-    ajv "^5.2.2"
-    ajv-keywords "^2.1.0"
-    bluebird-lst "^1.0.3"
-    fs-extra-p "^4.4.0"
-    js-yaml "^3.9.1"
     json5 "^0.5.1"
     lazy-val "^1.0.2"
 
@@ -5754,7 +5776,7 @@ supports-color@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-2.0.0.tgz#535d045ce6b6363fa40117084629995e9df324c7"
 
-supports-color@^3.1.1, supports-color@^3.2.3:
+supports-color@^3.2.3:
   version "3.2.3"
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-3.2.3.tgz#65ac0504b3954171d8a64946b2ae3cbb8a5f54f6"
   dependencies:
@@ -6296,11 +6318,12 @@ webpack-dev-middleware@^1.11.0:
     range-parser "^1.0.3"
     time-stamp "^2.0.0"
 
-webpack-dev-server@^2.7.1:
-  version "2.7.1"
-  resolved "https://registry.yarnpkg.com/webpack-dev-server/-/webpack-dev-server-2.7.1.tgz#21580f5a08cd065c71144cf6f61c345bca59a8b8"
+webpack-dev-server@^2.8.2:
+  version "2.8.2"
+  resolved "https://registry.yarnpkg.com/webpack-dev-server/-/webpack-dev-server-2.8.2.tgz#abd61f410778cc4c843d7cebbf41465b1ab7734c"
   dependencies:
     ansi-html "0.0.7"
+    array-includes "^3.0.3"
     bonjour "^3.5.0"
     chokidar "^1.6.0"
     compression "^1.5.2"
@@ -6309,20 +6332,20 @@ webpack-dev-server@^2.7.1:
     express "^4.13.3"
     html-entities "^1.2.0"
     http-proxy-middleware "~0.17.4"
-    internal-ip "^1.2.0"
+    internal-ip "^2.0.2"
     ip "^1.1.5"
     loglevel "^1.4.1"
-    opn "4.0.2"
+    opn "^5.1.0"
     portfinder "^1.0.9"
     selfsigned "^1.9.1"
     serve-index "^1.7.2"
     sockjs "0.3.18"
     sockjs-client "1.1.4"
     spdy "^3.4.1"
-    strip-ansi "^3.0.0"
-    supports-color "^3.1.1"
+    strip-ansi "^3.0.1"
+    supports-color "^4.2.1"
     webpack-dev-middleware "^1.11.0"
-    yargs "^6.0.0"
+    yargs "^6.6.0"
 
 webpack-sources@^1.0.1:
   version "1.0.1"
@@ -6500,7 +6523,7 @@ yargs-parser@^7.0.0:
   dependencies:
     camelcase "^4.1.0"
 
-yargs@^6.0.0:
+yargs@^6.6.0:
   version "6.6.0"
   resolved "https://registry.yarnpkg.com/yargs/-/yargs-6.6.0.tgz#782ec21ef403345f830a808ca3d513af56065208"
   dependencies:
