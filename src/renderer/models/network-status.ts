@@ -3,12 +3,12 @@
  */
 export enum NetworkStatus {
     /**
-     * Device is responding to discovery messages.
+     * Device is responding to discovery.
      */
     responsive,
 
     /**
-     * Device is not responding to discovery messages.
+     * Device is not responding to discovery.
      */
     unresponsive,
 }

@@ -28,7 +28,7 @@ export class DiscoveryMock implements IDiscovery {
         // Register for messages sent from the renderer
         ipcMain.on(ChannelNames.DISCOVERY_SEARCH, () => this.onSearch());
 
-        for (let index = 1; index <= 8; index++) {
+        for (let index = 1; index <= 16; index++) {
             this.connectedDevices.push(this.createDevice(index));
         }
 
