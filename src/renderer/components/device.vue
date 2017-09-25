@@ -44,7 +44,7 @@ export default class Device extends Vue {
     }
 
     public get iconUrl(): string {
-        return this.device.iconUrl;
+        return this.device.iconUrl || '';
     }
 
     public get isResponsive(): boolean {
