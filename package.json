@@ -80,7 +80,7 @@
     "electron-builder": "19.30.0",
     "electron-webpack": "1.6.1",
     "electron-webpack-ts": "1.1.3",
-    "electron-webpack-vue": "1.0.5",
+    "electron-webpack-vue": "1.0.7",
     "json": "9.0.6",
     "node-sass": "4.5.3",
     "sass-loader": "6.0.6",
