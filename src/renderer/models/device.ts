@@ -62,4 +62,17 @@ export class Device {
         const modelName = this.modelName.replace(' ', '-').toLowerCase();
         return `https://www.axis.com/products/${modelName}`;
     }
+
+    /**
+     * Updates properties of this instance.
+     */
+    public update(other: Device) {
+        this.macAddress = other.macAddress;
+        this.name = other.name || this.name;
+        this.modelName = other.modelName || this.modelName;
+        this.modelDescription = other.modelDescription || this.modelDescription;
+        this.modelNumber = other.modelNumber || this.modelNumber;
+        this.liveViewUrl = other.liveViewUrl || this.liveViewUrl;
+        this.networkStatus = other.networkStatus;
+    }
 }

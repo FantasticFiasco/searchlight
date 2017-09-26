@@ -7,13 +7,17 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 
-import { DISCOVERY_SERVICE } from './dependency-injection'
-import { DiscoveryService } from './services';
+import { DISCOVERY_SERVICE, HEARTBEAT_SERVICE } from './dependency-injection'
+import { DiscoveryService, HeartbeatService } from './services';
+
+const discoveryService = new DiscoveryService();
+const heartbeatService = new HeartbeatService(discoveryService);
 
 @Component({
     name: 'app',
     provide: {
-        [DISCOVERY_SERVICE]: new DiscoveryService(),
+        [DISCOVERY_SERVICE]: discoveryService,
+        [HEARTBEAT_SERVICE]: heartbeatService,
     },
 })
 export default class App extends Vue {

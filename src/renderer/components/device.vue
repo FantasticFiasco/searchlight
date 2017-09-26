@@ -2,6 +2,8 @@
     <b-card :no-body="true">
         <div :class="['card-header', isResponsive ? 'bg-primary' : 'bg-danger']">
             <img class="icon" :src="iconUrl" />
+            <heartbeats class="chart-wrapper px-3" :timestamp="device.networkStatus.timestamp" style="height:70px;" height="70" />
+            <p v-if="!isResponsive">{{ unresponsiveDuration }}</p>
         </div>
         <div class="card-body">
             <h5 class="card-name">{{ name }}</h5>
@@ -25,9 +27,16 @@ import { shell } from 'electron';
 import Vue from 'vue';
 import 'vuex';
 import { Component, Prop } from 'vue-property-decorator';
-import { Device as Model, NetworkStatus } from '../models';
 
-@Component({ name: 'device' })
+import { Device as Model } from '../models';
+import Heartbeats from './heartbeats.vue';
+
+@Component({
+    name: 'device',
+    components: {
+        'heartbeats': Heartbeats,
+    }
+})
 export default class Device extends Vue {
     @Prop({ type: Model })
     private readonly device: Model;
@@ -53,7 +62,22 @@ export default class Device extends Vue {
     }
 
     public get isResponsive(): boolean {
-        return this.device.networkStatus === NetworkStatus.responsive;
+        return this.device.networkStatus.isResponsive;
+    }
+
+    public get unresponsiveDuration(): string {
+        const now = new Date().getTime();
+        const duration = now - this.device.networkStatus.timestamp.getTime();
+
+        if (duration < 60000) {
+            return '< 1 minute';
+        }
+
+        if (duration < 120000) {
+            return '> 1 minute';
+        }
+
+        return `> ${Math.floor(duration / 60000)} minutes`;
     }
 
     public openLiveView(e: Event) {

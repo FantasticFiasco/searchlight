@@ -11,10 +11,8 @@
 <script lang="ts">
 import Vue from 'vue';
 import 'vuex';
-import { Component, Inject } from 'vue-property-decorator';
+import { Component } from 'vue-property-decorator';
 
-import { DISCOVERY_SERVICE } from '../dependency-injection';
-import { DiscoveryService } from '../services';
 import DeviceComponent from '../components/device.vue';
 import { Device } from '../models';
 
@@ -25,22 +23,11 @@ import { Device } from '../models';
     },
 })
 export default class Devices extends Vue {
-    @Inject(DISCOVERY_SERVICE)
-    private readonly discoveryService: DiscoveryService;
-
     public get devices() {
         // Vuex prohibits modifying state outside of store modifiers, thus the 'slice'
         return this.$store.state.devices.slice().sort((a: Device, b: Device) => {
             return (a.name || '').localeCompare(b.name || '');
         });
-    }
-
-    public mounted() {
-        // Trigger the initial search
-        this.discoveryService.search();
-
-        // Trigger a new search every 10 seconds
-        setInterval(() => this.discoveryService.search(), 10000);
     }
 }
 </script>
