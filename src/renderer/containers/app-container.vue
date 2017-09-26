@@ -2,7 +2,7 @@
     <div>
         <Header/>
         <div class="app-body">
-            <Sidebar :navItems="nav" />
+            <Sidebar :navItems="views" />
             <main class="main">
                 <div class="container-fluid">
                     <router-view></router-view>
@@ -20,10 +20,11 @@ import Component from 'vue-class-component';
 import Footer from '../components/footer.vue'
 import Header from '../components/header.vue'
 import Sidebar from '../components/sidebar.vue'
-import { IView } from '../views/iview';
-import { AboutView } from '../views/about-view';
-import { DevicesView } from '../views/devices-view';
-import { SettingsView } from '../views/settings-view';
+import {
+    AboutView,
+    DevicesView,
+    IView
+} from '../views';
 
 @Component({
     name: 'app-container',
@@ -34,18 +35,13 @@ import { SettingsView } from '../views/settings-view';
     },
 })
 export default class AppContainer extends Vue {
-    nav: Array<IView> = [
+    public views: Array<IView> = [
         new DevicesView(),
-        new SettingsView(),
         new AboutView(),
     ];
 
-    get name(): string {
-        if (this.$route.name !== undefined) {
-            return this.$route.name;
-        }
-
-        return "unknown name";
+    public get name(): string {
+        return this.$route.name || 'unknown name';
     }
 }
 </script>

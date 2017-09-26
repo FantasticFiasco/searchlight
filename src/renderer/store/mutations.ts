@@ -1,7 +1,7 @@
 import * as expect from '@fantasticfiasco/expect';
-import * as Axis from 'axis-discovery';
 import { Mutation } from 'vuex';
 
+import { Device } from '../models';
 import { State } from './state';
 
 /**
@@ -10,7 +10,7 @@ import { State } from './state';
  * @param state The current state of the store
  * @param device The device to add or update in the store
  */
-export const addOrUpdateDevice: Mutation<State> = (state: State, device: Axis.Device) => {
+export const addOrUpdateDevice: Mutation<State> = (state: State, device: Device) => {
     expect.toExist(state);
     expect.toExist(device);
 
@@ -36,7 +36,7 @@ export const ADD_OR_UPDATE_DEVICE_MUTATION = addOrUpdateDevice.name;
  * @param state The current state of the store
  * @param device The device to remove from the store
  */
-export const removeDevice: Mutation<State> = (state: State, device: Axis.Device) => {
+export const removeDevice: Mutation<State> = (state: State, device: Device) => {
     expect.toExist(state);
     expect.toExist(device);
 
@@ -52,7 +52,7 @@ export const removeDevice: Mutation<State> = (state: State, device: Axis.Device)
  */
 export const REMOVE_DEVICE_MUTATION = removeDevice.name;
 
-function indexOf(device: Axis.Device, amongDevices: Axis.Device[]): number {
-    return amongDevices.findIndex((existingDevice: Axis.Device) =>
+function indexOf(device: Device, amongDevices: Device[]): number {
+    return amongDevices.findIndex((existingDevice: Device) =>
         existingDevice.macAddress === device.macAddress);
 }

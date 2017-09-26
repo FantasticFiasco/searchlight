@@ -1,7 +1,10 @@
 <template>
     <div class="animated fadeIn">
-        <Device v-for="device in devices" :key="device.serialNumber" :device="device">
-        </Device>
+        <div class="row">
+            <div class="col-sm-6 col-lg-3" v-for="device in devices" :key="device.macAddress">
+                <device :device="device" />
+            </div>
+        </div>
     </div>
 </template>
 
@@ -9,11 +12,11 @@
 import Vue from 'vue';
 import 'vuex';
 import Component from 'vue-class-component';
-import * as Axis from 'axis-discovery';
 
 import { DISCOVERY_SERVICE } from '../dependency-injection';
 import { DiscoveryService } from '../services';
-import Device from '../components/device.vue';
+import DeviceComponent from '../components/device.vue';
+import { Device } from '../models';
 
 @Component({
     name: 'devices',
@@ -21,7 +24,7 @@ import Device from '../components/device.vue';
         'discoveryService': DISCOVERY_SERVICE,
     },
     components: {
-        Device
+        'device': DeviceComponent
     },
 })
 export default class Devices extends Vue {
@@ -29,16 +32,8 @@ export default class Devices extends Vue {
 
     public get devices() {
         // Vuex prohibits modifying state outside of store modifiers, thus the 'slice'
-        return this.$store.state.devices.slice().sort((a: Axis.Device, b: Axis.Device) => {
-            if (a.friendlyName === undefined) {
-                return -1;
-            }
-
-            if (b.friendlyName === undefined) {
-                return 1;
-            }
-
-            return a.friendlyName.localeCompare(b.friendlyName);
+        return this.$store.state.devices.slice().sort((a: Device, b: Device) => {
+            return a.name.localeCompare(b.name);
         });
     }
 
