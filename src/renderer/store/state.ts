@@ -1,8 +1,8 @@
-import * as Axis from 'axis-discovery';
+import { Device } from '../models';
 
 /**
  * Class describing the state of the store.
  */
 export class State {
-    public devices: Axis.Device[] = [];
+    public devices: Device[] = [];
 }

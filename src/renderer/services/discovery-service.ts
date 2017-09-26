@@ -3,8 +3,11 @@ import { ipcRenderer } from 'electron';
 
 import * as ChannelNames from 'common/channel-names';
 import {
+    Device,
+    NetworkStatus,
+} from '../models';
+import {
     ADD_OR_UPDATE_DEVICE_MUTATION,
-    REMOVE_DEVICE_MUTATION,
     store,
 } from '../store';
 
@@ -20,10 +23,10 @@ export class DiscoveryService {
     constructor() {
         ipcRenderer.on(
             ChannelNames.DISCOVERY_DEVICE_HELLO,
-            (event: any, device: Axis.Device) => store.commit(ADD_OR_UPDATE_DEVICE_MUTATION, device));
+            (event: any, device: Axis.Device) => this.onHello(device));
         ipcRenderer.on(
             ChannelNames.DISCOVERY_DEVICE_GOODBYE,
-            (event: any, device: Axis.Device) => store.commit(REMOVE_DEVICE_MUTATION, device));
+            (event: any, device: Axis.Device) => this.onGoodbye(device));
     }
 
     /**
@@ -31,5 +34,22 @@ export class DiscoveryService {
      */
     public search() {
         ipcRenderer.send(ChannelNames.DISCOVERY_SEARCH);
+    }
+
+    private onHello(device: Axis.Device) {
+        store.commit(ADD_OR_UPDATE_DEVICE_MUTATION, this.toDevice(device, NetworkStatus.responsive));
+    }
+
+    private onGoodbye(device: Axis.Device) {
+        store.commit(ADD_OR_UPDATE_DEVICE_MUTATION, this.toDevice(device, NetworkStatus.unresponsive));
+    }
+
+    private toDevice(device: Axis.Device, networkStatus: NetworkStatus): Device {
+        return new Device(
+            device.macAddress,
+            device.friendlyName || '',
+            device.modelDescription || '',
+            device.modelNumber,
+            networkStatus);
     }
 }
