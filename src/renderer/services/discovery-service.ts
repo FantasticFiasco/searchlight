@@ -47,9 +47,11 @@ export class DiscoveryService {
     private toDevice(device: Axis.Device, networkStatus: NetworkStatus): Device {
         return new Device(
             device.macAddress,
-            device.friendlyName || '',
-            device.modelDescription || '',
+            device.friendlyName,
+            device.modelName,
+            device.modelDescription,
             device.modelNumber,
+            device.presentationURL,
             networkStatus);
     }
 }
