@@ -10,35 +10,56 @@ export class Device {
      */
     constructor(
         /**
-         * The MAC address of the device.
+         * The MAC address.
          */
         public macAddress: string,
         /**
-         * The name of the device.
+         * The name.
          */
-        public name: string,
+        public name: string | undefined,
         /**
-         * The model of the device.
+         * The model name.
          */
-        public model: string,
+        public modelName: string | undefined,
         /**
-         * The model number of the device.
+         * The model description.
+         */
+        public modelDescription: string | undefined,
+        /**
+         * The model number.
          */
         public modelNumber: string | undefined,
         /**
-         * The network status of the device.
+         * The URL to view video.
+         */
+        public liveViewUrl: string | undefined,
+        /**
+         * The network status.
          */
         public networkStatus: NetworkStatus) {
     }
 
     /**
-     * The URL to an icon of the device.
+     * The URL to an icon.
      */
     public get iconUrl(): string | undefined {
         if (this.modelNumber === undefined) {
             return undefined;
         }
 
-        return `https://www.axis.com/images/scaled/300/sites/default/files/${this.modelNumber.toLowerCase()}.png`;
+        const modelNumber = this.modelNumber.toLowerCase();
+        return `https://www.axis.com/images/scaled/300/sites/default/files/${modelNumber}.png`;
+    }
+
+    /**
+     * The URL to the product page on www.axis.com.
+     */
+    public get productPageUrl(): string {
+        if (this.modelName === undefined) {
+            return 'https://www.axis.com/products-and-solutions';
+        }
+
+        const modelName = this.modelName.replace(' ', '-').toLowerCase();
+        return `https://www.axis.com/products/${modelName}`;
     }
 }

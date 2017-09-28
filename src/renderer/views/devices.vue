@@ -33,7 +33,7 @@ export default class Devices extends Vue {
     public get devices() {
         // Vuex prohibits modifying state outside of store modifiers, thus the 'slice'
         return this.$store.state.devices.slice().sort((a: Device, b: Device) => {
-            return a.name.localeCompare(b.name);
+            return (a.name || '').localeCompare(b.name || '');
         });
     }
 

@@ -21,9 +21,13 @@ export default class App extends Vue {
 </script>
 
 <style>
-// Import Simple Line Icons Set
+$fa-font-path: '~font-awesome/fonts/';
+@import '~font-awesome/css/font-awesome.min.css';
+
 $simple-line-font-path: "~simple-line-icons/fonts/";
 @import "~simple-line-icons/css/simple-line-icons.css";
+
+@import '~bootstrap-vue/dist/bootstrap-vue.css';
 </style>
 
 <style lang="scss">
