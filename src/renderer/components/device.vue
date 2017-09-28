@@ -46,7 +46,7 @@ export default class Device extends Vue {
     }
 
     public get model(): string {
-        return this.device.model || '';
+        return this.device.modelDescription || '';
     }
 
     public get hasLiveView(): boolean {
@@ -63,12 +63,16 @@ export default class Device extends Vue {
 
     public openLiveView(e: Event) {
         e.preventDefault();
-        shell.openExternal(this.device.liveViewUrl);
+        if (this.device.liveViewUrl != undefined) {
+            shell.openExternal(this.device.liveViewUrl);
+        }
     }
 
     public openProductPage(e: Event) {
         e.preventDefault();
-        shell.openExternal(this.device.productPageUrl);
+        if (this.device.productPageUrl != undefined) {
+            shell.openExternal(this.device.productPageUrl);
+        }
     }
 }
 </script>
