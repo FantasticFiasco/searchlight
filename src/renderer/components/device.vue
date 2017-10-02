@@ -22,19 +22,12 @@
 import { shell } from 'electron';
 import Vue from 'vue';
 import 'vuex';
-import Component from 'vue-class-component';
+import { Component, Prop } from 'vue-property-decorator';
 import { Device as Model, NetworkStatus } from '../models';
 
-@Component({
-    name: 'device',
-    props: {
-        device: {
-            type: Model,
-            required: true,
-        },
-    },
-})
+@Component({ name: 'device' })
 export default class Device extends Vue {
+    @Prop({ type: Model })
     private readonly device: Model;
 
     public get iconUrl(): string {

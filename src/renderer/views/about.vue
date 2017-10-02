@@ -14,11 +14,9 @@
 <script lang="ts">
 import { remote } from 'electron';
 import Vue from 'vue';
-import Component from 'vue-class-component';
+import { Component } from 'vue-property-decorator';
 
-@Component({
-    name: 'about',
-})
+@Component({ name: 'about' })
 export default class About extends Vue {
     get appVersion() {
         return remote.app.getVersion();

@@ -6,31 +6,17 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import Component from 'vue-class-component';
+import { Component, Prop } from 'vue-property-decorator';
 
-@Component({
-    name: 'sidebar-nav-link',
-    props: {
-        name: {
-            type: String,
-            required: true,
-            default: '',
-        },
-        url: {
-            type: String,
-            required: true,
-            default: '',
-        },
-        icon: {
-            type: String,
-            required: true,
-            default: '',
-        },
-    },
-})
+@Component({ name: 'sidebar-nav-link' })
 export default class SidebarNavLink extends Vue {
+    @Prop({ type: String, default: '' })
     public name: string;
+
+    @Prop({ type: String, default: '' })
     public url: string;
+
+    @Prop({ type: String, default: '' })
     public icon: string;
 }
 </script>

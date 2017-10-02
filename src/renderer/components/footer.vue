@@ -9,11 +9,9 @@
 <script lang="ts">
 import Vue from 'vue';
 import 'vuex';
-import Component from 'vue-class-component';
+import { Component } from 'vue-property-decorator';
 
-@Component({
-    name: 'footer',
-})
+@Component({ name: 'footer' })
 export default class Footer extends Vue {
     public get deviceCount() {
         return this.$store.state.devices.length;
