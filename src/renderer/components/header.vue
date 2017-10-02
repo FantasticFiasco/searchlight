@@ -8,11 +8,9 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import Component from 'vue-class-component';
+import { Component } from 'vue-property-decorator';
 
-@Component({
-    name: 'header',
-})
+@Component({ name: 'header' })
 export default class Header extends Vue {
     public mobileSidebarToggle(e: Event) {
         e.preventDefault();
@@ -25,4 +23,3 @@ export default class Header extends Vue {
     }
 }
 </script>
-
