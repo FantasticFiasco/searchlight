@@ -17,24 +17,19 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import Component from 'vue-class-component';
+import { Component, Prop } from 'vue-property-decorator';
 
 import { IView } from '../views/iview';
 import SidebarNavLink from './sidebar-nav-link.vue';
 
 @Component({
     name: 'sidebar',
-    props: {
-        navItems: {
-            type: Array,
-            required: true,
-        },
-    },
     components: {
         SidebarNavLink,
     },
 })
 export default class Sidebar extends Vue {
+    @Prop({ type: Array })
     public navItems: Array<IView>;
 
     public handleClick(e: Event) {

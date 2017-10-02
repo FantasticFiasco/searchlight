@@ -10,13 +10,13 @@ import { Component, Prop } from 'vue-property-decorator';
 
 @Component({ name: 'sidebar-nav-link' })
 export default class SidebarNavLink extends Vue {
-    @Prop({ default: '' })
+    @Prop({ type: String, default: '' })
     public name: string;
 
-    @Prop({ default: '' })
+    @Prop({ type: String, default: '' })
     public url: string;
 
-    @Prop({ default: '' })
+    @Prop({ type: String, default: '' })
     public icon: string;
 }
 </script>
