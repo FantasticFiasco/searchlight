@@ -11,7 +11,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import 'vuex';
-import Component from 'vue-class-component';
+import { Component, Inject } from 'vue-property-decorator';
 
 import { DISCOVERY_SERVICE } from '../dependency-injection';
 import { DiscoveryService } from '../services';
@@ -20,14 +20,12 @@ import { Device } from '../models';
 
 @Component({
     name: 'devices',
-    inject: {
-        'discoveryService': DISCOVERY_SERVICE,
-    },
     components: {
         'device': DeviceComponent
     },
 })
 export default class Devices extends Vue {
+    @Inject(DISCOVERY_SERVICE)
     private readonly discoveryService: DiscoveryService;
 
     public get devices() {
