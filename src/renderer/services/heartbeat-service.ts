@@ -5,11 +5,11 @@ import { ADD_OR_UPDATE_DEVICE_MUTATION, DISCONNECT_DEVICE_MUTATION, store } from
 import { DiscoveryService } from './discovery-service';
 
 /**
- * Class responsible for keeping the store up to date when it comes to network
- * status of devices on the network.
+ * Class responsible for keeping the store up to date when it comes to device
+ * network status.
  */
 export class HeartbeatService {
-    private static readonly RESPONSE_TIMEOUT = 20000;
+    private static readonly UNRESPONSIVE_DURATION_THRESHOLD = 20000;
 
     private readonly discoveryService: DiscoveryService;
 
@@ -26,23 +26,24 @@ export class HeartbeatService {
         // Trigger the initial search
         this.discoveryService.search();
 
-        // Trigger search for devices every 10 seconds
+        // Trigger search every 10 seconds
         setInterval(() => this.discoveryService.search(), 10000);
 
         // Trigger check for unresponsive devices every 5 seconds
-        setInterval(() => this.markUnresponsiveDevices(), 5000);
+        setInterval(() => this.findAndUpdateUnresponsiveDevices(), 5000);
     }
 
-    private markUnresponsiveDevices() {
+    private findAndUpdateUnresponsiveDevices() {
         const now = new Date().getTime();
 
         for (const device of store.state.devices) {
+            // Skip already unresponsive devices
             if (!device.networkStatus.isResponsive) {
                 continue;
             }
 
-            const timeout = now - device.networkStatus.timestamp.getTime();
-            if (timeout > HeartbeatService.RESPONSE_TIMEOUT) {
+            const unresponsiveDuration = now - device.networkStatus.timestamp.getTime();
+            if (unresponsiveDuration > HeartbeatService.UNRESPONSIVE_DURATION_THRESHOLD) {
                 this.disconnectDevice(device);
             }
         }

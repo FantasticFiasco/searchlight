@@ -9,9 +9,8 @@ import {
 } from '../models';
 
 /**
- * Class acting as a proxy between the main and renderer process,
- * capable of reporting about devices appearing on the network as well as
- * disapearing from the network.
+ * Class acting as a proxy between the main and renderer process, capable of
+ * reporting about devices appearing on and disapearing from the network.
  */
 export class DiscoveryService {
     private readonly eventEmitter: EventEmitter;
