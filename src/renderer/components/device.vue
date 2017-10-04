@@ -1,19 +1,21 @@
 <template>
     <b-card :no-body="true">
         <div :class="['card-header', isResponsive ? 'bg-primary' : 'bg-danger']">
-            <img :src="iconUrl" alt="Device icon" />
+            <img class="icon" :src="iconUrl" />
         </div>
-        <div class="card-body pb-0">
-            <h4 class="mb-0">{{ name }}</h4>
-            <p>{{ model }}</p>
-            <p v-if="hasLiveView">
-                <i class="fa fa-eye"></i>
-                <a @click="openLiveView" href="">Live view</a>
-            </p>
-            <p v-if="hasProductPage">
-                <i class="fa fa-globe"></i>
-                <a @click="openProductPage" href="">Product page</a>
-            </p>
+        <div class="card-body">
+            <h5 class="card-name">{{ name }}</h5>
+            <div class="card-model">{{ model }}</div>
+            <div class="card-links">
+                <div v-if="hasLiveView">
+                    <i class="fa fa-eye" />
+                    <a @click="openLiveView" href="">Live view</a>
+                </div>
+                <div v-if="hasProductPage">
+                    <i class="fa fa-globe" />
+                    <a @click="openProductPage" href="">Product page</a>
+                </div>
+            </div>
         </div>
     </b-card>
 </template>

@@ -1,11 +1,32 @@
 // Here you can add other styles
+@mixin lines-of-text($count) {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $count;
+}
+
 .card-header {
-    img {
+    .icon {
         height: 10em;
         opacity: 0.2;
     }
 }
 
 .card-body {
+    @extend .pb-0;
     height: 10em;
+
+    .card-name {
+        @extend .mb-0;
+        @include lines-of-text(1);
+    }
+
+    .card-model {
+        @include lines-of-text(1);
+    }
+
+    .card-links {
+        @extend .mt-2;
+    }
 }
