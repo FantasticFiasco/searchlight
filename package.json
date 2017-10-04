@@ -78,7 +78,7 @@
     "bootstrap-vue": "1.0.0-beta.7",
     "devtron": "1.4.0",
     "electron": "1.7.8",
-    "electron-builder": "19.32.2",
+    "electron-builder": "19.34.0",
     "electron-webpack": "1.6.1",
     "electron-webpack-ts": "1.1.3",
     "electron-webpack-vue": "1.0.7",
