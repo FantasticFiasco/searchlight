@@ -1,8 +1,8 @@
 <template>
     <b-card :no-body="true">
         <div :class="['card-header', isResponsive ? 'bg-primary' : 'bg-danger']">
-            <img class="icon" :src="iconUrl" />
-            <heartbeats class="chart-wrapper px-3" :timestamp="device.networkStatus.timestamp" style="height:70px;" height="70" />
+            <img class="card-icon" :src="iconUrl" />
+            <heartbeats class="card-heartbeats" :timestamp="heartbeatTimestamp" />
             <p v-if="!isResponsive">{{ unresponsiveDuration }}</p>
         </div>
         <div class="card-body">
@@ -43,6 +43,10 @@ export default class Device extends Vue {
 
     public get iconUrl(): string {
         return this.device.iconUrl || '';
+    }
+
+    public get heartbeatTimestamp(): Date {
+        return this.device.networkStatus.timestamp;
     }
 
     public get name(): string {

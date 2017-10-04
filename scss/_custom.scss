@@ -7,9 +7,15 @@
 }
 
 .card-header {
-    .icon {
+    .card-icon {
         height: 10em;
         opacity: 0.2;
+    }
+
+    .card-heartbeats {
+        @extend .chart-wrapper;
+        @extend .px-3;
+        height: 70px;
     }
 }
 
