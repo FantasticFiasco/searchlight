@@ -1,21 +1,13 @@
 <script lang="ts">
-import Component from 'vue-class-component';
+import { Component, Prop } from 'vue-property-decorator';
 import 'chart.js';
 import { Bar } from 'vue-chartjs';
-//import reactiveData from mixins;
 
-@Component({
-    name: 'heartbeats',
-    props: {
-        timestamp: {
-            type: Date,
-            required: true,
-        },
-    },
-})
+@Component({ name: 'heartbeats' })
 export default class Heartbeats extends Bar {
-    private data: Array<number>;
+    Prop({type: Date})
     private timestamp: Date;
+    private data: Array<number>;
 
     public created() {
         this.data = BAR_INITIAL_DATA.slice();
