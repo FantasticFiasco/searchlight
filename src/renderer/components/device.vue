@@ -3,7 +3,6 @@
         <div :class="['card-header', isResponsive ? 'bg-primary' : 'bg-danger']">
             <img class="card-icon" :src="iconUrl" />
             <heartbeats class="card-heartbeats" :timestamp="heartbeatTimestamp" />
-            <p v-if="!isResponsive">{{ unresponsiveDuration }}</p>
         </div>
         <div class="card-body">
             <h5 class="card-name">{{ name }}</h5>
@@ -67,21 +66,6 @@ export default class Device extends Vue {
 
     public get isResponsive(): boolean {
         return this.device.networkStatus.isResponsive;
-    }
-
-    public get unresponsiveDuration(): string {
-        const now = new Date().getTime();
-        const duration = now - this.device.networkStatus.timestamp.getTime();
-
-        if (duration < 60000) {
-            return '< 1 minute';
-        }
-
-        if (duration < 120000) {
-            return '> 1 minute';
-        }
-
-        return `> ${Math.floor(duration / 60000)} minutes`;
     }
 
     public openLiveView(e: Event) {
