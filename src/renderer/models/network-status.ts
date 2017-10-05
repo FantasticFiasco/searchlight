@@ -1,14 +1,14 @@
 /**
- * Enum describing the network status of a device.
+ * Class describing the network status of a device.
  */
-export enum NetworkStatus {
+export class NetworkStatus {
     /**
-     * Device is responding to discovery.
+     * Whether device is responding to discovery.
      */
-    responsive,
+    public isResponsive: boolean;
 
     /**
-     * Device is not responding to discovery.
+     * A timestamp of the latest response to discovery.
      */
-    unresponsive,
+    public timestamp: Date;
 }

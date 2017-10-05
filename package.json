@@ -28,8 +28,8 @@
     "postinstall": "electron-webpack dll",
     "compile": "electron-webpack",
     "dev": "electron-webpack dev",
-    "lint": "tslint './src/**/*.ts'",
-    "lint:fix": "tslint --fix './src/**/*.ts'",
+    "lint": "tslint --exclude './src/**/*.d.ts' './src/**/*.ts'",
+    "lint:fix": "tslint --fix --exclude './src/**/*.d.ts' './src/**/*.ts'",
     "analytics": "json -I -f ./src/main/analytics/config.json -e this.trackingId='process.env.UNIVERSAL_ANALYTICS_TRACKING_ID'",
     "dist": "yarn compile && electron-builder",
     "dist-dir": "yarn compile && electron-builder --dir -c.compression=store -c.mac.identity=null"
@@ -50,8 +50,10 @@
       "dll": [
         "axis-discovery",
         "bootstrap-vue",
+        "chart.js",
         "simple-line-icons",
-        "vue"
+        "vue",
+        "vue-chartjs"
       ]
     }
   },
@@ -76,6 +78,7 @@
     "@types/universal-analytics": "0.4.1",
     "@types/uuid": "3.4.2",
     "bootstrap-vue": "1.0.0-beta.7",
+    "chart.js": "2.7.0",
     "devtron": "1.4.0",
     "electron": "1.7.8",
     "electron-builder": "19.34.0",
@@ -88,6 +91,7 @@
     "tslint": "5.7.0",
     "typescript": "2.5.3",
     "vue": "2.4.4",
+    "vue-chartjs": "2.8.7",
     "vue-class-component": "5.0.2",
     "vue-property-decorator": "5.3.0",
     "vue-router": "2.7.0",

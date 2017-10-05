@@ -1,7 +1,8 @@
 <template>
     <b-card :no-body="true">
         <div :class="['card-header', isResponsive ? 'bg-primary' : 'bg-danger']">
-            <img class="icon" :src="iconUrl" />
+            <img class="card-icon" :src="iconUrl" />
+            <heartbeats class="card-heartbeats" :latestTimestamp="latestHeartbeatTimestamp" />
         </div>
         <div class="card-body">
             <h5 class="card-name">{{ name }}</h5>
@@ -25,15 +26,26 @@ import { shell } from 'electron';
 import Vue from 'vue';
 import 'vuex';
 import { Component, Prop } from 'vue-property-decorator';
-import { Device as Model, NetworkStatus } from '../models';
 
-@Component({ name: 'device' })
+import { Device as Model } from '../models';
+import { Heartbeats } from './heartbeats';
+
+@Component({
+    name: 'device',
+    components: {
+        'heartbeats': Heartbeats,
+    }
+})
 export default class Device extends Vue {
     @Prop({ type: Model })
     private readonly device: Model;
 
     public get iconUrl(): string {
         return this.device.iconUrl || '';
+    }
+
+    public get latestHeartbeatTimestamp(): Date {
+        return this.device.networkStatus.timestamp;
     }
 
     public get name(): string {
@@ -53,7 +65,7 @@ export default class Device extends Vue {
     }
 
     public get isResponsive(): boolean {
-        return this.device.networkStatus === NetworkStatus.responsive;
+        return this.device.networkStatus.isResponsive;
     }
 
     public openLiveView(e: Event) {
