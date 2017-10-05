@@ -67,10 +67,10 @@ export class Heartbeats extends Bar {
             },
         );
 
-        // Update history every 15 seconds, starting on the next 0, 15, 30 or
+        // Move history every 15 seconds, starting on the next 0, 15, 30 or
         // 45 seconds, thus syncronizing all devices to update at the same time
         const offset = this.intervalDuration - new Date().getTime() % this.intervalDuration;
-        setTimeout(() => setInterval(this.updateHistory, this.intervalDuration), offset);
+        setTimeout(() => setInterval(this.moveHistory, this.intervalDuration), offset);
     }
 
     @Watch('latestTimestamp')
@@ -85,7 +85,7 @@ export class Heartbeats extends Bar {
         }
     }
 
-    private updateHistory() {
+    private moveHistory() {
         this.intervals.push(0);
         this.intervals.shift();
         this._chart.update();

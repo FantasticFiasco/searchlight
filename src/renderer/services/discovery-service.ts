@@ -61,6 +61,11 @@ export class DiscoveryService {
     }
 
     private toDevice(device: Axis.Device, isResponsive: boolean): Device {
+        const networkStatus: NetworkStatus = {
+            isResponsive,
+            timestamp: new Date(),
+        };
+
         return new Device(
             device.macAddress,
             device.friendlyName,
@@ -68,6 +73,6 @@ export class DiscoveryService {
             device.modelDescription,
             device.modelNumber,
             device.presentationURL,
-            new NetworkStatus(isResponsive, new Date()));
+            networkStatus);
     }
 }
