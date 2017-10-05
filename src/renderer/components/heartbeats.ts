@@ -4,10 +4,9 @@ import { Component, Prop, Watch } from 'vue-property-decorator';
 
 @Component({ name: 'heartbeats' })
 export class Heartbeats extends Bar {
-    private readonly timestampHistory: number[] = [];
-    // A history of 5 minutes split into 15 second intervals results in 20 bars
-    private readonly numberOfBars = 20;
-    private readonly updateHistoryInterval = 15000;
+    private readonly historyDuration = 5 * 60 * 1000;
+    private readonly intervalDuration = 15 * 1000;
+    private readonly intervals: number[] = [];
 
     @Prop({ type: Date })
     public latestTimestamp: Date;
@@ -18,8 +17,10 @@ export class Heartbeats extends Bar {
     constructor() {
         super();
 
-        for (let count = 0; count < this.numberOfBars; count++) {
-            this.timestampHistory.push(0);
+        // A history of 5 minutes split into 15 second intervals results in 20 intervals
+        const numberOfIntervals = this.historyDuration / this.intervalDuration;
+        for (let count = 0; count < numberOfIntervals; count++) {
+            this.intervals.push(0);
         }
     }
 
@@ -37,7 +38,7 @@ export class Heartbeats extends Bar {
                     {
                         backgroundColor: 'rgba(255,255,255,.3)',
                         borderColor: 'transparent',
-                        data: this.timestampHistory,
+                        data: this.intervals,
                     },
                 ],
             },
@@ -56,7 +57,7 @@ export class Heartbeats extends Bar {
                         display: false,
                         ticks: {
                             suggestedMin: 0,
-                            suggestedMax: 5,
+                            suggestedMax: 2,
                         },
                     }],
                 },
@@ -66,20 +67,27 @@ export class Heartbeats extends Bar {
             },
         );
 
-        // Update history with a fixed interval
-        setInterval(this.updateHistory, this.updateHistoryInterval);
+        // Update history every 15 seconds, starting on the next 0, 15, 30 or
+        // 45 seconds, thus syncronizing all devices to update at the same time
+        const offset = this.intervalDuration - new Date().getTime() % this.intervalDuration;
+        setTimeout(() => setInterval(this.updateHistory, this.intervalDuration), offset);
     }
 
     @Watch('latestTimestamp')
-    public incrementCurrentBar(value: Date, oldValue: Date) {
-        console.log('incrementCurrentBar', value, oldValue);
-        this.timestampHistory[this.numberOfBars - 1]++;
-        this._chart.update();
+    public incrementHitsInInterval(value: Date, oldValue: Date) {
+        const now = new Date();
+        const latestIntervalIndex = this.intervals.length - 1;
+        const intervalIndex = latestIntervalIndex - Math.floor((now.getTime() - value.getTime()) / this.intervalDuration);
+
+        if (intervalIndex < this.intervals.length) {
+            this.intervals[intervalIndex]++;
+            this._chart.update();
+        }
     }
 
     private updateHistory() {
-        this.timestampHistory.splice(this.timestampHistory.length, 0, 0);
-        this.timestampHistory.shift();
+        this.intervals.push(0);
+        this.intervals.shift();
         this._chart.update();
     }
 }
