@@ -2,7 +2,7 @@
     <b-card :no-body="true">
         <div :class="['card-header', isResponsive ? 'bg-primary' : 'bg-danger']">
             <img class="card-icon" :src="iconUrl" />
-            <heartbeats class="card-heartbeats" :timestamp="heartbeatTimestamp" />
+            <heartbeats class="card-heartbeats" :latestTimestamp="latestHeartbeatTimestamp" />
         </div>
         <div class="card-body">
             <h5 class="card-name">{{ name }}</h5>
@@ -28,7 +28,7 @@ import 'vuex';
 import { Component, Prop } from 'vue-property-decorator';
 
 import { Device as Model } from '../models';
-import Heartbeats from './heartbeats.vue';
+import { Heartbeats } from './heartbeats';
 
 @Component({
     name: 'device',
@@ -44,7 +44,7 @@ export default class Device extends Vue {
         return this.device.iconUrl || '';
     }
 
-    public get heartbeatTimestamp(): Date {
+    public get latestHeartbeatTimestamp(): Date {
         return this.device.networkStatus.timestamp;
     }
 
