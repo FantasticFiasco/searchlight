@@ -1,13 +1,16 @@
 import 'chart.js';
 import { Bar } from 'vue-chartjs';
-import { Component, Prop } from 'vue-property-decorator';
+import { Component, Prop, Watch } from 'vue-property-decorator';
 
 @Component({ name: 'heartbeats' })
 export class Heartbeats extends Bar {
-    private readonly timestampHistory: number[];
+    private readonly timestampHistory: number[] = [];
+    // A history of 5 minutes split into 15 second intervals results in 20 bars
+    private readonly numberOfBars = 20;
+    private readonly updateHistoryInterval = 15000;
 
     @Prop({ type: Date })
-    private latestTimestamp: Date;
+    public latestTimestamp: Date;
 
     /**
      * Initializes a new instance of the class.
@@ -15,80 +18,68 @@ export class Heartbeats extends Bar {
     constructor() {
         super();
 
-        // A history of 5 minutes split into 15 second intervals results in 20 bars
-        this.timestampHistory = [
-            UNRESPONSIVE_VALUE, UNRESPONSIVE_VALUE, UNRESPONSIVE_VALUE, UNRESPONSIVE_VALUE,
-            UNRESPONSIVE_VALUE, UNRESPONSIVE_VALUE, UNRESPONSIVE_VALUE, UNRESPONSIVE_VALUE,
-            UNRESPONSIVE_VALUE, UNRESPONSIVE_VALUE, UNRESPONSIVE_VALUE, UNRESPONSIVE_VALUE,
-            UNRESPONSIVE_VALUE, UNRESPONSIVE_VALUE, UNRESPONSIVE_VALUE, UNRESPONSIVE_VALUE,
-            UNRESPONSIVE_VALUE, UNRESPONSIVE_VALUE, UNRESPONSIVE_VALUE, RESPONSIVE_VALUE,
-        ];
+        for (let count = 0; count < this.numberOfBars; count++) {
+            this.timestampHistory.push(0);
+        }
     }
 
     public mounted() {
         this.renderChart(
             {
-                labels: LABELS,
+                labels: [
+                    '', '', '', '',
+                    '', '', '', '',
+                    '', '', '', '',
+                    '', '', '', '',
+                    '', '', '', '',
+                ],
                 datasets: [
                     {
-                        backgroundColor: BACKGROUND_COLOR,
-                        borderColor: BORDER_COLOR,
+                        backgroundColor: 'rgba(255,255,255,.3)',
+                        borderColor: 'transparent',
                         data: this.timestampHistory,
                     },
                 ],
             },
-            OPTIONS,
+            {
+                maintainAspectRatio: false,
+                legend: {
+                    display: false,
+                },
+                scales: {
+                    xAxes: [{
+                        display: false,
+                        categoryPercentage: 1,
+                        barPercentage: 0.5,
+                    }],
+                    yAxes: [{
+                        display: false,
+                        ticks: {
+                            suggestedMin: 0,
+                            suggestedMax: 5,
+                        },
+                    }],
+                },
+                tooltips: {
+                    enabled: false,
+                },
+            },
         );
 
-        // Update the history every 15 seconds
-        setInterval(this.updateHistory, UPDATE_HISTORY_INTERVAL);
+        // Update history with a fixed interval
+        setInterval(this.updateHistory, this.updateHistoryInterval);
+    }
+
+    @Watch('latestTimestamp')
+    public incrementCurrentBar(value: Date, oldValue: Date) {
+        console.log('incrementCurrentBar', value, oldValue);
+        this.timestampHistory[this.numberOfBars - 1]++;
+        this._chart.update();
     }
 
     private updateHistory() {
-        // const newValue = new Date().getTime() - this.timestamp.getTime() > FIFTEEN_SECONDS ?
-        //     BAR_RESPONSIVE :
-        //     BAR_UNRESPONSIVE;
-
-        // this.data.splice(this.data.length, 0, newValue);
-        // this.data.shift();
-        console.log('updateHistory', this.latestTimestamp);
+        this.timestampHistory.splice(this.timestampHistory.length, 0, 0);
+        this.timestampHistory.shift();
+        this._chart.update();
     }
 }
-
-const UPDATE_HISTORY_INTERVAL = 15000;
-const UNRESPONSIVE_VALUE: number = 1;
-const RESPONSIVE_VALUE = 5;
-const BACKGROUND_COLOR = 'rgba(255,255,255,.3)';
-const BORDER_COLOR = 'transparent';
-
-const LABELS = [
-    '', '', '', '',
-    '', '', '', '',
-    '', '', '', '',
-    '', '', '', '',
-    '', '', '', '',
-];
-
-const OPTIONS: any = {
-    maintainAspectRatio: false,
-    legend: {
-        display: false,
-    },
-    scales: {
-        xAxes: [{
-            display: false,
-            categoryPercentage: 1,
-            barPercentage: 0.5,
-        }],
-        yAxes: [{
-            display: false,
-            ticks: {
-                suggestedMin: 0,
-                suggestedMax: 5,
-            },
-        }],
-    },
-    tooltips: {
-        enabled: false,
-    },
-};
