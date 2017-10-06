@@ -7,15 +7,32 @@
 }
 
 .card-header {
+    height: 10em;
+
     .card-icon {
-        height: 10em;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+        max-height: 100%;
         opacity: 0.2;
     }
 
     .card-heartbeats {
         @extend .chart-wrapper;
         @extend .px-3;
-        height: 70px;
+        position: absolute;
+        top: 5em;
+        left: 0em;
+        right: 1em;
+        height: 5em;
+    }
+
+    .card-heart {
+        position: absolute;
+        top: 7em;
+        right: 0em;
+        color: rgba(255,255,255,.3);
     }
 }
 

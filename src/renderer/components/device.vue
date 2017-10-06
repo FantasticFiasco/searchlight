@@ -2,6 +2,7 @@
     <b-card :no-body="true">
         <div :class="['card-header', isResponsive ? 'bg-primary' : 'bg-danger']">
             <img class="card-icon" :src="iconUrl" />
+            <i class="card-heart fa fa-heart-o" />
             <heartbeats class="card-heartbeats" :latestTimestamp="latestHeartbeatTimestamp" />
         </div>
         <div class="card-body">
@@ -9,11 +10,11 @@
             <div class="card-model">{{ model }}</div>
             <div class="card-links">
                 <div v-if="hasLiveView">
-                    <i class="fa fa-eye" />
+                    <i class="fa fa-eye fa-fw" />
                     <a @click="openLiveView" href="">Live view</a>
                 </div>
                 <div v-if="hasProductPage">
-                    <i class="fa fa-globe" />
+                    <i class="fa fa-info-circle fa-fw" />
                     <a @click="openProductPage" href="">Product page</a>
                 </div>
             </div>
