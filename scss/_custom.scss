@@ -24,7 +24,15 @@
         position: absolute;
         top: 5em;
         left: 0em;
+        right: 1em;
         height: 5em;
+    }
+
+    .card-heart {
+        position: absolute;
+        top: 7em;
+        right: 0em;
+        color: rgba(255,255,255,.3);
     }
 }
 
