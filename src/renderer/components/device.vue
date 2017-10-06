@@ -13,7 +13,7 @@
                     <a @click="openLiveView" href="">Live view</a>
                 </div>
                 <div v-if="hasProductPage">
-                    <i class="fa fa-globe" />
+                    <i class="fa fa-info-circle" />
                     <a @click="openProductPage" href="">Product page</a>
                 </div>
             </div>
