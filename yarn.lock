@@ -1070,7 +1070,7 @@ body-parser@1.18.2:
     raw-body "2.3.2"
     type-is "~1.6.15"
 
-bonjour@^3.5.0, "bonjour@github:FantasticFiasco/bonjour#66851c5":
+bonjour@FantasticFiasco/bonjour#66851c5, bonjour@^3.5.0:
   version "3.5.0"
   resolved "https://codeload.github.com/FantasticFiasco/bonjour/tar.gz/66851c5eb0360fc9297eef40d18196487a71c48a"
   dependencies:
@@ -1238,9 +1238,9 @@ builder-util-runtime@1.0.6, builder-util-runtime@^1.0.5, builder-util-runtime@^1
     debug "^3.1.0"
     fs-extra-p "^4.4.2"
 
-builder-util@2.0.7, builder-util@^2.0.7:
-  version "2.0.7"
-  resolved "https://registry.yarnpkg.com/builder-util/-/builder-util-2.0.7.tgz#f6172303561d7fbf8944d5989bce806ffc76480f"
+builder-util@2.0.8:
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/builder-util/-/builder-util-2.0.8.tgz#c7487be16848a2880ce7b50867d8ea366fe51e6e"
   dependencies:
     "7zip-bin" "^2.2.4"
     bluebird-lst "^1.0.3"
@@ -1259,7 +1259,7 @@ builder-util@2.0.7, builder-util@^2.0.7:
     temp-file "^2.0.3"
     tunnel-agent "^0.6.0"
 
-builder-util@^2.0.2, builder-util@^2.0.5:
+builder-util@^2.0.2, builder-util@^2.0.5, builder-util@^2.0.7:
   version "2.0.7"
   resolved "https://registry.yarnpkg.com/builder-util/-/builder-util-2.0.7.tgz#f6172303561d7fbf8944d5989bce806ffc76480f"
   dependencies:
@@ -2175,16 +2175,16 @@ electron-builder-http@~19.27.5:
     debug "^3.0.1"
     fs-extra-p "^4.4.0"
 
-electron-builder@19.34.0:
-  version "19.34.0"
-  resolved "https://registry.yarnpkg.com/electron-builder/-/electron-builder-19.34.0.tgz#14b0de412bd28e38a69c1d3ebada8e985a9e6636"
+electron-builder@19.34.2:
+  version "19.34.2"
+  resolved "https://registry.yarnpkg.com/electron-builder/-/electron-builder-19.34.2.tgz#30dad75ac99eab496b838fc5d1376c1b121fbd1a"
   dependencies:
     "7zip-bin" "^2.2.4"
     app-package-builder "1.0.3"
     asar-integrity "0.2.1"
     async-exit-hook "^2.0.1"
     bluebird-lst "^1.0.3"
-    builder-util "2.0.7"
+    builder-util "2.0.8"
     builder-util-runtime "1.0.6"
     chalk "^2.1.0"
     chromium-pickle-js "^0.2.0"
@@ -5634,7 +5634,7 @@ source-list-map@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/source-list-map/-/source-list-map-2.0.0.tgz#aaa47403f7b245a92fbc97ea08f250d6087ed085"
 
-source-map-support@0.5.0:
+source-map-support@0.5.0, source-map-support@^0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.5.0.tgz#2018a7ad2bdf8faf2691e5fddab26bed5a2bacab"
   dependencies:
@@ -5645,12 +5645,6 @@ source-map-support@^0.4.15, source-map-support@^0.4.16, source-map-support@^0.4.
   resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.4.18.tgz#0286a6de8be42641338594e97ccea75f0a2c585f"
   dependencies:
     source-map "^0.5.6"
-
-source-map-support@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.5.0.tgz#2018a7ad2bdf8faf2691e5fddab26bed5a2bacab"
-  dependencies:
-    source-map "^0.6.0"
 
 source-map@0.4.x, source-map@^0.4.2:
   version "0.4.4"
