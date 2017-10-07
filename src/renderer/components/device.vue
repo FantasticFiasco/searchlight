@@ -2,7 +2,7 @@
     <b-card :no-body="true">
         <div :class="['card-header', isResponsive ? 'bg-primary' : 'bg-danger']">
             <img class="card-icon" :src="iconUrl" />
-            <p v-if="!isResponsive" class="card-unresponsive-text">{{ unresponsiveDuration }}</p>
+            <p v-if="!isResponsive" class="card-unresponsive-text">No contact</p>
             <i class="card-heart fa fa-heartbeat" />
             <heartbeats class="card-heartbeats" :latestTimestamp="latestHeartbeatTimestamp" />
         </div>
@@ -44,10 +44,6 @@ export default class Device extends Vue {
 
     public get iconUrl(): string {
         return this.device.iconUrl || '';
-    }
-
-    public get unresponsiveDuration(): string {
-        return `Unresponsive since ${this.latestHeartbeatTimestamp.toLocaleTimeString()}`;
     }
 
     public get latestHeartbeatTimestamp(): Date {
