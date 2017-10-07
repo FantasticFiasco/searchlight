@@ -1,4 +1,6 @@
 // Here you can add other styles
+$card-header-color: rgba(255,255,255,.5);
+
 @mixin lines-of-text($count) {
     overflow: hidden;
     display: -webkit-box;
@@ -18,6 +20,13 @@
         opacity: 0.2;
     }
 
+    .card-no-contact-text {
+        position: absolute;
+        top: 1em;
+        right: 1em;
+        color: $card-header-color;
+    }
+
     .card-heartbeats {
         @extend .chart-wrapper;
         @extend .px-3;
@@ -32,7 +41,7 @@
         position: absolute;
         top: 7em;
         right: 0em;
-        color: rgba(255,255,255,.3);
+        color: $card-header-color;
     }
 }
 
@@ -50,6 +59,6 @@
     }
 
     .card-links {
-        @extend .mt-2;
+        @extend .mt-3;
     }
 }

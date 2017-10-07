@@ -2,7 +2,8 @@
     <b-card :no-body="true">
         <div :class="['card-header', isResponsive ? 'bg-primary' : 'bg-danger']">
             <img class="card-icon" :src="iconUrl" />
-            <i class="card-heart fa fa-heart-o" />
+            <p v-if="!isResponsive" class="card-no-contact-text">No contact</p>
+            <i :class="['card-heart', 'fa', isResponsive ? 'fa-heartbeat' : 'fa-heart-o']" />
             <heartbeats class="card-heartbeats" :latestTimestamp="latestHeartbeatTimestamp" />
         </div>
         <div class="card-body">
