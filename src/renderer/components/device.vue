@@ -3,7 +3,7 @@
         <div :class="['card-header', isResponsive ? 'bg-primary' : 'bg-danger']">
             <img class="card-icon" :src="iconUrl" />
             <p v-if="!isResponsive" class="card-unresponsive-text">{{ unresponsiveDuration }}</p>
-            <i class="card-heart fa fa-heart-o" />
+            <i class="card-heart fa fa-heartbeat" />
             <heartbeats class="card-heartbeats" :latestTimestamp="latestHeartbeatTimestamp" />
         </div>
         <div class="card-body">

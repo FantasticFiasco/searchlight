@@ -36,7 +36,7 @@ export class Heartbeats extends Bar {
                 ],
                 datasets: [
                     {
-                        backgroundColor: 'rgba(255,255,255,.3)',
+                        backgroundColor: 'rgba(255,255,255,.5)',
                         borderColor: 'transparent',
                         data: this.intervals,
                     },
