@@ -22,6 +22,9 @@ export class Heartbeats extends Bar {
         for (let count = 0; count < numberOfIntervals; count++) {
             this.intervals.push(0);
         }
+
+        // Increment current intervall, indicating a responsive device
+        this.intervals[numberOfIntervals - 1]++;
     }
 
     public mounted() {

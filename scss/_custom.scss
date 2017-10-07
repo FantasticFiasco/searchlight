@@ -1,4 +1,6 @@
 // Here you can add other styles
+$card-header-color: rgba(255,255,255,.5);
+
 @mixin lines-of-text($count) {
     overflow: hidden;
     display: -webkit-box;
@@ -18,10 +20,11 @@
         opacity: 0.2;
     }
 
-    .card-unresponsive-text {
+    .card-no-contact-text {
         position: absolute;
         top: 1em;
         right: 1em;
+        color: $card-header-color;
     }
 
     .card-heartbeats {
@@ -38,7 +41,7 @@
         position: absolute;
         top: 7em;
         right: 0em;
-        color: rgba(255,255,255,.5);
+        color: $card-header-color;
     }
 }
 
