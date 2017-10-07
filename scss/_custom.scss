@@ -18,6 +18,12 @@
         opacity: 0.2;
     }
 
+    .card-unresponsive-text {
+        position: absolute;
+        top: 1em;
+        right: 1em;
+    }
+
     .card-heartbeats {
         @extend .chart-wrapper;
         @extend .px-3;
@@ -50,6 +56,6 @@
     }
 
     .card-links {
-        @extend .mt-2;
+        @extend .mt-3;
     }
 }
