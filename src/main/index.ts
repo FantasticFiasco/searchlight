@@ -21,7 +21,7 @@ let mainWindow: Electron.BrowserWindow | undefined;
 app.setAppUserModelId('com.fantasticfiasco.axis-searchlight');
 
 // Dev tools in development mode
-Debug({ enabled: true });
+Debug({ enabled: environment.isDev() });
 
 log.info(`Main - start app with version ${app.getVersion()}`);
 
@@ -47,7 +47,9 @@ function createWindow() {
     discovery.start();
 
     // Open the DevTools
-    mainWindow.webContents.openDevTools({ mode: 'undocked' });
+    if (environment.isDev()) {
+        mainWindow.webContents.openDevTools({ mode: 'undocked' });
+    }
 
     // Show main window when Electron has loaded, thus preventing UI flickering
     mainWindow.on('ready-to-show', () => {
@@ -108,6 +110,9 @@ const store = new Store({
 // Analytics
 const analytics = new Analytics(appName, store.get('analytics.userId'));
 
+// Discovery
+let discovery: IDiscovery | undefined;
+
 // Updates
 const updates = new Updates();
 app.on('ready', () => {
@@ -115,6 +120,3 @@ app.on('ready', () => {
         updates.checkForUpdates();
     }
 });
-
-// Discovery
-let discovery: IDiscovery | undefined;

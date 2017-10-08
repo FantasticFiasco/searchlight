@@ -1,7 +1,7 @@
 <template>
     <b-card :no-body="true">
         <div :class="['card-header', isResponsive ? 'bg-primary' : 'bg-danger']">
-            <img class="card-icon" :src="iconUrl" />
+            <img class="card-icon" :src="iconUrl" @error="onInvalidIconUrl" />
             <p v-if="!isResponsive" class="card-no-contact-text">No contact</p>
             <i :class="['card-heart', 'fa', isResponsive ? 'fa-heartbeat' : 'fa-heart-o']" />
             <heartbeats class="card-heartbeats" :latestTimestamp="latestHeartbeatTimestamp" />
@@ -27,9 +27,12 @@
 import { shell } from 'electron';
 import Vue from 'vue';
 import 'vuex';
-import { Component, Prop } from 'vue-property-decorator';
+import { Component, Inject, Prop } from 'vue-property-decorator';
 
+import { InvalidDeviceIconEvent } from '../../common/analytics/';
+import { ANALYTICS_SERVICE } from '../dependency-injection';
 import { Device as Model } from '../models';
+import { AnalyticsService } from '../services';
 import { Heartbeats } from './heartbeats';
 
 @Component({
@@ -41,6 +44,9 @@ import { Heartbeats } from './heartbeats';
 export default class Device extends Vue {
     @Prop({ type: Model })
     private readonly device: Model;
+
+    @Inject(ANALYTICS_SERVICE)
+    private readonly analyticsService: AnalyticsService;
 
     public get iconUrl(): string {
         return this.device.iconUrl || '';
@@ -82,6 +88,11 @@ export default class Device extends Vue {
         if (this.device.productPageUrl != undefined) {
             shell.openExternal(this.device.productPageUrl);
         }
+    }
+
+    public onInvalidIconUrl(e: Event) {
+        const event = new InvalidDeviceIconEvent(this.device.modelNumber || 'unknown');
+        this.analyticsService.reportEventWithValue(event);
     }
 }
 </script>

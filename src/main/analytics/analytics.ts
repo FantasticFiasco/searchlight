@@ -1,6 +1,9 @@
 import * as expect from '@fantasticfiasco/expect';
+import { ipcMain } from 'electron';
 import * as ua from 'universal-analytics';
 
+import { EventWithValue } from 'common/analytics/event-with-value';
+import * as ChannelNames from 'common/channel-names';
 import * as log from './../log';
 import * as config from './config.json';
 
@@ -26,6 +29,12 @@ export class Analytics {
 
         this.appName = appName;
         this.visitor = new ua.Visitor((config as any).trackingId, userId, { https: true });
+
+        // Register for messages sent from the renderer
+        ipcMain.on(
+            ChannelNames.ANALYTICS_REPORT_EVENT_WITH_VALUE,
+            (event: any, arg: EventWithValue) =>
+                this.reportEventWithValue(arg.category, arg.action, arg.label, arg.value));
     }
 
     /**
@@ -37,6 +46,8 @@ export class Analytics {
         expect.toExist(key);
         expect.toExist(value);
 
+        log.debug('Analytics - enrich', key, value);
+
         this.visitor.set(key, value);
     }
 
@@ -46,6 +57,8 @@ export class Analytics {
      */
     public reportScreenView(screenName: string) {
         expect.toExist(screenName);
+
+        log.debug('Analytics - reportScreenView', screenName);
 
         this.visitor.screenview(screenName, this.appName, this.errorHandler);
     }
@@ -58,6 +71,8 @@ export class Analytics {
     public reportEvent(category: string, action: string) {
         expect.toExist(category);
         expect.toExist(action);
+
+        log.debug('Analytics - reportEvent', category, action);
 
         this.visitor.event(category, action, this.errorHandler);
     }
@@ -74,6 +89,8 @@ export class Analytics {
         expect.toExist(action);
         expect.toExist(label);
 
+        log.debug('Analytics - reportEventWithValue', category, action, label, value);
+
         this.visitor.event(category, action, label, value, this.errorHandler);
     }
 
@@ -84,6 +101,8 @@ export class Analytics {
      */
     public reportException(description: string, fatal: boolean = false) {
         expect.toExist(description);
+
+        log.debug('Analytics - reportException', description, fatal);
 
         this.visitor.exception(description, fatal, this.errorHandler);
     }
@@ -98,6 +117,8 @@ export class Analytics {
         expect.toExist(category);
         expect.toExist(variable);
         expect.toBeTrue(time >= 0);
+
+        log.debug('Analytics - reportDuration', category, variable, time);
 
         this.visitor.timing(category, variable, time, this.errorHandler);
     }
