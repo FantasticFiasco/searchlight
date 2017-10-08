@@ -1,7 +1,7 @@
 /**
  * Class describing an analytics event with a value.
  */
-export class EventWithValue {
+export abstract class EventWithValue {
     /**
      * Initializes a new instance of the class.
      * @param category category of the event
