@@ -11,7 +11,7 @@ import * as config from './config.json';
  * Class reporting to Universal Analytics.
  */
 export class Analytics {
-    private static readonly UserIdFormat = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+    private static readonly IdFormat = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
     private readonly appName: string;
     private readonly visitor: ua.Visitor;
@@ -19,16 +19,28 @@ export class Analytics {
     /**
      * Initializes a new instance of the class.
      * @param appName name of the application
+     * @param clientId client id formatted as uuid
      * @param userId user id formatted as uuid
      */
-    constructor(appName: string, userId: string) {
+    constructor(appName: string, clientId: string, userId: string) {
         expect.toExist(appName);
-        expect.toBeTrue(Analytics.UserIdFormat.test(userId));
+        expect.toBeTrue(Analytics.IdFormat.test(clientId));
+        expect.toBeTrue(Analytics.IdFormat.test(userId));
 
+        log.info('Analytics - client id', clientId);
         log.info('Analytics - user id', userId);
 
         this.appName = appName;
-        this.visitor = new ua.Visitor((config as any).trackingId, userId, { https: true });
+
+        const options: ua.VisitorOptions = {
+            tid: (config as any).trackingId,
+            cid: clientId,
+            uid: userId,
+            https: true,
+            debug: true,
+        };
+
+        this.visitor = new ua.Visitor(options);
 
         // Register for messages sent from the renderer
         ipcMain.on(
@@ -83,14 +95,18 @@ export class Analytics {
      * @param label label of the value
      * @param value the value
      */
-    public reportEventWithValue(category: string, action: string, label: string, value: string | number) {
+    public reportEventWithValue(category: string, action: string, label: string, value?: number) {
         expect.toExist(category);
         expect.toExist(action);
         expect.toExist(label);
 
         log.info('Analytics - reportEventWithValue', category, action, label, value);
 
-        this.visitor.event(category, action, label, value, this.errorHandler);
+        if (value) {
+            this.visitor.event(category, action, label, value, this.errorHandler);
+        } else {
+            this.visitor.event(category, action, label, this.errorHandler);
+        }
     }
 
     /**

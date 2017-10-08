@@ -9,6 +9,6 @@ export class InvalidDeviceIconEvent extends EventWithValue {
      * @param modelNumber The model number
      */
     constructor(modelNumber: string) {
-        super('www.axis.com', 'invalidDeviceIcon', 'modelNumber', modelNumber);
+        super('www.axis.com', 'invalid device icon', modelNumber);
     }
 }

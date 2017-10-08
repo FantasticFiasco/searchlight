@@ -25,6 +25,6 @@ export abstract class EventWithValue {
         /**
          * The value.
          */
-        public readonly value: string | number) {
+        public readonly value?: number) {
     }
 }

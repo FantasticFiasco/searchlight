@@ -102,13 +102,14 @@ app.on('window-all-closed', () => {
 const store = new Store({
     defaults: {
         analytics: {
+            clientId: uuid.v4(),
             userId: uuid.v4(),
         },
     },
 });
 
 // Analytics
-const analytics = new Analytics(appName, store.get('analytics.userId'));
+const analytics = new Analytics(appName, store.get('analytics.clientId'), store.get('analytics.userId'));
 
 // Discovery
 let discovery: IDiscovery | undefined;
