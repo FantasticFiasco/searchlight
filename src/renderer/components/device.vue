@@ -1,7 +1,7 @@
 <template>
     <b-card :no-body="true">
         <div :class="['card-header', isResponsive ? 'bg-primary' : 'bg-danger']">
-            <img class="card-icon" :src="iconUrl" @error="onInvalidIconUrl" />
+            <img :class="isAvailableOnAxisWeb ? 'card-icon' : 'card-icon-hidden'" :src="iconUrl" @error="onInvalidIconUrl" />
             <p v-if="!isResponsive" class="card-no-contact-text">No contact</p>
             <i :class="['card-heart', 'fa', isResponsive ? 'fa-heartbeat' : 'fa-heart-o']" />
             <heartbeats class="card-heartbeats" :latestTimestamp="latestHeartbeatTimestamp" />
@@ -75,6 +75,8 @@ export default class Device extends Vue {
         return this.device.networkStatus.isResponsive;
     }
 
+    public isAvailableOnAxisWeb = true;
+
     public openLiveView(e: Event) {
         e.preventDefault();
         if (this.device.liveViewUrl != undefined) {
@@ -90,6 +92,8 @@ export default class Device extends Vue {
     }
 
     public onInvalidIconUrl(e: Event) {
+        this.isAvailableOnAxisWeb = false;
+
         const event = new InvalidDeviceIconEvent(this.device.modelNumber || 'unknown');
         this.analyticsService.reportEventWithValue(event);
     }
