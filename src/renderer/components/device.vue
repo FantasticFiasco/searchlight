@@ -27,12 +27,13 @@
 import { shell } from 'electron';
 import Vue from 'vue';
 import 'vuex';
-import { Component, Inject, Prop } from 'vue-property-decorator';
+import { Component, Inject, Prop, Watch } from 'vue-property-decorator';
 
 import { ANALYTICS_SERVICE } from '../dependency-injection';
 import { Device as Model } from '../models';
 import { AnalyticsService, InvalidDeviceIconEvent } from '../services';
 import { Heartbeats } from './heartbeats';
+import { AxisWebUrlBuilder } from './helpers/axis-web-url-builder';
 
 @Component({
     name: 'device',
@@ -47,8 +48,10 @@ export default class Device extends Vue {
     @Inject(ANALYTICS_SERVICE)
     private readonly analyticsService: AnalyticsService;
 
+    private axisWebUrlBuilder: AxisWebUrlBuilder;
+
     public get iconUrl(): string {
-        return this.device.iconUrl || '';
+        return this.axisWebUrlBuilder.buildIconUrl() || '';
     }
 
     public get latestHeartbeatTimestamp(): Date {
@@ -77,8 +80,13 @@ export default class Device extends Vue {
 
     public isAvailableOnAxisWeb = true;
 
+    public mounted() {
+        this.axisWebUrlBuilder = new AxisWebUrlBuilder(this.device.modelName, this.device.modelNumber);
+    }
+
     public openLiveView(e: Event) {
         e.preventDefault();
+
         if (this.device.liveViewUrl != undefined) {
             shell.openExternal(this.device.liveViewUrl);
         }
@@ -86,8 +94,10 @@ export default class Device extends Vue {
 
     public openProductPage(e: Event) {
         e.preventDefault();
-        if (this.device.productPageUrl != undefined) {
-            shell.openExternal(this.device.productPageUrl);
+
+        const productPageUrl = this.axisWebUrlBuilder.buildProductPageUrl();
+        if (productPageUrl != undefined) {
+            shell.openExternal(productPageUrl);
         }
     }
 

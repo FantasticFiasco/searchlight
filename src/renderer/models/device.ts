@@ -40,30 +40,6 @@ export class Device {
     }
 
     /**
-     * The URL to an icon.
-     */
-    public get iconUrl(): string | undefined {
-        if (this.modelNumber === undefined) {
-            return undefined;
-        }
-
-        const modelNumber = this.modelNumber.toLowerCase();
-        return `https://www.axis.com/images/scaled/300/sites/default/files/${modelNumber}.png`;
-    }
-
-    /**
-     * The URL to the product page on www.axis.com.
-     */
-    public get productPageUrl(): string {
-        if (this.modelName === undefined) {
-            return 'https://www.axis.com/products-and-solutions';
-        }
-
-        const modelName = this.modelName.replace(' ', '-').toLowerCase();
-        return `https://www.axis.com/products/${modelName}`;
-    }
-
-    /**
      * Updates properties of this instance.
      */
     public update(other: Device) {
