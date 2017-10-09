@@ -14,7 +14,7 @@
                     <i class="fa fa-eye fa-fw" />
                     <a @click="openLiveView" href="">Live view</a>
                 </div>
-                <div v-if="hasProductPage">
+                <div>
                     <i class="fa fa-info-circle fa-fw" />
                     <a @click="openProductPage" href="">Product page</a>
                 </div>
@@ -27,13 +27,13 @@
 import { shell } from 'electron';
 import Vue from 'vue';
 import 'vuex';
-import { Component, Inject, Prop, Watch } from 'vue-property-decorator';
+import { Component, Inject, Prop } from 'vue-property-decorator';
 
 import { ANALYTICS_SERVICE } from '../dependency-injection';
 import { Device as Model } from '../models';
 import { AnalyticsService, InvalidDeviceIconEvent } from '../services';
 import { Heartbeats } from './heartbeats';
-import { AxisWebUrlBuilder } from './helpers/axis-web-url-builder';
+import * as axisWeb from './helpers/axis-web';
 
 @Component({
     name: 'device',
@@ -48,10 +48,8 @@ export default class Device extends Vue {
     @Inject(ANALYTICS_SERVICE)
     private readonly analyticsService: AnalyticsService;
 
-    private axisWebUrlBuilder: AxisWebUrlBuilder;
-
     public get iconUrl(): string {
-        return this.axisWebUrlBuilder.buildIconUrl() || '';
+        return axisWeb.iconUrl(this.device.modelNumber);
     }
 
     public get latestHeartbeatTimestamp(): Date {
@@ -70,19 +68,11 @@ export default class Device extends Vue {
         return this.device.liveViewUrl !== undefined;
     }
 
-    public get hasProductPage(): boolean {
-        return this.device.productPageUrl !== undefined;
-    }
-
     public get isResponsive(): boolean {
         return this.device.networkStatus.isResponsive;
     }
 
     public isAvailableOnAxisWeb = true;
-
-    public mounted() {
-        this.axisWebUrlBuilder = new AxisWebUrlBuilder(this.device.modelName, this.device.modelNumber);
-    }
 
     public openLiveView(e: Event) {
         e.preventDefault();
@@ -95,10 +85,7 @@ export default class Device extends Vue {
     public openProductPage(e: Event) {
         e.preventDefault();
 
-        const productPageUrl = this.axisWebUrlBuilder.buildProductPageUrl();
-        if (productPageUrl != undefined) {
-            shell.openExternal(productPageUrl);
-        }
+        shell.openExternal(axisWeb.productPageUrl(this.device.modelName));
     }
 
     public onInvalidIconUrl(e: Event) {
