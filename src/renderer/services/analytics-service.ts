@@ -1,4 +1,4 @@
-import { EventWithValue } from 'common/analytics/event-with-value';
+import { EventWithValue, PageView } from 'common/analytics/event-with-value';
 import * as ChannelNames from 'common/channel-names';
 import { ipcRenderer } from 'electron';
 
@@ -8,11 +8,16 @@ import { ipcRenderer } from 'electron';
  */
 export class AnalyticsService {
     /**
+     * Report about application page view
+     * @param event event describing the occurrance
+     */
+    public reportPageView(event: PageView) {
+        ipcRenderer.send(ChannelNames.ANALYTICS_REPORT_PAGE_VIEW, event);
+    }
+
+    /**
      * Report about application event containing a value
-     * @param category category of the event
-     * @param action name of the action
-     * @param label label of the value
-     * @param value the value
+     * @param event event describing the occurrance
      */
     public reportEventWithValue(event: EventWithValue) {
         ipcRenderer.send(ChannelNames.ANALYTICS_REPORT_EVENT_WITH_VALUE, event);

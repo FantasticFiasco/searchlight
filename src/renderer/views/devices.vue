@@ -11,10 +11,12 @@
 <script lang="ts">
 import Vue from 'vue';
 import 'vuex';
-import { Component } from 'vue-property-decorator';
+import { Component, Inject } from 'vue-property-decorator';
 
 import DeviceComponent from '../components/device.vue';
 import { Device } from '../models';
+import { ANALYTICS_SERVICE } from '../dependency-injection';
+import { AnalyticsService, PageView } from '../services';
 
 @Component({
     name: 'devices',
@@ -23,11 +25,18 @@ import { Device } from '../models';
     },
 })
 export default class Devices extends Vue {
+    @Inject(ANALYTICS_SERVICE)
+    private readonly analyticsService: AnalyticsService;
+
     public get devices() {
         // Vuex prohibits modifying state outside of store modifiers, thus the 'slice'
         return this.$store.state.devices.slice().sort((a: Device, b: Device) => {
             return (a.name || '').localeCompare(b.name || '');
         });
+    }
+
+    public mounted() {
+        this.analyticsService.reportPageView(new PageView('/devices'));
     }
 }
 </script>
