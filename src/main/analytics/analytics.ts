@@ -13,31 +13,25 @@ import * as config from './config.json';
 export class Analytics {
     private static readonly IdFormat = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
-    private readonly appName: string;
     private readonly visitor: ua.Visitor;
 
     /**
      * Initializes a new instance of the class.
-     * @param appName name of the application
      * @param clientId client id formatted as uuid
      * @param userId user id formatted as uuid
      */
-    constructor(appName: string, clientId: string, userId: string) {
-        expect.toExist(appName);
+    constructor(clientId: string, userId: string) {
         expect.toBeTrue(Analytics.IdFormat.test(clientId));
         expect.toBeTrue(Analytics.IdFormat.test(userId));
 
         log.info('Analytics - client id', clientId);
         log.info('Analytics - user id', userId);
 
-        this.appName = appName;
-
         const options: ua.VisitorOptions = {
             tid: (config as any).trackingId,
             cid: clientId,
             uid: userId,
             https: true,
-            debug: true,
         };
 
         this.visitor = new ua.Visitor(options);
@@ -63,15 +57,16 @@ export class Analytics {
     }
 
     /**
-     * Report about a viewed screen
-     * @param screenName name of the viewed screen
+     * Report about a viewed page
+     * @param path path of the viewed page, must start with '/'
      */
-    public reportScreenView(screenName: string) {
-        expect.toExist(screenName);
+    public reportPageView(path: string) {
+        expect.toExist(path);
+        expect.toBeTrue(path.startsWith('/'));
 
-        log.info('Analytics - reportScreenView', screenName);
+        log.info('Analytics - reportPageView', path);
 
-        this.visitor.screenview(screenName, this.appName, this.errorHandler);
+        this.visitor.pageview(path, this.errorHandler);
     }
 
     /**

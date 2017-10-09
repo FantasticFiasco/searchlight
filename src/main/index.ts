@@ -9,9 +9,6 @@ import * as environment from './environment';
 import * as log from './log';
 import { Updates } from './updates';
 
-// Constants
-const appName = 'AXIS Searchlight';
-
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow: Electron.BrowserWindow | undefined;
@@ -28,7 +25,7 @@ log.info(`Main - start app with version ${app.getVersion()}`);
 function createWindow() {
     // Create the browser window
     mainWindow = new BrowserWindow({
-        title: appName,
+        title: 'AXIS Searchlight',
         backgroundColor: '#e4e5e6',
         show: false,
     });
@@ -109,7 +106,7 @@ const store = new Store({
 });
 
 // Analytics
-const analytics = new Analytics(appName, store.get('analytics.clientId'), store.get('analytics.userId'));
+const analytics = new Analytics(store.get('analytics.clientId'), store.get('analytics.userId'));
 
 // Discovery
 let discovery: IDiscovery | undefined;
