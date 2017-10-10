@@ -9,7 +9,7 @@ Vue.use(Router);
 
 export const router = new Router({
     mode: 'history',
-    linkActiveClass: 'active',
+    linkActiveClass: 'open active',
     scrollBehavior: (to: Route, from: Route) => ({
         x: 0,
         y: 0,
