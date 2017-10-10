@@ -9,9 +9,6 @@ import * as environment from './environment';
 import * as log from './log';
 import { Updates } from './updates';
 
-// Constants
-const appName = 'AXIS Searchlight';
-
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow: Electron.BrowserWindow | undefined;
@@ -21,14 +18,14 @@ let mainWindow: Electron.BrowserWindow | undefined;
 app.setAppUserModelId('com.fantasticfiasco.axis-searchlight');
 
 // Dev tools in development mode
-Debug({ enabled: true });
+Debug({ enabled: environment.isDev() });
 
 log.info(`Main - start app with version ${app.getVersion()}`);
 
 function createWindow() {
     // Create the browser window
     mainWindow = new BrowserWindow({
-        title: appName,
+        title: 'AXIS Searchlight',
         backgroundColor: '#e4e5e6',
         show: false,
     });
@@ -47,7 +44,9 @@ function createWindow() {
     discovery.start();
 
     // Open the DevTools
-    mainWindow.webContents.openDevTools({ mode: 'undocked' });
+    if (environment.isDev()) {
+        mainWindow.webContents.openDevTools({ mode: 'undocked' });
+    }
 
     // Show main window when Electron has loaded, thus preventing UI flickering
     mainWindow.on('ready-to-show', () => {
@@ -65,10 +64,7 @@ function createWindow() {
         // should delete the corresponding element.
         mainWindow = undefined;
 
-        analytics.reportEvent('window', 'home.closed');
     });
-
-    analytics.reportScreenView('home');
 }
 
 // This method will be called when Electron has finished initialization and is
@@ -86,6 +82,8 @@ app.on('activate', () => {
 
 // Quit when all windows are closed
 app.on('window-all-closed', () => {
+    analytics.reportEvent('app', 'stopped');
+
     // On OS X it is common for applications and their menu bar to stay active
     // until the user quits explicitly with Cmd + Q
     if (process.platform !== 'darwin') {
@@ -100,13 +98,18 @@ app.on('window-all-closed', () => {
 const store = new Store({
     defaults: {
         analytics: {
+            clientId: uuid.v4(),
             userId: uuid.v4(),
         },
     },
 });
 
 // Analytics
-const analytics = new Analytics(appName, store.get('analytics.userId'));
+const analytics = new Analytics(store.get('analytics.clientId'), store.get('analytics.userId'));
+analytics.reportEvent('app', 'started');
+
+// Discovery
+let discovery: IDiscovery | undefined;
 
 // Updates
 const updates = new Updates();
@@ -115,6 +118,3 @@ app.on('ready', () => {
         updates.checkForUpdates();
     }
 });
-
-// Discovery
-let discovery: IDiscovery | undefined;

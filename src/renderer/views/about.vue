@@ -14,10 +14,16 @@
 <script lang="ts">
 import { remote } from 'electron';
 import Vue from 'vue';
-import { Component } from 'vue-property-decorator';
+import { Component, Inject } from 'vue-property-decorator';
+
+import { ANALYTICS_SERVICE } from '../dependency-injection';
+import { AnalyticsService, PageView } from '../services';
 
 @Component({ name: 'about' })
 export default class About extends Vue {
+    @Inject(ANALYTICS_SERVICE)
+    private readonly analyticsService: AnalyticsService;
+
     get appVersion() {
         return remote.app.getVersion();
     }
@@ -32,6 +38,10 @@ export default class About extends Vue {
 
     get chromeVersion() {
         return process.versions.chrome;
+    }
+
+    public mounted() {
+        this.analyticsService.reportPageView(new PageView('/about'));
     }
 }
 </script>
