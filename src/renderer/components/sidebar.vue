@@ -1,7 +1,6 @@
 <template>
     <div class="sidebar">
         <nav class="sidebar-nav">
-            <div slot="header"></div>
             <ul class="nav">
                 <li class="nav-item" v-for="item in navItems" :key="item.url">
                     <template>
