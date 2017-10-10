@@ -1,4 +1,4 @@
-import { EventWithValue, PageView } from 'common/analytics/event-with-value';
+import { EventWithValue, PageView } from 'common/analytics';
 import * as ChannelNames from 'common/channel-names';
 import { ipcRenderer } from 'electron';
 
