@@ -1,5 +1,5 @@
 /**
- * Class describing an analytics event with a value.
+ * Analytics event with a value.
  */
 export abstract class EventWithValue {
     /**

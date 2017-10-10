@@ -1,7 +1,7 @@
 import { EventWithValue } from './event-with-value';
 
 /**
- * Event send when device icon isn't found on www.axis.com.
+ * Analytics event describing that a device icon isn't found on www.axis.com.
  */
 export class InvalidDeviceIconEvent extends EventWithValue {
     /**
