@@ -1,5 +1,6 @@
 <template>
     <div class="sidebar">
+        <sidebar-minimizer />
         <nav class="sidebar-nav">
             <ul class="nav">
                 <li class="nav-item" v-for="item in navItems" :key="item.url">
@@ -11,7 +12,6 @@
             <slot></slot>
             <div slot="footer"></div>
         </nav>
-        <sidebar-minimizer />
     </div>
 </template>
 
