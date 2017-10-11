@@ -8,6 +8,17 @@ $card-header-color: rgba(255,255,255,.5);
     -webkit-line-clamp: $count;
 }
 
+// App
+.app-body {
+    .main {
+        margin-top: 1em;
+    }
+}
+
+// Header
+$navbar-height: 0px !default;
+
+// Card
 .card-header {
     height: 10em;
 
