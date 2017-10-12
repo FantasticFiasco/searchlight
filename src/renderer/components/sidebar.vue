@@ -1,11 +1,11 @@
 <template>
     <div class="sidebar">
-        <sidebar-minimizer />
+        <SidebarMinimizer />
         <nav class="sidebar-nav">
             <ul class="nav">
                 <li class="nav-item" v-for="item in navItems" :key="item.url">
                     <template>
-                        <sidebar-nav-link :name="item.name" :url="item.url" :icon="item.icon" />
+                        <SidebarNavLink :name="item.name" :url="item.url" :icon="item.icon" />
                     </template>
                 </li>
             </ul>
@@ -26,8 +26,8 @@ import SidebarNavLink from './sidebar-nav-link.vue';
 @Component({
     name: 'sidebar',
     components: {
-        'sidebar-minimizer': SidebarMinimizer,
-        'sidebar-nav-link': SidebarNavLink,
+        SidebarMinimizer,
+        SidebarNavLink,
     },
 })
 export default class Sidebar extends Vue {

@@ -1,14 +1,14 @@
 <template>
     <div>
         <div class="app-body">
-            <sidebar :navItems="views" />
+            <Sidebar :navItems="views" />
             <main class="main">
                 <div class="container-fluid">
                     <router-view></router-view>
                 </div>
             </main>
         </div>
-        <footer />
+        <Footer />
     </div>
 </template>
 
@@ -23,8 +23,8 @@ import { AboutView, DevicesView, IView } from '../views';
 @Component({
     name: 'app-container',
     components: {
-        'footer': Footer,
-        'sidebar': Sidebar,
+        Footer,
+        Sidebar,
     },
 })
 export default class AppContainer extends Vue {

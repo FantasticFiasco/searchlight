@@ -4,7 +4,7 @@
             <img :class="isAvailableOnAxisWeb ? 'card-icon' : 'card-icon-hidden'" :src="iconUrl" @error="onInvalidIconUrl" />
             <p v-if="!isResponsive" class="card-no-contact-text">No contact</p>
             <i :class="['card-heart', 'fa', isResponsive ? 'fa-heartbeat' : 'fa-heart-o']" />
-            <heartbeats class="card-heartbeats" :latestTimestamp="latestHeartbeatTimestamp" />
+            <Heartbeats class="card-heartbeats" :latestTimestamp="latestHeartbeatTimestamp" />
         </div>
         <div class="card-body">
             <h5 class="card-name">{{ name }}</h5>
@@ -38,7 +38,7 @@ import * as axisWeb from './helpers/axis-web';
 @Component({
     name: 'device',
     components: {
-        'heartbeats': Heartbeats,
+        Heartbeats,
     }
 })
 export default class Device extends Vue {
