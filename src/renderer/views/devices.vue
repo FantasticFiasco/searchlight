@@ -2,7 +2,7 @@
     <div class="animated fadeIn">
         <div class="row">
             <div class="col-sm-6 col-lg-3" v-for="device in devices" :key="device.macAddress">
-                <device :device="device" />
+                <Device :device="device" />
             </div>
         </div>
     </div>
@@ -21,7 +21,7 @@ import { AnalyticsService, PageView } from '../services';
 @Component({
     name: 'devices',
     components: {
-        'device': DeviceComponent
+        'Device': DeviceComponent
     },
 })
 export default class Devices extends Vue {

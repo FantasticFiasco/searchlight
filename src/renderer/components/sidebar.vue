@@ -1,7 +1,7 @@
 <template>
     <div class="sidebar">
+        <SidebarMinimizer />
         <nav class="sidebar-nav">
-            <div slot="header"></div>
             <ul class="nav">
                 <li class="nav-item" v-for="item in navItems" :key="item.url">
                     <template>
@@ -20,11 +20,13 @@ import Vue from 'vue';
 import { Component, Prop } from 'vue-property-decorator';
 
 import { IView } from '../views/iview';
+import SidebarMinimizer from './sidebar-minimizer.vue';
 import SidebarNavLink from './sidebar-nav-link.vue';
 
 @Component({
     name: 'sidebar',
     components: {
+        SidebarMinimizer,
         SidebarNavLink,
     },
 })

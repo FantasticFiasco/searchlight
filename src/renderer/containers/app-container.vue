@@ -1,6 +1,5 @@
 <template>
     <div>
-        <Header/>
         <div class="app-body">
             <Sidebar :navItems="views" />
             <main class="main">
@@ -9,7 +8,7 @@
                 </div>
             </main>
         </div>
-        <Footer/>
+        <Footer />
     </div>
 </template>
 
@@ -18,19 +17,13 @@ import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 
 import Footer from '../components/footer.vue'
-import Header from '../components/header.vue'
 import Sidebar from '../components/sidebar.vue'
-import {
-    AboutView,
-    DevicesView,
-    IView
-} from '../views';
+import { AboutView, DevicesView, IView } from '../views';
 
 @Component({
     name: 'app-container',
     components: {
         Footer,
-        Header,
         Sidebar,
     },
 })
