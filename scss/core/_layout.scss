@@ -102,7 +102,7 @@ app-root {
   }
 }
 
-@include media-breakpoint-up(lg) {
+@include media-breakpoint-up(sm) {
   .sidebar-compact {
     .sidebar {
       flex: 0 0 $sidebar-compact-width;
@@ -300,7 +300,7 @@ app-root {
 // Mobile layout
 //
 
-@include media-breakpoint-down(md) {
+@include media-breakpoint-down(xs) {
   .app-header.navbar {
     position: fixed !important;
     z-index: $zindex-sticky;
