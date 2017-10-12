@@ -1,6 +1,6 @@
 <template>
     <b-card :no-body="true">
-        <div :class="['card-header', isResponsive ? 'bg-primary' : 'bg-danger']">
+        <div :class="['card-header', isResponsive ? 'bg-success' : 'bg-danger']">
             <img :class="isAvailableOnAxisWeb ? 'card-icon' : 'card-icon-hidden'" :src="iconUrl" @error="onInvalidIconUrl" />
             <p v-if="!isResponsive" class="card-no-contact-text">No contact</p>
             <i :class="['card-heart', 'fa', isResponsive ? 'fa-heartbeat' : 'fa-heart-o']" />
