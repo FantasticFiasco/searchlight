@@ -61,8 +61,8 @@ export class Discovery implements IDiscovery {
     }
 
     private send(channel: string, ...args: any[]) {
-        if (!this.webContents.isDestroyed) {
-            this.webContents.send(channel, args);
+        if (!this.webContents.isDestroyed()) {
+            this.webContents.send(channel, ...args);
         }
     }
 }
