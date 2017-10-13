@@ -56,7 +56,7 @@ export class DiscoveryMock implements IDiscovery {
         log.info('DiscoveryMock - search');
 
         for (const device of this.connectedDevices) {
-            this.webContents.send(ChannelNames.DISCOVERY_DEVICE_HELLO, device);
+            this.send(ChannelNames.DISCOVERY_DEVICE_HELLO, device);
         }
     }
 
@@ -75,7 +75,7 @@ export class DiscoveryMock implements IDiscovery {
             const disconnectedDevice = this.connectedDevices.splice(index, 1)[0];
             this.disconnectedDevices.push(disconnectedDevice);
 
-            this.webContents.send(ChannelNames.DISCOVERY_DEVICE_GOODBYE, disconnectedDevice);
+            this.send(ChannelNames.DISCOVERY_DEVICE_GOODBYE, disconnectedDevice);
         } else if (this.disconnectedDevices.length > 0) {
             log.info('DiscoveryMock - simulate connection');
 
@@ -83,7 +83,13 @@ export class DiscoveryMock implements IDiscovery {
             const connectedDevice = this.disconnectedDevices.splice(index, 1)[0];
             this.connectedDevices.push(connectedDevice);
 
-            this.webContents.send(ChannelNames.DISCOVERY_DEVICE_HELLO, connectedDevice);
+            this.send(ChannelNames.DISCOVERY_DEVICE_HELLO, connectedDevice);
+        }
+    }
+
+    private send(channel: string, ...args: any[]) {
+        if (!this.webContents.isDestroyed()) {
+            this.webContents.send(channel, ...args);
         }
     }
 

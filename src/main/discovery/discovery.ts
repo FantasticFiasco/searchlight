@@ -52,11 +52,17 @@ export class Discovery implements IDiscovery {
 
     private onHello(device: Axis.Device) {
         log.debug(`Discovery - hello from ${device.macAddress}`);
-        this.webContents.send(ChannelNames.DISCOVERY_DEVICE_HELLO, device);
+        this.send(ChannelNames.DISCOVERY_DEVICE_HELLO, device);
     }
 
     private onGoodbye(device: Axis.Device) {
         log.debug(`Discovery - goodbye from ${device.macAddress}`);
-        this.webContents.send(ChannelNames.DISCOVERY_DEVICE_GOODBYE, device);
+        this.send(ChannelNames.DISCOVERY_DEVICE_GOODBYE, device);
+    }
+
+    private send(channel: string, ...args: any[]) {
+        if (!this.webContents.isDestroyed()) {
+            this.webContents.send(channel, ...args);
+        }
     }
 }
