@@ -15,7 +15,7 @@ let mainWindow: Electron.BrowserWindow | undefined;
 
 // For information about Application User Model ID (AUMID), please see
 // https://github.com/electron-userland/electron-builder/wiki/NSIS
-app.setAppUserModelId('com.fantasticfiasco.axis-searchlight');
+app.setAppUserModelId('com.fantasticfiasco.searchlight');
 
 // Dev tools in development mode
 Debug({ enabled: environment.isDev() });
@@ -25,7 +25,7 @@ log.info(`Main - start app with version ${app.getVersion()}`);
 function createWindow() {
     // Create the browser window
     mainWindow = new BrowserWindow({
-        title: 'AXIS Searchlight',
+        title: 'Searchlight',
         backgroundColor: '#e4e5e6',
         show: false,
     });

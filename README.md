@@ -1,6 +1,6 @@
-# axis-searchlight
+# searchlight
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/FantasticFiasco/axis-searchlight.svg)](https://greenkeeper.io/)
+[![Greenkeeper badge](https://badges.greenkeeper.io/FantasticFiasco/searchlight.svg)](https://greenkeeper.io/)
 
 ## Credit
 

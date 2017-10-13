@@ -1,2 +1,2 @@
-issue: https://github.com/FantasticFiasco/axis-searchlight/issues/{0} #(\d+)
-tag: https://github.com/FantasticFiasco/axis-searchlight/releases/tag/{0} (v\d+\.\d+\.\d+)
+issue: https://github.com/FantasticFiasco/searchlight/issues/{0} #(\d+)
+tag: https://github.com/FantasticFiasco/searchlight/releases/tag/{0} (v\d+\.\d+\.\d+)

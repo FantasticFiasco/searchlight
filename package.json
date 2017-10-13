@@ -1,5 +1,5 @@
 {
-  "name": "axis-searchlight",
+  "name": "searchlight",
   "version": "0.0.1",
   "description": "A desktop application capable of finding Axis Communication cameras on the network.",
   "keywords": [
@@ -13,13 +13,13 @@
     "ssdp",
     "upnp"
   ],
-  "homepage": "https://github.com/FantasticFiasco/axis-searchlight",
+  "homepage": "https://github.com/FantasticFiasco/searchlight",
   "repository": {
     "type": "git",
-    "url": "https://github.com/FantasticFiasco/axis-searchlight.git"
+    "url": "https://github.com/FantasticFiasco/searchlight.git"
   },
   "bugs": {
-    "url": "https://github.com/FantasticFiasco/axis-searchlight/issues"
+    "url": "https://github.com/FantasticFiasco/searchlight/issues"
   },
   "author": "Mattias Kindborg <mattias.kindborg@gmail.com> (https://twitter.com/FantasticFiasco)",
   "license": "GPL-3.0",
@@ -35,8 +35,8 @@
     "dist-dir": "yarn compile && electron-builder --dir -c.compression=store -c.mac.identity=null"
   },
   "build": {
-    "appId": "com.fantasticfiasco.axis-searchlight",
-    "productName": "AXIS Searchlight",
+    "appId": "com.fantasticfiasco.searchlight",
+    "productName": "Searchlight",
     "compression": "maximum",
     "win": {
       "target": "nsis"
