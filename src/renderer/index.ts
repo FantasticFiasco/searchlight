@@ -17,7 +17,6 @@ new Vue({
 
 document.body.classList.add(
     'app',
-    'header-fixed',
     'sidebar-fixed',
     'footer-fixed',
 );

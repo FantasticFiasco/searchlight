@@ -8,6 +8,14 @@ $card-header-color: rgba(255,255,255,.5);
     -webkit-line-clamp: $count;
 }
 
+// App
+.app-body {
+    .main {
+        margin-top: 1em;
+    }
+}
+
+// Card
 .card-header {
     height: 10em;
 
@@ -65,4 +73,9 @@ $card-header-color: rgba(255,255,255,.5);
     .card-links {
         @extend .mt-3;
     }
+}
+
+// Footer
+.app-footer {
+    padding: 0.5em;
 }
