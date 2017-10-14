@@ -6,7 +6,7 @@
                 <p>
                     <i class="fa fa-check-circle text-success" /> Version {{ appVersion }}</p>
                 <p>
-                    <a @click="openIssueWebPage" href="">Report an issue</a>
+                    <a @click="openIssueWebPage" href="#">Report an issue</a>
                 </p>
                 <p>
                     Searchlight is made possible by the
@@ -22,15 +22,9 @@
                     Searchlight has dependencies to the following components:
                 </p>
                 <ul>
-                    <li>
-                        Electron version {{ electronVersion }}
-                    </li>
-                    <li>
-                        Node.js version {{ nodeVersion }}
-                    </li>
-                    <li>
-                        Chromium version {{ chromeVersion }}
-                    </li>
+                    <li>Electron version {{ electronVersion }}</li>
+                    <li>Node.js version {{ nodeVersion }}</li>
+                    <li>Chromium version {{ chromeVersion }}</li>
                 </ul>
             </div>
         </b-card>
@@ -47,8 +41,7 @@
 </template>
 
 <script lang="ts">
-import { shell } from 'electron';
-import { remote } from 'electron';
+import { remote, shell } from 'electron';
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 
