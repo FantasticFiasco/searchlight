@@ -77,6 +77,21 @@ $card-header-color: rgba(255,255,255,.5);
     }
 }
 
+// Application details card
+.app-details-card {
+    .app-details-card-container {
+        @extend .ml-2;
+
+        p {
+            @extend .card-text;
+        }
+
+        li {
+            @extend .card-text;
+        }
+    }
+}
+
 // Footer
 .app-footer {
     padding: 0.5em;

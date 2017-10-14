@@ -2,33 +2,33 @@
     <div>
         <b-card class="app-details-card">
             <h4 slot="header">Searchlight</h4>
-            <div class="ml-2">
-                <p class="card-text">
-                    <i class="fa fa-check-circle text-success" /> Version {{ appVersion }}
-                </p>
-                <p class="card-text">
+            <div class="app-details-card-container">
+                <p>
+                    <i class="fa fa-check-circle text-success" /> Version {{ appVersion }}</p>
+                <p>
                     <a @click="openIssueWebPage" href="">Report an issue</a>
                 </p>
-                <p class="card-text">Searchlight is made possible by the
-                    <a @click="openElectronWebPage" href="#">Electron</a> open source project and the APIs provided by
+                <p>
+                    Searchlight is made possible by the
+                    <a @click="openElectronWebPage" href="#">Electron</a> open source project and the developer friendly APIs provided by
                     <a @click="openAxisCommunicationsWebPage" href="#">Axis Communications</a>.
                 </p>
             </div>
         </b-card>
         <b-card class="app-details-card">
             <h6 slot="header">Dependencies</h6>
-            <div class="ml-2">
-                <p class="card-text">
+            <div class="app-details-card-container">
+                <p>
                     Searchlight has dependencies to the following components:
                 </p>
                 <ul>
-                    <li class="card-text">
+                    <li>
                         Electron version {{ electronVersion }}
                     </li>
-                    <li class="card-text">
+                    <li>
                         Node.js version {{ nodeVersion }}
                     </li>
-                    <li class="card-text">
+                    <li>
                         Chromium version {{ chromeVersion }}
                     </li>
                 </ul>
@@ -36,11 +36,11 @@
         </b-card>
         <b-card class="app-details-card">
             <h6 slot="header">Legal</h6>
-            <div class="ml-2">
-                <p class="card-text">
+            <div class="app-details-card-container">
+                <p>
                     <a @click="openLicenseWebPage" href="#">License</a>
                 </p>
-                <p class="card-text">Copyright 2017 Mattias Kindborg</p>
+                <p>Copyright 2017 Mattias Kindborg</p>
             </div>
         </b-card>
     </div>
