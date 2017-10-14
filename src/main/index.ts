@@ -1,12 +1,11 @@
 import { app, BrowserWindow } from 'electron';
 import Debug from 'electron-debug';
-import Store from 'electron-store';
-import * as uuid from 'uuid';
 
 import { Analytics } from './analytics';
 import { Discovery, DiscoveryMock, IDiscovery } from './discovery';
 import * as environment from './environment';
 import * as log from './log';
+import { Store } from './store';
 import { Updates } from './updates';
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -17,7 +16,7 @@ let mainWindow: Electron.BrowserWindow | undefined;
 // https://github.com/electron-userland/electron-builder/wiki/NSIS
 app.setAppUserModelId('com.fantasticfiasco.searchlight');
 
-// Dev tools in development mode
+// Enable dev tools in development environment
 Debug({ enabled: environment.isDev() });
 
 log.info(`Main - start app with version ${app.getVersion()}`);
@@ -95,14 +94,7 @@ app.on('window-all-closed', () => {
 // code. You can also put them in separate files and require them here.
 
 // Store
-const store = new Store({
-    defaults: {
-        analytics: {
-            clientId: uuid.v4(),
-            userId: uuid.v4(),
-        },
-    },
-});
+const store = new Store();
 
 // Analytics
 const analytics = new Analytics(store.get('analytics.clientId'), store.get('analytics.userId'));
