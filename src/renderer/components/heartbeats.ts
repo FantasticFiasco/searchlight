@@ -78,7 +78,7 @@ export class Heartbeats extends Bar {
 
     public beforeDestroy() {
         if (this._chart) {
-            this._chart.destroy()
+            this._chart.destroy();
         }
     }
 
