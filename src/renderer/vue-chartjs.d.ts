@@ -8,5 +8,6 @@ declare module 'vue-chartjs' {
 
     class Chart {
         public update(): void;
+        public destroy(): void;
     }
 }

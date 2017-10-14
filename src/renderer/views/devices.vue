@@ -21,7 +21,7 @@ import { AnalyticsService, PageView } from '../services';
 @Component({
     name: 'devices',
     components: {
-        'Device': DeviceComponent
+        'Device': DeviceComponent,
     },
 })
 export default class Devices extends Vue {

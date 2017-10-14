@@ -76,6 +76,12 @@ export class Heartbeats extends Bar {
         setTimeout(() => setInterval(this.moveHistory, this.intervalDuration), offset);
     }
 
+    public beforeDestroy() {
+        if (this._chart) {
+            this._chart.destroy();
+        }
+    }
+
     @Watch('latestTimestamp')
     public incrementHitsInInterval(value: Date, oldValue: Date) {
         const now = new Date();

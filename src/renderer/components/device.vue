@@ -1,5 +1,5 @@
 <template>
-    <b-card :no-body="true">
+    <b-card no-body class="device-card">
         <div :class="['card-header', isResponsive ? 'bg-success' : 'bg-danger']">
             <img :class="isAvailableOnAxisWeb ? 'card-icon' : 'card-icon-hidden'" :src="iconUrl" @error="onInvalidIconUrl" />
             <p v-if="!isResponsive" class="card-no-contact-text">No contact</p>
@@ -12,11 +12,11 @@
             <div class="card-links">
                 <div v-if="hasLiveView">
                     <i class="fa fa-eye fa-fw" />
-                    <a @click="openLiveView" href="">Live view</a>
+                    <a @click="openLiveView" href="#">Live view</a>
                 </div>
                 <div>
                     <i class="fa fa-info-circle fa-fw" />
-                    <a @click="openProductPage" href="">Product page</a>
+                    <a @click="openProductPage" href="#">Product page</a>
                 </div>
             </div>
         </div>
