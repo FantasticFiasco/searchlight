@@ -1,13 +1,37 @@
 <template>
     <div>
-        <h1>About</h1>
-        <p>Developed with
-            <i class="icon-heart"></i> by the Open Source community</p>
-        <p>Application: {{ appVersion }}</p>
-        <p>Electron: {{ electronVersion }}</p>
-        <p>Node.js: {{ nodeVersion }}</p>
-        <p>Chromium: {{ chromeVersion }}</p>
-        <p v-for="i in 100">{{ i }}</p>
+        <b-card title="Searchlight">
+            <p class="card-text">
+                Version: {{ appVersion }}
+            </p>
+            <p class="card-text">
+                Report an issue
+            </p>
+        </b-card>
+        <b-card sub-title="Dependencies">
+            <b-list-group flush>
+                <b-list-group-item>
+                    <h4>Searchlight</h4>
+                </b-list-group-item>
+                <b-list-group-item>
+                    <h6>Dependencies</h6>
+
+                </b-list-group-item>
+                <b-list-group-item>Electron: {{ electronVersion }}</b-list-group-item>
+                <b-list-group-item>Node.js: {{ nodeVersion }}</b-list-group-item>
+                <b-list-group-item>Chromium: {{ chromeVersion }}</b-list-group-item>
+                <b-list-group-item></b-list-group-item>
+            </b-list-group>
+        </b-card>
+        <b-card no-body>
+            <b-card-text>Google Chrome</b-card-text>
+            <b-card-text>Copyright 2017 Google Inc. All rights reserved.</b-card-text>
+
+            <!-- <!-- <h1>About</h1>
+                                                                                                <p>Developed with
+                                                                                                    <i class="icon-heart"></i> by the Open Source community</p>
+                                                                                        <p>Application: {{  }}</p>--!> -->
+        </b-card>
     </div>
 </template>
 

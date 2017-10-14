@@ -15,64 +15,71 @@ $card-header-color: rgba(255,255,255,.5);
     }
 }
 
-// Card
-.card-header {
-    height: 10em;
+// Device card
+.device-card {
+    .card-header {
+        height: 10em;
 
-    .card-icon {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        max-width: 100%;
-        max-height: 100%;
-        opacity: 0.2;
+        .card-icon {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 100%;
+            max-height: 100%;
+            opacity: 0.2;
+        }
+
+        .card-icon-hidden {
+            display: none;
+        }
+
+        .card-no-contact-text {
+            position: absolute;
+            top: 1em;
+            right: 1em;
+            color: $card-header-color;
+        }
+
+        .card-heartbeats {
+            @extend .chart-wrapper;
+            @extend .px-3;
+            position: absolute;
+            top: 5em;
+            left: 0em;
+            right: 1em;
+            height: 5em;
+        }
+
+        .card-heart {
+            position: absolute;
+            top: 7em;
+            right: 0em;
+            color: $card-header-color;
+        }
     }
 
-    .card-icon-hidden {
-        display: none;
-    }
+    .card-body {
+        @extend .pb-0;
+        height: 10em;
 
-    .card-no-contact-text {
-        position: absolute;
-        top: 1em;
-        right: 1em;
-        color: $card-header-color;
-    }
+        .card-name {
+            @extend .mb-0;
+            @include lines-of-text(1);
+        }
 
-    .card-heartbeats {
-        @extend .chart-wrapper;
-        @extend .px-3;
-        position: absolute;
-        top: 5em;
-        left: 0em;
-        right: 1em;
-        height: 5em;
-    }
+        .card-model {
+            @include lines-of-text(1);
+        }
 
-    .card-heart {
-        position: absolute;
-        top: 7em;
-        right: 0em;
-        color: $card-header-color;
+        .card-links {
+            @extend .mt-3;
+        }
     }
 }
 
-.card-body {
-    @extend .pb-0;
-    height: 10em;
-
-    .card-name {
-        @extend .mb-0;
-        @include lines-of-text(1);
-    }
-
-    .card-model {
-        @include lines-of-text(1);
-    }
-
-    .card-links {
-        @extend .mt-3;
-    }
+// Application details card
+.app-details-card {
+    max-width: 20em;
 }
 
 // Footer
