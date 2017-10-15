@@ -53,7 +53,7 @@ export default class Device extends Vue {
     }
 
     public get timestamps(): Date[] {
-        return this.$store.state.heartbeats;
+        return this.$store.state.heartbeats[this.device.macAddress];
     }
 
     public get name(): string {
