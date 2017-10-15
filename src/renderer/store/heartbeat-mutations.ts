@@ -1,4 +1,5 @@
 import * as expect from '@fantasticfiasco/expect';
+import Vue from 'vue';
 import { Mutation } from 'vuex';
 
 import { State } from './state';
@@ -17,7 +18,7 @@ export const addHeartbeat: Mutation<State> = (state: State, heartbeat: { macAddr
     let heartbeats = state.heartbeats[heartbeat.macAddress];
     if (!heartbeats) {
         heartbeats = [];
-        state.heartbeats[heartbeat.macAddress] = heartbeats;
+        Vue.set(state.heartbeats, heartbeat.macAddress, heartbeats);
     }
 
     // Add heartbeat

@@ -80,14 +80,14 @@ export class Heartbeats extends Bar {
         }
     }
 
-    @Watch('timestamps', { deep: true })
-    public updateIntervalls(value: Date[], oldValue: Date[]) {
-        // Clear intervalls from old timestamps
+    @Watch('timestamps')
+    public updateIntervals(value: Date[], oldValue: Date[]) {
+        // Clear intervals from old timestamps
         for (let intervall of this.intervals) {
             intervall = 0;
         }
 
-        // Update intervalls with updated timestamps
+        // Update intervals with updated timestamps
         const now = new Date();
         const latestIntervalIndex = this.intervals.length - 1;
 
