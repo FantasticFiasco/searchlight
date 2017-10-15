@@ -16,19 +16,16 @@ export const addHeartbeat: Mutation<State> = (state: State, heartbeat: { macAddr
 
     let heartbeats = state.heartbeats[heartbeat.macAddress];
     if (!heartbeats) {
-        console.log('xxx', 'initiate heartbeats for', heartbeat.macAddress);
         heartbeats = [];
         state.heartbeats[heartbeat.macAddress] = heartbeats;
     }
 
     // Add heartbeat
-    console.log('xxx', 'add heartbeat', heartbeat.timestamp);
     heartbeats.push(heartbeat.timestamp);
 
     // Remove heartbeats that are to old
     const now = new Date();
     while (heartbeats.length > 0 && now.getTime() - heartbeats[0].getTime() > historyDuration) {
-        console.log('xxx', 'remove heartbeat', heartbeats[0], 'since now is', now);
         heartbeats.splice(0, 1);
     }
 };
