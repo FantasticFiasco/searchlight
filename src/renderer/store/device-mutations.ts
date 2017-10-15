@@ -24,8 +24,8 @@ export const addOrUpdateDevice: Mutation<State> = (state: State, device: Device)
 };
 
 /**
- * The action adding or updating a device in the store depending on whether it
- * already exists.
+ * The action of adding or updating a device in the store depending on whether
+ * it already exists.
  */
 export const ADD_OR_UPDATE_DEVICE_MUTATION = addOrUpdateDevice.name;
 
@@ -46,7 +46,7 @@ export const removeDevice: Mutation<State> = (state: State, device: Device) => {
 };
 
 /**
- * The action removing a device from the store.
+ * The action of removing a device from the store.
  */
 export const REMOVE_DEVICE_MUTATION = removeDevice.name;
 
@@ -67,7 +67,7 @@ export const disconnectDevice: Mutation<State> = (state: State, device: Device) 
 };
 
 /**
- * The action disconnecting a device in the store.
+ * The action of disconnecting a device in the store.
  */
 export const DISCONNECT_DEVICE_MUTATION = disconnectDevice.name;
 
