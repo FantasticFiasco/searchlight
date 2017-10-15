@@ -4,7 +4,7 @@
             <img :class="isAvailableOnAxisWeb ? 'card-icon' : 'card-icon-hidden'" :src="iconUrl" @error="onInvalidIconUrl" />
             <p v-if="!isResponsive" class="card-no-contact-text">No contact</p>
             <i :class="['card-heart', 'fa', isResponsive ? 'fa-heartbeat' : 'fa-heart-o']" />
-            <Heartbeats class="card-heartbeats" :latestTimestamp="latestHeartbeatTimestamp" />
+            <Heartbeats class="card-heartbeats" :timestamps="timestamps" />
         </div>
         <div class="card-body">
             <h5 class="card-name">{{ name }}</h5>
@@ -52,8 +52,8 @@ export default class Device extends Vue {
         return axisWeb.iconUrl(this.device.modelNumber);
     }
 
-    public get latestHeartbeatTimestamp(): Date {
-        return this.device.networkStatus.timestamp;
+    public get timestamps(): Date[] {
+        return this.$store.state.heartbeats;
     }
 
     public get name(): string {

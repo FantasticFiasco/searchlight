@@ -8,8 +8,8 @@ export class Heartbeats extends Bar {
     private readonly intervalDuration = 15 * 1000;
     private readonly intervals: number[] = [];
 
-    @Prop({ type: Date })
-    public latestTimestamp: Date;
+    @Prop({ type: Array, default: [] })
+    public readonly timestamps: Date[];
 
     /**
      * Initializes a new instance of the class.
@@ -22,9 +22,6 @@ export class Heartbeats extends Bar {
         for (let count = 0; count < numberOfIntervals; count++) {
             this.intervals.push(0);
         }
-
-        // Increment current intervall, indicating a responsive device
-        this.intervals[numberOfIntervals - 1]++;
     }
 
     public mounted() {
@@ -72,7 +69,8 @@ export class Heartbeats extends Bar {
 
         // Move history every 15 seconds, starting on the next 0, 15, 30 or
         // 45 seconds, thus syncronizing all devices to update at the same time
-        const offset = this.intervalDuration - new Date().getTime() % this.intervalDuration;
+        const now = new Date().getTime();
+        const offset = this.intervalDuration - now % this.intervalDuration;
         setTimeout(() => setInterval(this.moveHistory, this.intervalDuration), offset);
     }
 
@@ -82,16 +80,25 @@ export class Heartbeats extends Bar {
         }
     }
 
-    @Watch('latestTimestamp')
-    public incrementHitsInInterval(value: Date, oldValue: Date) {
+    @Watch('timestamps')
+    public updateIntervalls(value: Date[], oldValue: Date[]) {
+        // Clear intervalls from old timestamps
+        for (let intervall of this.intervals) {
+            intervall = 0;
+        }
+
+        // Update intervalls with updated timestamps
         const now = new Date();
         const latestIntervalIndex = this.intervals.length - 1;
-        const intervalIndex = latestIntervalIndex - Math.floor((now.getTime() - value.getTime()) / this.intervalDuration);
 
-        if (intervalIndex < this.intervals.length) {
-            this.intervals[intervalIndex]++;
-            this._chart.update();
+        for (const timestamp of value) {
+            const intervalIndex = latestIntervalIndex - Math.floor((now.getTime() - timestamp.getTime()) / this.intervalDuration);
+            if (intervalIndex < this.intervals.length) {
+                this.intervals[intervalIndex]++;
+            }
         }
+
+        this._chart.update();
     }
 
     private moveHistory() {

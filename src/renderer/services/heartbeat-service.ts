@@ -1,7 +1,7 @@
 import * as expect from '@fantasticfiasco/expect';
 
 import { Device } from '../models';
-import { ADD_OR_UPDATE_DEVICE_MUTATION, DISCONNECT_DEVICE_MUTATION, ADD_HEARTBEAT_MUTATION, store } from '../store';
+import { ADD_HEARTBEAT_MUTATION, ADD_OR_UPDATE_DEVICE_MUTATION, DISCONNECT_DEVICE_MUTATION, store } from '../store';
 import { DiscoveryService } from './discovery-service';
 
 /**
