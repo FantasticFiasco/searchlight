@@ -1,7 +1,7 @@
 import * as expect from '@fantasticfiasco/expect';
 
 import { Device } from '../models';
-import { ADD_OR_UPDATE_DEVICE_MUTATION, DISCONNECT_DEVICE_MUTATION, store } from '../store';
+import { ADD_OR_UPDATE_DEVICE_MUTATION, DISCONNECT_DEVICE_MUTATION, ADD_HEARTBEAT_MUTATION, store } from '../store';
 import { DiscoveryService } from './discovery-service';
 
 /**
@@ -20,8 +20,8 @@ export class HeartbeatService {
         expect.toExist(discoveryService);
 
         this.discoveryService = discoveryService;
-        this.discoveryService.onHello((device) => this.addOrUpdateDevice(device));
-        this.discoveryService.onGoodbye((device) => this.addOrUpdateDevice(device));
+        this.discoveryService.onHello((device) => this.onResponse(device));
+        this.discoveryService.onGoodbye((device) => this.onResponse(device));
 
         // Trigger the initial search
         this.discoveryService.search();
@@ -49,8 +49,9 @@ export class HeartbeatService {
         }
     }
 
-    private addOrUpdateDevice(device: Device) {
+    private onResponse(device: Device) {
         store.commit(ADD_OR_UPDATE_DEVICE_MUTATION, device);
+        store.commit(ADD_HEARTBEAT_MUTATION, { macAddress: device.macAddress, timestamp: device.networkStatus.timestamp });
     }
 
     private disconnectDevice(device: Device) {

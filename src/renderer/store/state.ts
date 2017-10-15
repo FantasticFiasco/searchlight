@@ -5,5 +5,5 @@ import { Device } from '../models';
  */
 export class State {
     public devices: Device[] = [];
-    public heartbeats: { [macAddress: string]: Date[] };
+    public heartbeats: { [macAddress: string]: Date[] } = {};
 }
