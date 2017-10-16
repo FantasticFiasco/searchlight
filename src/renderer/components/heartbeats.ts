@@ -8,6 +8,9 @@ export class Heartbeats extends Bar {
     private readonly intervalDuration = 15 * 1000;
     private readonly intervals: number[] = [];
 
+    private moveHistoryOffsetHandle?: number;
+    private moveHistoryHandle?: number;
+
     @Prop({ type: Array, default: [] })
     public readonly timestamps: Date[];
 
@@ -59,15 +62,24 @@ export class Heartbeats extends Bar {
             },
         );
 
+        // Force history redraw
+        this.updateIntervals(this.timestamps, []);
+
         // Move history every 15 seconds, starting on the next 0, 15, 30 or
         // 45 seconds, thus syncronizing all devices to move their history at
         // the same time
-        setTimeout(
-            () => setInterval(this.moveHistory, this.intervalDuration),
+        this.moveHistoryOffsetHandle = window.setTimeout(
+            () => this.moveHistoryHandle = window.setInterval(this.moveHistory, this.intervalDuration),
             this.timeLeftInInterval());
     }
 
     public beforeDestroy() {
+        if (this.moveHistoryOffsetHandle) {
+            clearTimeout(this.moveHistoryOffsetHandle);
+        }
+        if (this.moveHistoryHandle) {
+            clearInterval(this.moveHistoryHandle);
+        }
         if (this._chart) {
             this._chart.destroy();
         }
