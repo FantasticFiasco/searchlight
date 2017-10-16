@@ -19,21 +19,13 @@ export class Heartbeats extends Bar {
 
         // A history of 5 minutes split into 15 second intervals results in 20 intervals
         const numberOfIntervals = this.historyDuration / this.intervalDuration;
-        for (let count = 0; count < numberOfIntervals; count++) {
-            this.intervals.push(0);
-        }
+        this.intervals = this.createArray(numberOfIntervals, 0);
     }
 
     public mounted() {
         this.renderChart(
             {
-                labels: [
-                    '', '', '', '',
-                    '', '', '', '',
-                    '', '', '', '',
-                    '', '', '', '',
-                    '', '', '', '',
-                ],
+                labels: this.createArray(this.intervals.length, ''),
                 datasets: [
                     {
                         backgroundColor: 'rgba(255,255,255,.5)',
@@ -68,10 +60,11 @@ export class Heartbeats extends Bar {
         );
 
         // Move history every 15 seconds, starting on the next 0, 15, 30 or
-        // 45 seconds, thus syncronizing all devices to update at the same time
-        const now = new Date().getTime();
-        const offset = this.intervalDuration - now % this.intervalDuration;
-        setTimeout(() => setInterval(this.moveHistory, this.intervalDuration), offset);
+        // 45 seconds, thus syncronizing all devices to move their history at
+        // the same time
+        setTimeout(
+            () => setInterval(this.moveHistory, this.intervalDuration),
+            this.timeLeftInInterval());
     }
 
     public beforeDestroy() {
@@ -83,16 +76,14 @@ export class Heartbeats extends Bar {
     @Watch('timestamps')
     public updateIntervals(value: Date[], oldValue: Date[]) {
         // Clear intervals from old timestamps
-        for (let intervall of this.intervals) {
-            intervall = 0;
-        }
+        this.intervals.fill(0);
 
-        // Update intervals with updated timestamps
-        const now = new Date();
+        // Fill intervals with updated timestamps
+        const latestIntervalStart = new Date().getTime() - this.timeIntoInterval();
         const latestIntervalIndex = this.intervals.length - 1;
 
         for (const timestamp of value) {
-            const intervalIndex = latestIntervalIndex - Math.floor((now.getTime() - timestamp.getTime()) / this.intervalDuration);
+            const intervalIndex = latestIntervalIndex - Math.floor((latestIntervalStart - timestamp.getTime()) / this.intervalDuration);
             if (intervalIndex < this.intervals.length) {
                 this.intervals[intervalIndex]++;
             }
@@ -105,5 +96,24 @@ export class Heartbeats extends Bar {
         this.intervals.push(0);
         this.intervals.shift();
         this._chart.update();
+    }
+
+    private timeIntoInterval(): number {
+        const now = new Date().getTime();
+        return now % this.intervalDuration;
+    }
+
+    private timeLeftInInterval(): number {
+        return this.intervalDuration - this.timeIntoInterval();
+    }
+
+    private createArray<T>(length: number, initialValue: T): T[] {
+        const array: T[] = [];
+
+        for (let index = 0; index < length; index++) {
+            array.push(initialValue);
+        }
+
+        return array;
     }
 }
