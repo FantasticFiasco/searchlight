@@ -8,8 +8,8 @@ export class Heartbeats extends Bar {
     private readonly intervalDuration = 15 * 1000;
     private readonly intervals: number[] = [];
 
-    @Prop({ type: Date })
-    public latestTimestamp: Date;
+    @Prop({ type: Array, default: [] })
+    public readonly timestamps: Date[];
 
     /**
      * Initializes a new instance of the class.
@@ -19,24 +19,13 @@ export class Heartbeats extends Bar {
 
         // A history of 5 minutes split into 15 second intervals results in 20 intervals
         const numberOfIntervals = this.historyDuration / this.intervalDuration;
-        for (let count = 0; count < numberOfIntervals; count++) {
-            this.intervals.push(0);
-        }
-
-        // Increment current intervall, indicating a responsive device
-        this.intervals[numberOfIntervals - 1]++;
+        this.intervals = this.createArray(numberOfIntervals, 0);
     }
 
     public mounted() {
         this.renderChart(
             {
-                labels: [
-                    '', '', '', '',
-                    '', '', '', '',
-                    '', '', '', '',
-                    '', '', '', '',
-                    '', '', '', '',
-                ],
+                labels: this.createArray(this.intervals.length, ''),
                 datasets: [
                     {
                         backgroundColor: 'rgba(255,255,255,.5)',
@@ -71,9 +60,11 @@ export class Heartbeats extends Bar {
         );
 
         // Move history every 15 seconds, starting on the next 0, 15, 30 or
-        // 45 seconds, thus syncronizing all devices to update at the same time
-        const offset = this.intervalDuration - new Date().getTime() % this.intervalDuration;
-        setTimeout(() => setInterval(this.moveHistory, this.intervalDuration), offset);
+        // 45 seconds, thus syncronizing all devices to move their history at
+        // the same time
+        setTimeout(
+            () => setInterval(this.moveHistory, this.intervalDuration),
+            this.timeLeftInInterval());
     }
 
     public beforeDestroy() {
@@ -82,21 +73,47 @@ export class Heartbeats extends Bar {
         }
     }
 
-    @Watch('latestTimestamp')
-    public incrementHitsInInterval(value: Date, oldValue: Date) {
-        const now = new Date();
-        const latestIntervalIndex = this.intervals.length - 1;
-        const intervalIndex = latestIntervalIndex - Math.floor((now.getTime() - value.getTime()) / this.intervalDuration);
+    @Watch('timestamps')
+    public updateIntervals(value: Date[], oldValue: Date[]) {
+        // Clear intervals from old timestamps
+        this.intervals.fill(0);
 
-        if (intervalIndex < this.intervals.length) {
-            this.intervals[intervalIndex]++;
-            this._chart.update();
+        // Fill intervals with updated timestamps
+        const latestIntervalStart = new Date().getTime() - this.timeIntoInterval();
+        const latestIntervalIndex = this.intervals.length - 1;
+
+        for (const timestamp of value) {
+            const intervalIndex = latestIntervalIndex - Math.floor((latestIntervalStart - timestamp.getTime()) / this.intervalDuration);
+            if (intervalIndex < this.intervals.length) {
+                this.intervals[intervalIndex]++;
+            }
         }
+
+        this._chart.update();
     }
 
     private moveHistory() {
         this.intervals.push(0);
         this.intervals.shift();
         this._chart.update();
+    }
+
+    private timeIntoInterval(): number {
+        const now = new Date().getTime();
+        return now % this.intervalDuration;
+    }
+
+    private timeLeftInInterval(): number {
+        return this.intervalDuration - this.timeIntoInterval();
+    }
+
+    private createArray<T>(length: number, initialValue: T): T[] {
+        const array: T[] = [];
+
+        for (let index = 0; index < length; index++) {
+            array.push(initialValue);
+        }
+
+        return array;
     }
 }
