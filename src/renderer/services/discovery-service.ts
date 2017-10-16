@@ -2,11 +2,13 @@ import * as Axis from 'axis-discovery';
 import { ipcRenderer } from 'electron';
 import { EventEmitter } from 'events';
 
-import * as ChannelNames from 'common/channel-names';
-import {
-    Device,
-    NetworkStatus,
-} from '../models';
+import * as ChannelNames from 'common/discovery/channel-names';
+import { Device, NetworkStatus } from '../models';
+
+/**
+ * Key for the discovery service in the Vue dependency injection framework.
+ */
+export const DISCOVERY_SERVICE = Symbol();
 
 /**
  * Class acting as a proxy between the main and renderer process, capable of

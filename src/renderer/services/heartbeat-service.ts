@@ -5,6 +5,11 @@ import { ADD_HEARTBEAT_MUTATION, ADD_OR_UPDATE_DEVICE_MUTATION, DISCONNECT_DEVIC
 import { DiscoveryService } from './discovery-service';
 
 /**
+ * Key for the heartbeat service in the Vue dependency injection framework.
+ */
+export const HEARTBEAT_SERVICE = Symbol();
+
+/**
  * Class responsible for keeping the store up to date when it comes to device
  * network status.
  */

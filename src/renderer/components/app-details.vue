@@ -7,7 +7,20 @@
             </div>
             <div class="app-details-card-container">
                 <p>
-                    <i class="fa fa-check-circle text-success" /> Version {{ appVersion }}</p>
+                    Version {{ appVersion }}
+                </p>
+                <p v-if="isCheckingForUpdates">
+                    <i class="fa fa-refresh fa-spin fa-fw text-primary" /> Checking for updates
+                </p>
+                <p v-else-if="isDownloading">
+                    <i class="fa fa-refresh fa-spin fa-fw text-primary" /> Downloading updates ({{ downloadProgress }}%)
+                </p>
+                <p v-else-if="isRequiringRestart">
+                    <b-button @click="restartToUpdate" variant="primary">Restart to update</b-button>
+                </p>
+                <p v-else>
+                    <i class="fa fa-check-circle fa-fw text-success" /> Application is up to date
+                </p>
                 <p>
                     <a @click="openIssueWebPage" href="#">Report an issue</a>
                 </p>
@@ -46,24 +59,50 @@
 <script lang="ts">
 import { remote, shell } from 'electron';
 import Vue from 'vue';
-import { Component } from 'vue-property-decorator';
+import { Component, Inject } from 'vue-property-decorator';
+
+import { APPLICATION_UPDATES_SERVICE, ApplicationUpdatesService } from '../services';
+import { ApplicationUpdatesState } from '../store';
 
 @Component({ name: 'app-details' })
 export default class AppDetails extends Vue {
-    get appVersion() {
+    @Inject(APPLICATION_UPDATES_SERVICE)
+    private readonly applicationUpdatesService: ApplicationUpdatesService;
+
+    public get isCheckingForUpdates(): boolean {
+        return this.$store.state.applicationUpdates.state === ApplicationUpdatesState.CHECKING;
+    }
+
+    public get isDownloading(): boolean {
+        return this.$store.state.applicationUpdates.state === ApplicationUpdatesState.DOWNLOADING;
+    }
+
+    public get isRequiringRestart(): boolean {
+        return this.$store.state.applicationUpdates.state === ApplicationUpdatesState.RESTART_REQUIRED;
+    }
+
+    public get downloadProgress(): number | undefined {
+        return this.$store.state.applicationUpdates.downloadProgress;
+    }
+
+    public get appVersion(): string {
         return remote.app.getVersion();
     }
 
-    get electronVersion() {
+    get electronVersion(): string {
         return process.versions.electron;
     }
 
-    get nodeVersion() {
+    get nodeVersion(): string {
         return process.versions.node;
     }
 
-    get chromeVersion() {
+    get chromeVersion(): string {
         return process.versions.chrome;
+    }
+
+    public restartToUpdate(e: Event) {
+        this.applicationUpdatesService.restartToUpdate();
     }
 
     public openIssueWebPage(e: Event) {

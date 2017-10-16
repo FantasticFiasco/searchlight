@@ -6,11 +6,19 @@
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
-
-import { ANALYTICS_SERVICE, DISCOVERY_SERVICE, HEARTBEAT_SERVICE } from './dependency-injection'
-import { AnalyticsService, DiscoveryService, HeartbeatService } from './services';
+import {
+    ANALYTICS_SERVICE,
+    APPLICATION_UPDATES_SERVICE,
+    DISCOVERY_SERVICE,
+    HEARTBEAT_SERVICE,
+    AnalyticsService,
+    ApplicationUpdatesService,
+    DiscoveryService,
+    HeartbeatService
+} from './services';
 
 const analyticsService = new AnalyticsService();
+const applicationUpdatesService = new ApplicationUpdatesService();
 const discoveryService = new DiscoveryService();
 const heartbeatService = new HeartbeatService(discoveryService);
 
@@ -18,6 +26,7 @@ const heartbeatService = new HeartbeatService(discoveryService);
     name: 'app',
     provide: {
         [ANALYTICS_SERVICE]: analyticsService,
+        [APPLICATION_UPDATES_SERVICE]: applicationUpdatesService,
         [DISCOVERY_SERVICE]: discoveryService,
         [HEARTBEAT_SERVICE]: heartbeatService,
     },

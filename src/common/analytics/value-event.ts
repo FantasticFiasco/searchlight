@@ -1,13 +1,13 @@
 /**
  * Analytics event with a value.
  */
-export abstract class EventWithValue {
+export abstract class ValueEvent {
     /**
      * Initializes a new instance of the class.
      * @param category category of the event
      * @param action name of the action
      * @param label label of the value
-     * @param value the value
+     * @param value value
      */
     constructor(
         /**

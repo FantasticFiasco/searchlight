@@ -2,6 +2,7 @@ import { app, BrowserWindow } from 'electron';
 import Debug from 'electron-debug';
 
 import { Analytics } from './analytics';
+import { ApplicationUpdates } from './application-updates';
 import { Discovery, DiscoveryMock, IDiscovery } from './discovery';
 import * as environment from './environment';
 import * as log from './log';
@@ -30,6 +31,9 @@ analytics.reportEvent('app version', app.getVersion());
 
 // Discovery
 let discovery: IDiscovery | undefined;
+
+// Application updates
+let applicationUpdates: ApplicationUpdates | undefined;
 
 function createMainWindow() {
     log.info('Main', 'create main window');
@@ -65,6 +69,15 @@ function createMainWindow() {
         new Discovery(mainWindow.webContents);
 
     discovery.start();
+
+    // Start application updates
+    applicationUpdates = new ApplicationUpdates(analytics, mainWindow.webContents);
+    applicationUpdates.start();
+
+    // Open the DevTools
+    if (environment.isDev()) {
+        mainWindow.webContents.openDevTools({ mode: 'undocked' });
+    }
 
     // Show main window when Electron has loaded, thus preventing UI flickering
     mainWindow.on('ready-to-show', () => {

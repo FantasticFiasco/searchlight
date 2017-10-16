@@ -15,8 +15,7 @@ import { Component, Inject } from 'vue-property-decorator';
 
 import DeviceComponent from '../components/device.vue';
 import { Device } from '../models';
-import { ANALYTICS_SERVICE } from '../dependency-injection';
-import { AnalyticsService, PageView } from '../services';
+import { ANALYTICS_SERVICE, AnalyticsService, PageViewEvent } from '../services';
 
 @Component({
     name: 'devices',
@@ -36,7 +35,7 @@ export default class Devices extends Vue {
     }
 
     public mounted() {
-        this.analyticsService.reportPageView(new PageView('/devices'));
+        this.analyticsService.reportPageView(new PageViewEvent('/devices'));
     }
 }
 </script>

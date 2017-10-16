@@ -2,9 +2,9 @@ import * as expect from '@fantasticfiasco/expect';
 import * as Axis from 'axis-discovery';
 import { ipcMain } from 'electron';
 
-import * as ChannelNames from 'common/channel-names';
+import * as ChannelNames from 'common/discovery/channel-names';
 import * as log from '../log';
-import { IDiscovery } from './';
+import { IDiscovery } from './i-discovery';
 
 /**
  * Class mocking discovered Axis devices on the network for development
