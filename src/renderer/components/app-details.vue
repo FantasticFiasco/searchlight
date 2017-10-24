@@ -48,7 +48,7 @@ import { remote, shell } from "electron";
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
 
-@Component({ name: "app details" })
+@Component({ name: "app-details" })
 export default class AppDetails extends Vue {
   get appVersion() {
     return remote.app.getVersion();
