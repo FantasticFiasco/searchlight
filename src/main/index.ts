@@ -25,6 +25,7 @@ function createWindow() {
     // Create the browser window
     mainWindow = new BrowserWindow({
         title: 'Searchlight',
+        icon: `${__dirname}/assets/app-icon_32x32.png`,
         backgroundColor: '#e4e5e6',
         show: false,
     });
