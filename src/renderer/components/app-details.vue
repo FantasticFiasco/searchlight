@@ -1,7 +1,10 @@
 <template>
     <div>
         <b-card class="app-details-card">
-            <h4 slot="header">Searchlight</h4>
+            <div slot="header">
+                <img src="../assets/app-icon_48x48.png" />
+                <h4 class="app-title">Searchlight</h4>
+            </div>
             <div class="app-details-card-container">
                 <p>
                     <i class="fa fa-check-circle text-success" /> Version {{ appVersion }}</p>
@@ -45,7 +48,7 @@ import { remote, shell } from 'electron';
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 
-@Component({ name: 'app details' })
+@Component({ name: 'app-details' })
 export default class AppDetails extends Vue {
     get appVersion() {
         return remote.app.getVersion();

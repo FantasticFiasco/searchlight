@@ -16,14 +16,14 @@
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 
-import Footer from '../components/footer.vue'
+import AppFooter from '../components/footer.vue'
 import Sidebar from '../components/sidebar.vue'
 import { AboutView, DevicesView, IView } from '../views';
 
 @Component({
     name: 'app-container',
     components: {
-        Footer,
+        AppFooter,
         Sidebar,
     },
 })

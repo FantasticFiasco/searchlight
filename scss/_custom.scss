@@ -79,6 +79,11 @@ $card-header-color: rgba(255,255,255,.5);
 
 // Application details card
 .app-details-card {
+    .app-title {
+        display: inline;
+        vertical-align: middle;
+    }
+
     .app-details-card-container {
         @extend .ml-2;
 
