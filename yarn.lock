@@ -1405,9 +1405,9 @@ change-case@3.0.x:
     upper-case "^1.1.1"
     upper-case-first "^1.1.0"
 
-chart.js@2.7.0:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/chart.js/-/chart.js-2.7.0.tgz#330dbbee0c66199eb715f60fbf8ca4029609a529"
+chart.js@2.7.1:
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/chart.js/-/chart.js-2.7.1.tgz#ae90b4aa4ff1f02decd6b1a2a8dabfd73c9f9886"
   dependencies:
     chartjs-color "~2.2.0"
     moment "~2.18.0"
