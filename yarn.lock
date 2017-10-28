@@ -1084,7 +1084,7 @@ body-parser@1.18.2:
     raw-body "2.3.2"
     type-is "~1.6.15"
 
-bonjour@^3.5.0, "bonjour@github:FantasticFiasco/bonjour#66851c5":
+bonjour@FantasticFiasco/bonjour#66851c5, bonjour@^3.5.0:
   version "3.5.0"
   resolved "https://codeload.github.com/FantasticFiasco/bonjour/tar.gz/66851c5eb0360fc9297eef40d18196487a71c48a"
   dependencies:

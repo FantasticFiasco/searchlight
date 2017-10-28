@@ -1,7 +1,5 @@
-import { ProgressInfo } from 'electron-builder-http';
-import { autoUpdater, UpdateCheckResult } from 'electron-updater';
+import { autoUpdater, UpdateCheckResult, VersionInfo } from 'electron-updater';
 
-import { VersionInfo } from 'electron-builder-http/out/updateInfo';
 import * as log from './log';
 
 export class Updates {
@@ -27,8 +25,8 @@ export class Updates {
             log.info(`Updates - update not available (latest version: ${versionInfo.version}, downgrade is ${autoUpdater.allowDowngrade ? 'allowed' : 'disallowed'})`);
         });
 
-        autoUpdater.on('download-progress', (progress: ProgressInfo) => {
-            log.debug(`Updates - download progress ${progress.percent.toFixed(2)}%`);
+        autoUpdater.on('download-progress', (progress: any) => {
+            // log.debug(`Updates - download progress ${progress.percent.toFixed(2)}%`);
         });
 
         autoUpdater.on('update-downloaded', (versionInfo: VersionInfo) => {
