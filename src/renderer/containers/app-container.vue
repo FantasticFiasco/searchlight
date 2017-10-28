@@ -4,11 +4,12 @@
             <Sidebar :navItems="views" />
             <main class="main">
                 <div class="container-fluid">
-                    <router-view></router-view>
+                    <router-view>
+                    </router-view>
                 </div>
             </main>
         </div>
-        <Footer />
+        <AppFooter />
     </div>
 </template>
 
