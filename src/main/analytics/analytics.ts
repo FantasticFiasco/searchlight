@@ -24,8 +24,8 @@ export class Analytics {
         expect.toBeTrue(Analytics.IdFormat.test(clientId));
         expect.toBeTrue(Analytics.IdFormat.test(userId));
 
-        log.info('Analytics - client id', clientId);
-        log.info('Analytics - user id', userId);
+        log.info('Analytics', 'client id', clientId);
+        log.info('Analytics', 'user id', userId);
 
         const options: ua.VisitorOptions = {
             tid: (config as any).trackingId,
@@ -54,7 +54,7 @@ export class Analytics {
         expect.toExist(key);
         expect.toExist(value);
 
-        log.info('Analytics - enrich', key, value);
+        log.info('Analytics', 'enrich', key, value);
 
         this.visitor.set(key, value);
     }
@@ -67,7 +67,7 @@ export class Analytics {
         expect.toExist(path);
         expect.toBeTrue(path.startsWith('/'));
 
-        log.info('Analytics - reportPageView', path);
+        log.info('Analytics', 'reportPageView', path);
 
         this.visitor.pageview(path, this.errorHandler);
     }
@@ -81,7 +81,7 @@ export class Analytics {
         expect.toExist(category);
         expect.toExist(action);
 
-        log.info('Analytics - reportEvent', category, action);
+        log.info('Analytics', 'reportEvent', category, action);
 
         this.visitor.event(category, action, this.errorHandler);
     }
@@ -98,7 +98,7 @@ export class Analytics {
         expect.toExist(action);
         expect.toExist(label);
 
-        log.info('Analytics - reportEventWithValue', category, action, label, value);
+        log.info('Analytics', 'reportEventWithValue', category, action, label, value);
 
         if (value) {
             this.visitor.event(category, action, label, value, this.errorHandler);
@@ -115,7 +115,7 @@ export class Analytics {
     public reportException(description: string, fatal: boolean = false) {
         expect.toExist(description);
 
-        log.info('Analytics - reportException', description, fatal);
+        log.info('Analytics', 'reportException', description, fatal);
 
         this.visitor.exception(description, fatal, this.errorHandler);
     }
@@ -131,7 +131,7 @@ export class Analytics {
         expect.toExist(variable);
         expect.toBeTrue(time >= 0);
 
-        log.info('Analytics - reportDuration', category, variable, time);
+        log.info('Analytics', 'reportDuration', category, variable, time);
 
         this.visitor.timing(category, variable, time, this.errorHandler);
     }

@@ -33,7 +33,7 @@ export class Discovery implements IDiscovery {
      * addresses.
      */
     public start(): Promise<void> {
-        log.info('Discovery - start');
+        log.info('Discovery', 'start');
         return this.discovery.start();
     }
 
@@ -41,22 +41,22 @@ export class Discovery implements IDiscovery {
      * Stop listening for device advertisements.
      */
     public stop(): Promise<void> {
-        log.info('Discovery - stop');
+        log.info('Discovery', 'stop');
         return this.discovery.stop();
     }
 
     private onSearch(): Promise<void> {
-        log.info('Discovery - search');
+        log.info('Discovery', 'search');
         return this.discovery.search();
     }
 
     private onHello(device: Axis.Device) {
-        log.debug(`Discovery - hello from ${device.macAddress}`);
+        log.debug(`Discovery', 'hello from ${device.macAddress}`);
         this.send(ChannelNames.DISCOVERY_DEVICE_HELLO, device);
     }
 
     private onGoodbye(device: Axis.Device) {
-        log.debug(`Discovery - goodbye from ${device.macAddress}`);
+        log.debug(`Discovery', 'goodbye from ${device.macAddress}`);
         this.send(ChannelNames.DISCOVERY_DEVICE_GOODBYE, device);
     }
 

@@ -7,7 +7,7 @@ import * as environment from './environment';
 import * as log from './log';
 import { Store } from './store';
 
-log.info(`Main - start app with version ${app.getVersion()}`);
+log.info('Main', `start app with version ${app.getVersion()}`);
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -32,7 +32,7 @@ analytics.reportEvent('app version', app.getVersion());
 let discovery: IDiscovery | undefined;
 
 function createMainWindow() {
-    log.info('Main - create main window');
+    log.info('Main', 'create main window');
 
     // Create the browser window
     mainWindow = new BrowserWindow({
