@@ -1,12 +1,11 @@
 import * as expect from '@fantasticfiasco/expect';
 import { ipcMain } from 'electron';
-import { ProgressInfo } from 'electron-builder-http';
-import { VersionInfo } from 'electron-builder-http/out/updateInfo';
-import { autoUpdater } from 'electron-updater';
+import { autoUpdater, VersionInfo } from 'electron-updater';
 
+import { ProgressInfo } from 'builder-util-runtime';
 import { DownloadProgressEvent, NoUpdatesAvailableEvent } from 'common/application-updates';
 import * as ChannelNames from 'common/application-updates/channel-names';
-import { Analytics } from 'main/analytics';
+import { Analytics } from '../analytics';
 import * as log from '../log';
 import { State } from './state';
 
@@ -43,7 +42,7 @@ export class ApplicationUpdates {
     public start() {
         expect.toBeTrue(this.state === State.IDLE, 'Cannot start unless state is IDLE');
 
-        log.info('ApplicationUpdates - start');
+        log.info('ApplicationUpdates', 'start');
 
         autoUpdater.autoDownload = true;
         autoUpdater.logger = null;
@@ -57,7 +56,7 @@ export class ApplicationUpdates {
     }
 
     private async checkForUpdates() {
-        log.info('ApplicationUpdates - check for updates');
+        log.info('ApplicationUpdates', 'check for updates');
 
         try {
             await autoUpdater.checkForUpdates();
@@ -69,25 +68,29 @@ export class ApplicationUpdates {
     private restartAndUpdate() {
         expect.toBeTrue(this.state === State.DOWNLOADED_UPDATES, 'Cannot restart until updates are downloaded');
 
-        log.info('ApplicationUpdates - restart and update');
+        log.info('ApplicationUpdates', 'restart and update');
 
-        autoUpdater.quitAndInstall();
+        try {
+            autoUpdater.quitAndInstall();
+        } catch (error) {
+            this.onError(error);
+        }
     }
 
     private onCheckingForUpdates() {
-        log.info('ApplicationUpdates - checking for updates');
+        log.info('ApplicationUpdates', 'checking for updates');
 
         this.state = State.CHECKING_FOR_UPDATES;
     }
 
     private onUpdateAvailable(version: VersionInfo) {
-        log.info(`ApplicationUpdates - update available with version ${version.version}`);
+        log.info(`ApplicationUpdates', 'update available with version ${version.version}`);
 
         this.state = State.UPDATES_AVAILABLE;
     }
 
     private onUpdateNotAvailable(version: VersionInfo) {
-        log.info(`ApplicationUpdates - update not available (latest version: ${version.version}, downgrade is ${autoUpdater.allowDowngrade ? 'allowed' : 'disallowed'})`);
+        log.info(`ApplicationUpdates', 'update not available (latest version: ${version.version}, downgrade is ${autoUpdater.allowDowngrade ? 'allowed' : 'disallowed'})`);
 
         this.state = State.IDLE;
         this.send(ChannelNames.APPLICATION_UPDATES, new NoUpdatesAvailableEvent());
@@ -101,13 +104,13 @@ export class ApplicationUpdates {
     }
 
     private onUpdateDownloaded(version: VersionInfo) {
-        log.info(`ApplicationUpdates - update with version ${version.version} has been downloaded`);
+        log.info(`ApplicationUpdates', 'update with version ${version.version} has been downloaded`);
 
         this.state = State.DOWNLOADED_UPDATES;
     }
 
     private onError(error: Error) {
-        log.error('ApplicationUpdates', error);
+        log.error('ApplicationUpdates', 'error', error);
 
         this.state = State.IDLE;
         this.analytics.reportException(JSON.stringify(error));
