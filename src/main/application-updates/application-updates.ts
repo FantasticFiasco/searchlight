@@ -84,27 +84,27 @@ export class ApplicationUpdates {
     }
 
     private onUpdateAvailable(version: VersionInfo) {
-        log.info(`ApplicationUpdates', 'update available with version ${version.version}`);
+        log.info('ApplicationUpdates', `update available with version ${version.version}`);
 
         this.state = State.UPDATES_AVAILABLE;
     }
 
     private onUpdateNotAvailable(version: VersionInfo) {
-        log.info(`ApplicationUpdates', 'update not available (latest version: ${version.version}, downgrade is ${autoUpdater.allowDowngrade ? 'allowed' : 'disallowed'})`);
+        log.info('ApplicationUpdates', `update not available (latest version: ${version.version}, downgrade is ${autoUpdater.allowDowngrade ? 'allowed' : 'disallowed'})`);
 
         this.state = State.IDLE;
         this.send(ChannelNames.APPLICATION_UPDATES, new NoUpdatesAvailableEvent());
     }
 
     private onDownloadProgress(progress: ProgressInfo) {
-        log.debug(`ApplicationUpdates - download progress ${progress.percent.toFixed(2)}%`);
+        log.debug('ApplicationUpdates', `download progress ${progress.percent.toFixed(2)}%`);
 
         this.state = State.DOWNLOADING_UPDATES;
         this.send(ChannelNames.APPLICATION_UPDATES, new DownloadProgressEvent(progress.percent));
     }
 
     private onUpdateDownloaded(version: VersionInfo) {
-        log.info(`ApplicationUpdates', 'update with version ${version.version} has been downloaded`);
+        log.info('ApplicationUpdates', `update with version ${version.version} has been downloaded`);
 
         this.state = State.DOWNLOADED_UPDATES;
     }
@@ -113,7 +113,7 @@ export class ApplicationUpdates {
         log.error('ApplicationUpdates', 'error', error);
 
         this.state = State.IDLE;
-        this.analytics.reportException(JSON.stringify(error));
+        this.analytics.reportException(`${error.name}: ${error.message}`);
     }
 
     private send(channel: string, ...args: any[]) {
