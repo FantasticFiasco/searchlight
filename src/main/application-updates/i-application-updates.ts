@@ -14,9 +14,4 @@ export interface IApplicationUpdates {
      * Start application updates.
      */
     start(): void;
-
-    /**
-     * Restarts and updates the application.
-     */
-    restartAndUpdate(): void;
 }

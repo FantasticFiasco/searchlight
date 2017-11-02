@@ -2,7 +2,7 @@ import { app, BrowserWindow } from 'electron';
 import Debug from 'electron-debug';
 
 import { Analytics } from './analytics';
-import { ApplicationUpdates, ApplicationUpdatesMock, IApplicationUpdates, State } from './application-updates';
+import { ApplicationUpdates, ApplicationUpdatesMock, IApplicationUpdates } from './application-updates';
 import { Discovery, DiscoveryMock, IDiscovery } from './discovery';
 import * as environment from './environment';
 import * as log from './log';
@@ -85,15 +85,6 @@ function createMainWindow() {
     // Show main window when Electron has loaded, thus preventing UI flickering
     mainWindow.on('ready-to-show', () => {
         mainWindow!.show();
-    });
-
-    // Make sure application is closed correctly if an update is to be applied
-    mainWindow.on('close', (event: Event) => {
-        if (applicationUpdates && applicationUpdates.state === State.DOWNLOADED_UPDATES) {
-            applicationUpdates.restartAndUpdate();
-        }
-
-        event.preventDefault();
     });
 
     // Emitted when the window is closed
