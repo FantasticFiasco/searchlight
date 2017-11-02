@@ -1,20 +1,20 @@
 import * as expect from '@fantasticfiasco/expect';
+import { ProgressInfo } from 'builder-util-runtime';
 import { ipcMain } from 'electron';
 import { autoUpdater, VersionInfo } from 'electron-updater';
 
-import { ProgressInfo } from 'builder-util-runtime';
-import { DownloadProgressEvent, NoUpdatesAvailableEvent } from 'common/application-updates';
+import { DownloadProgressEvent, NoUpdatesAvailableEvent, RestartRequiredEvent } from 'common/application-updates';
 import * as ChannelNames from 'common/application-updates/channel-names';
-import { RestartRequiredEvent } from 'common/application-updates/restart-required-event';
 import { Analytics } from '../analytics';
 import * as log from '../log';
+import { IApplicationUpdates } from './i-application-updates';
 import { State } from './state';
 
 /**
  * Class responsible for knowing when application updates are availale, and how
  * those updates are applied.
  */
-export class ApplicationUpdates {
+export class ApplicationUpdates implements IApplicationUpdates {
     private readonly analytics: Analytics;
     private readonly webContents: Electron.WebContents;
 

@@ -2,7 +2,7 @@ import { app, BrowserWindow } from 'electron';
 import Debug from 'electron-debug';
 
 import { Analytics } from './analytics';
-import { ApplicationUpdates, ApplicationUpdatesMock } from './application-updates';
+import { ApplicationUpdates, ApplicationUpdatesMock, IApplicationUpdates } from './application-updates';
 import { Discovery, DiscoveryMock, IDiscovery } from './discovery';
 import * as environment from './environment';
 import * as log from './log';
@@ -33,7 +33,7 @@ analytics.reportEvent('app version', app.getVersion());
 let discovery: IDiscovery | undefined;
 
 // Application updates
-let applicationUpdates: ApplicationUpdates | undefined;
+let applicationUpdates: IApplicationUpdates | undefined;
 
 function createMainWindow() {
     log.info('Main', 'create main window');
