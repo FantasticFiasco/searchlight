@@ -21,7 +21,7 @@ export class ApplicationUpdatesMock implements IApplicationUpdates {
         expect.toExist(webContents);
 
         this.webContents = webContents;
-        this.isUpdateAvailable = false;
+        this.isUpdateAvailable = true;
 
         // Register for messages sent from the renderer
         ipcMain.on(ChannelNames.APPLICATION_UPDATES_CHECK, () => this.checkForUpdates());

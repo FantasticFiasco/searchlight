@@ -27,7 +27,6 @@ export const UPDATE_STATE_MUTATION = updateState.name;
  */
 export const updateDownloadProgress: Mutation<State> = (state: State, mutation: number) => {
     expect.toExist(state);
-    expect.toExist(mutation);
 
     state.state = ApplicationUpdatesState.DOWNLOADING;
     state.downloadProgress = mutation;
