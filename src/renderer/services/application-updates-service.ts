@@ -53,6 +53,10 @@ export class ApplicationUpdatesService {
             case 'download-progress':
                 store.commit(UPDATE_DOWNLOAD_PROGRESS_MUTATION, event.progress);
                 break;
+
+            case 'restart-required':
+                store.commit(UPDATE_STATE_MUTATION, ApplicationUpdatesState.RESTART_REQUIRED);
+                break;
         }
     }
 }

@@ -5,6 +5,7 @@ import { autoUpdater, VersionInfo } from 'electron-updater';
 import { ProgressInfo } from 'builder-util-runtime';
 import { DownloadProgressEvent, NoUpdatesAvailableEvent } from 'common/application-updates';
 import * as ChannelNames from 'common/application-updates/channel-names';
+import { RestartRequiredEvent } from 'common/application-updates/restart-required-event';
 import { Analytics } from '../analytics';
 import * as log from '../log';
 import { State } from './state';
@@ -107,6 +108,7 @@ export class ApplicationUpdates {
         log.info('ApplicationUpdates', `update with version ${version.version} has been downloaded`);
 
         this.state = State.DOWNLOADED_UPDATES;
+        this.send(ChannelNames.APPLICATION_UPDATES, new RestartRequiredEvent());
     }
 
     private onError(error: Error) {
