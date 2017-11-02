@@ -21,7 +21,7 @@ export class ApplicationUpdatesMock implements IApplicationUpdates {
 
     /**
      * Initializes a new instance of the class.
-     * @param analytics capable of reporting to Universal Analytics
+     * @param window the target for events sent from this class
      */
     constructor(window: Electron.BrowserWindow) {
         expect.toExist(window);
@@ -31,7 +31,7 @@ export class ApplicationUpdatesMock implements IApplicationUpdates {
         this.state = State.IDLE;
 
         // Register for messages sent from the renderer
-        ipcMain.on(ChannelNames.APPLICATION_UPDATES_CHECK, () => this.checkForUpdates());
+        ipcMain.on(ChannelNames.APPLICATION_UPDATES_CHECK, () => this.checkForUpdatesAsync());
         ipcMain.on(ChannelNames.APPLICATION_UPDATES_APPLY, () => this.restartAndUpdate());
     }
 
@@ -42,7 +42,7 @@ export class ApplicationUpdatesMock implements IApplicationUpdates {
         log.info('ApplicationUpdatesMock', 'start');
     }
 
-    private checkForUpdates() {
+    private checkForUpdatesAsync() {
         log.info('ApplicationUpdatesMock', 'check for updates');
 
         this.state = State.CHECKING_FOR_UPDATES;
@@ -71,7 +71,7 @@ export class ApplicationUpdatesMock implements IApplicationUpdates {
             const progress = 11.111 * i;
 
             log.info('ApplicationUpdatesMock', 'send download progress', progress);
-            this.send(ChannelNames.APPLICATION_UPDATES, new DownloadProgressEvent(progress));
+            this.send(ChannelNames.APPLICATION_UPDATES_CHECK_RESPONSE, new DownloadProgressEvent(progress));
 
             await this.sleep(1000);
         }
@@ -79,14 +79,14 @@ export class ApplicationUpdatesMock implements IApplicationUpdates {
         this.state = State.DOWNLOADED_UPDATES;
 
         log.info('ApplicationUpdatesMock', 'send restart required');
-        this.send(ChannelNames.APPLICATION_UPDATES, new RestartRequiredEvent());
+        this.send(ChannelNames.APPLICATION_UPDATES_CHECK_RESPONSE, new RestartRequiredEvent());
     }
 
     private async simulateNoUpdatesAvailable(): Promise<void> {
         this.state = State.IDLE;
 
         log.info('ApplicationUpdatesMock', 'send no updates available');
-        this.send(ChannelNames.APPLICATION_UPDATES, new NoUpdatesAvailableEvent());
+        this.send(ChannelNames.APPLICATION_UPDATES_CHECK_RESPONSE, new NoUpdatesAvailableEvent());
     }
 
     private sleep(ms: number): Promise<void> {

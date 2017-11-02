@@ -98,21 +98,21 @@ export class ApplicationUpdates implements IApplicationUpdates {
         log.info('ApplicationUpdates', `update not available (latest version: ${version.version}, downgrade is ${autoUpdater.allowDowngrade ? 'allowed' : 'disallowed'})`);
 
         this.state = State.IDLE;
-        this.send(ChannelNames.APPLICATION_UPDATES, new NoUpdatesAvailableEvent());
+        this.send(ChannelNames.APPLICATION_UPDATES_CHECK_RESPONSE, new NoUpdatesAvailableEvent());
     }
 
     private onDownloadProgress(progress: ProgressInfo) {
         log.debug('ApplicationUpdates', `download progress ${progress.percent.toFixed(2)}%`);
 
         this.state = State.DOWNLOADING_UPDATES;
-        this.send(ChannelNames.APPLICATION_UPDATES, new DownloadProgressEvent(progress.percent));
+        this.send(ChannelNames.APPLICATION_UPDATES_CHECK_RESPONSE, new DownloadProgressEvent(progress.percent));
     }
 
     private onUpdateDownloaded(version: VersionInfo) {
         log.info('ApplicationUpdates', `update with version ${version.version} has been downloaded`);
 
         this.state = State.DOWNLOADED_UPDATES;
-        this.send(ChannelNames.APPLICATION_UPDATES, new RestartRequiredEvent());
+        this.send(ChannelNames.APPLICATION_UPDATES_CHECK_RESPONSE, new RestartRequiredEvent());
     }
 
     private onError(error: Error) {

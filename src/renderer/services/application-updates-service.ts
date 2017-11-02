@@ -1,6 +1,6 @@
 import { ipcRenderer } from 'electron';
 
-import { ApplicationUpdatesEventTypes } from 'common/application-updates';
+import { CheckForUpdatesEventTypes } from 'common/application-updates';
 import * as ChannelNames from 'common/application-updates/channel-names';
 import {
     ApplicationUpdatesState,
@@ -25,8 +25,8 @@ export class ApplicationUpdatesService {
      */
     constructor() {
         ipcRenderer.on(
-            ChannelNames.APPLICATION_UPDATES,
-            (event: any, args: ApplicationUpdatesEventTypes) => this.onEvent(args));
+            ChannelNames.APPLICATION_UPDATES_CHECK_RESPONSE,
+            (event: any, args: CheckForUpdatesEventTypes) => this.onEvent(args));
     }
 
     /**
@@ -44,7 +44,7 @@ export class ApplicationUpdatesService {
         ipcRenderer.send(ChannelNames.APPLICATION_UPDATES_APPLY);
     }
 
-    private onEvent(event: ApplicationUpdatesEventTypes) {
+    private onEvent(event: CheckForUpdatesEventTypes) {
         switch (event.kind) {
             case 'no-updates-available':
                 store.commit(UPDATE_STATE_MUTATION, ApplicationUpdatesState.IDLE);

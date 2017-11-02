@@ -59,9 +59,9 @@ function createMainWindow() {
     mainWindow.loadURL(url);
 
     // Open DevTools
-    // if (environment.isDev()) {
-    mainWindow.webContents.openDevTools({ mode: 'undocked' });
-    // }
+    if (environment.isDev()) {
+        mainWindow.webContents.openDevTools({ mode: 'undocked' });
+    }
 
     // Start discovery
     discovery = environment.isDev() ?
