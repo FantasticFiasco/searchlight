@@ -1,10 +1,10 @@
 import { app, BrowserWindow } from 'electron';
 import Debug from 'electron-debug';
 
+import * as environment from 'common/environment';
 import { Analytics } from './analytics';
 import { ApplicationUpdates, ApplicationUpdatesMock, IApplicationUpdates } from './application-updates';
 import { Discovery, DiscoveryMock, IDiscovery } from './discovery';
-import * as environment from './environment';
 import * as log from './log';
 import { Store } from './store';
 
