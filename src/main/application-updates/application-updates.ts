@@ -18,7 +18,10 @@ export class ApplicationUpdates implements IApplicationUpdates {
     private readonly analytics: Analytics;
     private readonly webContents: Electron.WebContents;
 
-    private state: State;
+    /**
+     * The state of application updates.
+     */
+    public state: State;
 
     /**
      * Initializes a new instance of the class.

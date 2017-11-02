@@ -5,6 +5,7 @@ import { DownloadProgressEvent, NoUpdatesAvailableEvent, RestartRequiredEvent } 
 import * as ChannelNames from 'common/application-updates/channel-names';
 import * as log from '../log';
 import { IApplicationUpdates } from './i-application-updates';
+import { State } from './state';
 
 /**
  * Class mocking application updates for development purpose.
@@ -12,6 +13,11 @@ import { IApplicationUpdates } from './i-application-updates';
 export class ApplicationUpdatesMock implements IApplicationUpdates {
     private readonly window: Electron.BrowserWindow;
     private readonly isUpdateAvailable: boolean;
+
+    /**
+     * The state of application updates.
+     */
+    public state: State;
 
     /**
      * Initializes a new instance of the class.
@@ -22,6 +28,7 @@ export class ApplicationUpdatesMock implements IApplicationUpdates {
 
         this.window = window;
         this.isUpdateAvailable = true;
+        this.state = State.IDLE;
 
         // Register for messages sent from the renderer
         ipcMain.on(ChannelNames.APPLICATION_UPDATES_CHECK, () => this.checkForUpdates());
@@ -38,20 +45,14 @@ export class ApplicationUpdatesMock implements IApplicationUpdates {
     private checkForUpdates() {
         log.info('ApplicationUpdatesMock', 'check for updates');
 
+        this.state = State.CHECKING_FOR_UPDATES;
+
         setTimeout(
             async () => {
                 if (this.isUpdateAvailable) {
-                    for (let i = 0; i < 10; i++) {
-                        const progress = 11.111 * i;
-                        log.info('ApplicationUpdatesMock', 'send download progress', progress);
-                        this.send(ChannelNames.APPLICATION_UPDATES, new DownloadProgressEvent(progress));
-                        await this.sleep(1000);
-                    }
-                    log.info('ApplicationUpdatesMock', 'send restart required');
-                    this.send(ChannelNames.APPLICATION_UPDATES, new RestartRequiredEvent());
+                    await this.simulateUpdatesAvailable();
                 } else {
-                    log.info('ApplicationUpdatesMock', 'send no updates available');
-                    this.send(ChannelNames.APPLICATION_UPDATES, new NoUpdatesAvailableEvent());
+                    await this.simulateNoUpdatesAvailable();
                 }
             },
             5000);
@@ -61,6 +62,31 @@ export class ApplicationUpdatesMock implements IApplicationUpdates {
         log.info('ApplicationUpdatesMock', 'restart and update');
 
         this.window.close();
+    }
+
+    private async simulateUpdatesAvailable(): Promise<void> {
+        this.state = State.DOWNLOADING_UPDATES;
+
+        for (let i = 0; i < 10; i++) {
+            const progress = 11.111 * i;
+
+            log.info('ApplicationUpdatesMock', 'send download progress', progress);
+            this.send(ChannelNames.APPLICATION_UPDATES, new DownloadProgressEvent(progress));
+
+            await this.sleep(1000);
+        }
+
+        this.state = State.DOWNLOADED_UPDATES;
+
+        log.info('ApplicationUpdatesMock', 'send restart required');
+        this.send(ChannelNames.APPLICATION_UPDATES, new RestartRequiredEvent());
+    }
+
+    private async simulateNoUpdatesAvailable(): Promise<void> {
+        this.state = State.IDLE;
+
+        log.info('ApplicationUpdatesMock', 'send no updates available');
+        this.send(ChannelNames.APPLICATION_UPDATES, new NoUpdatesAvailableEvent());
     }
 
     private sleep(ms: number): Promise<void> {
