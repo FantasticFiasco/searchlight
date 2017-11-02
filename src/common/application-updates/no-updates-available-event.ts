@@ -3,4 +3,8 @@
  * installed version is latest.
  */
 export class NoUpdatesAvailableEvent {
+    /**
+     * The event kind.
+     */
+    public readonly kind = 'no-updates-available';
 }

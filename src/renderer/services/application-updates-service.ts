@@ -1,10 +1,6 @@
 import { ipcRenderer } from 'electron';
 
-import {
-    ApplicationUpdatesEventTypes,
-    DownloadProgressEvent,
-    NoUpdatesAvailableEvent,
-} from 'common/application-updates';
+import { ApplicationUpdatesEventTypes } from 'common/application-updates';
 import * as ChannelNames from 'common/application-updates/channel-names';
 import {
     ApplicationUpdatesState,
@@ -49,10 +45,14 @@ export class ApplicationUpdatesService {
     }
 
     private onEvent(event: ApplicationUpdatesEventTypes) {
-        if (event instanceof DownloadProgressEvent) {
-            store.commit(UPDATE_DOWNLOAD_PROGRESS_MUTATION, event.progress);
-        } else if (event instanceof NoUpdatesAvailableEvent) {
-            store.commit(UPDATE_STATE_MUTATION, ApplicationUpdatesState.IDLE);
+        switch (event.kind) {
+            case 'no-updates-available':
+                store.commit(UPDATE_STATE_MUTATION, ApplicationUpdatesState.IDLE);
+                break;
+
+            case 'download-progress':
+                store.commit(UPDATE_DOWNLOAD_PROGRESS_MUTATION, event.progress);
+                break;
         }
     }
 }
