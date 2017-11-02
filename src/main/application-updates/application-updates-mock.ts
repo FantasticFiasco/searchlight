@@ -42,6 +42,12 @@ export class ApplicationUpdatesMock implements IApplicationUpdates {
         log.info('ApplicationUpdatesMock', 'start');
     }
 
+    public restartAndUpdate() {
+        log.info('ApplicationUpdatesMock', 'restart and update');
+
+        this.window.close();
+    }
+
     private checkForUpdates() {
         log.info('ApplicationUpdatesMock', 'check for updates');
 
@@ -56,12 +62,6 @@ export class ApplicationUpdatesMock implements IApplicationUpdates {
                 }
             },
             5000);
-    }
-
-    private restartAndUpdate() {
-        log.info('ApplicationUpdatesMock', 'restart and update');
-
-        this.window.close();
     }
 
     private async simulateUpdatesAvailable(): Promise<void> {

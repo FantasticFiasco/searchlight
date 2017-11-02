@@ -37,7 +37,7 @@ export class ApplicationUpdates implements IApplicationUpdates {
         this.state = State.IDLE;
 
         // Register for messages sent from the renderer
-        ipcMain.on(ChannelNames.APPLICATION_UPDATES_CHECK, () => this.checkForUpdates());
+        ipcMain.on(ChannelNames.APPLICATION_UPDATES_CHECK, async () => this.checkForUpdatesAsync());
         ipcMain.on(ChannelNames.APPLICATION_UPDATES_APPLY, () => this.restartAndUpdate());
     }
 
@@ -60,23 +60,23 @@ export class ApplicationUpdates implements IApplicationUpdates {
         autoUpdater.on('error', (error: Error) => this.onError(error));
     }
 
-    private async checkForUpdates() {
-        log.info('ApplicationUpdates', 'check for updates');
-
-        try {
-            await autoUpdater.checkForUpdates();
-        } catch (error) {
-            this.onError(error);
-        }
-    }
-
-    private restartAndUpdate() {
+    public restartAndUpdate() {
         expect.toBeTrue(this.state === State.DOWNLOADED_UPDATES, 'Cannot restart until updates are downloaded');
 
         log.info('ApplicationUpdates', 'restart and update');
 
         try {
             autoUpdater.quitAndInstall();
+        } catch (error) {
+            this.onError(error);
+        }
+    }
+
+    private async checkForUpdatesAsync(): Promise<void> {
+        log.info('ApplicationUpdates', 'check for updates');
+
+        try {
+            await autoUpdater.checkForUpdates();
         } catch (error) {
             this.onError(error);
         }
