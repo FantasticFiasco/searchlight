@@ -1,6 +1,6 @@
 export class State {
-    public state: ApplicationUpdatesState;
-    public downloadProgress: number | undefined;
+    public state = ApplicationUpdatesState.IDLE;
+    public downloadProgress = 0;
 }
 
 export enum ApplicationUpdatesState {

@@ -41,9 +41,9 @@ export class ApplicationUpdatesMock implements IApplicationUpdates {
         setTimeout(
             async () => {
                 if (this.isUpdateAvailable) {
-                    for (let i = 0; i < 9; i++) {
+                    for (let i = 0; i < 10; i++) {
                         const progress = 11.111 * i;
-                        log.info('ApplicationUpdatesMock', 'send download progress', process);
+                        log.info('ApplicationUpdatesMock', 'send download progress', progress);
                         this.send(ChannelNames.APPLICATION_UPDATES, new DownloadProgressEvent(progress));
                         await this.sleep(1000);
                     }
