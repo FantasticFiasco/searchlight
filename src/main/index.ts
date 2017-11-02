@@ -2,7 +2,7 @@ import { app, BrowserWindow } from 'electron';
 import Debug from 'electron-debug';
 
 import { Analytics } from './analytics';
-import { ApplicationUpdates } from './application-updates';
+import { ApplicationUpdates, ApplicationUpdatesMock } from './application-updates';
 import { Discovery, DiscoveryMock, IDiscovery } from './discovery';
 import * as environment from './environment';
 import * as log from './log';
@@ -71,7 +71,10 @@ function createMainWindow() {
     discovery.start();
 
     // Start application updates
-    applicationUpdates = new ApplicationUpdates(analytics, mainWindow.webContents);
+    applicationUpdates = environment.isDev() ?
+        new ApplicationUpdatesMock(mainWindow.webContents) :
+        new ApplicationUpdates(analytics, mainWindow.webContents);
+
     applicationUpdates.start();
 
     // Open the DevTools

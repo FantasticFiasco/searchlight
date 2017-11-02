@@ -23,6 +23,7 @@ export class ApplicationUpdates {
     /**
      * Initializes a new instance of the class.
      * @param analytics capable of reporting to Universal Analytics
+     * @param webContents the target for events sent from this class
      */
     constructor(analytics: Analytics, webContents: Electron.WebContents) {
         expect.toExist(analytics);

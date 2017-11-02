@@ -15,6 +15,7 @@ export class Discovery implements IDiscovery {
 
     /**
      * Initializes a new instance of the class.
+     * @param webContents the target for events sent from this class
      */
     constructor(webContents: Electron.WebContents) {
         expect.toExist(webContents);
