@@ -10,17 +10,17 @@ import { IApplicationUpdates } from './i-application-updates';
  * Class mocking application updates for development purpose.
  */
 export class ApplicationUpdatesMock implements IApplicationUpdates {
-    private readonly webContents: Electron.WebContents;
+    private readonly window: Electron.BrowserWindow;
     private readonly isUpdateAvailable: boolean;
 
     /**
      * Initializes a new instance of the class.
      * @param analytics capable of reporting to Universal Analytics
      */
-    constructor(webContents: Electron.WebContents) {
-        expect.toExist(webContents);
+    constructor(window: Electron.BrowserWindow) {
+        expect.toExist(window);
 
-        this.webContents = webContents;
+        this.window = window;
         this.isUpdateAvailable = true;
 
         // Register for messages sent from the renderer
@@ -59,6 +59,8 @@ export class ApplicationUpdatesMock implements IApplicationUpdates {
 
     private restartAndUpdate() {
         log.info('ApplicationUpdatesMock', 'restart and update');
+
+        this.window.close();
     }
 
     private sleep(ms: number): Promise<void> {
@@ -66,9 +68,8 @@ export class ApplicationUpdatesMock implements IApplicationUpdates {
       }
 
     private send(channel: string, ...args: any[]) {
-        if (!this.webContents.isDestroyed()) {
-            this.webContents.send(channel, ...args);
+        if (!this.window.webContents.isDestroyed()) {
+            this.window.webContents.send(channel, ...args);
         }
     }
-
 }

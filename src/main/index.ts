@@ -72,7 +72,7 @@ function createMainWindow() {
 
     // Start application updates
     applicationUpdates = environment.isDev() ?
-        new ApplicationUpdatesMock(mainWindow.webContents) :
+        new ApplicationUpdatesMock(mainWindow) :
         new ApplicationUpdates(analytics, mainWindow.webContents);
 
     applicationUpdates.start();
