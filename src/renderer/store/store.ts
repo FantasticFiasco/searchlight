@@ -1,23 +1,19 @@
 import Vue from 'vue';
 import Vuex, { Store } from 'vuex';
 
-import { addOrUpdateDevice, disconnectDevice, removeDevice } from './device-mutations';
-import { addHeartbeat } from './heartbeat-mutations';
-import { State } from './state';
+import * as environment from 'common/environment';
+import { ApplicationUpdatesModule } from './application-updates/application-updates-module';
+import { DevicesModule } from './devices/devices-module';
+import { HeartbeatsModule } from './heartbeats/heartbeats-module';
+import { IRootState } from './i-root-state';
 
 Vue.use(Vuex);
 
-const debug = process.env.NODE_ENV !== 'production';
-
-export const store = new Store<State>({
-    state: new State(),
-    mutations: {
-        // Device mutations
-        addOrUpdateDevice,
-        disconnectDevice,
-        removeDevice,
-        // Heartbeat mutations
-        addHeartbeat,
+export const store = new Store<IRootState>({
+    modules: {
+        applicationUpdates: new ApplicationUpdatesModule(),
+        devices: new DevicesModule(),
+        heartbeats: new HeartbeatsModule(),
     },
-    strict: debug,
+    strict: environment.isDev(),
 });

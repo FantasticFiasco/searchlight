@@ -1,25 +1,25 @@
 import * as expect from '@fantasticfiasco/expect';
 import { Mutation } from 'vuex';
 
-import { Device } from '../models';
+import { Device } from '../../models';
 import { State } from './state';
 
 /**
  * Adds or updates a device in the store depending on whether it already
  * exists.
- * @param state The current state of the store
- * @param device The device to add or update in the store
+ * @param state the current state of the store
+ * @param device the device to add or update in the store
  */
-export const addOrUpdateDevice: Mutation<State> = (state: State, device: Device) => {
+export const addOrUpdateDevice: Mutation<State> = (state: State, mutation: Device) => {
     expect.toExist(state);
-    expect.toExist(device);
+    expect.toExist(mutation);
 
-    const index = indexOf(device, state.devices);
+    const index = indexOf(mutation, state);
 
     if (index === -1) {
-        state.devices.push(device);
+        state.push(mutation);
     } else {
-        state.devices[index].update(device);
+        state[index].update(mutation);
     }
 };
 
@@ -31,17 +31,17 @@ export const ADD_OR_UPDATE_DEVICE_MUTATION = addOrUpdateDevice.name;
 
 /**
  * Removes a device from the store.
- * @param state The current state of the store
- * @param device The device to remove from the store
+ * @param state the current state of the store
+ * @param device the device to remove from the store
  */
-export const removeDevice: Mutation<State> = (state: State, device: Device) => {
+export const removeDevice: Mutation<State> = (state: State, mutation: Device) => {
     expect.toExist(state);
-    expect.toExist(device);
+    expect.toExist(mutation);
 
-    const index = indexOf(device, state.devices);
+    const index = indexOf(mutation, state);
 
     if (index > -1) {
-        state.devices.splice(index, 1);
+        state.splice(index, 1);
     }
 };
 
@@ -51,18 +51,18 @@ export const removeDevice: Mutation<State> = (state: State, device: Device) => {
 export const REMOVE_DEVICE_MUTATION = removeDevice.name;
 
 /**
- * Disconnects a device in the store.
- * @param state The current state of the store
- * @param device The device to disconnect in the store
+ * Marks a device as disconnected in the store.
+ * @param state the current state of the store
+ * @param device the device to mark as disconnected in the store
  */
-export const disconnectDevice: Mutation<State> = (state: State, device: Device) => {
+export const disconnectDevice: Mutation<State> = (state: State, mutation: Device) => {
     expect.toExist(state);
-    expect.toExist(device);
+    expect.toExist(mutation);
 
-    const index = indexOf(device, state.devices);
+    const index = indexOf(mutation, state);
 
     if (index > -1) {
-        state.devices[index].networkStatus.isResponsive = false;
+        state[index].networkStatus.isResponsive = false;
     }
 };
 

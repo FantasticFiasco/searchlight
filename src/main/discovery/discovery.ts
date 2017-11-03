@@ -2,9 +2,9 @@ import * as expect from '@fantasticfiasco/expect';
 import * as Axis from 'axis-discovery';
 import { ipcMain } from 'electron';
 
-import * as ChannelNames from 'common/channel-names';
+import * as ChannelNames from 'common/discovery/channel-names';
 import * as log from '../log';
-import { IDiscovery } from './';
+import { IDiscovery } from './i-discovery';
 
 /**
  * Class discovering Axis devices on the network.
@@ -15,6 +15,7 @@ export class Discovery implements IDiscovery {
 
     /**
      * Initializes a new instance of the class.
+     * @param webContents the target for events sent from this class
      */
     constructor(webContents: Electron.WebContents) {
         expect.toExist(webContents);
@@ -51,12 +52,12 @@ export class Discovery implements IDiscovery {
     }
 
     private onHello(device: Axis.Device) {
-        log.debug(`Discovery', 'hello from ${device.macAddress}`);
+        log.debug('Discovery', `hello from ${device.macAddress}`);
         this.send(ChannelNames.DISCOVERY_DEVICE_HELLO, device);
     }
 
     private onGoodbye(device: Axis.Device) {
-        log.debug(`Discovery', 'goodbye from ${device.macAddress}`);
+        log.debug('Discovery', `goodbye from ${device.macAddress}`);
         this.send(ChannelNames.DISCOVERY_DEVICE_GOODBYE, device);
     }
 

@@ -1,9 +1,10 @@
 import { app, BrowserWindow } from 'electron';
 import Debug from 'electron-debug';
 
+import * as environment from 'common/environment';
 import { Analytics } from './analytics';
+import { ApplicationUpdates, ApplicationUpdatesMock, IApplicationUpdates } from './application-updates';
 import { Discovery, DiscoveryMock, IDiscovery } from './discovery';
-import * as environment from './environment';
 import * as log from './log';
 import { Store } from './store';
 
@@ -31,6 +32,9 @@ analytics.reportEvent('app version', app.getVersion());
 // Discovery
 let discovery: IDiscovery | undefined;
 
+// Application updates
+let applicationUpdates: IApplicationUpdates | undefined;
+
 function createMainWindow() {
     log.info('Main', 'create main window');
 
@@ -55,9 +59,9 @@ function createMainWindow() {
     mainWindow.loadURL(url);
 
     // Open DevTools
-    // if (environment.isDev()) {
-    mainWindow.webContents.openDevTools({ mode: 'undocked' });
-    // }
+    if (environment.isDev()) {
+        mainWindow.webContents.openDevTools({ mode: 'undocked' });
+    }
 
     // Start discovery
     discovery = environment.isDev() ?
@@ -65,6 +69,18 @@ function createMainWindow() {
         new Discovery(mainWindow.webContents);
 
     discovery.start();
+
+    // Start application updates
+    applicationUpdates = environment.isDev() ?
+        new ApplicationUpdatesMock(mainWindow) :
+        new ApplicationUpdates(analytics, mainWindow.webContents);
+
+    applicationUpdates.start();
+
+    // Open the DevTools
+    if (environment.isDev()) {
+        mainWindow.webContents.openDevTools({ mode: 'undocked' });
+    }
 
     // Show main window when Electron has loaded, thus preventing UI flickering
     mainWindow.on('ready-to-show', () => {

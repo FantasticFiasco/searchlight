@@ -3,7 +3,7 @@ import * as expect from '@fantasticfiasco/expect';
 /**
  * Analytics page view describing the interactions of a user.
  */
-export class PageView {
+export class PageViewEvent {
     /**
      * Initializes a new instance of the class.
      * @param path path of the viewed page, must start with '/'

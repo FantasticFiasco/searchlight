@@ -1,6 +1,6 @@
 {
   "name": "searchlight",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A desktop application capable of finding Axis Communication cameras on the network.",
   "keywords": [
     "searchlight",
@@ -31,7 +31,7 @@
     "lint": "tslint --exclude './src/**/*.d.ts' './src/**/*.ts'",
     "lint:fix": "tslint --fix --exclude './src/**/*.d.ts' './src/**/*.ts'",
     "analytics": "json -I -f ./src/main/analytics/config.json -e this.trackingId='process.env.UNIVERSAL_ANALYTICS_TRACKING_ID'",
-    "dist": "yarn compile && electron-builder",
+    "dist": "yarn compile && electron-builder --publish onTagOrDraft",
     "dist:dir": "yarn compile && electron-builder --dir -c.compression=store -c.mac.identity=null"
   },
   "build": {
@@ -81,7 +81,7 @@
     "chart.js": "2.7.0",
     "devtron": "1.4.0",
     "electron": "1.7.8",
-    "electron-builder": "19.43.2",
+    "electron-builder": "19.42.2",
     "electron-webpack": "1.11.0",
     "electron-webpack-ts": "1.2.0",
     "electron-webpack-vue": "1.1.0",

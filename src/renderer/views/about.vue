@@ -9,8 +9,7 @@ import Vue from 'vue';
 import { Component, Inject } from 'vue-property-decorator';
 
 import AppDetails from '../components/app-details.vue';
-import { ANALYTICS_SERVICE } from '../dependency-injection';
-import { AnalyticsService, PageView } from '../services';
+import { ANALYTICS_SERVICE, AnalyticsService, PageViewEvent } from '../services';
 
 @Component({
     name: 'about',
@@ -23,7 +22,7 @@ export default class About extends Vue {
     private readonly analyticsService: AnalyticsService;
 
     public mounted() {
-        this.analyticsService.reportPageView(new PageView('/about'));
+        this.analyticsService.reportPageView(new PageViewEvent('/about'));
     }
 }
 </script>

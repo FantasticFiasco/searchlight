@@ -1,7 +1,8 @@
 import { IView } from './iview';
 
 export class DevicesView implements IView {
-    public name: string = 'Devices';
-    public url: string = '/devices';
-    public icon: string = 'icon-camrecorder';
+    public name = 'Devices';
+    public url = '/devices';
+    public icon = 'icon-camrecorder';
+    public badge = '';
 }

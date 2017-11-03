@@ -1,6 +1,11 @@
-import { EventWithValue, PageView } from 'common/analytics';
-import * as ChannelNames from 'common/channel-names';
+import { PageViewEvent, ValueEvent } from 'common/analytics';
+import * as ChannelNames from 'common/analytics/channel-names';
 import { ipcRenderer } from 'electron';
+
+/**
+ * Key for the analytics service in the Vue dependency injection framework.
+ */
+export const ANALYTICS_SERVICE = Symbol();
 
 /**
  * Class acting as a proxy between the renderer and main process, capable of
@@ -11,7 +16,7 @@ export class AnalyticsService {
      * Report about application page view
      * @param event event describing the occurrance
      */
-    public reportPageView(event: PageView) {
+    public reportPageView(event: PageViewEvent) {
         ipcRenderer.send(ChannelNames.ANALYTICS_REPORT_PAGE_VIEW, event);
     }
 
@@ -19,7 +24,7 @@ export class AnalyticsService {
      * Report about application event containing a value
      * @param event event describing the occurrance
      */
-    public reportEventWithValue(event: EventWithValue) {
+    public reportEventWithValue(event: ValueEvent) {
         ipcRenderer.send(ChannelNames.ANALYTICS_REPORT_EVENT_WITH_VALUE, event);
     }
 }

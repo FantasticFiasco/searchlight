@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router, { Route } from 'vue-router';
 
-import AppContainer from './../containers/app-container.vue';
+import AppContainer from './../app-container.vue';
 import About from './../views/about.vue';
 import Devices from './../views/devices.vue';
 
