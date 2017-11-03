@@ -4,8 +4,8 @@ import * as ua from 'universal-analytics';
 
 import { PageViewEvent, ValueEvent } from 'common/analytics';
 import * as ChannelNames from 'common/analytics/channel-names';
+import * as config from '../config.json';
 import * as log from './../log';
-import * as config from './config.json';
 
 /**
  * Class reporting to Universal Analytics.
@@ -28,7 +28,7 @@ export class Analytics {
         log.info('Analytics', 'user id', userId);
 
         const options: ua.VisitorOptions = {
-            tid: (config as any).trackingId,
+            tid: (config as any).analytics.trackingId,
             cid: clientId,
             uid: userId,
             https: true,
