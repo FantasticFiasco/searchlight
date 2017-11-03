@@ -116,9 +116,9 @@ export class ApplicationUpdates implements IApplicationUpdates {
     }
 
     private onError(error: Error) {
-        log.error('ApplicationUpdates', 'error', error);
-
         this.state = State.IDLE;
+        this.send(ChannelNames.APPLICATION_UPDATES_CHECK_RESPONSE, new NoUpdatesAvailableEvent());
+
         this.analytics.reportException(`${error.name}: ${error.message}`);
     }
 
