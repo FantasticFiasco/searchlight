@@ -40,7 +40,6 @@ function createMainWindow() {
 
     // Create the browser window
     mainWindow = new BrowserWindow({
-        title: 'Searchlight',
         icon: `${__dirname}/assets/app-icon_32x32.png`,
         backgroundColor: '#e4e5e6',
         show: false,
@@ -48,6 +47,23 @@ function createMainWindow() {
 
     // Disable menu
     mainWindow.setMenu(null);
+
+    // Show main window when Electron has loaded, thus preventing UI flickering
+    mainWindow.on('ready-to-show', () => {
+        mainWindow!.show();
+    });
+
+    // Emitted when the window is closed
+    mainWindow.on('closed', () => {
+        // Stop discovery
+        discovery!.stop();
+        discovery = undefined;
+
+        // Dereference the window object, usually you would store windows in an
+        // array if your app supports multi windows, this is the time when you
+        // should delete the corresponding element.
+        mainWindow = undefined;
+    });
 
     // Load main view
     // - 'webpack-dev-server' in development
@@ -81,23 +97,6 @@ function createMainWindow() {
     if (environment.isDev()) {
         mainWindow.webContents.openDevTools({ mode: 'undocked' });
     }
-
-    // Show main window when Electron has loaded, thus preventing UI flickering
-    mainWindow.on('ready-to-show', () => {
-        mainWindow!.show();
-    });
-
-    // Emitted when the window is closed
-    mainWindow.on('closed', () => {
-        // Stop discovery
-        discovery!.stop();
-        discovery = undefined;
-
-        // Dereference the window object, usually you would store windows in an
-        // array if your app supports multi windows, this is the time when you
-        // should delete the corresponding element.
-        mainWindow = undefined;
-    });
 }
 
 // This method will be called when Electron has finished initialization and is

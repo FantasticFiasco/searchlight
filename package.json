@@ -46,6 +46,7 @@
     }
   },
   "electronWebpack": {
+    "title": "Searchlight",
     "renderer": {
       "dll": [
         "axis-discovery",
