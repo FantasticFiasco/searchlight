@@ -31,9 +31,11 @@ before_script:
 
 script:
   - echo -e "$(curl --silent https://raw.githubusercontent.com/FantasticFiasco/logo/master/logo.ansi)"
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then yarn dist; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then yarn dist --mac --win; fi
   - yarn lint
+#  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then yarn dist; fi
+#  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then yarn dist --mac --win; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then yarn dist --win; fi
+
 
 after_script:
   - greenkeeper-lockfile-upload
