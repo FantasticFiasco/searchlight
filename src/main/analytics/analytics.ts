@@ -4,8 +4,8 @@ import * as ua from 'universal-analytics';
 
 import { PageViewEvent, ValueEvent } from 'common/analytics';
 import * as ChannelNames from 'common/analytics/channel-names';
+import * as config from '../config.json';
 import * as log from './../log';
-import * as config from './config.json';
 
 /**
  * Class reporting to Universal Analytics.
