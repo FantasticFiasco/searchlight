@@ -28,7 +28,7 @@ export class Analytics {
         log.info('Analytics', 'user id', userId);
 
         const options: ua.VisitorOptions = {
-            tid: (config as any).trackingId,
+            tid: (config as any).analytics.trackingId,
             cid: clientId,
             uid: userId,
             https: true,
