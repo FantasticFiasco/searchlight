@@ -164,16 +164,15 @@ anymatch@^1.3.0:
     micromatch "^2.1.5"
     normalize-path "^2.0.0"
 
-app-package-builder@1.3.2:
-  version "1.3.2"
-  resolved "https://registry.yarnpkg.com/app-package-builder/-/app-package-builder-1.3.2.tgz#5de716c102d987d5caefa285f345ef2804e5c03f"
+app-package-builder@1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/app-package-builder/-/app-package-builder-1.5.0.tgz#3263598b07ac577b3df2205171a449f2dd5f30ca"
   dependencies:
     bluebird-lst "^1.0.5"
-    builder-util "^3.1.2"
-    builder-util-runtime "^2.5.0"
+    builder-util "^3.2.1"
+    builder-util-runtime "^3.1.0"
     fs-extra-p "^4.4.4"
     int64-buffer "^0.1.9"
-    js-yaml "^3.10.0"
     rabin-bindings "~1.7.3"
 
 aproba@^1.0.3:
@@ -1244,9 +1243,9 @@ buffer@^4.3.0:
     ieee754 "^1.1.4"
     isarray "^1.0.0"
 
-builder-util-runtime@2.5.0, builder-util-runtime@^2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/builder-util-runtime/-/builder-util-runtime-2.5.0.tgz#22373d4faab8d89e0b077630aef76538deb38476"
+builder-util-runtime@3.1.0, builder-util-runtime@^3.0.0, builder-util-runtime@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/builder-util-runtime/-/builder-util-runtime-3.1.0.tgz#60ec66d3c49f028655230a09d7767e77ff6f15b8"
   dependencies:
     bluebird-lst "^1.0.5"
     debug "^3.1.0"
@@ -1262,34 +1261,13 @@ builder-util-runtime@~2.4.0:
     fs-extra-p "^4.4.4"
     sax "^1.2.4"
 
-builder-util@3.1.2:
-  version "3.1.2"
-  resolved "https://registry.yarnpkg.com/builder-util/-/builder-util-3.1.2.tgz#0427580dcf180b2d80b8be3f6eec5dd3df25136e"
+builder-util@3.2.1, builder-util@^3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/builder-util/-/builder-util-3.2.1.tgz#3b4f4df06cc30307a89343caa0dd361eae363ba5"
   dependencies:
     "7zip-bin" "^2.2.7"
     bluebird-lst "^1.0.5"
-    builder-util-runtime "^2.5.0"
-    chalk "^2.3.0"
-    debug "^3.1.0"
-    fs-extra-p "^4.4.4"
-    ini "^1.3.4"
-    is-ci "^1.0.10"
-    js-yaml "^3.10.0"
-    lazy-val "^1.0.2"
-    node-emoji "^1.8.1"
-    semver "^5.4.1"
-    source-map-support "^0.5.0"
-    stat-mode "^0.2.2"
-    temp-file "^2.0.3"
-    tunnel-agent "^0.6.0"
-
-builder-util@^3.1.1, builder-util@^3.1.2:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/builder-util/-/builder-util-3.2.0.tgz#08900f046c6b09c22a1f235f18644ae9eb963bc4"
-  dependencies:
-    "7zip-bin" "^2.2.7"
-    bluebird-lst "^1.0.5"
-    builder-util-runtime "^2.5.0"
+    builder-util-runtime "^3.0.0"
     chalk "^2.3.0"
     debug "^3.1.0"
     fs-extra-p "^4.4.4"
@@ -1794,13 +1772,6 @@ crocket@^0.9.11:
   dependencies:
     xpipe "*"
 
-cross-env@^5.1.1:
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/cross-env/-/cross-env-5.1.1.tgz#b6d8ab97f304c0f71dae7277b75fe424c08dfa74"
-  dependencies:
-    cross-spawn "^5.1.0"
-    is-windows "^1.0.0"
-
 cross-spawn@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-3.0.1.tgz#1256037ecb9f0c5f79e3d6ef135e30770184b982"
@@ -1808,7 +1779,7 @@ cross-spawn@^3.0.0:
     lru-cache "^4.0.1"
     which "^1.2.9"
 
-cross-spawn@^5.0.1, cross-spawn@^5.1.0:
+cross-spawn@^5.0.1:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-5.1.0.tgz#e8bd0efee58fcff6f8f94510a0a554bbfa235449"
   dependencies:
@@ -1950,10 +1921,6 @@ csso@~2.3.1:
     clap "^1.0.9"
     source-map "^0.5.3"
 
-cuint@^0.2.2:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/cuint/-/cuint-0.2.2.tgz#408086d409550c2631155619e9fa7bcadc3b991b"
-
 currently-unhandled@^0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/currently-unhandled/-/currently-unhandled-0.4.1.tgz#988df33feab191ef799a61369dd76c17adf957ea"
@@ -2091,12 +2058,12 @@ diffie-hellman@^5.0.0:
     miller-rabin "^4.0.0"
     randombytes "^2.0.0"
 
-dmg-builder@2.1.4:
-  version "2.1.4"
-  resolved "https://registry.yarnpkg.com/dmg-builder/-/dmg-builder-2.1.4.tgz#5789b5e3dbff3b4ea7a9db139e8d292af45832ed"
+dmg-builder@2.1.6:
+  version "2.1.6"
+  resolved "https://registry.yarnpkg.com/dmg-builder/-/dmg-builder-2.1.6.tgz#a37f0c8360794a7051a30a571582968cb1e3ce30"
   dependencies:
     bluebird-lst "^1.0.5"
-    builder-util "^3.1.2"
+    builder-util "^3.2.1"
     debug "^3.1.0"
     fs-extra-p "^4.4.4"
     iconv-lite "^0.4.19"
@@ -2202,26 +2169,25 @@ ejs@^2.5.7:
   version "2.5.7"
   resolved "https://registry.yarnpkg.com/ejs/-/ejs-2.5.7.tgz#cc872c168880ae3c7189762fd5ffc00896c9518a"
 
-electron-builder@19.42.2:
-  version "19.42.2"
-  resolved "https://registry.yarnpkg.com/electron-builder/-/electron-builder-19.42.2.tgz#202210fb0c202c34ef81f626a59c8260a18a4b9c"
+electron-builder@19.45.0:
+  version "19.45.0"
+  resolved "https://registry.yarnpkg.com/electron-builder/-/electron-builder-19.45.0.tgz#4a4d9eef6fa2b94d35f5a6e124e0305257a0c0f6"
   dependencies:
     "7zip-bin" "^2.2.7"
-    app-package-builder "1.3.2"
+    app-package-builder "1.5.0"
     asar-integrity "0.2.3"
     async-exit-hook "^2.0.1"
     bluebird-lst "^1.0.5"
-    builder-util "3.1.2"
-    builder-util-runtime "2.5.0"
+    builder-util "3.2.1"
+    builder-util-runtime "3.1.0"
     chalk "^2.3.0"
     chromium-pickle-js "^0.2.0"
-    cuint "^0.2.2"
     debug "^3.1.0"
-    dmg-builder "2.1.4"
+    dmg-builder "2.1.6"
     ejs "^2.5.7"
     electron-download-tf "4.3.4"
     electron-osx-sign "0.4.7"
-    electron-publish "19.42.0"
+    electron-publish "19.45.0"
     fs-extra-p "^4.4.4"
     hosted-git-info "^2.5.0"
     is-ci "^1.0.10"
@@ -2314,13 +2280,13 @@ electron-osx-sign@0.4.7:
     minimist "^1.2.0"
     plist "^2.1.0"
 
-electron-publish@19.42.0:
-  version "19.42.0"
-  resolved "https://registry.yarnpkg.com/electron-publish/-/electron-publish-19.42.0.tgz#d8744d20626d6c7b237547508f332b2999cecda5"
+electron-publish@19.45.0:
+  version "19.45.0"
+  resolved "https://registry.yarnpkg.com/electron-publish/-/electron-publish-19.45.0.tgz#7cdcf4f54dd821bffaf4dcc59b21223cfbd8ac4c"
   dependencies:
     bluebird-lst "^1.0.5"
-    builder-util "^3.1.1"
-    builder-util-runtime "^2.5.0"
+    builder-util "^3.2.1"
+    builder-util-runtime "^3.1.0"
     chalk "^2.3.0"
     fs-extra-p "^4.4.4"
     mime "^2.0.3"
@@ -3630,10 +3596,6 @@ is-upper-case@^1.1.0:
 is-utf8@^0.2.0:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/is-utf8/-/is-utf8-0.2.1.tgz#4b0da1442104d1b336340e80797e865cf39f7d72"
-
-is-windows@^1.0.0:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/is-windows/-/is-windows-1.0.1.tgz#310db70f742d259a16a369202b51af84233310d9"
 
 is-wsl@^1.1.0:
   version "1.1.0"
