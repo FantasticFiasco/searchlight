@@ -5,7 +5,7 @@
             <ul class="nav">
                 <li class="nav-item" v-for="item in navItems" :key="item.url">
                     <template>
-                        <SidebarNavLink :name="item.name" :url="item.url" :icon="item.icon" />
+                        <SidebarNavLink :name="item.name" :url="item.url" :icon="item.icon" :badge="item.badge" />
                     </template>
                 </li>
             </ul>

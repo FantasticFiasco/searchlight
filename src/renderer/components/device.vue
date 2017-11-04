@@ -29,9 +29,8 @@ import Vue from 'vue';
 import 'vuex';
 import { Component, Inject, Prop } from 'vue-property-decorator';
 
-import { ANALYTICS_SERVICE } from '../dependency-injection';
 import { Device as Model } from '../models';
-import { AnalyticsService, InvalidDeviceIconEvent } from '../services';
+import { ANALYTICS_SERVICE, AnalyticsService, InvalidDeviceIconEvent } from '../services';
 import { Heartbeats } from './heartbeats';
 import * as axisWeb from './helpers/axis-web';
 

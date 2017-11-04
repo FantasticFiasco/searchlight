@@ -5,11 +5,23 @@ sudo: false
 language: node_js
 node_js: "8"
 
+env:
+  global:
+    - ELECTRON_CACHE=$HOME/.cache/electron
+    - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
+
 os:
   - osx
 
+before_cache:
+  - rm -rf $HOME/.cache/electron-builder/wine
+
 cache:
   yarn: true
+  directories:
+  - $HOME/.cache/electron
+  - $HOME/.cache/electron-builder
+  - $HOME/.npm/_prebuilds
 
 before_install:
   - yarn global add greenkeeper-lockfile@1
@@ -19,7 +31,11 @@ before_script:
 
 script:
   - echo -e "$(curl --silent https://raw.githubusercontent.com/FantasticFiasco/logo/master/logo.ansi)"
-  - yarn compile && yarn lint
+  - yarn lint
+#  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then yarn dist; fi
+#  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then yarn dist --mac --win; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then yarn dist --win; fi
+
 
 after_script:
   - greenkeeper-lockfile-upload

@@ -5,18 +5,18 @@ import App from './app.vue';
 import { router } from './router';
 import { store } from './store';
 
-Vue.use(BootstrapVue);
-
-// tslint:disable:no-unused-expression
-new Vue({
-    el: '#app',
-    store,
-    router,
-    render: (h) => h(App),
-});
-
 document.body.classList.add(
     'app',
     'sidebar-fixed',
     'footer-fixed',
 );
+
+Vue.use(BootstrapVue);
+
+new Vue({
+    components: { App },
+    router,
+    store,
+    template: '<App />',
+})
+.$mount('#app');

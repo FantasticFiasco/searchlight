@@ -2,27 +2,25 @@ import * as expect from '@fantasticfiasco/expect';
 import Vue from 'vue';
 import { Mutation } from 'vuex';
 
-import { State } from './state';
+import { Heartbeat, State } from './state';
 
 /**
  * Adds a heartbeat to the store.
- * @param state The current state of the store
- * @param heartbeat The heartbeat to add to the store
+ * @param state the current state of the store
+ * @param heartbeat the heartbeat to add to the store
  */
-export const addHeartbeat: Mutation<State> = (state: State, heartbeat: { macAddress: string, timestamp: Date }) => {
+export const addHeartbeat: Mutation<State> = (state: State, mutation: Heartbeat) => {
     expect.toExist(state);
-    expect.toExist(heartbeat);
-    expect.toExist(heartbeat.macAddress);
-    expect.toExist(heartbeat.timestamp);
+    expect.toExist(mutation);
 
-    let heartbeats = state.heartbeats[heartbeat.macAddress];
+    let heartbeats = state[mutation.macAddress];
     if (!heartbeats) {
         heartbeats = [];
-        Vue.set(state.heartbeats, heartbeat.macAddress, heartbeats);
+        Vue.set(state, mutation.macAddress, heartbeats);
     }
 
     // Add heartbeat
-    heartbeats.push(heartbeat.timestamp);
+    heartbeats.push(mutation.timestamp);
 
     // Remove heartbeats that are to old
     const now = new Date();

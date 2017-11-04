@@ -3,6 +3,7 @@
   "compilerOptions": {
     "baseUrl": "src",
     "removeComments": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "strictFunctionTypes": false
   }
 }

@@ -2,9 +2,9 @@ import * as expect from '@fantasticfiasco/expect';
 import * as Axis from 'axis-discovery';
 import { ipcMain } from 'electron';
 
-import * as ChannelNames from 'common/channel-names';
+import * as ChannelNames from 'common/discovery/channel-names';
 import * as log from '../log';
-import { IDiscovery } from './';
+import { IDiscovery } from './i-discovery';
 
 /**
  * Class mocking discovered Axis devices on the network for development
@@ -40,7 +40,7 @@ export class DiscoveryMock implements IDiscovery {
      * addresses.
      */
     public start(): Promise<void> {
-        log.info('DiscoveryMock - start');
+        log.info('DiscoveryMock', 'start');
         return Promise.resolve();
     }
 
@@ -48,12 +48,12 @@ export class DiscoveryMock implements IDiscovery {
      * Stop listening for device advertisements.
      */
     public stop(): Promise<void> {
-        log.info('DiscoveryMock - stop');
+        log.info('DiscoveryMock', 'stop');
         return Promise.resolve();
     }
 
     private onSearch() {
-        log.info('DiscoveryMock - search');
+        log.info('DiscoveryMock', 'search');
 
         for (const device of this.connectedDevices) {
             this.send(ChannelNames.DISCOVERY_DEVICE_HELLO, device);
@@ -64,12 +64,12 @@ export class DiscoveryMock implements IDiscovery {
         const result = Math.random();
 
         if (result < 0.5) {
-            log.info('DiscoveryMock - no connect/disconnect update');
+            log.info('DiscoveryMock', 'no connect/disconnect update');
             return;
         }
 
         if (result < 0.75 && this.connectedDevices.length > 0) {
-            log.info('DiscoveryMock - simulate disconnection');
+            log.info('DiscoveryMock', 'simulate disconnection');
 
             const index = Math.floor(this.connectedDevices.length * Math.random());
             const disconnectedDevice = this.connectedDevices.splice(index, 1)[0];
@@ -77,7 +77,7 @@ export class DiscoveryMock implements IDiscovery {
 
             this.send(ChannelNames.DISCOVERY_DEVICE_GOODBYE, disconnectedDevice);
         } else if (this.disconnectedDevices.length > 0) {
-            log.info('DiscoveryMock - simulate connection');
+            log.info('DiscoveryMock', 'simulate connection');
 
             const index = Math.floor(this.disconnectedDevices.length * Math.random());
             const connectedDevice = this.disconnectedDevices.splice(index, 1)[0];

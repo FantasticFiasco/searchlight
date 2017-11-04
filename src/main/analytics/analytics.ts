@@ -2,10 +2,10 @@ import * as expect from '@fantasticfiasco/expect';
 import { ipcMain } from 'electron';
 import * as ua from 'universal-analytics';
 
-import { EventWithValue, PageView } from 'common/analytics';
-import * as ChannelNames from 'common/channel-names';
+import { PageViewEvent, ValueEvent } from 'common/analytics';
+import * as ChannelNames from 'common/analytics/channel-names';
+import * as config from '../config.json';
 import * as log from './../log';
-import * as config from './config.json';
 
 /**
  * Class reporting to Universal Analytics.
@@ -24,11 +24,11 @@ export class Analytics {
         expect.toBeTrue(Analytics.IdFormat.test(clientId));
         expect.toBeTrue(Analytics.IdFormat.test(userId));
 
-        log.info('Analytics - client id', clientId);
-        log.info('Analytics - user id', userId);
+        log.info('Analytics', 'client id', clientId);
+        log.info('Analytics', 'user id', userId);
 
         const options: ua.VisitorOptions = {
-            tid: (config as any).trackingId,
+            tid: (config as any).analytics.trackingId,
             cid: clientId,
             uid: userId,
             https: true,
@@ -39,10 +39,10 @@ export class Analytics {
         // Register for messages sent from the renderer
         ipcMain.on(
             ChannelNames.ANALYTICS_REPORT_EVENT_WITH_VALUE,
-            (event: any, arg: EventWithValue) => this.reportEventWithValue(arg.category, arg.action, arg.label, arg.value));
+            (event: any, arg: ValueEvent) => this.reportEventWithValue(arg.category, arg.action, arg.label, arg.value));
         ipcMain.on(
             ChannelNames.ANALYTICS_REPORT_PAGE_VIEW,
-            (event: any, arg: PageView) => this.reportPageView(arg.path));
+            (event: any, arg: PageViewEvent) => this.reportPageView(arg.path));
     }
 
     /**
@@ -54,7 +54,7 @@ export class Analytics {
         expect.toExist(key);
         expect.toExist(value);
 
-        log.info('Analytics - enrich', key, value);
+        log.info('Analytics', 'enrich', key, value);
 
         this.visitor.set(key, value);
     }
@@ -67,7 +67,7 @@ export class Analytics {
         expect.toExist(path);
         expect.toBeTrue(path.startsWith('/'));
 
-        log.info('Analytics - reportPageView', path);
+        log.info('Analytics', 'reportPageView', path);
 
         this.visitor.pageview(path, this.errorHandler);
     }
@@ -81,7 +81,7 @@ export class Analytics {
         expect.toExist(category);
         expect.toExist(action);
 
-        log.info('Analytics - reportEvent', category, action);
+        log.info('Analytics', 'reportEvent', category, action);
 
         this.visitor.event(category, action, this.errorHandler);
     }
@@ -98,7 +98,7 @@ export class Analytics {
         expect.toExist(action);
         expect.toExist(label);
 
-        log.info('Analytics - reportEventWithValue', category, action, label, value);
+        log.info('Analytics', 'reportEventWithValue', category, action, label, value);
 
         if (value) {
             this.visitor.event(category, action, label, value, this.errorHandler);
@@ -115,7 +115,7 @@ export class Analytics {
     public reportException(description: string, fatal: boolean = false) {
         expect.toExist(description);
 
-        log.info('Analytics - reportException', description, fatal);
+        log.info('Analytics', 'reportException', description, fatal);
 
         this.visitor.exception(description, fatal, this.errorHandler);
     }
@@ -131,7 +131,7 @@ export class Analytics {
         expect.toExist(variable);
         expect.toBeTrue(time >= 0);
 
-        log.info('Analytics - reportDuration', category, variable, time);
+        log.info('Analytics', 'reportDuration', category, variable, time);
 
         this.visitor.timing(category, variable, time, this.errorHandler);
     }

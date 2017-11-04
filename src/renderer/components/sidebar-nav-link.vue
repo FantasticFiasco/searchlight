@@ -1,6 +1,7 @@
 <template>
     <router-link :to="url" class="nav-link">
         <i :class="icon"></i> {{ name }}
+        <b-badge v-if="badge" variant="primary">{{ badge }}</b-badge>
     </router-link>
 </template>
 
@@ -18,6 +19,8 @@ export default class SidebarNavLink extends Vue {
 
     @Prop({ type: String, default: '' })
     public icon: string;
+
+    @Prop({ type: String, default: '' })
+    public badge: string;
 }
 </script>
-
