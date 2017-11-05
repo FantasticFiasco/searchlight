@@ -1,7 +1,7 @@
 import * as expect from '@fantasticfiasco/expect';
-import { ProgressInfo } from 'builder-util-runtime';
+import { ProgressInfo, UpdateInfo } from 'builder-util-runtime';
 import { ipcMain } from 'electron';
-import { autoUpdater, VersionInfo } from 'electron-updater';
+import { autoUpdater } from 'electron-updater';
 
 import { DownloadProgressEvent, NoUpdatesAvailableEvent, RestartRequiredEvent } from 'common/application-updates';
 import * as ChannelNames from 'common/application-updates/channel-names';
@@ -53,10 +53,10 @@ export class ApplicationUpdates implements IApplicationUpdates {
         autoUpdater.logger = null;
 
         autoUpdater.on('checking-for-update', () => this.onCheckingForUpdates());
-        autoUpdater.on('update-available', (version: VersionInfo) => this.onUpdateAvailable(version));
-        autoUpdater.on('update-not-available', (version: VersionInfo) => this.onUpdateNotAvailable(version));
+        autoUpdater.on('update-available', (version: UpdateInfo) => this.onUpdateAvailable(version));
+        autoUpdater.on('update-not-available', (version: UpdateInfo) => this.onUpdateNotAvailable(version));
         autoUpdater.on('download-progress', (progress: ProgressInfo) => this.onDownloadProgress(progress));
-        autoUpdater.on('update-downloaded', (version: VersionInfo) => this.onUpdateDownloaded(version));
+        autoUpdater.on('update-downloaded', (version: UpdateInfo) => this.onUpdateDownloaded(version));
         autoUpdater.on('error', (error: Error) => this.onError(error));
     }
 
@@ -88,13 +88,13 @@ export class ApplicationUpdates implements IApplicationUpdates {
         this.state = State.CHECKING_FOR_UPDATES;
     }
 
-    private onUpdateAvailable(version: VersionInfo) {
+    private onUpdateAvailable(version: UpdateInfo) {
         log.info('ApplicationUpdates', `update available with version ${version.version}`);
 
         this.state = State.UPDATES_AVAILABLE;
     }
 
-    private onUpdateNotAvailable(version: VersionInfo) {
+    private onUpdateNotAvailable(version: UpdateInfo) {
         log.info('ApplicationUpdates', `update not available (latest version: ${version.version}, downgrade is ${autoUpdater.allowDowngrade ? 'allowed' : 'disallowed'})`);
 
         this.state = State.IDLE;
@@ -108,7 +108,7 @@ export class ApplicationUpdates implements IApplicationUpdates {
         this.send(ChannelNames.APPLICATION_UPDATES_CHECK_RESPONSE, new DownloadProgressEvent(progress.percent));
     }
 
-    private onUpdateDownloaded(version: VersionInfo) {
+    private onUpdateDownloaded(version: UpdateInfo) {
         log.info('ApplicationUpdates', `update with version ${version.version} has been downloaded`);
 
         this.state = State.DOWNLOADED_UPDATES;
