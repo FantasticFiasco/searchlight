@@ -59,6 +59,11 @@
       ]
     }
   },
+  "greenkeeper": {
+    "ignore": [
+      "vue"
+    ]
+  },
   "dependencies": {
     "@fantasticfiasco/expect": "1.0.0",
     "axis-discovery": "1.0.0",
@@ -82,6 +87,7 @@
     "bootstrap": "4.0.0-beta.2",
     "bootstrap-vue": "1.0.0-beta.7",
     "chart.js": "2.7.0",
+    "cross-env": "5.1.1",
     "devtron": "1.4.0",
     "electron": "1.7.8",
     "electron-builder": "19.42.2",
@@ -89,7 +95,7 @@
     "electron-webpack-ts": "1.2.0",
     "electron-webpack-vue": "1.1.0",
     "json": "9.0.6",
-    "node-sass": "4.5.3",
+    "node-sass": "4.6.0",
     "sass-loader": "6.0.6",
     "tslint": "5.8.0",
     "typescript": "2.6.1",
