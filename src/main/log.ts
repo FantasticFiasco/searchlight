@@ -1,5 +1,7 @@
 import * as log from 'electron-log';
 
+import * as environment from 'common/environment';
+
 export function debug(context: string, ...params: any[]) {
     log.debug(`${context} -`, ...params);
 }
@@ -16,5 +18,10 @@ export function error(context: string, ...params: any[]) {
     log.error(`${context} -`, ...params);
 }
 
-log.transports.console.level = 'debug';
-log.transports.file.level = 'debug';
+if (environment.isDev()) {
+    log.transports.console.level = 'debug';
+    log.transports.file.level = 'debug';
+} else {
+    log.transports.console.level = false;
+    log.transports.file.level = 'info';
+}
