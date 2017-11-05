@@ -6,6 +6,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
+
 import {
     ANALYTICS_SERVICE,
     APPLICATION_UPDATES_SERVICE,
@@ -16,11 +17,15 @@ import {
     DiscoveryService,
     HeartbeatService
 } from './services';
+import * as vueHandlers from './vue-handlers';
 
 const analyticsService = new AnalyticsService();
 const applicationUpdatesService = new ApplicationUpdatesService();
 const discoveryService = new DiscoveryService();
 const heartbeatService = new HeartbeatService(discoveryService);
+
+// Enable reporting exceptions from global handlers
+vueHandlers.reportExceptions(analyticsService);
 
 @Component({
     name: 'app',

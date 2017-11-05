@@ -1,4 +1,4 @@
-import { PageViewEvent, ValueEvent } from 'common/analytics';
+import { ExceptionEvent, PageViewEvent, ValueEvent } from 'common/analytics';
 import * as ChannelNames from 'common/analytics/channel-names';
 import { ipcRenderer } from 'electron';
 
@@ -26,5 +26,13 @@ export class AnalyticsService {
      */
     public reportEventWithValue(event: ValueEvent) {
         ipcRenderer.send(ChannelNames.ANALYTICS_REPORT_EVENT_WITH_VALUE, event);
+    }
+
+    /**
+     * Report application exception
+     * @param event event describing the occurrance
+     */
+    public reportException(event: ExceptionEvent) {
+        ipcRenderer.send(ChannelNames.ANALYTICS_REPORT_EXCEPTION, event);
     }
 }
