@@ -3,7 +3,7 @@
         <b-alert :show="devices.length === 0">
             <h3>Staring into the void...</h3>
             <hr>
-            <h5>Well this was unfortunately, your device is nowhere to be found <i class="fa fa-frown-o"></i></h5>
+            <h5>Well this was unfortunate, your device is nowhere to be found <i class="fa fa-frown-o"></i></h5>
             <br>
             <p>
                 Before continuing please make sure that the following conditions are met:
