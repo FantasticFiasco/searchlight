@@ -1,15 +1,19 @@
 <template>
     <div class="animated fadeIn">
         <b-alert :show="devices.length === 0" variant="warning">
-            <h3>Staring up into the void...</h3>
-            <h3><i class="fa fa-exclamation-circle"></i>We didn't find any devices</h3>
+            <h3>Staring up into the void</h3>
             <hr>
+            <h5>Well this was awkward, your devices are nowhere to be found...</h5>
+            <br>
             <p>
-                Is the device connected and its LED shining with a steady green light?
+                A device should be found if the following criteria are met:
             </p>
+            <ul>
+                <li>The device is connected</li>
+                <li>Its LED is shining with a steady green light</li>
+            </ul>
             <p>
-                If not please troubleshout the device using
-                <a href="#" class="alert-link">instructions from Axis Communications</a>
+                If the above is true, and you still are unable to find your device, proceed to troubleshoot the problem using <a href="#" class="alert-link">Axis Communication support</a>.
             </p>
         </b-alert>
         <div class="row">
@@ -49,5 +53,8 @@ export default class Devices extends Vue {
     public mounted() {
         this.analyticsService.reportPageView(new PageViewEvent('/devices'));
     }
+
+
+    https://www.axis.com/learning/web-articles/troubleshooting-axis-cameras
 }
 </script>
