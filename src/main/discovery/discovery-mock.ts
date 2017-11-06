@@ -13,7 +13,7 @@ import { IDiscovery } from './i-discovery';
 export class DiscoveryMock implements IDiscovery {
     private readonly webContents: Electron.WebContents;
     private readonly connectedDevices: Axis.Device[];
-    private readonly disconnectedDevices: Axis.Device[];
+    // private readonly disconnectedDevices: Axis.Device[];
 
     /**
      * Initializes a new instance of the class.
@@ -23,7 +23,7 @@ export class DiscoveryMock implements IDiscovery {
 
         this.webContents = webContents;
         this.connectedDevices = [];
-        this.disconnectedDevices = [];
+        // this.disconnectedDevices = [];
 
         // Register for messages sent from the renderer
         ipcMain.on(ChannelNames.DISCOVERY_SEARCH, () => this.onSearch());
@@ -32,7 +32,7 @@ export class DiscoveryMock implements IDiscovery {
             this.connectedDevices.push(device);
         }
 
-        setInterval(() => this.onSimulateConnectionStatus(), 5000);
+        // setInterval(() => this.onSimulateConnectionStatus(), 5000);
     }
 
     /**
@@ -55,43 +55,43 @@ export class DiscoveryMock implements IDiscovery {
     private onSearch() {
         log.info('DiscoveryMock', 'search');
 
-        for (const device of this.connectedDevices) {
-            this.send(ChannelNames.DISCOVERY_DEVICE_HELLO, device);
-        }
+        // for (const device of this.connectedDevices) {
+        //     this.send(ChannelNames.DISCOVERY_DEVICE_HELLO, device);
+        // }
     }
 
-    private onSimulateConnectionStatus() {
-        const result = Math.random();
+    // private onSimulateConnectionStatus() {
+    //     const result = Math.random();
 
-        if (result < 0.5) {
-            log.info('DiscoveryMock', 'no connect/disconnect update');
-            return;
-        }
+    //     if (result < 0.5) {
+    //         log.info('DiscoveryMock', 'no connect/disconnect update');
+    //         return;
+    //     }
 
-        if (result < 0.75 && this.connectedDevices.length > 0) {
-            log.info('DiscoveryMock', 'simulate disconnection');
+    //     if (result < 0.75 && this.connectedDevices.length > 0) {
+    //         log.info('DiscoveryMock', 'simulate disconnection');
 
-            const index = Math.floor(this.connectedDevices.length * Math.random());
-            const disconnectedDevice = this.connectedDevices.splice(index, 1)[0];
-            this.disconnectedDevices.push(disconnectedDevice);
+    //         const index = Math.floor(this.connectedDevices.length * Math.random());
+    //         const disconnectedDevice = this.connectedDevices.splice(index, 1)[0];
+    //         this.disconnectedDevices.push(disconnectedDevice);
 
-            this.send(ChannelNames.DISCOVERY_DEVICE_GOODBYE, disconnectedDevice);
-        } else if (this.disconnectedDevices.length > 0) {
-            log.info('DiscoveryMock', 'simulate connection');
+    //         this.send(ChannelNames.DISCOVERY_DEVICE_GOODBYE, disconnectedDevice);
+    //     } else if (this.disconnectedDevices.length > 0) {
+    //         log.info('DiscoveryMock', 'simulate connection');
 
-            const index = Math.floor(this.disconnectedDevices.length * Math.random());
-            const connectedDevice = this.disconnectedDevices.splice(index, 1)[0];
-            this.connectedDevices.push(connectedDevice);
+    //         const index = Math.floor(this.disconnectedDevices.length * Math.random());
+    //         const connectedDevice = this.disconnectedDevices.splice(index, 1)[0];
+    //         this.connectedDevices.push(connectedDevice);
 
-            this.send(ChannelNames.DISCOVERY_DEVICE_HELLO, connectedDevice);
-        }
-    }
+    //         this.send(ChannelNames.DISCOVERY_DEVICE_HELLO, connectedDevice);
+    //     }
+    // }
 
-    private send(channel: string, ...args: any[]) {
-        if (!this.webContents.isDestroyed()) {
-            this.webContents.send(channel, ...args);
-        }
-    }
+    // private send(channel: string, ...args: any[]) {
+    //     if (!this.webContents.isDestroyed()) {
+    //         this.webContents.send(channel, ...args);
+    //     }
+    // }
 
     private createDevices(): Axis.Device[] {
         return [
