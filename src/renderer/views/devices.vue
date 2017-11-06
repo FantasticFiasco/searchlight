@@ -1,19 +1,21 @@
 <template>
     <div class="animated fadeIn">
-        <b-alert :show="devices.length === 0" variant="warning">
-            <h3>Staring up into the void</h3>
+        <b-alert :show="devices.length === 0">
+            <h3>Staring into the void...</h3>
             <hr>
-            <h5>Well this was awkward, your devices are nowhere to be found...</h5>
+            <h5>Well this was unfortunately, your device is nowhere to be found <i class="fa fa-frown-o"></i></h5>
             <br>
             <p>
-                A device should be found if the following criteria are met:
+                Before continuing please make sure that the following conditions are met:
             </p>
             <ul>
-                <li>The device is connected</li>
-                <li>Its LED is shining with a steady green light</li>
+                <li>The device is connected to the network</li>
+                <li>The LED is shining with a steady green light</li>
             </ul>
             <p>
-                If the above is true, and you still are unable to find your device, proceed to troubleshoot the problem using <a href="#" class="alert-link">Axis Communication support</a>.
+                If the device still isn't found, head over to
+                <a @click="openSupportPage" href="#" class="alert-link">Axis Communication support</a>
+                and continue troubleshooting your issue.
             </p>
         </b-alert>
         <div class="row">
@@ -25,6 +27,7 @@
 </template>
 
 <script lang="ts">
+import { shell } from 'electron';
 import Vue from 'vue';
 import 'vuex';
 import { Component, Inject } from 'vue-property-decorator';
@@ -54,7 +57,10 @@ export default class Devices extends Vue {
         this.analyticsService.reportPageView(new PageViewEvent('/devices'));
     }
 
+    public openSupportPage(e: Event) {
+        e.preventDefault();
 
-    https://www.axis.com/learning/web-articles/troubleshooting-axis-cameras
+        shell.openExternal('https://www.axis.com/learning/web-articles/troubleshooting-axis-cameras');
+    }
 }
 </script>
