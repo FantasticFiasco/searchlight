@@ -6453,9 +6453,9 @@ wbuf@^1.1.0, wbuf@^1.7.2:
   dependencies:
     minimalistic-assert "^1.0.0"
 
-webpack-build-notifier@0.1.16:
-  version "0.1.16"
-  resolved "https://registry.yarnpkg.com/webpack-build-notifier/-/webpack-build-notifier-0.1.16.tgz#c4893dc1fe8653709d6fd835eeab0d31a553e48f"
+webpack-build-notifier@0.1.17:
+  version "0.1.17"
+  resolved "https://registry.yarnpkg.com/webpack-build-notifier/-/webpack-build-notifier-0.1.17.tgz#1ae20209c10817607d5acc346ee5bcd027f1cb00"
   dependencies:
     ansi-regex "^2.0.0"
     node-notifier "^4.1.0"
