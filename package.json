@@ -105,6 +105,6 @@
     "vue-router": "3.0.1",
     "vuex": "3.0.1",
     "webpack": "3.8.1",
-    "webpack-build-notifier": "0.1.16"
+    "webpack-build-notifier": "0.1.17"
   }
 }
