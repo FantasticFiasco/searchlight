@@ -134,5 +134,4 @@ export class DiscoveryMock implements IDiscovery {
             modelNumber,
             `http://${address}:${port}/`);
     }
-
 }

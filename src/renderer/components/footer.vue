@@ -15,7 +15,7 @@ export default class Footer extends Vue {
         const deviceCount = this.$store.state.devices.length;
         switch (deviceCount) {
             case 0:
-                return 'No devices found';
+                return '';
             case 1:
                 return '1 device found';
             default:
