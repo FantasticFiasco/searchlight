@@ -19,9 +19,13 @@ before_cache:
 cache:
   yarn: true
   directories:
-  - $HOME/.cache/electron
-  - $HOME/.cache/electron-builder
-  - $HOME/.npm/_prebuilds
+    - $HOME/.cache/electron
+    - $HOME/.cache/electron-builder
+    - $HOME/.npm/_prebuilds
+
+branches:
+  except:
+    - gh-pages
 
 before_install:
   - yarn global add greenkeeper-lockfile@1
