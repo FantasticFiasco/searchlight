@@ -94,7 +94,7 @@
     "electron-webpack-ts": "1.2.0",
     "electron-webpack-vue": "1.1.0",
     "json": "9.0.6",
-    "node-sass": "4.6.0",
+    "node-sass": "4.6.1",
     "sass-loader": "6.0.6",
     "tslint": "5.8.0",
     "typescript": "2.6.1",
