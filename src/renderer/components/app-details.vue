@@ -38,7 +38,7 @@
             <h6 slot="header">Dependencies</h6>
             <div class="app-details-card-container">
                 <p>
-                    Searchlight has dependencies to the following components:
+                    Application has dependencies to the following components:
                 </p>
                 <ul>
                     <li>Electron version {{ electronVersion }}</li>
@@ -51,9 +51,12 @@
             <h6 slot="header">Legal</h6>
             <div class="app-details-card-container">
                 <p>
+                    Application is not in any way affiliated with Axis Communications.
+                </p>
+                <p>
                     <a @click="openLicenseWebPage" href="#">License</a>
                 </p>
-                <p>Copyright 2017 Mattias Kindborg</p>
+                <p>© Copyright 2017 Mattias Kindborg</p>
             </div>
         </b-card>
     </div>
