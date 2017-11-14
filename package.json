@@ -42,7 +42,8 @@
       "target": "nsis"
     },
     "nsis": {
-      "perMachine": "true"
+      "perMachine": "true",
+      "artifactName": "${productName}-setup.${ext}"
     }
   },
   "electronWebpack": {
