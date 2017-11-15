@@ -1,7 +1,7 @@
 {
   "name": "searchlight",
-  "version": "0.2.0",
-  "description": "A desktop application capable of finding Axis Communication cameras on the network.",
+  "version": "0.3.0",
+  "description": "A desktop application discovering Axis network video devices on your network.",
   "keywords": [
     "searchlight",
     "axis",
@@ -39,11 +39,13 @@
     "productName": "Searchlight",
     "compression": "maximum",
     "win": {
-      "target": "nsis"
-    },
-    "nsis": {
-      "perMachine": "true",
+      "target": "nsis",
       "artifactName": "${productName} Setup.${ext}"
+    },
+    "linux": {
+      "target": "AppImage",
+      "category": "Network",
+      "artifactName": "${productName}.${ext}"
     }
   },
   "electronWebpack": {
