@@ -43,7 +43,7 @@
     },
     "nsis": {
       "perMachine": "true",
-      "artifactName": "${productName}-setup.${ext}"
+      "artifactName": "${productName} Setup.${ext}"
     }
   },
   "electronWebpack": {
