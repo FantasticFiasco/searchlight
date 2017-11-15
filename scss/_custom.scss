@@ -79,6 +79,11 @@ $card-header-color: rgba(255,255,255,.5);
 
 // Application details card
 .app-details-card {
+    .app-icon {
+        width: 48px;
+        height: 48px;
+    }
+
     .app-title {
         display: inline;
         vertical-align: middle;

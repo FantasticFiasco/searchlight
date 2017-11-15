@@ -2,7 +2,7 @@
     <div>
         <b-card class="app-details-card">
             <div slot="header">
-                <img src="../assets/app-icon_48x48.png" />
+                <img class="app-icon" src="../assets/app-icon_128x128.png" />
                 <h4 class="app-title">Searchlight</h4>
             </div>
             <div class="app-details-card-container">
