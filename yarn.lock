@@ -1128,13 +1128,13 @@ boom@5.x.x:
   dependencies:
     hoek "4.x.x"
 
-bootstrap-vue@1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/bootstrap-vue/-/bootstrap-vue-1.0.2.tgz#6fe0222be4e01572fa83ff4478549f260c0cff8b"
+bootstrap-vue@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/bootstrap-vue/-/bootstrap-vue-1.1.0.tgz#01a1bd13bf0130a79d078a9aa5ce6ae16cc4136d"
   dependencies:
     lodash.startcase "^4.4.0"
     opencollective "^1.0.3"
-    popper.js "^1.12.6"
+    popper.js "^1.12.9"
     vue-functional-data-merge "^1.0.6"
 
 bootstrap@4.0.0-beta.2:
@@ -4875,9 +4875,9 @@ plist@^2.1.0:
     xmlbuilder "8.2.2"
     xmldom "0.1.x"
 
-popper.js@^1.12.6:
-  version "1.12.6"
-  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.12.6.tgz#91e12a97b07815258b76915d64044e8ac053d426"
+popper.js@^1.12.9:
+  version "1.12.9"
+  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.12.9.tgz#0dfbc2dff96c451bb332edcfcfaaf566d331d5b3"
 
 portfinder@^1.0.9:
   version "1.0.13"
