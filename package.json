@@ -32,20 +32,27 @@
     "lint:fix": "tslint --fix --exclude './src/**/*.d.ts' './src/**/*.ts'",
     "predist": "json -I -f ./src/main/config.json -e this.analytics.trackingId='process.env.UNIVERSAL_ANALYTICS_TRACKING_ID'",
     "dist": "yarn compile && electron-builder --publish onTagOrDraft",
-    "dist:dir": "yarn compile && electron-builder --dir -c.compression=store -c.mac.identity=null"
+    "dist:dir": "yarn compile && electron-builder --dir -c.compression=store -c.mac.identity=null",
+    "icons": "icon-gen --input ./assets/app-icon --output ./assets --type png --report"
   },
   "build": {
     "appId": "com.fantasticfiasco.searchlight",
     "productName": "Searchlight",
     "compression": "maximum",
-    "win": {
-      "target": "nsis",
-      "artifactName": "${productName} Setup.${ext}"
-    },
     "linux": {
       "target": "AppImage",
       "category": "Network",
       "artifactName": "${productName}.${ext}"
+    },
+    "mac": {
+      "target": "default",
+      "category": "public.app-category.utilities",
+      "electronUpdaterCompatibility": ">=2.16.0",
+      "artifactName": "${productName}.${ext}"
+    },
+    "win": {
+      "target": "nsis",
+      "artifactName": "${productName} Setup.${ext}"
     }
   },
   "electronWebpack": {
@@ -96,6 +103,7 @@
     "electron-webpack": "1.11.0",
     "electron-webpack-ts": "1.2.0",
     "electron-webpack-vue": "1.1.0",
+    "icon-gen": "1.1.5",
     "json": "9.0.6",
     "node-sass": "4.7.1",
     "sass-loader": "6.0.6",
