@@ -1,10 +1,7 @@
 <template>
     <div class="animated fadeIn">
-        <b-alert :show="devices.length === 0">
-            <h3>Staring into the void...</h3>
-            <hr>
-            <h5>Well this was unfortunate, your device is nowhere to be found <i class="fa fa-frown-o"></i></h5>
-            <br>
+        <b-alert :show="devices.length === 0" variant="warning">
+            <h3>Well this was unfortunate, your device is nowhere to be found</h3>
             <p>
                 Before continuing please make sure that the following conditions are met:
             </p>
