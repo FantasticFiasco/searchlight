@@ -1,6 +1,6 @@
 {
   "name": "searchlight",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "A desktop application discovering Axis network video devices on your network.",
   "keywords": [
     "searchlight",
@@ -41,18 +41,15 @@
     "compression": "maximum",
     "linux": {
       "target": "AppImage",
-      "category": "Network",
-      "artifactName": "${productName}.${ext}"
+      "category": "Network"
     },
     "mac": {
       "target": "default",
       "category": "public.app-category.utilities",
-      "electronUpdaterCompatibility": ">=2.16.0",
-      "artifactName": "${productName}.${ext}"
+      "electronUpdaterCompatibility": ">=2.16.0"
     },
     "win": {
-      "target": "nsis",
-      "artifactName": "${productName} Setup.${ext}"
+      "target": "nsis"
     }
   },
   "electronWebpack": {
