@@ -41,18 +41,15 @@
     "compression": "maximum",
     "linux": {
       "target": "AppImage",
-      "category": "Network",
-      "artifactName": "${productName}.${ext}"
+      "category": "Network"
     },
     "mac": {
       "target": "default",
       "category": "public.app-category.utilities",
-      "electronUpdaterCompatibility": ">=2.16.0",
-      "artifactName": "${productName}.${ext}"
+      "electronUpdaterCompatibility": ">=2.16.0"
     },
     "win": {
-      "target": "nsis",
-      "artifactName": "${productName} Setup.${ext}"
+      "target": "nsis"
     }
   },
   "electronWebpack": {
