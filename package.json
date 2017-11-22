@@ -58,7 +58,7 @@
       "target": "nsis"
     },
     "nsis": {
-      "artifactName": "${productName} Setup ${version}.${ext}"
+      "artifactName": "${productName}-Setup-${version}.${ext}"
     }
   },
   "electronWebpack": {
