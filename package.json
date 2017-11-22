@@ -43,13 +43,22 @@
       "target": "AppImage",
       "category": "Network"
     },
+    "appImage": {
+      "artifactName":"${productName}-${version}-${arch}.${ext}"
+    },
     "mac": {
       "target": "default",
       "category": "public.app-category.utilities",
       "electronUpdaterCompatibility": ">=2.16.0"
     },
+    "dmg": {
+      "artifactName": "${productName}-${version}.${ext}"
+    },
     "win": {
       "target": "nsis"
+    },
+    "nsis": {
+      "artifactName": "${productName} Setup ${version}.${ext}"
     }
   },
   "electronWebpack": {
