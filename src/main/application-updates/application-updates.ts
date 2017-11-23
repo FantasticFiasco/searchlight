@@ -102,7 +102,7 @@ export class ApplicationUpdates implements IApplicationUpdates {
     }
 
     private onDownloadProgress(progress: ProgressInfo) {
-        log.debug('ApplicationUpdates', `download progress ${progress.percent.toFixed(2)}%`);
+        log.info('ApplicationUpdates', `download progress ${progress.percent.toFixed(2)}% (${progress.bytesPerSecond / 1024} kB/s)`);
 
         this.state = State.DOWNLOADING_UPDATES;
         this.send(ChannelNames.APPLICATION_UPDATES_CHECK_RESPONSE, new DownloadProgressEvent(progress.percent));
