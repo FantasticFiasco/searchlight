@@ -350,12 +350,12 @@ axis-discovery-ssdp@4.0.2:
     request "2.83.0"
     xml2js "0.4.19"
 
-axis-discovery@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/axis-discovery/-/axis-discovery-1.0.0.tgz#64ac723b52aab647f74fb855630b0885c58bed15"
+axis-discovery@1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/axis-discovery/-/axis-discovery-1.0.2.tgz#9d0eafac16f59e862df6beeffb56f98fc0f644e7"
   dependencies:
     "@fantasticfiasco/expect" "1.0.0"
-    debug "2.6.8"
+    debug "3.1.0"
 
 babel-code-frame@^6.11.0, babel-code-frame@^6.22.0, babel-code-frame@^6.26.0:
   version "6.26.0"
