@@ -18,7 +18,7 @@
                 <p v-else-if="isRequiringRestart">
                     <b-button @click="restartToUpdate" variant="primary">
                         New version available!<br>
-                        Restart to update
+                        Close to update
                     </b-button>
                 </p>
                 <p v-else>
