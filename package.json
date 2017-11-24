@@ -92,7 +92,7 @@
     "font-awesome": "4.7.0",
     "simple-line-icons": "2.4.1",
     "source-map-support": "0.5.0",
-    "universal-analytics": "0.4.15",
+    "universal-analytics": "0.4.16",
     "uuid": "3.1.0"
   },
   "devDependencies": {
