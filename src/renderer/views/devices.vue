@@ -15,11 +15,11 @@
                 and continue troubleshooting your issue.
             </p>
         </b-alert>
-        <div class="row">
-            <div class="col-sm-6 col-lg-3" v-for="device in devices" :key="device.macAddress">
+        <b-row>
+            <b-col xs="12" sm="6" lg="4" xl="3" v-for="device in devices" :key="device.macAddress">
                 <Device :device="device" />
-            </div>
-        </div>
+            </b-col>
+        </b-row>
     </div>
 </template>
 

@@ -3,10 +3,10 @@
         <div class="app-body">
             <Sidebar :navItems="views" />
             <main class="main">
-                <div class="container-fluid">
+                <b-container fluid>
                     <router-view>
                     </router-view>
-                </div>
+                </b-container>
             </main>
         </div>
         <AppFooter />
