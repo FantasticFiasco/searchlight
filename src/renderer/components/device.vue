@@ -56,7 +56,7 @@ export default class Device extends Vue {
     }
 
     public get name(): string {
-        return this.device.name || 'Unknown name';
+        return this.device.name || this.device.macAddress;
     }
 
     public get model(): string {
