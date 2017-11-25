@@ -56,11 +56,11 @@ export default class Device extends Vue {
     }
 
     public get name(): string {
-        return this.device.name || '';
+        return this.device.name || 'Unknown name';
     }
 
     public get model(): string {
-        return this.device.modelDescription || '';
+        return this.device.modelDescription || 'Unknown model';
     }
 
     public get isResponsive(): boolean {
