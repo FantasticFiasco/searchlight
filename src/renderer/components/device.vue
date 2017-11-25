@@ -10,7 +10,7 @@
             <h5 class="card-name">{{ name }}</h5>
             <div class="card-model">{{ model }}</div>
             <div class="card-links">
-                <div v-if="hasLiveView">
+                <div>
                     <i class="fa fa-eye fa-fw" />
                     <a @click="openLiveView" href="#">Live view</a>
                 </div>
@@ -63,10 +63,6 @@ export default class Device extends Vue {
         return this.device.modelDescription || '';
     }
 
-    public get hasLiveView(): boolean {
-        return this.device.liveViewUrl !== undefined;
-    }
-
     public get isResponsive(): boolean {
         return this.device.networkStatus.isResponsive;
     }
@@ -76,9 +72,8 @@ export default class Device extends Vue {
     public openLiveView(e: Event) {
         e.preventDefault();
 
-        if (this.device.liveViewUrl != undefined) {
-            shell.openExternal(this.device.liveViewUrl);
-        }
+        const url = this.device.liveViewUrl || `http://${this.device.address}`;
+        shell.openExternal(url);
     }
 
     public openProductPage(e: Event) {

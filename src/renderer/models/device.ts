@@ -14,6 +14,10 @@ export class Device {
          */
         public macAddress: string,
         /**
+         * The address.
+         */
+        public address: string,
+        /**
          * The name.
          */
         public name: string | undefined,
@@ -44,6 +48,7 @@ export class Device {
      */
     public update(other: Device) {
         this.macAddress = other.macAddress;
+        this.address = other.address;
         this.name = other.name || this.name;
         this.modelName = other.modelName || this.modelName;
         this.modelDescription = other.modelDescription || this.modelDescription;

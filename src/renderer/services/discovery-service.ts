@@ -70,6 +70,7 @@ export class DiscoveryService {
 
         return new Device(
             device.macAddress,
+            device.address,
             device.friendlyName,
             device.modelName,
             device.modelDescription,
