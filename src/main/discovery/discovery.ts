@@ -1,9 +1,11 @@
 import * as expect from '@fantasticfiasco/expect';
 import * as Axis from 'axis-discovery';
+import { Discovery as SsdpDiscovery } from 'axis-discovery-ssdp';
 import { ipcMain } from 'electron';
 
 import * as ChannelNames from 'common/discovery/channel-names';
 import * as log from '../log';
+import { getRequest } from './http';
 import { IDiscovery } from './i-discovery';
 
 /**
@@ -20,7 +22,7 @@ export class Discovery implements IDiscovery {
     constructor(webContents: Electron.WebContents) {
         expect.toExist(webContents);
 
-        this.discovery = new Axis.Discovery();
+        this.discovery = new Axis.Discovery(undefined, new SsdpDiscovery({ getRequest }));
         this.discovery.onHello((device: Axis.Device) => this.onHello(device));
         this.discovery.onGoodbye((device: Axis.Device) => this.onGoodbye(device));
         this.webContents = webContents;
