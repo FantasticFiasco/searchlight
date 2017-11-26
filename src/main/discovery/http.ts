@@ -5,14 +5,14 @@ export function getRequest(url: string): Promise<string> {
         const request: Electron.ClientRequest = net.request(url);
 
         request.on('response', (response: Electron.IncomingMessage) => {
-            let body: string;
+            let body = '';
 
             response.on('data', (chunk: Buffer) => {
-              body += chunk.toString();
+                body += chunk.toString();
             });
 
             response.on('end', () => {
-               resolve(body);
+                resolve(body);
             });
 
             response.on('error', (error: Error) => {
