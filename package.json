@@ -82,7 +82,7 @@
   },
   "dependencies": {
     "@fantasticfiasco/expect": "1.0.0",
-    "axis-discovery": "1.0.2",
+    "axis-discovery": "1.1.0",
     "axis-discovery-bonjour": "1.0.0",
     "axis-discovery-ssdp": "4.0.2",
     "electron-debug": "1.4.0",
