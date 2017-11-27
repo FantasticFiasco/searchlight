@@ -114,7 +114,7 @@
     "node-sass": "4.7.2",
     "sass-loader": "6.0.6",
     "tslint": "5.8.0",
-    "typescript": "2.6.1",
+    "typescript": "2.6.2",
     "vue": "2.5.2",
     "vue-chartjs": "2.8.7",
     "vue-class-component": "6.1.0",
