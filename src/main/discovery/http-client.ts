@@ -27,6 +27,14 @@ export class HttpClient implements IHttpClient {
                 });
             });
 
+            request.on('login', (authInfo: any) => {
+                reject(new Error('Proxy requiring authentication is not supported'));
+            });
+
+            request.on('error', (error: Error) => {
+                reject(error);
+            });
+
             request.end();
         });
     }
