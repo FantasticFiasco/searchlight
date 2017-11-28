@@ -4,7 +4,7 @@ import { net } from 'electron';
 export class HttpClient implements IHttpClient {
     public get(url: string): Promise<string> {
         return new Promise<string>((resolve, reject) => {
-            const request = net.request(url);
+            const request: Electron.ClientRequest = net.request(url);
 
             request.on('response', (response: Electron.IncomingMessage) => {
                 if (response.statusCode !== 200) {
