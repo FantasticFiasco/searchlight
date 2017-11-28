@@ -8,7 +8,7 @@ export function productPageUrl(modelNumber: string | undefined): string {
     }
 
     modelNumber = modelNumber.toLowerCase();
-    modelNumber = (modelNumberToProductPageExceptions[modelNumber] || modelNumber).replace(' ', '-');
+    modelNumber = (modelNumberToProductPageExceptions[modelNumber] || modelNumber).replace(/ /, '-');
     return `https://www.axis.com/products/axis-${modelNumber}`;
 }
 
@@ -27,11 +27,41 @@ export function iconUrl(modelNumber: string | undefined): string {
 }
 
 const modelNumberToProductPageExceptions: { [key: string]: string } = {
-    m3005: 'm3005-v',
-    m3007: 'm3007-p',
-    m3025: 'm3025-ve',
+    '212 ptz': '212',
+    '215 ptz': '215',
+    '216fd': '216',
+    '243q(1) blade': '243q',
+    '243q(2) blade': '243q',
+    '243q(3) blade': '243q',
+    '243q(4) blade': '243q',
 
-    p3367: 'p3367-v',
+    'a9188/-ve': 'a9188-ve',
+
+    'm3004': 'm3004-v',
+    'm3005': 'm3005-v',
+    'm3006': 'm3006-v',
+    'm3007': 'm3007-p',
+    'm3025': 'm3025-ve',
+    'm3027': 'm3027-pve',
+    'm3037': 'm3037-pve',
+
+    'p1365 mk ii': 'p1365',
+    'p1425-le mk ii': 'p1425-le',
+    'p3225-lv mk ii': 'p3225-lv',
+    'p3364': 'p3364-v',
+    'p3365': 'p3365-v',
+    'p3367': 'p3367-v',
+    'p3905-r mk ii': 'p3905-r',
+
+    'q3505': 'q3505-v',
+    'q3517': 'q3517-lv',
+    'q3617': 'q3617-ve',
+    'q3709 (center)': 'q3709-pve',
+    'q3709 (left)': 'q3709-pve',
+    'q3709 (right)': 'q3709-pve',
+    'q3709-pve (center)': 'q3709-pve',
+    'q3709-pve (left)': 'q3709-pve',
+    'q3709-pve (right)': 'q3709-pve',
 };
 
 const modelNumberToIconExceptions: { [key: string]: string } = {
@@ -53,6 +83,7 @@ const modelNumberToIconExceptions: { [key: string]: string } = {
     'm3006': 'm3006-v',
     'm3007': 'm3007-p',
     'm3025': 'm3025-ve',
+    'm3027': 'm3027-pve',
     'm3037': 'm3037-pve',
     'm3106-lve mk ii': 'm3106-lve',
 
