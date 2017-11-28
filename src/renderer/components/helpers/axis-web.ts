@@ -1,15 +1,15 @@
 /**
  * Returns the product page URL on www.axis.com.
- * @param modelName the model name
+ * @param modelNumber the model number
  */
-export function productPageUrl(modelName: string | undefined): string {
-    if (modelName === undefined) {
+export function productPageUrl(modelNumber: string | undefined): string {
+    if (modelNumber === undefined) {
         return 'https://www.axis.com/products-and-solutions';
     }
 
-    modelName = modelName.toLowerCase();
-    modelName = (modelNameExceptions[modelName] || modelName).replace(' ', '-');
-    return `https://www.axis.com/products/${modelName}`;
+    modelNumber = modelNumber.toLowerCase();
+    modelNumber = (modelNumberToProductPageExceptions[modelNumber] || modelNumber).replace(' ', '-');
+    return `https://www.axis.com/products/axis-${modelNumber}`;
 }
 
 /**
@@ -22,19 +22,19 @@ export function iconUrl(modelNumber: string | undefined): string {
     }
 
     modelNumber = modelNumber.toLowerCase();
-    modelNumber = modelNumberExceptions[modelNumber] || modelNumber;
+    modelNumber = modelNumberToIconExceptions[modelNumber] || modelNumber;
     return `https://www.axis.com/images/scaled/300/sites/default/files/${modelNumber}.png`;
 }
 
-const modelNameExceptions: { [key: string]: string } = {
-    'axis m3005': 'axis m3005-v',
-    'axis m3007': 'axis m3007-p',
-    'axis m3025': 'axis m3025-ve',
+const modelNumberToProductPageExceptions: { [key: string]: string } = {
+    m3005: 'm3005-v',
+    m3007: 'm3007-p',
+    m3025: 'm3025-ve',
 
-    'axis p3367': 'axis p3367-v',
+    p3367: 'p3367-v',
 };
 
-const modelNumberExceptions: { [key: string]: string } = {
+const modelNumberToIconExceptions: { [key: string]: string } = {
     '212 ptz': '212',
     '215 ptz': '215-ptz',
     '243sa': '243sa-video-server',

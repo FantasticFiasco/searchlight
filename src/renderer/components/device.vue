@@ -79,7 +79,7 @@ export default class Device extends Vue {
     public openProductPage(e: Event) {
         e.preventDefault();
 
-        shell.openExternal(axisWeb.productPageUrl(this.device.modelName));
+        shell.openExternal(axisWeb.productPageUrl(this.device.modelNumber));
     }
 
     public onInvalidIconUrl(e: Event) {
