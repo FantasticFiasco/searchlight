@@ -1,12 +1,12 @@
 /**
- * Key for the URL builder service in the Vue dependency injection framework.
+ * Key for the Axis web service in the Vue dependency injection framework.
  */
-export const URL_BUILDER_SERVICE = Symbol();
+export const AXIS_WEB_SERVICE = Symbol();
 
 /**
- * Class responsible for building URLs to Axis on the web.
+ * Class responsible for all interaction with www.axis.com.
  */
-export class UrlBuilderService {
+export class AxisWebService {
     /**
      * Returns the product page URL on www.axis.com.
      * @param modelNumber the model number

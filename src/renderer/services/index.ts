@@ -5,4 +5,4 @@ export * from './analytics-service';
 export * from './application-updates-service';
 export * from './discovery-service';
 export * from './heartbeat-service';
-export * from './url-builder-service';
+export * from './axis-web-service';

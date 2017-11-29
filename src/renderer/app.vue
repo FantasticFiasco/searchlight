@@ -12,20 +12,20 @@ import {
     AnalyticsService,
     APPLICATION_UPDATES_SERVICE,
     ApplicationUpdatesService,
+    AXIS_WEB_SERVICE,
+    AxisWebService,
     DISCOVERY_SERVICE,
     DiscoveryService,
     HEARTBEAT_SERVICE,
     HeartbeatService,
-    URL_BUILDER_SERVICE,
-    UrlBuilderService
 } from './services';
 import * as vueHandlers from './vue-handlers';
 
 const analyticsService = new AnalyticsService();
 const applicationUpdatesService = new ApplicationUpdatesService();
+const axisWebService = new AxisWebService();
 const discoveryService = new DiscoveryService();
 const heartbeatService = new HeartbeatService(discoveryService);
-const urlBuilderService = new UrlBuilderService();
 
 // Enable reporting exceptions from global handlers
 vueHandlers.reportExceptions(analyticsService);
@@ -35,9 +35,9 @@ vueHandlers.reportExceptions(analyticsService);
     provide: {
         [ANALYTICS_SERVICE]: analyticsService,
         [APPLICATION_UPDATES_SERVICE]: applicationUpdatesService,
+        [AXIS_WEB_SERVICE]: axisWebService,
         [DISCOVERY_SERVICE]: discoveryService,
         [HEARTBEAT_SERVICE]: heartbeatService,
-        [URL_BUILDER_SERVICE]: urlBuilderService,
     },
 })
 export default class App extends Vue {
