@@ -30,9 +30,14 @@ import 'vuex';
 import { Component, Inject, Prop } from 'vue-property-decorator';
 
 import { Device as Model } from '../models';
-import { ANALYTICS_SERVICE, AnalyticsService, InvalidDeviceIconEvent } from '../services';
+import {
+    ANALYTICS_SERVICE,
+    AnalyticsService,
+    InvalidDeviceIconEvent,
+    URL_BUILDER_SERVICE,
+    UrlBuilderService,
+} from '../services';
 import { Heartbeats } from './heartbeats';
-import * as axisWeb from './helpers/axis-web';
 
 @Component({
     name: 'device',
@@ -47,8 +52,11 @@ export default class Device extends Vue {
     @Inject(ANALYTICS_SERVICE)
     private readonly analyticsService: AnalyticsService;
 
+    @Inject(URL_BUILDER_SERVICE)
+    private readonly urlBuilderService: UrlBuilderService;
+
     public get iconUrl(): string {
-        return axisWeb.iconUrl(this.device.modelNumber);
+        return this.urlBuilderService.iconUrl(this.device.modelNumber);
     }
 
     public get timestamps(): Date[] {
@@ -79,7 +87,7 @@ export default class Device extends Vue {
     public openProductPage(e: Event) {
         e.preventDefault();
 
-        shell.openExternal(axisWeb.productPageUrl(this.device.modelNumber));
+        shell.openExternal(this.urlBuilderService.productPageUrl(this.device.modelNumber));
     }
 
     public onInvalidIconUrl(e: Event) {

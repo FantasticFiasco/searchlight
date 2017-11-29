@@ -1,22 +1,31 @@
 /**
- * Returns the product page URL on www.axis.com.
- * @param modelNumber the model number
+ * Key for the URL builder service in the Vue dependency injection framework.
  */
-export function productPageUrl(modelNumber: string | undefined): string {
-    if (modelNumber === undefined) {
-        return 'https://www.axis.com/products-and-solutions';
-    }
-
-    modelNumber = modelNumber.toLowerCase();
-    modelNumber = (modelNumberToProductPageExceptions[modelNumber] || modelNumber).replace(/ /, '-');
-    return `https://www.axis.com/products/axis-${modelNumber}`;
-}
+export const URL_BUILDER_SERVICE = Symbol();
 
 /**
- * Returns the icon URL on www.axis.com.
- * @param modelNumber the model number
+ * Class responsible for building URLs to Axis on the web.
  */
-export function iconUrl(modelNumber: string | undefined): string {
+export class UrlBuilderService {
+    /**
+     * Returns the product page URL on www.axis.com.
+     * @param modelNumber the model number
+     */
+    public productPageUrl(modelNumber: string | undefined): string {
+        if (modelNumber === undefined) {
+            return 'https://www.axis.com/products-and-solutions';
+        }
+
+        modelNumber = modelNumber.toLowerCase();
+        modelNumber = (modelNumberToProductPageExceptions[modelNumber] || modelNumber).replace(/ /, '-');
+        return `https://www.axis.com/products/axis-${modelNumber}`;
+    }
+
+    /**
+     * Returns the icon URL on www.axis.com.
+     * @param modelNumber the model number
+     */
+    public iconUrl(modelNumber: string | undefined): string {
     if (modelNumber === undefined) {
         return '';
     }
@@ -24,6 +33,7 @@ export function iconUrl(modelNumber: string | undefined): string {
     modelNumber = modelNumber.toLowerCase();
     modelNumber = modelNumberToIconExceptions[modelNumber] || modelNumber;
     return `https://www.axis.com/images/scaled/300/sites/default/files/${modelNumber}.png`;
+}
 }
 
 const modelNumberToProductPageExceptions: { [key: string]: string } = {
