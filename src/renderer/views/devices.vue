@@ -1,6 +1,6 @@
 <template>
     <div class="animated fadeIn">
-        <b-alert :show="devices.length === 0" variant="warning">
+        <b-alert :show="isShowingAlert" variant="warning">
             <h3>Well this was unfortunate, your device is nowhere to be found</h3>
             <p>
                 Before continuing please make sure that the following conditions are met:
@@ -40,8 +40,16 @@ import { ANALYTICS_SERVICE, AnalyticsService, PageViewEvent } from '../services'
     },
 })
 export default class Devices extends Vue {
+
     @Inject(ANALYTICS_SERVICE)
     private readonly analyticsService: AnalyticsService;
+
+    private preventAlert = true;
+    private preventAlertHandle?: number;
+
+    public get isShowingAlert(): boolean {
+        return !this.preventAlert && this.devices.length === 0;
+    }
 
     public get devices(): Device[] {
         // Vuex prohibits modifying state outside of store modifiers, thus the 'slice'
@@ -52,6 +60,16 @@ export default class Devices extends Vue {
 
     public mounted() {
         this.analyticsService.reportPageView(new PageViewEvent('/devices'));
+
+        this.preventAlertHandle = window.setTimeout(
+            () => { this.preventAlert = false; },
+            5000);
+    }
+
+    public beforeDestroy() {
+        if (this.preventAlertHandle) {
+            clearTimeout(this.preventAlertHandle);
+        }
     }
 
     public openSupportPage(e: Event) {
