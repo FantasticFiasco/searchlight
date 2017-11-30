@@ -9,18 +9,21 @@ import Component from 'vue-class-component';
 
 import {
     ANALYTICS_SERVICE,
-    APPLICATION_UPDATES_SERVICE,
-    DISCOVERY_SERVICE,
-    HEARTBEAT_SERVICE,
     AnalyticsService,
+    APPLICATION_UPDATES_SERVICE,
     ApplicationUpdatesService,
+    AXIS_WEB_SERVICE,
+    AxisWebService,
+    DISCOVERY_SERVICE,
     DiscoveryService,
-    HeartbeatService
+    HEARTBEAT_SERVICE,
+    HeartbeatService,
 } from './services';
 import * as vueHandlers from './vue-handlers';
 
 const analyticsService = new AnalyticsService();
 const applicationUpdatesService = new ApplicationUpdatesService();
+const axisWebService = new AxisWebService();
 const discoveryService = new DiscoveryService();
 const heartbeatService = new HeartbeatService(discoveryService);
 
@@ -32,6 +35,7 @@ vueHandlers.reportExceptions(analyticsService);
     provide: {
         [ANALYTICS_SERVICE]: analyticsService,
         [APPLICATION_UPDATES_SERVICE]: applicationUpdatesService,
+        [AXIS_WEB_SERVICE]: axisWebService,
         [DISCOVERY_SERVICE]: discoveryService,
         [HEARTBEAT_SERVICE]: heartbeatService,
     },
