@@ -1268,7 +1268,28 @@ builder-util-runtime@~3.1.0:
     fs-extra-p "^4.4.4"
     sax "^1.2.4"
 
-builder-util@3.4.2, builder-util@^3.4.2:
+builder-util@3.4.3:
+  version "3.4.3"
+  resolved "https://registry.yarnpkg.com/builder-util/-/builder-util-3.4.3.tgz#c7d6908ffc56fa3c4de0ec804dbcb9bbf6aa2ab4"
+  dependencies:
+    "7zip-bin" "^2.2.7"
+    bluebird-lst "^1.0.5"
+    builder-util-runtime "^3.3.0"
+    chalk "^2.3.0"
+    debug "^3.1.0"
+    fs-extra-p "^4.4.4"
+    ini "^1.3.5"
+    is-ci "^1.0.10"
+    js-yaml "^3.10.0"
+    lazy-val "^1.0.2"
+    node-emoji "^1.8.1"
+    semver "^5.4.1"
+    source-map-support "^0.5.0"
+    stat-mode "^0.2.2"
+    temp-file "^3.0.0"
+    tunnel-agent "^0.6.0"
+
+builder-util@^3.4.2:
   version "3.4.2"
   resolved "https://registry.yarnpkg.com/builder-util/-/builder-util-3.4.2.tgz#d5dbf595038f4912f3bbac0a98ab4010d2708b9c"
   dependencies:
@@ -2190,16 +2211,16 @@ ejs@^2.5.7:
   version "2.5.7"
   resolved "https://registry.yarnpkg.com/ejs/-/ejs-2.5.7.tgz#cc872c168880ae3c7189762fd5ffc00896c9518a"
 
-electron-builder-lib@19.46.9:
-  version "19.46.9"
-  resolved "https://registry.yarnpkg.com/electron-builder-lib/-/electron-builder-lib-19.46.9.tgz#c9ae265dfaee0fd4182b2d095b1cedbbfca4913e"
+electron-builder-lib@19.47.1:
+  version "19.47.1"
+  resolved "https://registry.yarnpkg.com/electron-builder-lib/-/electron-builder-lib-19.47.1.tgz#c8d05000c8d89183c8e3ec2b8e6795971123271f"
   dependencies:
     "7zip-bin" "^2.2.7"
     app-package-builder "1.5.2"
     asar-integrity "0.2.3"
     async-exit-hook "^2.0.1"
     bluebird-lst "^1.0.5"
-    builder-util "3.4.2"
+    builder-util "3.4.3"
     builder-util-runtime "3.3.0"
     chromium-pickle-js "^0.2.0"
     debug "^3.1.0"
@@ -2221,15 +2242,15 @@ electron-builder-lib@19.46.9:
     semver "^5.4.1"
     temp-file "^3.0.0"
 
-electron-builder@19.46.9:
-  version "19.46.9"
-  resolved "https://registry.yarnpkg.com/electron-builder/-/electron-builder-19.46.9.tgz#30fdc026e1d7b48c18fb6dad5796a19952f7b36d"
+electron-builder@19.47.1:
+  version "19.47.1"
+  resolved "https://registry.yarnpkg.com/electron-builder/-/electron-builder-19.47.1.tgz#28b02996ebd356975c4fb91b4f870367f976cd11"
   dependencies:
     bluebird-lst "^1.0.5"
-    builder-util "3.4.2"
+    builder-util "3.4.3"
     builder-util-runtime "3.3.0"
     chalk "^2.3.0"
-    electron-builder-lib "19.46.9"
+    electron-builder-lib "19.47.1"
     electron-download-tf "4.3.4"
     fs-extra-p "^4.4.4"
     is-ci "^1.0.10"
