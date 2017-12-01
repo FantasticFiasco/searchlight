@@ -16,9 +16,7 @@
                     <i class="fa fa-refresh fa-spin fa-fw text-primary" /> Downloading updates ({{ downloadProgress }}%)
                 </p>
                 <p v-else-if="isRequiringRestart">
-                    <b-button @click="restartToUpdate" variant="primary">
-                        New version available!<br>
-                        Close to update
+                    <b-button @click="restartToUpdate" variant="primary" v-html="restartButtonText">
                     </b-button>
                 </p>
                 <p v-else>
@@ -85,6 +83,16 @@ export default class AppDetails extends Vue {
 
     public get isRequiringRestart(): boolean {
         return this.$store.state.applicationUpdates.state === ApplicationUpdatesState.RESTART_REQUIRED;
+    }
+
+    public get restartButtonText(): string {
+        switch (process.platform) {
+            case 'win32':
+                return 'New version available!<br>Restart to update';
+
+            default:
+                return 'New version available!<br>Close to finish download';
+        }
     }
 
     public get downloadProgress(): number {
