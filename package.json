@@ -55,7 +55,10 @@
       "artifactName": "${productName}-${version}.${ext}"
     },
     "win": {
-      "target": "[nsis, portable]"
+      "target": [
+        "nsis",
+        "portable"
+      ]
     },
     "nsis": {
       "artifactName": "${productName}-Setup-${version}.${ext}"
