@@ -1,9 +1,25 @@
-const isDevelopment = process.env.NODE_ENV !== 'production';
+import { Platform } from './platform';
 
 /**
  * Returns a value indicating whether application is running in development.
  * @return true if app is running in development; otherwise false
  */
 export function isDev(): boolean {
-    return isDevelopment;
+    return process.env.NODE_ENV !== 'production';
+}
+
+/**
+ * Returns the platform the application is running on.
+ */
+export function platform(): Platform {
+    switch (process.platform) {
+        case 'darwin':
+            return Platform.MacOS;
+
+        case 'win32':
+            return Platform.Windows;
+
+        default:
+            return Platform.Linux;
+    }
 }

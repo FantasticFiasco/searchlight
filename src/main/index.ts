@@ -1,7 +1,7 @@
 import { app, BrowserWindow } from 'electron';
 import Debug from 'electron-debug';
 
-import * as environment from 'common/environment';
+import { isDev } from 'common';
 import { Analytics } from './analytics';
 import { ApplicationUpdates, ApplicationUpdatesMock, IApplicationUpdates } from './application-updates';
 import { Discovery, DiscoveryMock, IDiscovery } from './discovery';
@@ -19,7 +19,7 @@ let mainWindow: Electron.BrowserWindow | undefined;
 app.setAppUserModelId('com.fantasticfiasco.searchlight');
 
 // Enable dev tools in development environment
-Debug({ enabled: environment.isDev() });
+Debug({ enabled: isDev() });
 
 // Store
 const store = new Store();
@@ -68,28 +68,28 @@ function createMainWindow() {
     // Load main view
     // - 'webpack-dev-server' in development
     // - 'index.html' in production
-    const url = environment.isDev() ?
+    const url = isDev() ?
         `http://localhost:${process.env.ELECTRON_WEBPACK_WDS_PORT}` :
         `file://${__dirname}/index.html`;
 
     mainWindow.loadURL(url);
 
     // Start discovery
-    discovery = environment.isDev() ?
+    discovery = isDev() ?
         new DiscoveryMock(mainWindow.webContents) :
         new Discovery(mainWindow.webContents);
 
     discovery.start();
 
     // Start application updates
-    applicationUpdates = environment.isDev() ?
+    applicationUpdates = isDev() ?
         new ApplicationUpdatesMock(mainWindow) :
         new ApplicationUpdates(analytics, mainWindow.webContents);
 
     applicationUpdates.start();
 
     // Open the DevTools
-    if (environment.isDev()) {
+    if (isDev()) {
         mainWindow.webContents.openDevTools({ mode: 'undocked' });
     }
 }
