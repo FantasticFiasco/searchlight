@@ -74,12 +74,14 @@ export class DefaultUpdater implements IApplicationUpdater {
 
     private onUpdateAvailable(version: UpdateInfo) {
         log.info('DefaultUpdater', `update available with version ${version.version}`);
+        log.info('XXX', JSON.stringify(version));
 
         this.state = State.UPDATES_AVAILABLE;
     }
 
     private onUpdateNotAvailable(version: UpdateInfo) {
         log.info('DefaultUpdater', `update not available (latest version: ${version.version}, downgrade is ${autoUpdater.allowDowngrade ? 'allowed' : 'disallowed'})`);
+        log.info('XXX', JSON.stringify(version));
 
         this.state = State.IDLE;
         this.send(ChannelNames.APPLICATION_UPDATES_CHECK_RESPONSE, new NoUpdatesAvailableEvent());
