@@ -3,7 +3,7 @@ import Debug from 'electron-debug';
 
 import { isDev } from 'common';
 import { Analytics } from './analytics';
-import { ApplicationUpdates, ApplicationUpdatesMock, IApplicationUpdates } from './application-updates';
+import { ApplicationUpdates } from './application-updates';
 import { Discovery, DiscoveryMock, IDiscovery } from './discovery';
 import * as log from './log';
 import { Store } from './store';
@@ -33,7 +33,7 @@ analytics.reportEvent('app version', app.getVersion());
 let discovery: IDiscovery | undefined;
 
 // Application updates
-let applicationUpdates: IApplicationUpdates | undefined;
+let applicationUpdates: ApplicationUpdates | undefined;
 
 function createMainWindow() {
     log.info('Main', 'create main window');
@@ -82,10 +82,7 @@ function createMainWindow() {
     discovery.start();
 
     // Start application updates
-    applicationUpdates = isDev() ?
-        new ApplicationUpdatesMock(mainWindow) :
-        new ApplicationUpdates(analytics, mainWindow.webContents);
-
+    applicationUpdates = new ApplicationUpdates(analytics, mainWindow);
     applicationUpdates.start();
 
     // Open the DevTools
