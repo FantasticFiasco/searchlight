@@ -23,3 +23,11 @@ export function platform(): Platform {
             return Platform.Linux;
     }
 }
+
+/**
+ * Return a value indicating whether application is portable.
+ * @returns true if application is portable; otherwise false
+ */
+export function isPortable(): boolean {
+    return process.env.PORTABLE_EXECUTABLE_DIR !== undefined;
+}
