@@ -1,8 +1,8 @@
 import * as expect from '@fantasticfiasco/expect';
-import { ProgressInfo, UpdateInfo } from 'builder-util-runtime';
+import { UpdateInfo } from 'builder-util-runtime';
 import { autoUpdater } from 'electron-updater';
 
-import { DownloadProgressEvent, NoUpdatesAvailableEvent, RestartRequiredEvent } from 'common/application-updates';
+import { NoUpdatesAvailableEvent } from 'common/application-updates';
 import * as ChannelNames from 'common/application-updates/channel-names';
 import { Analytics } from '../../analytics';
 import * as log from '../../log';
@@ -10,10 +10,10 @@ import { IApplicationUpdater } from '../i-application-updater';
 import { State } from './state';
 
 /**
- * Default updater responsible for knowing when application updates are
- * availale, and how those updates are applied.
+ * Portable Windows updater responsible for knowing when application updates
+ * are availale, and how those updates are applied.
  */
-export class DefaultUpdater implements IApplicationUpdater {
+export class PortableWinUpdater implements IApplicationUpdater {
     private readonly analytics: Analytics;
     private readonly webContents: Electron.WebContents;
 
@@ -31,21 +31,19 @@ export class DefaultUpdater implements IApplicationUpdater {
     public start() {
         expect.toBeTrue(this.state === State.IDLE, 'Cannot start unless state is IDLE');
 
-        log.info('DefaultUpdater', 'start');
+        log.info('PortableWinUpdater', 'start');
 
-        autoUpdater.autoDownload = true;
+        autoUpdater.autoDownload = false;
         autoUpdater.logger = null;
 
         autoUpdater.on('checking-for-update', () => this.onCheckingForUpdates());
         autoUpdater.on('update-available', (version: UpdateInfo) => this.onUpdateAvailable(version));
         autoUpdater.on('update-not-available', (version: UpdateInfo) => this.onUpdateNotAvailable(version));
-        autoUpdater.on('download-progress', (progress: ProgressInfo) => this.onDownloadProgress(progress));
-        autoUpdater.on('update-downloaded', (version: UpdateInfo) => this.onUpdateDownloaded(version));
         autoUpdater.on('error', (error: Error) => this.onError(error));
     }
 
     public async checkForUpdates(): Promise<void> {
-        log.info('DefaultUpdater', 'check for updates');
+        log.info('PortableWinUpdater', 'check for updates');
 
         try {
             await autoUpdater.checkForUpdates();
@@ -55,48 +53,35 @@ export class DefaultUpdater implements IApplicationUpdater {
     }
 
     public restartAndUpdate() {
-        expect.toBeTrue(this.state === State.DOWNLOADED_UPDATES, 'Cannot restart until updates are downloaded');
+        // TODO: Implement
+        // expect.toBeTrue(this.state === State.DOWNLOADED_UPDATES, 'Cannot restart until updates are downloaded');
 
-        log.info('DefaultUpdater', 'restart and update');
+        // log.info('PortableWinUpdater', 'restart and update');
 
-        try {
-            autoUpdater.quitAndInstall();
-        } catch (error) {
-            this.onError(error);
-        }
+        // try {
+        //     autoUpdater.quitAndInstall();
+        // } catch (error) {
+        //     this.onError(error);
+        // }
     }
 
     private onCheckingForUpdates() {
-        log.info('DefaultUpdater', 'checking for updates');
+        log.info('PortableWinUpdater', 'checking for updates');
 
         this.state = State.CHECKING_FOR_UPDATES;
     }
 
     private onUpdateAvailable(version: UpdateInfo) {
-        log.info('DefaultUpdater', `update available with version ${version.version}`);
+        log.info('PortableWinUpdater', `update available with version ${version.version}`);
 
         this.state = State.UPDATES_AVAILABLE;
     }
 
     private onUpdateNotAvailable(version: UpdateInfo) {
-        log.info('DefaultUpdater', `update not available (latest version: ${version.version}, downgrade is ${autoUpdater.allowDowngrade ? 'allowed' : 'disallowed'})`);
+        log.info('PortableWinUpdater', `update not available (latest version: ${version.version}, downgrade is ${autoUpdater.allowDowngrade ? 'allowed' : 'disallowed'})`);
 
         this.state = State.IDLE;
         this.send(ChannelNames.APPLICATION_UPDATES_CHECK_RESPONSE, new NoUpdatesAvailableEvent());
-    }
-
-    private onDownloadProgress(progress: ProgressInfo) {
-        log.info('DefaultUpdater', `download progress ${progress.percent.toFixed(2)}% (${progress.bytesPerSecond / 1024} kB/s)`);
-
-        this.state = State.DOWNLOADING_UPDATES;
-        this.send(ChannelNames.APPLICATION_UPDATES_CHECK_RESPONSE, new DownloadProgressEvent(progress.percent));
-    }
-
-    private onUpdateDownloaded(version: UpdateInfo) {
-        log.info('DefaultUpdater', `update with version ${version.version} has been downloaded`);
-
-        this.state = State.DOWNLOADED_UPDATES;
-        this.send(ChannelNames.APPLICATION_UPDATES_CHECK_RESPONSE, new RestartRequiredEvent());
     }
 
     private onError(error: Error) {

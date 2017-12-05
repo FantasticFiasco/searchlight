@@ -1,12 +1,12 @@
 import * as expect from '@fantasticfiasco/expect';
 import { ipcMain } from 'electron';
 
-import { isDev } from 'common';
+import { isDev, isPortable, platform, Platform } from 'common';
 import * as ChannelNames from 'common/application-updates/channel-names';
 import { Analytics } from '../analytics';
 import * as log from '../log';
 import { IApplicationUpdater } from './i-application-updater';
-import { DefaultUpdater, MockUpdater } from './updaters';
+import { DefaultUpdater, MockUpdater, PortableWinUpdater } from './updaters';
 
 /**
  * Class responsible for knowing when application updates are availale, and how
@@ -24,9 +24,7 @@ export class ApplicationUpdates {
         expect.toExist(analytics);
         expect.toExist(window);
 
-        this.updater = isDev() ?
-            new MockUpdater(window) :
-            new DefaultUpdater(analytics, window.webContents);
+        this.updater = this.createUpdater(analytics, window);
 
         // Register for messages sent from the renderer
         ipcMain.on(ChannelNames.APPLICATION_UPDATES_CHECK, async () => this.checkForUpdatesAsync());
@@ -52,5 +50,18 @@ export class ApplicationUpdates {
         log.info('ApplicationUpdates', 'restart and update');
 
         this.restartAndUpdate();
+    }
+
+    private createUpdater(analytics: Analytics, window: Electron.BrowserWindow): IApplicationUpdater {
+        // Use mocked updater in development
+        if (isDev()) {
+            return new MockUpdater(window);
+        }
+
+        if (platform() === Platform.Windows && isPortable()) {
+            return new PortableWinUpdater(analytics, window.webContents);
+        }
+
+        return new DefaultUpdater(analytics, window.webContents);
     }
 }
