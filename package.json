@@ -117,7 +117,7 @@
     "typescript": "2.6.2",
     "vue": "2.5.2",
     "vue-chartjs": "2.8.7",
-    "vue-class-component": "6.1.1",
+    "vue-class-component": "6.1.2",
     "vue-property-decorator": "6.0.0",
     "vue-router": "3.0.1",
     "vuex": "3.0.1",
