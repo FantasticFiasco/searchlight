@@ -4381,7 +4381,7 @@ node-loader@^0.6.0:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/node-loader/-/node-loader-0.6.0.tgz#c797ef51095ed5859902b157f6384f6361e05ae8"
 
-node-notifier@^5.1.2:
+node-notifier@5.1.2:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/node-notifier/-/node-notifier-5.1.2.tgz#2fa9e12605fa10009d44549d6fcd8a63dde0e4ff"
   dependencies:
@@ -6696,12 +6696,12 @@ wbuf@^1.1.0, wbuf@^1.7.2:
   dependencies:
     minimalistic-assert "^1.0.0"
 
-webpack-build-notifier@0.1.18:
-  version "0.1.18"
-  resolved "https://registry.yarnpkg.com/webpack-build-notifier/-/webpack-build-notifier-0.1.18.tgz#86bd787bd8156777cef11e48f1143ca33c3cf6d8"
+webpack-build-notifier@0.1.21:
+  version "0.1.21"
+  resolved "https://registry.yarnpkg.com/webpack-build-notifier/-/webpack-build-notifier-0.1.21.tgz#8970ff44a6a290fa636fb1385045ebd08a089ab0"
   dependencies:
     ansi-regex "^2.0.0"
-    node-notifier "^5.1.2"
+    node-notifier "5.1.2"
     strip-ansi "^3.0.1"
 
 webpack-dev-middleware@^1.11.0:
