@@ -1,7 +1,7 @@
 import * as expect from '@fantasticfiasco/expect';
 import { ipcMain } from 'electron';
 
-import { isDev, isPortable, platform, Platform } from 'common';
+import { isDev } from 'common';
 import * as ChannelNames from 'common/application-updates/channel-names';
 import { Analytics } from '../analytics';
 import * as log from '../log';
