@@ -6,7 +6,7 @@ import * as ChannelNames from 'common/application-updates/channel-names';
 import { Analytics } from '../analytics';
 import * as log from '../log';
 import { IApplicationUpdater } from './i-application-updater';
-import { DefaultUpdater, MockUpdater, PortableWinUpdater } from './updaters';
+import { DefaultUpdater, MockUpdater } from './updaters';
 
 /**
  * Class responsible for knowing when application updates are availale, and how
@@ -56,10 +56,6 @@ export class ApplicationUpdates {
         // Use mocked updater in development
         if (isDev()) {
             return new MockUpdater(window);
-        }
-
-        if (platform() === Platform.Windows && isPortable()) {
-            return new PortableWinUpdater(analytics, window.webContents);
         }
 
         return new DefaultUpdater(analytics, window.webContents);
