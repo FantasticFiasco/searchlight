@@ -1,9 +1,9 @@
 import { app, BrowserWindow } from 'electron';
 import Debug from 'electron-debug';
 
-import * as environment from 'common/environment';
+import { isDev } from 'common';
 import { Analytics } from './analytics';
-import { ApplicationUpdates, ApplicationUpdatesMock, IApplicationUpdates } from './application-updates';
+import { ApplicationUpdates } from './application-updates';
 import { Discovery, DiscoveryMock, IDiscovery } from './discovery';
 import * as log from './log';
 import { Store } from './store';
@@ -19,7 +19,7 @@ let mainWindow: Electron.BrowserWindow | undefined;
 app.setAppUserModelId('com.fantasticfiasco.searchlight');
 
 // Enable dev tools in development environment
-Debug({ enabled: environment.isDev() });
+Debug({ enabled: isDev() });
 
 // Store
 const store = new Store();
@@ -33,7 +33,7 @@ analytics.reportEvent('app version', app.getVersion());
 let discovery: IDiscovery | undefined;
 
 // Application updates
-let applicationUpdates: IApplicationUpdates | undefined;
+let applicationUpdates: ApplicationUpdates | undefined;
 
 function createMainWindow() {
     log.info('Main', 'create main window');
@@ -68,28 +68,25 @@ function createMainWindow() {
     // Load main view
     // - 'webpack-dev-server' in development
     // - 'index.html' in production
-    const url = environment.isDev() ?
+    const url = isDev() ?
         `http://localhost:${process.env.ELECTRON_WEBPACK_WDS_PORT}` :
         `file://${__dirname}/index.html`;
 
     mainWindow.loadURL(url);
 
     // Start discovery
-    discovery = environment.isDev() ?
+    discovery = isDev() ?
         new DiscoveryMock(mainWindow.webContents) :
         new Discovery(mainWindow.webContents);
 
     discovery.start();
 
     // Start application updates
-    applicationUpdates = environment.isDev() ?
-        new ApplicationUpdatesMock(mainWindow) :
-        new ApplicationUpdates(analytics, mainWindow.webContents);
-
+    applicationUpdates = new ApplicationUpdates(analytics, mainWindow);
     applicationUpdates.start();
 
     // Open the DevTools
-    if (environment.isDev()) {
+    if (isDev()) {
         mainWindow.webContents.openDevTools({ mode: 'undocked' });
     }
 }

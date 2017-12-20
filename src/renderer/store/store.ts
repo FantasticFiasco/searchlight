@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex, { Store } from 'vuex';
 
-import * as environment from 'common/environment';
+import { isDev } from 'common';
 import { ApplicationUpdatesModule } from './application-updates/application-updates-module';
 import { DevicesModule } from './devices/devices-module';
 import { HeartbeatsModule } from './heartbeats/heartbeats-module';
@@ -15,5 +15,5 @@ export const store = new Store<IRootState>({
         devices: new DevicesModule(),
         heartbeats: new HeartbeatsModule(),
     },
-    strict: environment.isDev(),
+    strict: isDev(),
 });
