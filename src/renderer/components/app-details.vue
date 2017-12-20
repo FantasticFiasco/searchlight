@@ -65,6 +65,7 @@ import { remote, shell } from 'electron';
 import Vue from 'vue';
 import { Component, Inject } from 'vue-property-decorator';
 
+import { platform, Platform } from 'common';
 import { APPLICATION_UPDATES_SERVICE, ApplicationUpdatesService } from '../services';
 import { ApplicationUpdatesState } from '../store';
 
@@ -86,10 +87,9 @@ export default class AppDetails extends Vue {
     }
 
     public get restartButtonText(): string {
-        switch (process.platform) {
-            case 'win32':
+        switch (platform()) {
+            case Platform.Windows:
                 return 'New version available!<br>Restart to update';
-
             default:
                 return 'New version available!<br>Close to finish download';
         }

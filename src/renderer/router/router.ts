@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import Router, { Route } from 'vue-router';
 
-import AppContainer from './../app-container.vue';
-import About from './../views/about.vue';
-import Devices from './../views/devices.vue';
+import AppContainer from '../app-container.vue';
+import About from '../views/about.vue';
+import Devices from '../views/devices.vue';
 
 Vue.use(Router);
 
