@@ -65,7 +65,7 @@
     "title": "Searchlight",
     "renderer": {
       "dll": [
-        "axis-discovery",
+        "axis-discovery-ssdp",
         "bootstrap",
         "bootstrap-vue",
         "chart.js",
@@ -82,9 +82,7 @@
   },
   "dependencies": {
     "@fantasticfiasco/expect": "1.0.0",
-    "axis-discovery": "1.1.0",
-    "axis-discovery-bonjour": "1.0.0",
-    "axis-discovery-ssdp": "4.1.0",
+    "axis-discovery-ssdp": "5.0.0",
     "electron-debug": "1.4.0",
     "electron-log": "2.2.13",
     "electron-store": "1.3.0",

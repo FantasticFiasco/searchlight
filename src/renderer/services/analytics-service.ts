@@ -1,5 +1,5 @@
 import { ExceptionEvent, PageViewEvent, ValueEvent } from 'common/analytics';
-import * as ChannelNames from 'common/analytics/channel-names';
+import * as channelNames from 'common/analytics/channel-names';
 import { ipcRenderer } from 'electron';
 
 /**
@@ -17,7 +17,7 @@ export class AnalyticsService {
      * @param event event describing the occurrance
      */
     public reportPageView(event: PageViewEvent) {
-        ipcRenderer.send(ChannelNames.ANALYTICS_REPORT_PAGE_VIEW, event);
+        ipcRenderer.send(channelNames.ANALYTICS_REPORT_PAGE_VIEW, event);
     }
 
     /**
@@ -25,7 +25,7 @@ export class AnalyticsService {
      * @param event event describing the occurrance
      */
     public reportEventWithValue(event: ValueEvent) {
-        ipcRenderer.send(ChannelNames.ANALYTICS_REPORT_EVENT_WITH_VALUE, event);
+        ipcRenderer.send(channelNames.ANALYTICS_REPORT_EVENT_WITH_VALUE, event);
     }
 
     /**
@@ -33,6 +33,6 @@ export class AnalyticsService {
      * @param event event describing the occurrance
      */
     public reportException(event: ExceptionEvent) {
-        ipcRenderer.send(ChannelNames.ANALYTICS_REPORT_EXCEPTION, event);
+        ipcRenderer.send(channelNames.ANALYTICS_REPORT_EXCEPTION, event);
     }
 }

@@ -1,7 +1,7 @@
 import * as expect from '@fantasticfiasco/expect';
 
 import { DownloadProgressEvent, NoUpdatesAvailableEvent, RestartRequiredEvent } from 'common/application-updates';
-import * as ChannelNames from 'common/application-updates/channel-names';
+import * as channelNames from 'common/application-updates/channel-names';
 import * as log from '../../log';
 import { IApplicationUpdater } from '../i-application-updater';
 
@@ -50,18 +50,18 @@ export class MockUpdater implements IApplicationUpdater {
             const progress = 11.111 * i;
 
             log.info('MockUpdater', 'send download progress', progress);
-            this.send(ChannelNames.APPLICATION_UPDATES_CHECK_RESPONSE, new DownloadProgressEvent(progress));
+            this.send(channelNames.APPLICATION_UPDATES_CHECK_RESPONSE, new DownloadProgressEvent(progress));
 
             await this.sleep(1000);
         }
 
         log.info('MockUpdater', 'send restart required');
-        this.send(ChannelNames.APPLICATION_UPDATES_CHECK_RESPONSE, new RestartRequiredEvent());
+        this.send(channelNames.APPLICATION_UPDATES_CHECK_RESPONSE, new RestartRequiredEvent());
     }
 
     private async simulateNoUpdatesAvailable(): Promise<void> {
         log.info('MockUpdater', 'send no updates available');
-        this.send(ChannelNames.APPLICATION_UPDATES_CHECK_RESPONSE, new NoUpdatesAvailableEvent());
+        this.send(channelNames.APPLICATION_UPDATES_CHECK_RESPONSE, new NoUpdatesAvailableEvent());
     }
 
     private sleep(ms: number): Promise<void> {

@@ -1,8 +1,8 @@
-import * as Axis from 'axis-discovery';
+import * as ssdp from 'axis-discovery-ssdp';
 import { ipcRenderer } from 'electron';
 import { EventEmitter } from 'events';
 
-import * as ChannelNames from 'common/discovery/channel-names';
+import * as channelNames from 'common/discovery/channel-names';
 import { Device, NetworkStatus } from '../models';
 
 /**
@@ -24,18 +24,18 @@ export class DiscoveryService {
         this.eventEmitter = new EventEmitter();
 
         ipcRenderer.on(
-            ChannelNames.DISCOVERY_DEVICE_HELLO,
-            (event: any, device: Axis.Device) => this.emitHello(device));
+            channelNames.DISCOVERY_DEVICE_HELLO,
+            (event: any, device: ssdp.Device) => this.emitHello(device));
         ipcRenderer.on(
-            ChannelNames.DISCOVERY_DEVICE_GOODBYE,
-            (event: any, device: Axis.Device) => this.emitGoodbye(device));
+            channelNames.DISCOVERY_DEVICE_GOODBYE,
+            (event: any, device: ssdp.Device) => this.emitGoodbye(device));
     }
 
     /**
      * Triggers a new search for devices on the network.
      */
     public search() {
-        ipcRenderer.send(ChannelNames.DISCOVERY_SEARCH);
+        ipcRenderer.send(channelNames.DISCOVERY_SEARCH);
     }
 
     /**
@@ -54,15 +54,27 @@ export class DiscoveryService {
         this.eventEmitter.on('goodbye', (device) => callback(device));
     }
 
-    private emitHello(device: Axis.Device) {
-        this.eventEmitter.emit('hello', this.toDevice(device, true));
+    private emitHello(device: ssdp.Device) {
+        const mappedDevice = this.toDevice(device, true);
+
+        if (mappedDevice != null ) {
+            this.eventEmitter.emit('hello', mappedDevice);
+        }
     }
 
-    private emitGoodbye(device: Axis.Device) {
-        this.eventEmitter.emit('goodbye', this.toDevice(device, false));
+    private emitGoodbye(device: ssdp.Device) {
+        const mappedDevice = this.toDevice(device, false);
+
+        if (mappedDevice != null ) {
+            this.eventEmitter.emit('goodbye', );
+        }
     }
 
-    private toDevice(device: Axis.Device, isResponsive: boolean): Device {
+    private toDevice(device: ssdp.Device, isResponsive: boolean): Device | null {
+        if (device.macAddress === undefined) {
+            return null;
+        }
+
         const networkStatus: NetworkStatus = {
             isResponsive,
             timestamp: new Date(),

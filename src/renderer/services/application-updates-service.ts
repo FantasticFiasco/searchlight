@@ -1,7 +1,7 @@
 import { ipcRenderer } from 'electron';
 
 import { CheckForUpdatesEventTypes } from 'common/application-updates';
-import * as ChannelNames from 'common/application-updates/channel-names';
+import * as channelNames from 'common/application-updates/channel-names';
 import {
     ApplicationUpdatesState,
     store,
@@ -25,7 +25,7 @@ export class ApplicationUpdatesService {
      */
     constructor() {
         ipcRenderer.on(
-            ChannelNames.APPLICATION_UPDATES_CHECK_RESPONSE,
+            channelNames.APPLICATION_UPDATES_CHECK_RESPONSE,
             (event: any, args: CheckForUpdatesEventTypes) => this.onEvent(args));
     }
 
@@ -34,14 +34,14 @@ export class ApplicationUpdatesService {
      */
     public checkForUpdates() {
         store.commit(UPDATE_STATE_MUTATION, ApplicationUpdatesState.CHECKING);
-        ipcRenderer.send(ChannelNames.APPLICATION_UPDATES_CHECK);
+        ipcRenderer.send(channelNames.APPLICATION_UPDATES_CHECK);
     }
 
     /**
      * Restart and update the application.
      */
     public restartToUpdate() {
-        ipcRenderer.send(ChannelNames.APPLICATION_UPDATES_APPLY);
+        ipcRenderer.send(channelNames.APPLICATION_UPDATES_APPLY);
     }
 
     private onEvent(event: CheckForUpdatesEventTypes) {

@@ -2,7 +2,7 @@ import * as expect from '@fantasticfiasco/expect';
 import { ipcMain } from 'electron';
 
 import { isDev } from 'common';
-import * as ChannelNames from 'common/application-updates/channel-names';
+import * as channelNames from 'common/application-updates/channel-names';
 import { Analytics } from '../analytics';
 import * as log from '../log';
 import { IApplicationUpdater } from './i-application-updater';
@@ -27,8 +27,8 @@ export class ApplicationUpdates {
         this.updater = this.createUpdater(analytics, window);
 
         // Register for messages sent from the renderer
-        ipcMain.on(ChannelNames.APPLICATION_UPDATES_CHECK, async () => this.checkForUpdatesAsync());
-        ipcMain.on(ChannelNames.APPLICATION_UPDATES_APPLY, () => this.restartAndUpdate());
+        ipcMain.on(channelNames.APPLICATION_UPDATES_CHECK, async () => this.checkForUpdatesAsync());
+        ipcMain.on(channelNames.APPLICATION_UPDATES_APPLY, () => this.restartAndUpdate());
     }
 
     /**

@@ -3,7 +3,7 @@ import { ProgressInfo, UpdateInfo } from 'builder-util-runtime';
 import { autoUpdater } from 'electron-updater';
 
 import { DownloadProgressEvent, NoUpdatesAvailableEvent, RestartRequiredEvent } from 'common/application-updates';
-import * as ChannelNames from 'common/application-updates/channel-names';
+import * as channelNames from 'common/application-updates/channel-names';
 import { Analytics } from '../../analytics';
 import * as log from '../../log';
 import { IApplicationUpdater } from '../i-application-updater';
@@ -82,26 +82,26 @@ export class DefaultUpdater implements IApplicationUpdater {
         log.info('DefaultUpdater', `update not available (latest version: ${version.version}, downgrade is ${autoUpdater.allowDowngrade ? 'allowed' : 'disallowed'})`);
 
         this.state = State.IDLE;
-        this.send(ChannelNames.APPLICATION_UPDATES_CHECK_RESPONSE, new NoUpdatesAvailableEvent());
+        this.send(channelNames.APPLICATION_UPDATES_CHECK_RESPONSE, new NoUpdatesAvailableEvent());
     }
 
     private onDownloadProgress(progress: ProgressInfo) {
         log.info('DefaultUpdater', `download progress ${progress.percent.toFixed(2)}% (${progress.bytesPerSecond / 1024} kB/s)`);
 
         this.state = State.DOWNLOADING_UPDATES;
-        this.send(ChannelNames.APPLICATION_UPDATES_CHECK_RESPONSE, new DownloadProgressEvent(progress.percent));
+        this.send(channelNames.APPLICATION_UPDATES_CHECK_RESPONSE, new DownloadProgressEvent(progress.percent));
     }
 
     private onUpdateDownloaded(version: UpdateInfo) {
         log.info('DefaultUpdater', `update with version ${version.version} has been downloaded`);
 
         this.state = State.DOWNLOADED_UPDATES;
-        this.send(ChannelNames.APPLICATION_UPDATES_CHECK_RESPONSE, new RestartRequiredEvent());
+        this.send(channelNames.APPLICATION_UPDATES_CHECK_RESPONSE, new RestartRequiredEvent());
     }
 
     private onError(error: Error) {
         this.state = State.IDLE;
-        this.send(ChannelNames.APPLICATION_UPDATES_CHECK_RESPONSE, new NoUpdatesAvailableEvent());
+        this.send(channelNames.APPLICATION_UPDATES_CHECK_RESPONSE, new NoUpdatesAvailableEvent());
 
         this.analytics.reportException(`${error.name}: ${error.message}`);
     }

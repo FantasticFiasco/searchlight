@@ -338,29 +338,14 @@ aws4@^1.2.1, aws4@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.6.0.tgz#83ef5ca860b2b32e4a0deedee8c771b9db57471e"
 
-axis-discovery-bonjour@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/axis-discovery-bonjour/-/axis-discovery-bonjour-1.0.0.tgz#a1a89d5a55881bb059704eb2919e76e8c52374f5"
-  dependencies:
-    "@fantasticfiasco/expect" "1.0.0"
-    bonjour FantasticFiasco/bonjour#66851c5
-    debug "2.6.8"
-
-axis-discovery-ssdp@4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/axis-discovery-ssdp/-/axis-discovery-ssdp-4.1.0.tgz#06394561ef57c3d1165fd6c303fcb67f676f4fba"
+axis-discovery-ssdp@5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/axis-discovery-ssdp/-/axis-discovery-ssdp-5.0.0.tgz#09518ab1eae8704b27928cd0e7f0f970eae6bca3"
   dependencies:
     "@fantasticfiasco/expect" "1.0.0"
     debug "3.1.0"
     request "2.83.0"
     xml2js "0.4.19"
-
-axis-discovery@1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/axis-discovery/-/axis-discovery-1.1.0.tgz#5e34b1433d3d2b572f12a87ccbdafcc65b571946"
-  dependencies:
-    "@fantasticfiasco/expect" "1.0.0"
-    debug "3.1.0"
 
 babel-code-frame@^6.11.0, babel-code-frame@^6.22.0, babel-code-frame@^6.26.0:
   version "6.26.0"
@@ -1100,7 +1085,7 @@ body-parser@1.18.2:
     raw-body "2.3.2"
     type-is "~1.6.15"
 
-bonjour@FantasticFiasco/bonjour#66851c5, bonjour@^3.5.0:
+bonjour@^3.5.0:
   version "3.5.0"
   resolved "https://codeload.github.com/FantasticFiasco/bonjour/tar.gz/66851c5eb0360fc9297eef40d18196487a71c48a"
   dependencies:
@@ -1967,12 +1952,6 @@ debug@2.2.0:
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.2.0.tgz#f87057e995b1a1f6ae6a4960664137bc56f039da"
   dependencies:
     ms "0.7.1"
-
-debug@2.6.8:
-  version "2.6.8"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.8.tgz#e731531ca2ede27d188222427da17821d68ff4fc"
-  dependencies:
-    ms "2.0.0"
 
 debug@2.6.9, debug@^2.1.3, debug@^2.2.0, debug@^2.6.6, debug@^2.6.8:
   version "2.6.9"
