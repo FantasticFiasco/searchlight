@@ -4,6 +4,7 @@ import { ipcMain } from 'electron';
 
 import * as channelNames from 'common/discovery/channel-names';
 import * as log from '../log';
+import { Cache } from './cache';
 import { HttpClient } from './http-client';
 import { IDiscovery } from './i-discovery';
 
@@ -12,6 +13,7 @@ import { IDiscovery } from './i-discovery';
  */
 export class Discovery implements IDiscovery {
     private readonly discovery: ssdp.Discovery;
+    private readonly cache: Cache;
     private readonly webContents: Electron.WebContents;
 
     /**
@@ -24,6 +26,7 @@ export class Discovery implements IDiscovery {
         this.discovery = new ssdp.Discovery({ httpClient: new HttpClient() });
         this.discovery.onHello((device: ssdp.Device) => this.onHello(device));
         this.discovery.onGoodbye((device: ssdp.Device) => this.onGoodbye(device));
+        this.cache = new Cache();
         this.webContents = webContents;
 
         // Register for messages sent from the renderer
@@ -54,11 +57,13 @@ export class Discovery implements IDiscovery {
 
     private onHello(device: ssdp.Device) {
         log.debug('Discovery', `hello from ${device.macAddress}`);
+        device = this.cache.update(device);
         this.send(channelNames.DISCOVERY_DEVICE_HELLO, device);
     }
 
     private onGoodbye(device: ssdp.Device) {
         log.debug('Discovery', `goodbye from ${device.macAddress}`);
+        device = this.cache.update(device);
         this.send(channelNames.DISCOVERY_DEVICE_GOODBYE, device);
     }
 
