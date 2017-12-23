@@ -100,6 +100,8 @@ export class DefaultUpdater implements IApplicationUpdater {
     }
 
     private onError(error: Error) {
+        log.error('DefaultUpdater', error);
+
         this.state = State.IDLE;
         this.send(channelNames.APPLICATION_UPDATES_CHECK_RESPONSE, new NoUpdatesAvailableEvent());
 
