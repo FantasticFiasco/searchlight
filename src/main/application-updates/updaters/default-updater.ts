@@ -2,7 +2,12 @@ import * as expect from '@fantasticfiasco/expect';
 import { ProgressInfo, UpdateInfo } from 'builder-util-runtime';
 import { autoUpdater } from 'electron-updater';
 
-import { DownloadProgressEvent, NoUpdatesAvailableEvent, RestartRequiredEvent } from 'common/application-updates';
+import {
+    DownloadProgressEvent,
+    NoUpdatesAvailableEvent,
+    RestartRequiredEvent,
+    UpdatesAvailableEvent,
+} from 'common/application-updates';
 import * as channelNames from 'common/application-updates/channel-names';
 import { Analytics } from '../../analytics';
 import * as log from '../../log';
@@ -76,6 +81,7 @@ export class DefaultUpdater implements IApplicationUpdater {
         log.info('DefaultUpdater', `update available with version ${version.version}`);
 
         this.state = State.UPDATES_AVAILABLE;
+        this.send(channelNames.APPLICATION_UPDATES_CHECK_RESPONSE, new UpdatesAvailableEvent());
     }
 
     private onUpdateNotAvailable(version: UpdateInfo) {

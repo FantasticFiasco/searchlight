@@ -2,7 +2,7 @@ import * as expect from '@fantasticfiasco/expect';
 import { UpdateInfo } from 'builder-util-runtime';
 import { autoUpdater } from 'electron-updater';
 
-import { NoUpdatesAvailableEvent } from 'common/application-updates';
+import { NoUpdatesAvailableEvent, UpdatesAvailableEvent } from 'common/application-updates';
 import * as channelNames from 'common/application-updates/channel-names';
 import { Analytics } from '../../analytics';
 import * as log from '../../log';
@@ -79,6 +79,7 @@ export class MacOSUpdater implements IApplicationUpdater {
         log.info('MacOSUpdater', `update available with version ${version.version}`);
 
         this.state = State.UPDATES_AVAILABLE;
+        this.send(channelNames.APPLICATION_UPDATES_CHECK_RESPONSE, new UpdatesAvailableEvent());
     }
 
     private onUpdateNotAvailable(version: UpdateInfo) {
