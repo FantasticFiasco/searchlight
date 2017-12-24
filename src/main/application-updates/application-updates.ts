@@ -1,12 +1,11 @@
 import * as expect from '@fantasticfiasco/expect';
 import { ipcMain } from 'electron';
 
-import { isDev } from 'common';
+import { isDev, platform, Platform } from 'common';
 import * as channelNames from 'common/application-updates/channel-names';
 import { Analytics } from '../analytics';
-import * as log from '../log';
 import { IApplicationUpdater } from './i-application-updater';
-import { DefaultUpdater, MockUpdater } from './updaters';
+import { DefaultUpdater, MacOSUpdater, MockUpdater } from './updaters';
 
 /**
  * Class responsible for knowing when application updates are availale, and how
@@ -35,27 +34,25 @@ export class ApplicationUpdates {
      * Start application updates.
      */
     public start() {
-        log.info('ApplicationUpdates', 'start');
-
         this.updater.start();
     }
 
     private async checkForUpdatesAsync(): Promise<void> {
-        log.info('ApplicationUpdates', 'check for updates');
-
         return this.updater.checkForUpdates();
     }
 
     private restartAndUpdate() {
-        log.info('ApplicationUpdates', 'restart and update');
-
-        this.restartAndUpdate();
+        this.updater.restartAndUpdate();
     }
 
     private createUpdater(analytics: Analytics, window: Electron.BrowserWindow): IApplicationUpdater {
         // Use mocked updater in development
         if (isDev()) {
             return new MockUpdater(window);
+        }
+
+        if (platform() === Platform.MacOS) {
+            return new MacOSUpdater(analytics, window.webContents);
         }
 
         return new DefaultUpdater(analytics, window.webContents);

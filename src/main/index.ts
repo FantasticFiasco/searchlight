@@ -1,7 +1,7 @@
 import { app, BrowserWindow } from 'electron';
 import Debug from 'electron-debug';
 
-import { isDev } from 'common';
+import { isDev, platform, Platform } from 'common';
 import { Analytics } from './analytics';
 import { ApplicationUpdates } from './application-updates';
 import { Discovery, DiscoveryMock, IDiscovery } from './discovery';
@@ -110,7 +110,7 @@ app.on('window-all-closed', () => {
 
     // On OS X it is common for applications and their menu bar to stay active
     // until the user quits explicitly with Cmd + Q
-    if (process.platform !== 'darwin') {
+    if (platform() !== Platform.MacOS) {
         app.quit();
     }
 });
