@@ -1,5 +1,6 @@
 import * as expect from '@fantasticfiasco/expect';
 import { UpdateInfo } from 'builder-util-runtime';
+import { shell } from 'electron';
 import { autoUpdater } from 'electron-updater';
 
 import { NoUpdatesAvailableEvent, UpdatesAvailableEvent } from 'common/application-updates';
@@ -7,6 +8,7 @@ import * as channelNames from 'common/application-updates/channel-names';
 import { Analytics } from '../../analytics';
 import * as log from '../../log';
 import { IApplicationUpdater } from '../i-application-updater';
+import { Asset, GitHub, Release } from './git-hub';
 import { State } from './state';
 
 /**
@@ -20,8 +22,10 @@ import { State } from './state';
 export class MacOSUpdater implements IApplicationUpdater {
     private readonly analytics: Analytics;
     private readonly webContents: Electron.WebContents;
+    private readonly gitHub: GitHub;
 
     private state: State;
+    private downloadUrl: string;
 
     constructor(analytics: Analytics, webContents: Electron.WebContents) {
         expect.toExist(analytics);
@@ -29,6 +33,7 @@ export class MacOSUpdater implements IApplicationUpdater {
 
         this.analytics = analytics;
         this.webContents = webContents;
+        this.gitHub = new GitHub();
         this.state = State.IDLE;
     }
 
@@ -41,7 +46,7 @@ export class MacOSUpdater implements IApplicationUpdater {
         autoUpdater.logger = null;
 
         autoUpdater.on('checking-for-update', () => this.onCheckingForUpdates());
-        autoUpdater.on('update-available', (version: UpdateInfo) => this.onUpdateAvailable(version));
+        autoUpdater.on('update-available', async (version: UpdateInfo) => await this.onUpdateAvailable(version));
         autoUpdater.on('update-not-available', (version: UpdateInfo) => this.onUpdateNotAvailable(version));
         autoUpdater.on('error', (error: Error) => this.onError(error));
     }
@@ -62,8 +67,7 @@ export class MacOSUpdater implements IApplicationUpdater {
         log.info('MacOSUpdater', 'download and restart');
 
         try {
-            // TODO: Download updates
-            autoUpdater.quitAndInstall();
+            shell.openExternal(this.downloadUrl);
         } catch (error) {
             this.onError(error);
         }
@@ -75,11 +79,22 @@ export class MacOSUpdater implements IApplicationUpdater {
         this.state = State.CHECKING_FOR_UPDATES;
     }
 
-    private onUpdateAvailable(version: UpdateInfo) {
+    private async onUpdateAvailable(version: UpdateInfo): Promise<void> {
         log.info('MacOSUpdater', `update available with version ${version.version}`);
 
-        this.state = State.UPDATES_AVAILABLE;
-        this.send(channelNames.APPLICATION_UPDATES_CHECK_RESPONSE, new UpdatesAvailableEvent());
+        const latestRelease = await this.gitHub.getLatestRelease();
+
+        const dmgRegex = /.*\.dmg$/i;
+        const dmg = latestRelease.assets.find((asset) => dmgRegex.test(asset.name));
+
+        if (dmg && dmg.url) {
+            this.downloadUrl = dmg.url;
+            this.state = State.UPDATES_AVAILABLE;
+            this.send(channelNames.APPLICATION_UPDATES_CHECK_RESPONSE, new UpdatesAvailableEvent());
+        } else {
+            log.error('MacOSUpdater', 'update available but no asset matched', dmg);
+            this.onUpdateNotAvailable(version);
+        }
     }
 
     private onUpdateNotAvailable(version: UpdateInfo) {

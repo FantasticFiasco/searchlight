@@ -4,8 +4,8 @@ import { ipcMain } from 'electron';
 
 import * as channelNames from 'common/discovery/channel-names';
 import * as log from '../log';
+import { HttpClient } from '../net';
 import { Cache } from './cache';
-import { HttpClient } from './http-client';
 import { IDiscovery } from './i-discovery';
 
 /**
