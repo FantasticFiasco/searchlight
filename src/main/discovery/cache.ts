@@ -9,16 +9,6 @@ export class Cache {
     private readonly devices: { [macAddress: string]: ssdp.Device } = {};
 
     /**
-     * Initializes a new instance of the class.
-     * @param devices the seed of the cache
-     */
-    constructor(...devices: ssdp.Device[]) {
-        for (const device of devices) {
-            this.devices[device.macAddress] = device;
-        }
-    }
-
-    /**
      * Update the cache with a device.
      * @param device the device to update the cache with
      * @returns a device that is the aggregate of the argument and the

@@ -55,26 +55,14 @@ export class DiscoveryService {
     }
 
     private emitHello(ssdpDevice: ssdp.Device) {
-        const device = this.toDevice(ssdpDevice, true);
-
-        if (device != null) {
-            this.eventEmitter.emit('hello', device);
-        }
+        this.eventEmitter.emit('hello', this.toDevice(ssdpDevice, true));
     }
 
     private emitGoodbye(ssdpDevice: ssdp.Device) {
-        const device = this.toDevice(ssdpDevice, false);
-
-        if (device != null) {
-            this.eventEmitter.emit('goodbye', device);
-        }
+        this.eventEmitter.emit('goodbye', this.toDevice(ssdpDevice, false));
     }
 
     private toDevice(device: ssdp.Device, isResponsive: boolean): Device | null {
-        if (device.macAddress === undefined) {
-            return null;
-        }
-
         const networkStatus: NetworkStatus = {
             isResponsive,
             timestamp: new Date(),
