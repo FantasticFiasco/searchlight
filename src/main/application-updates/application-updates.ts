@@ -26,8 +26,8 @@ export class ApplicationUpdates {
         this.updater = this.createUpdater(analytics, window);
 
         // Register for messages sent from the renderer
-        ipcMain.on(ApplicationUpdatesChannelName.APPLICATION_UPDATES_CHECK, async () => this.checkForUpdatesAsync());
-        ipcMain.on(ApplicationUpdatesChannelName.APPLICATION_UPDATES_APPLY, () => this.restartAndUpdate());
+        ipcMain.on(ApplicationUpdatesChannelName.Check, async () => this.checkForUpdatesAsync());
+        ipcMain.on(ApplicationUpdatesChannelName.Apply, () => this.restartAndUpdate());
     }
 
     /**

@@ -24,10 +24,10 @@ export class DiscoveryService {
         this.eventEmitter = new EventEmitter();
 
         ipcRenderer.on(
-            DiscoveryChannelName.DISCOVERY_DEVICE_HELLO,
+            DiscoveryChannelName.Hello,
             (event: any, device: ssdp.Device) => this.emitHello(device));
         ipcRenderer.on(
-            DiscoveryChannelName.DISCOVERY_DEVICE_GOODBYE,
+            DiscoveryChannelName.Goodbye,
             (event: any, device: ssdp.Device) => this.emitGoodbye(device));
     }
 
@@ -35,7 +35,7 @@ export class DiscoveryService {
      * Triggers a new search for devices on the network.
      */
     public search() {
-        ipcRenderer.send(DiscoveryChannelName.DISCOVERY_SEARCH);
+        ipcRenderer.send(DiscoveryChannelName.Search);
     }
 
     /**

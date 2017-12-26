@@ -37,13 +37,13 @@ export class Analytics {
 
         // Register for messages sent from the renderer
         ipcMain.on(
-            AnalyticsChannelName.ANALYTICS_REPORT_EVENT_WITH_VALUE,
+            AnalyticsChannelName.ReportEventWithValue,
             (event: any, arg: ValueEvent) => this.reportEventWithValue(arg.category, arg.action, arg.label, arg.value));
         ipcMain.on(
-            AnalyticsChannelName.ANALYTICS_REPORT_PAGE_VIEW,
+            AnalyticsChannelName.ReportPageView,
             (event: any, arg: PageViewEvent) => this.reportPageView(arg.path));
         ipcMain.on(
-            AnalyticsChannelName.ANALYTICS_REPORT_EXCEPTION,
+            AnalyticsChannelName.ReportException,
             (event: any, arg: ExceptionEvent) => this.reportException(arg.description));
     }
 

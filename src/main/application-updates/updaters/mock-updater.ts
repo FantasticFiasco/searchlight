@@ -54,18 +54,18 @@ export class MockUpdater implements IApplicationUpdater {
             const progress = 11.111 * i;
 
             log.info('MockUpdater', 'send download progress', progress);
-            this.send(ApplicationUpdatesChannelName.APPLICATION_UPDATES_CHECK_RESPONSE, new DownloadProgressEvent(progress));
+            this.send(ApplicationUpdatesChannelName.CheckResponse, new DownloadProgressEvent(progress));
 
             await this.sleep(1000);
         }
 
         log.info('MockUpdater', 'send restart required');
-        this.send(ApplicationUpdatesChannelName.APPLICATION_UPDATES_CHECK_RESPONSE, new RestartRequiredEvent());
+        this.send(ApplicationUpdatesChannelName.CheckResponse, new RestartRequiredEvent());
     }
 
     private async simulateNoUpdatesAvailable(): Promise<void> {
         log.info('MockUpdater', 'send no updates available');
-        this.send(ApplicationUpdatesChannelName.APPLICATION_UPDATES_CHECK_RESPONSE, new NoUpdatesAvailableEvent());
+        this.send(ApplicationUpdatesChannelName.CheckResponse, new NoUpdatesAvailableEvent());
     }
 
     private sleep(ms: number): Promise<void> {

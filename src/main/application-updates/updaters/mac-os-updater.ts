@@ -89,7 +89,7 @@ export class MacOSUpdater implements IApplicationUpdater {
         if (dmg && dmg.url) {
             this.downloadUrl = dmg.url;
             this.state = State.UPDATES_AVAILABLE;
-            this.send(ApplicationUpdatesChannelName.APPLICATION_UPDATES_CHECK_RESPONSE, new UpdatesAvailableEvent());
+            this.send(ApplicationUpdatesChannelName.CheckResponse, new UpdatesAvailableEvent());
         } else {
             log.error('MacOSUpdater', 'update available but without matching asset', dmg);
             this.onUpdateNotAvailable(version);
@@ -100,14 +100,14 @@ export class MacOSUpdater implements IApplicationUpdater {
         log.info('MacOSUpdater', `update not available (latest version: ${version.version}, downgrade is ${autoUpdater.allowDowngrade ? 'allowed' : 'disallowed'})`);
 
         this.state = State.IDLE;
-        this.send(ApplicationUpdatesChannelName.APPLICATION_UPDATES_CHECK_RESPONSE, new NoUpdatesAvailableEvent());
+        this.send(ApplicationUpdatesChannelName.CheckResponse, new NoUpdatesAvailableEvent());
     }
 
     private onError(error: Error) {
         log.error('MacOSUpdater', error);
 
         this.state = State.IDLE;
-        this.send(ApplicationUpdatesChannelName.APPLICATION_UPDATES_CHECK_RESPONSE, new NoUpdatesAvailableEvent());
+        this.send(ApplicationUpdatesChannelName.CheckResponse, new NoUpdatesAvailableEvent());
 
         this.analytics.reportException(`${error.name}: ${error.message}`);
     }

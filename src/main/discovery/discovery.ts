@@ -30,7 +30,7 @@ export class Discovery implements IDiscovery {
         this.webContents = webContents;
 
         // Register for messages sent from the renderer
-        ipcMain.on(DiscoveryChannelName.DISCOVERY_SEARCH, async () => await this.onSearch());
+        ipcMain.on(DiscoveryChannelName.Search, async () => await this.onSearch());
     }
 
     /**
@@ -58,13 +58,13 @@ export class Discovery implements IDiscovery {
     private onHello(device: ssdp.Device) {
         log.debug('Discovery', `hello from ${device.macAddress}`);
         device = this.cache.update(device);
-        this.send(DiscoveryChannelName.DISCOVERY_DEVICE_HELLO, device);
+        this.send(DiscoveryChannelName.Hello, device);
     }
 
     private onGoodbye(device: ssdp.Device) {
         log.debug('Discovery', `goodbye from ${device.macAddress}`);
         device = this.cache.update(device);
-        this.send(DiscoveryChannelName.DISCOVERY_DEVICE_GOODBYE, device);
+        this.send(DiscoveryChannelName.Goodbye, device);
     }
 
     private send(channel: string, ...args: any[]) {

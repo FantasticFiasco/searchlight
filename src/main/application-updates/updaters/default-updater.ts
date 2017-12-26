@@ -81,35 +81,35 @@ export class DefaultUpdater implements IApplicationUpdater {
         log.info('DefaultUpdater', `update available with version ${version.version}`);
 
         this.state = State.UPDATES_AVAILABLE;
-        this.send(ApplicationUpdatesChannelName.APPLICATION_UPDATES_CHECK_RESPONSE, new UpdatesAvailableEvent());
+        this.send(ApplicationUpdatesChannelName.CheckResponse, new UpdatesAvailableEvent());
     }
 
     private onUpdateNotAvailable(version: UpdateInfo) {
         log.info('DefaultUpdater', `update not available (latest version: ${version.version}, downgrade is ${autoUpdater.allowDowngrade ? 'allowed' : 'disallowed'})`);
 
         this.state = State.IDLE;
-        this.send(ApplicationUpdatesChannelName.APPLICATION_UPDATES_CHECK_RESPONSE, new NoUpdatesAvailableEvent());
+        this.send(ApplicationUpdatesChannelName.CheckResponse, new NoUpdatesAvailableEvent());
     }
 
     private onDownloadProgress(progress: ProgressInfo) {
         log.info('DefaultUpdater', `download progress ${progress.percent.toFixed(2)}% (${progress.bytesPerSecond / 1024} kB/s)`);
 
         this.state = State.DOWNLOADING_UPDATES;
-        this.send(ApplicationUpdatesChannelName.APPLICATION_UPDATES_CHECK_RESPONSE, new DownloadProgressEvent(progress.percent));
+        this.send(ApplicationUpdatesChannelName.CheckResponse, new DownloadProgressEvent(progress.percent));
     }
 
     private onUpdateDownloaded(version: UpdateInfo) {
         log.info('DefaultUpdater', `update with version ${version.version} has been downloaded`);
 
         this.state = State.DOWNLOADED_UPDATES;
-        this.send(ApplicationUpdatesChannelName.APPLICATION_UPDATES_CHECK_RESPONSE, new RestartRequiredEvent());
+        this.send(ApplicationUpdatesChannelName.CheckResponse, new RestartRequiredEvent());
     }
 
     private onError(error: Error) {
         log.error('DefaultUpdater', error);
 
         this.state = State.IDLE;
-        this.send(ApplicationUpdatesChannelName.APPLICATION_UPDATES_CHECK_RESPONSE, new NoUpdatesAvailableEvent());
+        this.send(ApplicationUpdatesChannelName.CheckResponse, new NoUpdatesAvailableEvent());
 
         this.analytics.reportException(`${error.name}: ${error.message}`);
     }

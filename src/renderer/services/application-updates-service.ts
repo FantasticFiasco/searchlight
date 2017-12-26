@@ -24,7 +24,7 @@ export class ApplicationUpdatesService {
      */
     constructor() {
         ipcRenderer.on(
-            ApplicationUpdatesChannelName.APPLICATION_UPDATES_CHECK_RESPONSE,
+            ApplicationUpdatesChannelName.CheckResponse,
             (event: any, args: CheckForUpdatesEventTypes) => this.onEvent(args));
     }
 
@@ -33,14 +33,14 @@ export class ApplicationUpdatesService {
      */
     public checkForUpdates() {
         store.commit(UPDATE_STATE_MUTATION, ApplicationUpdatesState.CHECKING);
-        ipcRenderer.send(ApplicationUpdatesChannelName.APPLICATION_UPDATES_CHECK);
+        ipcRenderer.send(ApplicationUpdatesChannelName.Check);
     }
 
     /**
      * Restart and update the application.
      */
     public restartToUpdate() {
-        ipcRenderer.send(ApplicationUpdatesChannelName.APPLICATION_UPDATES_APPLY);
+        ipcRenderer.send(ApplicationUpdatesChannelName.Apply);
     }
 
     private onEvent(event: CheckForUpdatesEventTypes) {
