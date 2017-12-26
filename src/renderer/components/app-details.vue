@@ -75,15 +75,15 @@ export default class AppDetails extends Vue {
     private readonly applicationUpdatesService: ApplicationUpdatesService;
 
     public get isCheckingForUpdates(): boolean {
-        return this.$store.state.applicationUpdates.state === ApplicationUpdatesState.CHECKING;
+        return this.$store.state.applicationUpdates.state === ApplicationUpdatesState.Checking;
     }
 
     public get isDownloading(): boolean {
-        return this.$store.state.applicationUpdates.state === ApplicationUpdatesState.DOWNLOADING;
+        return this.$store.state.applicationUpdates.state === ApplicationUpdatesState.Downloading;
     }
 
     public get isRequiringRestart(): boolean {
-        return this.$store.state.applicationUpdates.state === ApplicationUpdatesState.RESTART_REQUIRED;
+        return this.$store.state.applicationUpdates.state === ApplicationUpdatesState.RestartRequired;
     }
 
     public get restartButtonText(): string {

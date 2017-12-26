@@ -16,6 +16,6 @@ export class AboutView implements IView {
     }
 
     public get badge(): string {
-        return store.state.applicationUpdates.state === ApplicationUpdatesState.RESTART_REQUIRED ? 'NEW' : '';
+        return store.state.applicationUpdates.state === ApplicationUpdatesState.RestartRequired ? 'NEW' : '';
     }
 }

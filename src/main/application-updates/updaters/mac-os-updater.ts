@@ -33,11 +33,11 @@ export class MacOSUpdater implements IApplicationUpdater {
         this.analytics = analytics;
         this.webContents = webContents;
         this.gitHub = new GitHub();
-        this.state = State.IDLE;
+        this.state = State.Idle;
     }
 
     public start() {
-        expect.toBeTrue(this.state === State.IDLE, 'Cannot start unless state is IDLE');
+        expect.toBeTrue(this.state === State.Idle, 'Cannot start unless state is Idle');
 
         log.info('MacOSUpdater', 'start');
 
@@ -61,7 +61,7 @@ export class MacOSUpdater implements IApplicationUpdater {
     }
 
     public restartAndUpdate() {
-        expect.toBeTrue(this.state === State.UPDATES_AVAILABLE, 'Cannot download and restart until updates available');
+        expect.toBeTrue(this.state === State.UpdatesAvailable, 'Cannot download and restart until updates available');
 
         log.info('MacOSUpdater', 'download and restart');
 
@@ -75,7 +75,7 @@ export class MacOSUpdater implements IApplicationUpdater {
     private onCheckingForUpdates() {
         log.info('MacOSUpdater', 'checking for updates');
 
-        this.state = State.CHECKING_FOR_UPDATES;
+        this.state = State.CheckingForUpdates;
     }
 
     private async onUpdateAvailable(version: UpdateInfo): Promise<void> {
@@ -88,7 +88,7 @@ export class MacOSUpdater implements IApplicationUpdater {
 
         if (dmg && dmg.url) {
             this.downloadUrl = dmg.url;
-            this.state = State.UPDATES_AVAILABLE;
+            this.state = State.UpdatesAvailable;
             this.send(ApplicationUpdatesChannelName.CheckResponse, new UpdatesAvailableEvent());
         } else {
             log.error('MacOSUpdater', 'update available but without matching asset', dmg);
@@ -99,14 +99,14 @@ export class MacOSUpdater implements IApplicationUpdater {
     private onUpdateNotAvailable(version: UpdateInfo) {
         log.info('MacOSUpdater', `update not available (latest version: ${version.version}, downgrade is ${autoUpdater.allowDowngrade ? 'allowed' : 'disallowed'})`);
 
-        this.state = State.IDLE;
+        this.state = State.Idle;
         this.send(ApplicationUpdatesChannelName.CheckResponse, new NoUpdatesAvailableEvent());
     }
 
     private onError(error: Error) {
         log.error('MacOSUpdater', error);
 
-        this.state = State.IDLE;
+        this.state = State.Idle;
         this.send(ApplicationUpdatesChannelName.CheckResponse, new NoUpdatesAvailableEvent());
 
         this.analytics.reportException(`${error.name}: ${error.message}`);

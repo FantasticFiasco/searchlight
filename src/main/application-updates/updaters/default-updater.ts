@@ -30,11 +30,11 @@ export class DefaultUpdater implements IApplicationUpdater {
 
         this.analytics = analytics;
         this.webContents = webContents;
-        this.state = State.IDLE;
+        this.state = State.Idle;
     }
 
     public start() {
-        expect.toBeTrue(this.state === State.IDLE, 'Cannot start unless state is IDLE');
+        expect.toBeTrue(this.state === State.Idle, 'Cannot start unless state is Idle');
 
         log.info('DefaultUpdater', 'start');
 
@@ -60,7 +60,7 @@ export class DefaultUpdater implements IApplicationUpdater {
     }
 
     public restartAndUpdate() {
-        expect.toBeTrue(this.state === State.DOWNLOADED_UPDATES, 'Cannot restart until updates are downloaded');
+        expect.toBeTrue(this.state === State.DownloadedUpdates, 'Cannot restart until updates are downloaded');
 
         log.info('DefaultUpdater', 'restart and update');
 
@@ -74,41 +74,41 @@ export class DefaultUpdater implements IApplicationUpdater {
     private onCheckingForUpdates() {
         log.info('DefaultUpdater', 'checking for updates');
 
-        this.state = State.CHECKING_FOR_UPDATES;
+        this.state = State.CheckingForUpdates;
     }
 
     private onUpdateAvailable(version: UpdateInfo) {
         log.info('DefaultUpdater', `update available with version ${version.version}`);
 
-        this.state = State.UPDATES_AVAILABLE;
+        this.state = State.UpdatesAvailable;
         this.send(ApplicationUpdatesChannelName.CheckResponse, new UpdatesAvailableEvent());
     }
 
     private onUpdateNotAvailable(version: UpdateInfo) {
         log.info('DefaultUpdater', `update not available (latest version: ${version.version}, downgrade is ${autoUpdater.allowDowngrade ? 'allowed' : 'disallowed'})`);
 
-        this.state = State.IDLE;
+        this.state = State.Idle;
         this.send(ApplicationUpdatesChannelName.CheckResponse, new NoUpdatesAvailableEvent());
     }
 
     private onDownloadProgress(progress: ProgressInfo) {
         log.info('DefaultUpdater', `download progress ${progress.percent.toFixed(2)}% (${progress.bytesPerSecond / 1024} kB/s)`);
 
-        this.state = State.DOWNLOADING_UPDATES;
+        this.state = State.DownloadingUpdates;
         this.send(ApplicationUpdatesChannelName.CheckResponse, new DownloadProgressEvent(progress.percent));
     }
 
     private onUpdateDownloaded(version: UpdateInfo) {
         log.info('DefaultUpdater', `update with version ${version.version} has been downloaded`);
 
-        this.state = State.DOWNLOADED_UPDATES;
+        this.state = State.DownloadedUpdates;
         this.send(ApplicationUpdatesChannelName.CheckResponse, new RestartRequiredEvent());
     }
 
     private onError(error: Error) {
         log.error('DefaultUpdater', error);
 
-        this.state = State.IDLE;
+        this.state = State.Idle;
         this.send(ApplicationUpdatesChannelName.CheckResponse, new NoUpdatesAvailableEvent());
 
         this.analytics.reportException(`${error.name}: ${error.message}`);

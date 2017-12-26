@@ -32,7 +32,7 @@ export class ApplicationUpdatesService {
      * Check whether any application updates are available.
      */
     public checkForUpdates() {
-        store.commit(UPDATE_STATE_MUTATION, ApplicationUpdatesState.CHECKING);
+        store.commit(UPDATE_STATE_MUTATION, ApplicationUpdatesState.Checking);
         ipcRenderer.send(ApplicationUpdatesChannelName.Check);
     }
 
@@ -46,7 +46,7 @@ export class ApplicationUpdatesService {
     private onEvent(event: CheckForUpdatesEventTypes) {
         switch (event.kind) {
             case 'no-updates-available':
-                store.commit(UPDATE_STATE_MUTATION, ApplicationUpdatesState.IDLE);
+                store.commit(UPDATE_STATE_MUTATION, ApplicationUpdatesState.Idle);
                 break;
 
             case 'download-progress':
@@ -54,7 +54,7 @@ export class ApplicationUpdatesService {
                 break;
 
             case 'restart-required':
-                store.commit(UPDATE_STATE_MUTATION, ApplicationUpdatesState.RESTART_REQUIRED);
+                store.commit(UPDATE_STATE_MUTATION, ApplicationUpdatesState.RestartRequired);
                 break;
         }
     }
