@@ -16,8 +16,7 @@ export enum ApplicationUpdatesChannelName {
 
     /**
      * Channel name for messages sent from main to renderer, describing the
-     * responses of checking for updates started on channel
-     * Check.
+     * responses of checking for updates started on channel Check.
      */
     CheckResponse = 'application-updates.check.response',
 }

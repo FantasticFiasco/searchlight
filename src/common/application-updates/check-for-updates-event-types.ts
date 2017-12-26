@@ -10,5 +10,5 @@ import { UpdatesAvailableEvent } from './updates-available-event';
 export type CheckForUpdatesEventTypes =
     NoUpdatesAvailableEvent |
     DownloadProgressEvent |
-    UpdatesAvailableEvent |
-    RestartRequiredEvent;
+    RestartRequiredEvent |
+    UpdatesAvailableEvent;
