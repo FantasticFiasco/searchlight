@@ -49,6 +49,10 @@ export class ApplicationUpdatesService {
                 store.commit(UPDATE_STATE_MUTATION, ApplicationUpdatesState.Idle);
                 break;
 
+            case 'updates-available':
+                store.commit(UPDATE_STATE_MUTATION, ApplicationUpdatesState.UpdatesAvailable);
+                break;
+
             case 'download-progress':
                 store.commit(UPDATE_DOWNLOAD_PROGRESS_MUTATION, event.progress);
                 break;

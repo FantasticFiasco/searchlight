@@ -6,6 +6,7 @@ export class State {
 export enum ApplicationUpdatesState {
     Idle = 1,
     Checking,
+    UpdatesAvailable,
     Downloading,
     RestartRequired,
 }

@@ -16,7 +16,12 @@
                     <i class="fa fa-refresh fa-spin fa-fw text-primary" /> Downloading updates ({{ downloadProgress }}%)
                 </p>
                 <p v-else-if="isRequiringRestart">
-                    <b-button @click="restartToUpdate" variant="primary" v-html="restartButtonText">
+                    <b-button @click="restartToUpdate" variant="primary" v-html="restartButtonText" />
+                </p>
+                <p v-else-if="isRequiringManualDownload">
+                    <b-button @click="restartToUpdate" variant="primary">
+                        New version available!<br>
+                        Download to update
                     </b-button>
                 </p>
                 <p v-else>
@@ -86,6 +91,11 @@ export default class AppDetails extends Vue {
         return this.$store.state.applicationUpdates.state === ApplicationUpdatesState.RestartRequired;
     }
 
+    public get isRequiringManualDownload(): boolean {
+        return this.$store.state.applicationUpdates.state === ApplicationUpdatesState.UpdatesAvailable &&
+            platform() === Platform.MacOS;
+    }
+
     public get restartButtonText(): string {
         switch (platform()) {
             case Platform.Windows:
@@ -103,15 +113,15 @@ export default class AppDetails extends Vue {
         return remote.app.getVersion();
     }
 
-    get electronVersion(): string {
+    public get electronVersion(): string {
         return process.versions.electron;
     }
 
-    get nodeVersion(): string {
+    public get nodeVersion(): string {
         return process.versions.node;
     }
 
-    get chromeVersion(): string {
+    public get chromeVersion(): string {
         return process.versions.chrome;
     }
 
