@@ -54,12 +54,12 @@ export class DiscoveryService {
         this.eventEmitter.on('goodbye', (device) => callback(device));
     }
 
-    private emitHello(ssdpDevice: ssdp.Device) {
-        this.eventEmitter.emit('hello', this.toDevice(ssdpDevice, true));
+    private emitHello(device: ssdp.Device) {
+        this.eventEmitter.emit('hello', this.toDevice(device, true));
     }
 
-    private emitGoodbye(ssdpDevice: ssdp.Device) {
-        this.eventEmitter.emit('goodbye', this.toDevice(ssdpDevice, false));
+    private emitGoodbye(device: ssdp.Device) {
+        this.eventEmitter.emit('goodbye', this.toDevice(device, false));
     }
 
     private toDevice(device: ssdp.Device, isResponsive: boolean): Device | null {
