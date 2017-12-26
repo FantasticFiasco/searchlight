@@ -1,1 +1,1 @@
-export * from './channel-names';
+export * from './discovery-channel-name';

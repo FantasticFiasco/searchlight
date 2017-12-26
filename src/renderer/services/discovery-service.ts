@@ -2,7 +2,7 @@ import * as ssdp from 'axis-discovery-ssdp';
 import { ipcRenderer } from 'electron';
 import { EventEmitter } from 'events';
 
-import * as channelNames from 'common/discovery/channel-names';
+import { DiscoveryChannelName } from 'common/discovery';
 import { Device, NetworkStatus } from '../models';
 
 /**
@@ -24,10 +24,10 @@ export class DiscoveryService {
         this.eventEmitter = new EventEmitter();
 
         ipcRenderer.on(
-            channelNames.DISCOVERY_DEVICE_HELLO,
+            DiscoveryChannelName.DISCOVERY_DEVICE_HELLO,
             (event: any, device: ssdp.Device) => this.emitHello(device));
         ipcRenderer.on(
-            channelNames.DISCOVERY_DEVICE_GOODBYE,
+            DiscoveryChannelName.DISCOVERY_DEVICE_GOODBYE,
             (event: any, device: ssdp.Device) => this.emitGoodbye(device));
     }
 
@@ -35,7 +35,7 @@ export class DiscoveryService {
      * Triggers a new search for devices on the network.
      */
     public search() {
-        ipcRenderer.send(channelNames.DISCOVERY_SEARCH);
+        ipcRenderer.send(DiscoveryChannelName.DISCOVERY_SEARCH);
     }
 
     /**

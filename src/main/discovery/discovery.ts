@@ -2,7 +2,7 @@ import * as expect from '@fantasticfiasco/expect';
 import * as ssdp from 'axis-discovery-ssdp';
 import { ipcMain } from 'electron';
 
-import * as channelNames from 'common/discovery/channel-names';
+import { DiscoveryChannelName } from 'common/discovery';
 import * as log from '../log';
 import { HttpClient } from '../net';
 import { Cache } from './cache';
@@ -30,7 +30,7 @@ export class Discovery implements IDiscovery {
         this.webContents = webContents;
 
         // Register for messages sent from the renderer
-        ipcMain.on(channelNames.DISCOVERY_SEARCH, async () => await this.onSearch());
+        ipcMain.on(DiscoveryChannelName.DISCOVERY_SEARCH, async () => await this.onSearch());
     }
 
     /**
@@ -58,13 +58,13 @@ export class Discovery implements IDiscovery {
     private onHello(device: ssdp.Device) {
         log.debug('Discovery', `hello from ${device.macAddress}`);
         device = this.cache.update(device);
-        this.send(channelNames.DISCOVERY_DEVICE_HELLO, device);
+        this.send(DiscoveryChannelName.DISCOVERY_DEVICE_HELLO, device);
     }
 
     private onGoodbye(device: ssdp.Device) {
         log.debug('Discovery', `goodbye from ${device.macAddress}`);
         device = this.cache.update(device);
-        this.send(channelNames.DISCOVERY_DEVICE_GOODBYE, device);
+        this.send(DiscoveryChannelName.DISCOVERY_DEVICE_GOODBYE, device);
     }
 
     private send(channel: string, ...args: any[]) {

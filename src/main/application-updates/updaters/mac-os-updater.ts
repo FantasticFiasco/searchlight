@@ -3,8 +3,7 @@ import { UpdateInfo } from 'builder-util-runtime';
 import { shell } from 'electron';
 import { autoUpdater } from 'electron-updater';
 
-import { NoUpdatesAvailableEvent, UpdatesAvailableEvent } from 'common/application-updates';
-import * as channelNames from 'common/application-updates/channel-names';
+import { ApplicationUpdatesChannelName, NoUpdatesAvailableEvent, UpdatesAvailableEvent } from 'common/application-updates';
 import { Analytics } from '../../analytics';
 import * as log from '../../log';
 import { IApplicationUpdater } from '../i-application-updater';
@@ -82,17 +81,17 @@ export class MacOSUpdater implements IApplicationUpdater {
     private async onUpdateAvailable(version: UpdateInfo): Promise<void> {
         log.info('MacOSUpdater', `update available with version ${version.version}`);
 
-        const latestRelease = await this.gitHub.getLatestRelease();
+        const latestRelease: Release = await this.gitHub.getLatestRelease();
 
         const dmgRegex = /.*\.dmg$/i;
-        const dmg = latestRelease.assets.find((asset) => dmgRegex.test(asset.name));
+        const dmg: Asset | undefined = latestRelease.assets.find((asset: Asset) => dmgRegex.test(asset.name));
 
         if (dmg && dmg.url) {
             this.downloadUrl = dmg.url;
             this.state = State.UPDATES_AVAILABLE;
-            this.send(channelNames.APPLICATION_UPDATES_CHECK_RESPONSE, new UpdatesAvailableEvent());
+            this.send(ApplicationUpdatesChannelName.APPLICATION_UPDATES_CHECK_RESPONSE, new UpdatesAvailableEvent());
         } else {
-            log.error('MacOSUpdater', 'update available but no asset matched', dmg);
+            log.error('MacOSUpdater', 'update available but without matching asset', dmg);
             this.onUpdateNotAvailable(version);
         }
     }
@@ -101,14 +100,14 @@ export class MacOSUpdater implements IApplicationUpdater {
         log.info('MacOSUpdater', `update not available (latest version: ${version.version}, downgrade is ${autoUpdater.allowDowngrade ? 'allowed' : 'disallowed'})`);
 
         this.state = State.IDLE;
-        this.send(channelNames.APPLICATION_UPDATES_CHECK_RESPONSE, new NoUpdatesAvailableEvent());
+        this.send(ApplicationUpdatesChannelName.APPLICATION_UPDATES_CHECK_RESPONSE, new NoUpdatesAvailableEvent());
     }
 
     private onError(error: Error) {
         log.error('MacOSUpdater', error);
 
         this.state = State.IDLE;
-        this.send(channelNames.APPLICATION_UPDATES_CHECK_RESPONSE, new NoUpdatesAvailableEvent());
+        this.send(ApplicationUpdatesChannelName.APPLICATION_UPDATES_CHECK_RESPONSE, new NoUpdatesAvailableEvent());
 
         this.analytics.reportException(`${error.name}: ${error.message}`);
     }

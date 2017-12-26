@@ -2,7 +2,7 @@ import * as expect from '@fantasticfiasco/expect';
 import * as ssdp from 'axis-discovery-ssdp';
 import { ipcMain } from 'electron';
 
-import * as channelNames from 'common/discovery/channel-names';
+import { DiscoveryChannelName } from 'common/discovery';
 import * as log from '../log';
 import { IDiscovery } from './i-discovery';
 
@@ -26,7 +26,7 @@ export class DiscoveryMock implements IDiscovery {
         this.disconnectedDevices = [];
 
         // Register for messages sent from the renderer
-        ipcMain.on(channelNames.DISCOVERY_SEARCH, () => this.onSearch());
+        ipcMain.on(DiscoveryChannelName.DISCOVERY_SEARCH, () => this.onSearch());
 
         for (const device of this.createDevices()) {
             this.connectedDevices.push(device);
@@ -56,7 +56,7 @@ export class DiscoveryMock implements IDiscovery {
         log.info('DiscoveryMock', 'search');
 
         for (const device of this.connectedDevices) {
-            this.send(channelNames.DISCOVERY_DEVICE_HELLO, device);
+            this.send(DiscoveryChannelName.DISCOVERY_DEVICE_HELLO, device);
         }
     }
 
@@ -75,7 +75,7 @@ export class DiscoveryMock implements IDiscovery {
             const disconnectedDevice = this.connectedDevices.splice(index, 1)[0];
             this.disconnectedDevices.push(disconnectedDevice);
 
-            this.send(channelNames.DISCOVERY_DEVICE_GOODBYE, disconnectedDevice);
+            this.send(DiscoveryChannelName.DISCOVERY_DEVICE_GOODBYE, disconnectedDevice);
         } else if (this.disconnectedDevices.length > 0) {
             log.info('DiscoveryMock', 'simulate connection');
 
@@ -83,7 +83,7 @@ export class DiscoveryMock implements IDiscovery {
             const connectedDevice = this.disconnectedDevices.splice(index, 1)[0];
             this.connectedDevices.push(connectedDevice);
 
-            this.send(channelNames.DISCOVERY_DEVICE_HELLO, connectedDevice);
+            this.send(DiscoveryChannelName.DISCOVERY_DEVICE_HELLO, connectedDevice);
         }
     }
 
