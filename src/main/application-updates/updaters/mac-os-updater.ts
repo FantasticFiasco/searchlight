@@ -91,7 +91,7 @@ export class MacOSUpdater implements IApplicationUpdater {
             this.state = State.UpdatesAvailable;
             this.send(ApplicationUpdatesChannelName.CheckResponse, new UpdatesAvailableEvent());
         } else {
-            log.error('MacOSUpdater', 'update available but without matching asset', dmg);
+            log.error('MacOSUpdater', 'update available but without matching asset', latestRelease);
             this.onUpdateNotAvailable(version);
         }
     }
