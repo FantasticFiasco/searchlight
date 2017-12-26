@@ -62,7 +62,7 @@ export class DiscoveryService {
         this.eventEmitter.emit('goodbye', this.toDevice(device, false));
     }
 
-    private toDevice(device: ssdp.Device, isResponsive: boolean): Device | null {
+    private toDevice(device: ssdp.Device, isResponsive: boolean): Device {
         const networkStatus: NetworkStatus = {
             isResponsive,
             timestamp: new Date(),
