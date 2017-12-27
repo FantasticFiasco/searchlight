@@ -15,14 +15,8 @@
                 <p v-else-if="isDownloading">
                     <i class="fa fa-refresh fa-spin fa-fw text-primary" /> Downloading updates ({{ downloadProgress }}%)
                 </p>
-                <p v-else-if="isRequiringRestart">
-                    <b-button @click="restartToUpdate" variant="primary" v-html="restartButtonText" />
-                </p>
-                <p v-else-if="isRequiringManualDownload">
-                    <b-button @click="restartToUpdate" variant="primary">
-                        New version available!<br>
-                        Download to update
-                    </b-button>
+                <p v-else-if="canApplyUpdates">
+                    <b-button @click="applyUpdates" variant="primary" v-html="applyUpdatesButtonText" />
                 </p>
                 <p v-else>
                     <i class="fa fa-check-circle fa-fw text-success" /> Application is up to date
@@ -87,17 +81,22 @@ export default class AppDetails extends Vue {
         return this.$store.state.applicationUpdates.state === ApplicationUpdatesState.Downloading;
     }
 
-    public get isRequiringRestart(): boolean {
-        return this.$store.state.applicationUpdates.state === ApplicationUpdatesState.RestartRequired;
-    }
-
-    public get isRequiringManualDownload(): boolean {
-        return this.$store.state.applicationUpdates.state === ApplicationUpdatesState.UpdatesAvailable &&
-            platform() === Platform.MacOS;
-    }
-
-    public get restartButtonText(): string {
+    public get canApplyUpdates(): boolean {
         switch (platform()) {
+            // Since application isn't signed, automatically installing the updates
+            // on macOS isn't possible. Instead we let the user download the
+            // updates and manually install them.
+            case Platform.MacOS:
+                return this.$store.state.applicationUpdates.state === ApplicationUpdatesState.UpdatesAvailable;
+            default:
+                return this.$store.state.applicationUpdates.state === ApplicationUpdatesState.RestartRequired;
+        }
+    }
+
+    public get applyUpdatesButtonText(): string {
+        switch (platform()) {
+            case Platform.MacOS:
+                return 'New version available!<br>Download it now';
             case Platform.Windows:
                 return 'New version available!<br>Restart to update';
             default:
@@ -125,8 +124,8 @@ export default class AppDetails extends Vue {
         return process.versions.chrome;
     }
 
-    public restartToUpdate(e: Event) {
-        this.applicationUpdatesService.restartToUpdate();
+    public applyUpdates(e: Event) {
+        this.applicationUpdatesService.applyUpdates();
     }
 
     public openIssueWebPage(e: Event) {

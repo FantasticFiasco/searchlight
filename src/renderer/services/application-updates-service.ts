@@ -37,9 +37,10 @@ export class ApplicationUpdatesService {
     }
 
     /**
-     * Restart and update the application.
+     * Applies the updates. On most platforms this requires a restart of the
+     * application.
      */
-    public restartToUpdate() {
+    public applyUpdates() {
         ipcRenderer.send(ApplicationUpdatesChannelName.Apply);
     }
 

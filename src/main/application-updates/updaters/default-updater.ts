@@ -7,7 +7,6 @@ import {
     DownloadProgressEvent,
     NoUpdatesAvailableEvent,
     RestartRequiredEvent,
-    UpdatesAvailableEvent,
 } from 'common/application-updates';
 import { Analytics } from '../../analytics';
 import * as log from '../../log';
@@ -81,7 +80,6 @@ export class DefaultUpdater implements IApplicationUpdater {
         log.info('DefaultUpdater', `update available with version ${version.version}`);
 
         this.state = State.UpdatesAvailable;
-        this.send(ApplicationUpdatesChannelName.CheckResponse, new UpdatesAvailableEvent());
     }
 
     private onUpdateNotAvailable(version: UpdateInfo) {

@@ -1,5 +1,7 @@
 /**
- * Event describing that application updates are available.
+ * Event describing that application updates are available. This event will
+ * only be sent on platforms that don't automatically download and apply the
+ * updates.
  */
 export class UpdatesAvailableEvent {
     /**
