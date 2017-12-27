@@ -58,10 +58,10 @@ export class DefaultUpdater implements IApplicationUpdater {
         }
     }
 
-    public restartAndUpdate() {
+    public applyUpdates() {
         expect.toBeTrue(this.state === State.DownloadedUpdates, 'Cannot restart until updates are downloaded');
 
-        log.info('DefaultUpdater', 'restart and update');
+        log.info('DefaultUpdater', 'restart and apply updates');
 
         try {
             autoUpdater.quitAndInstall();

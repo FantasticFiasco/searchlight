@@ -27,7 +27,7 @@ export class ApplicationUpdates {
 
         // Register for messages sent from the renderer
         ipcMain.on(ApplicationUpdatesChannelName.Check, () => this.checkForUpdatesAsync());
-        ipcMain.on(ApplicationUpdatesChannelName.Apply, () => this.restartAndUpdate());
+        ipcMain.on(ApplicationUpdatesChannelName.Apply, () => this.applyUpdates());
     }
 
     /**
@@ -41,8 +41,8 @@ export class ApplicationUpdates {
         return this.updater.checkForUpdates();
     }
 
-    private restartAndUpdate() {
-        this.updater.restartAndUpdate();
+    private applyUpdates() {
+        this.updater.applyUpdates();
     }
 
     private createUpdater(analytics: Analytics, window: Electron.BrowserWindow): IApplicationUpdater {

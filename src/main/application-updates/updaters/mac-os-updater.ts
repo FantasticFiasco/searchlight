@@ -60,10 +60,10 @@ export class MacOSUpdater implements IApplicationUpdater {
         }
     }
 
-    public restartAndUpdate() {
+    public applyUpdates() {
         expect.toBeTrue(this.state === State.UpdatesAvailable, 'Cannot download and restart until updates available');
 
-        log.info('MacOSUpdater', 'download and restart');
+        log.info('MacOSUpdater', 'download');
 
         try {
             shell.openExternal(this.downloadUrl);

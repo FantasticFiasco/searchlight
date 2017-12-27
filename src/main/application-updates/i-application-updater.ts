@@ -14,7 +14,7 @@ export interface IApplicationUpdater {
     checkForUpdates(): Promise<void>;
 
     /**
-     * Restart and apply application updates.
+     * Apply application updates. On most platforms this requires a restart.
      */
-    restartAndUpdate(): void;
+    applyUpdates(): void;
 }

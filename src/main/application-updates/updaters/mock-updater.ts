@@ -43,8 +43,8 @@ export class MockUpdater implements IApplicationUpdater {
         return Promise.resolve();
     }
 
-    public restartAndUpdate() {
-        log.info('MockUpdater', 'restart and update');
+    public applyUpdates() {
+        log.info('MockUpdater', 'apply');
 
         this.window.close();
     }
