@@ -5,9 +5,18 @@ import { Asset } from './asset';
  */
 export class Release {
     /**
-     * Initializes a new instance of the class.
-     * @param assets the release assets
+     * The name.
      */
-    constructor(public readonly assets: Asset[]) {
-    }
+    public name: string;
+
+    /**
+     * The tag name.
+     */
+    // tslint:disable-next-line:variable-name
+    public tag_name: string;
+
+    /**
+     * The assets.
+     */
+    public assets: Asset[];
 }

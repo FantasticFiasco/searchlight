@@ -1,5 +1,6 @@
+import * as expect from '@fantasticfiasco/expect';
+
 import { HttpClient } from '../../../net';
-import { Asset } from './asset';
 import { Release } from './release';
 
 /**
@@ -7,30 +8,26 @@ import { Release } from './release';
  */
 export class GitHub {
     private readonly httpClient: HttpClient;
-    private readonly latestReleaseUrl: string;
+    private readonly taggedReleaseUrl: string;
 
     /**
      * Initializes a new instance of the class.
      */
     constructor() {
         this.httpClient = new HttpClient();
-        this.latestReleaseUrl = 'https://api.github.com/repos/fantasticfiasco/searchlight/releases/latest';
+        this.taggedReleaseUrl = 'https://api.github.com/repos/fantasticfiasco/searchlight/releases/tags/';
     }
 
     /**
-     * Gets the latest release.
+     * Gets release with specified tag.
+     * @param tag the release tag
      */
-    public async getLatestRelease(): Promise<Release> {
-        const body = await this.httpClient.get(this.latestReleaseUrl);
-        const document: any = JSON.parse(body);
+    public async getRelease(tag: string): Promise<Release> {
+        expect.toExist(tag);
 
-        // Assets
-        const assets: Asset[] = [];
+        const body = await this.httpClient.get(this.taggedReleaseUrl + tag);
+        const release: Release = JSON.parse(body);
 
-        for (const asset of document.assets) {
-            assets.push(new Asset(asset.name, asset.browser_download_url));
-        }
-
-        return new Release(assets);
+        return release;
     }
 }

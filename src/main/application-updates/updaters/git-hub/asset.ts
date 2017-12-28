@@ -3,18 +3,13 @@
  */
 export class Asset {
     /**
-     * Initializes a new instance of the class.
-     * @param name the asset name
-     * @param url the asset URL
+     * The name.
      */
-    constructor(
-        /**
-         * Gets the name of the asset.
-         */
-        public readonly name: string,
-        /**
-         * Gets the URL of the asset.
-         */
-        public readonly url: string) {
-        }
+    public name: string;
+
+    /**
+     * The download URL.
+     */
+    // tslint:disable-next-line:variable-name
+    public browser_download_url: string;
 }

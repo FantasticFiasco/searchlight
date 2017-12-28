@@ -81,19 +81,29 @@ export class MacOSUpdater implements IApplicationUpdater {
     private async onUpdateAvailable(version: UpdateInfo): Promise<void> {
         log.info('MacOSUpdater', `update available with version ${version.version}`);
 
-        const latestRelease: Release = await this.gitHub.getLatestRelease();
+        const tag = `v${version.version}`;
+        let release: Release;
+
+        try {
+            release = await this.gitHub.getRelease(tag);
+        } catch (error) {
+            log.error('MacOSUpdater', `unable to get GitHub release with tag ${tag}`);
+            this.onError(error);
+            return;
+        }
 
         const dmgRegex = /.*\.dmg$/i;
-        const dmg: Asset | undefined = latestRelease.assets.find((asset: Asset) => dmgRegex.test(asset.name));
+        const dmg: Asset | undefined = release.assets.find((asset: Asset) => dmgRegex.test(asset.name));
 
-        if (dmg && dmg.url) {
-            this.downloadUrl = dmg.url;
+        if (dmg !== undefined) {
+            this.downloadUrl = dmg.browser_download_url;
             this.state = State.UpdatesAvailable;
             this.send(ApplicationUpdatesChannelName.CheckResponse, new UpdatesAvailableEvent());
         } else {
-            log.error('MacOSUpdater', 'update available but without matching asset', latestRelease);
+            log.error('MacOSUpdater', 'update available but without matching asset', release);
             this.onUpdateNotAvailable(version);
         }
+
     }
 
     private onUpdateNotAvailable(version: UpdateInfo) {
