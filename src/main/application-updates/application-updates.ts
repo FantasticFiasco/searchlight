@@ -26,7 +26,7 @@ export class ApplicationUpdates {
         this.updater = this.createUpdater(analytics, window);
 
         // Register for messages sent from the renderer
-        ipcMain.on(ApplicationUpdatesChannelName.Check, () => this.checkForUpdatesAsync());
+        ipcMain.on(ApplicationUpdatesChannelName.Check, () => this.checkForUpdates());
         ipcMain.on(ApplicationUpdatesChannelName.Apply, () => this.applyUpdates());
     }
 
@@ -37,7 +37,7 @@ export class ApplicationUpdates {
         this.updater.start();
     }
 
-    private checkForUpdatesAsync(): Promise<void> {
+    private checkForUpdates(): Promise<void> {
         return this.updater.checkForUpdates();
     }
 
