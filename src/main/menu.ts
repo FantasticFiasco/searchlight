@@ -6,17 +6,34 @@ export function buildMenu(): Menu {
     const appOptions: MenuItemConstructorOptions = {
         label: appName,
         submenu: [
-            { label: `About ${appName}`, role: 'orderFrontStandardAboutPanel' },
+            { role: 'about' },
             { type: 'separator' },
-            { label: `Hide ${name}`, accelerator: 'Command+H', role: 'hide' },
-            { label: 'Hide Others', accelerator: 'Command+Option+H', role: 'hideOtherApplications' },
-            { label: 'Show All', role: 'unhideAllApplications' },
+            { role: 'hide' },
+            { role: 'hideothers' },
+            { role: 'unhide' },
             { type: 'separator' },
-            { label: `Quit ${appName}`, role: 'quit', accelerator: 'Command+Q' },
+            { role: 'quit' },
+        ],
+    };
+
+    const viewOptions: MenuItemConstructorOptions = {
+        label: 'View',
+        submenu: [
+            { role: 'togglefullscreen' },
+        ],
+    };
+
+    const windowOptions: MenuItemConstructorOptions = {
+        role: 'window',
+        submenu: [
+            { role: 'minimize' },
+            { role: 'close' },
         ],
     };
 
     return Menu.buildFromTemplate([
         appOptions,
+        viewOptions,
+        windowOptions,
     ]);
 }
