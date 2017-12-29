@@ -6,6 +6,7 @@ import { Analytics } from './analytics';
 import { ApplicationUpdates } from './application-updates';
 import { Discovery, DiscoveryMock, IDiscovery } from './discovery';
 import * as log from './log';
+import { buildMenu } from './menu';
 import { Store } from './store';
 
 log.info('Main', `start app with version ${app.getVersion()}`);
@@ -45,8 +46,8 @@ function createMainWindow() {
         show: false,
     });
 
-    // Disable menu
-    mainWindow.setMenu(null);
+    // Set menu
+    mainWindow.setMenu(buildMenu());
 
     // Show main window when Electron has loaded, thus preventing UI flickering
     mainWindow.on('ready-to-show', () => {
