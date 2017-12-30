@@ -1,4 +1,4 @@
-import { app, BrowserWindow, Menu, MenuItemConstructorOptions, shell } from 'electron';
+import { BrowserWindow, Menu, MenuItemConstructorOptions, shell } from 'electron';
 
 import { platform, Platform } from 'common';
 import { GitHub } from 'common/git-hub';
@@ -19,18 +19,16 @@ export function setMenu(window: BrowserWindow) {
 const gitHub = new GitHub();
 
 function setMacOSMenu() {
-    const appName = app.getName();
-
     const searchlight: MenuItemConstructorOptions = {
-        label: appName,
+        label: 'Searchlight',
         submenu: [
-            { label: `About ${appName}`, role: 'about' },
+            { label: `About Searchlight`, role: 'about' },
             { type: 'separator' },
-            { role: 'hide' },
+            { label: `Hide Searchlight`, role: 'hide' },
             { role: 'hideothers' },
             { role: 'unhide' },
             { type: 'separator' },
-            { label: `Quit ${appName}`, role: 'quit' },
+            { label: `Quit Searchlight`, role: 'quit' },
         ],
     };
 
