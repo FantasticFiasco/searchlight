@@ -1,6 +1,7 @@
-import { app, BrowserWindow, Menu, MenuItemConstructorOptions } from 'electron';
+import { app, BrowserWindow, Menu, MenuItemConstructorOptions, shell } from 'electron';
 
 import { platform, Platform } from 'common';
+import { GitHub } from 'common/git-hub';
 
 /**
  * Sets menu on application window.
@@ -14,6 +15,8 @@ export function setMenu(window: BrowserWindow) {
         removeMenu(window);
     }
 }
+
+const gitHub = new GitHub();
 
 function setMacOSMenu() {
     const appName = app.getName();
@@ -49,10 +52,30 @@ function setMacOSMenu() {
     const help: MenuItemConstructorOptions = {
         role: 'help',
         submenu: [
-            { label: 'Join us on Twitter' },
-            { label: 'Search Feature Requests' },
-            { label: 'Report Issue' },
-            { label: 'View License' },
+            {
+                label: 'Join us on Twitter',
+                click: () => {
+                    shell.openExternal('https://twitter.com/FantasticFiasco');
+                },
+            },
+            {
+                label: 'Search Feature Requests',
+                click: () => {
+                    gitHub.openFeatureRequestsWebPage();
+                },
+            },
+            {
+                label: 'Report Issue',
+                click: () => {
+                    gitHub.openIssueWebPage();
+                },
+            },
+            {
+                label: 'View License',
+                click: () => {
+                    gitHub.openLicenseWebPage();
+                },
+            },
         ],
     };
 

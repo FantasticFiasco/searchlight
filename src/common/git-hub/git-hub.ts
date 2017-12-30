@@ -25,6 +25,13 @@ export class GitHub {
     }
 
     /**
+     * Opens web page with feature requests.
+     */
+    public openFeatureRequestsWebPage() {
+        shell.openExternal('https://github.com/FantasticFiasco/searchlight/labels/enhancement');
+    }
+
+    /**
      * Opens web page where user can create a new issue.
      */
     public openIssueWebPage() {
