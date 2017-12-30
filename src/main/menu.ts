@@ -27,7 +27,7 @@ function setMacOSMenu() {
             { role: 'hideothers' },
             { role: 'unhide' },
             { type: 'separator' },
-            { role: 'quit' },
+            { label: `Quit ${appName}`, role: 'quit' },
         ],
     };
 
