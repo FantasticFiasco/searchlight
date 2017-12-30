@@ -65,11 +65,14 @@ import Vue from 'vue';
 import { Component, Inject } from 'vue-property-decorator';
 
 import { platform, Platform } from 'common';
+import { GitHub } from 'common/git-hub';
 import { APPLICATION_UPDATES_SERVICE, ApplicationUpdatesService } from '../services';
 import { ApplicationUpdatesState } from '../store';
 
 @Component({ name: 'app-details' })
 export default class AppDetails extends Vue {
+    private readonly gitHub = new GitHub();
+
     @Inject(APPLICATION_UPDATES_SERVICE)
     private readonly applicationUpdatesService: ApplicationUpdatesService;
 
@@ -131,7 +134,7 @@ export default class AppDetails extends Vue {
     public openIssueWebPage(e: Event) {
         e.preventDefault();
 
-        shell.openExternal('https://github.com/FantasticFiasco/searchlight/issues/new');
+        this.gitHub.openIssueWebPage();
     }
 
     public openElectronWebPage(e: Event) {
@@ -149,7 +152,7 @@ export default class AppDetails extends Vue {
     public openLicenseWebPage(e: Event) {
         e.preventDefault();
 
-        shell.openExternal('https://github.com/FantasticFiasco/searchlight/blob/master/LICENSE');
+        this.gitHub.openLicenseWebPage();
     }
 }
 </script>
