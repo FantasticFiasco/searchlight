@@ -1,19 +1,19 @@
 import * as expect from '@fantasticfiasco/expect';
-import * as Axis from 'axis-discovery';
-import { Discovery as BonjourDiscovery } from 'axis-discovery-bonjour';
-import { Discovery as SsdpDiscovery } from 'axis-discovery-ssdp';
+import * as ssdp from 'axis-discovery-ssdp';
 import { ipcMain } from 'electron';
 
-import * as ChannelNames from 'common/discovery/channel-names';
+import { DiscoveryChannelName } from 'common/discovery';
+import { HttpClient } from 'common/net';
 import * as log from '../log';
-import { HttpClient } from './http-client';
+import { Cache } from './cache';
 import { IDiscovery } from './i-discovery';
 
 /**
  * Class discovering Axis devices on the network.
  */
 export class Discovery implements IDiscovery {
-    private readonly discovery: Axis.Discovery;
+    private readonly cache: Cache;
+    private readonly discovery: ssdp.Discovery;
     private readonly webContents: Electron.WebContents;
 
     /**
@@ -23,15 +23,14 @@ export class Discovery implements IDiscovery {
     constructor(webContents: Electron.WebContents) {
         expect.toExist(webContents);
 
-        const bonjourDiscovery = new BonjourDiscovery();
-        const ssdpDiscovery = new SsdpDiscovery({ httpClient: new HttpClient() });
-        this.discovery = new Axis.Discovery(bonjourDiscovery, ssdpDiscovery);
-        this.discovery.onHello((device: Axis.Device) => this.onHello(device));
-        this.discovery.onGoodbye((device: Axis.Device) => this.onGoodbye(device));
+        this.cache = new Cache();
+        this.discovery = new ssdp.Discovery({ httpClient: new HttpClient() });
+        this.discovery.onHello((device: ssdp.Device) => this.onHello(device));
+        this.discovery.onGoodbye((device: ssdp.Device) => this.onGoodbye(device));
         this.webContents = webContents;
 
         // Register for messages sent from the renderer
-        ipcMain.on(ChannelNames.DISCOVERY_SEARCH, async () => await this.onSearch());
+        ipcMain.on(DiscoveryChannelName.Search, async () => await this.onSearch());
     }
 
     /**
@@ -56,14 +55,16 @@ export class Discovery implements IDiscovery {
         return this.discovery.search();
     }
 
-    private onHello(device: Axis.Device) {
+    private onHello(device: ssdp.Device) {
         log.debug('Discovery', `hello from ${device.macAddress}`);
-        this.send(ChannelNames.DISCOVERY_DEVICE_HELLO, device);
+        device = this.cache.update(device);
+        this.send(DiscoveryChannelName.Hello, device);
     }
 
-    private onGoodbye(device: Axis.Device) {
+    private onGoodbye(device: ssdp.Device) {
         log.debug('Discovery', `goodbye from ${device.macAddress}`);
-        this.send(ChannelNames.DISCOVERY_DEVICE_GOODBYE, device);
+        device = this.cache.update(device);
+        this.send(DiscoveryChannelName.Goodbye, device);
     }
 
     private send(channel: string, ...args: any[]) {

@@ -1,7 +1,6 @@
 import { ipcRenderer } from 'electron';
 
-import { CheckForUpdatesEventTypes } from 'common/application-updates';
-import * as ChannelNames from 'common/application-updates/channel-names';
+import { ApplicationUpdatesChannelName, CheckForUpdatesEventTypes } from 'common/application-updates';
 import {
     ApplicationUpdatesState,
     store,
@@ -25,7 +24,7 @@ export class ApplicationUpdatesService {
      */
     constructor() {
         ipcRenderer.on(
-            ChannelNames.APPLICATION_UPDATES_CHECK_RESPONSE,
+            ApplicationUpdatesChannelName.CheckResponse,
             (event: any, args: CheckForUpdatesEventTypes) => this.onEvent(args));
     }
 
@@ -33,21 +32,26 @@ export class ApplicationUpdatesService {
      * Check whether any application updates are available.
      */
     public checkForUpdates() {
-        store.commit(UPDATE_STATE_MUTATION, ApplicationUpdatesState.CHECKING);
-        ipcRenderer.send(ChannelNames.APPLICATION_UPDATES_CHECK);
+        store.commit(UPDATE_STATE_MUTATION, ApplicationUpdatesState.Checking);
+        ipcRenderer.send(ApplicationUpdatesChannelName.Check);
     }
 
     /**
-     * Restart and update the application.
+     * Applies the updates. On most platforms this requires a restart of the
+     * application.
      */
-    public restartToUpdate() {
-        ipcRenderer.send(ChannelNames.APPLICATION_UPDATES_APPLY);
+    public applyUpdates() {
+        ipcRenderer.send(ApplicationUpdatesChannelName.Apply);
     }
 
     private onEvent(event: CheckForUpdatesEventTypes) {
         switch (event.kind) {
             case 'no-updates-available':
-                store.commit(UPDATE_STATE_MUTATION, ApplicationUpdatesState.IDLE);
+                store.commit(UPDATE_STATE_MUTATION, ApplicationUpdatesState.Idle);
+                break;
+
+            case 'updates-available':
+                store.commit(UPDATE_STATE_MUTATION, ApplicationUpdatesState.UpdatesAvailable);
                 break;
 
             case 'download-progress':
@@ -55,7 +59,7 @@ export class ApplicationUpdatesService {
                 break;
 
             case 'restart-required':
-                store.commit(UPDATE_STATE_MUTATION, ApplicationUpdatesState.RESTART_REQUIRED);
+                store.commit(UPDATE_STATE_MUTATION, ApplicationUpdatesState.RestartRequired);
                 break;
         }
     }

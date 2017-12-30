@@ -1,8 +1,8 @@
 import * as expect from '@fantasticfiasco/expect';
-import * as Axis from 'axis-discovery';
+import * as ssdp from 'axis-discovery-ssdp';
 import { ipcMain } from 'electron';
 
-import * as ChannelNames from 'common/discovery/channel-names';
+import { DiscoveryChannelName } from 'common/discovery';
 import * as log from '../log';
 import { IDiscovery } from './i-discovery';
 
@@ -12,8 +12,8 @@ import { IDiscovery } from './i-discovery';
  */
 export class DiscoveryMock implements IDiscovery {
     private readonly webContents: Electron.WebContents;
-    private readonly connectedDevices: Axis.Device[];
-    private readonly disconnectedDevices: Axis.Device[];
+    private readonly connectedDevices: ssdp.Device[];
+    private readonly disconnectedDevices: ssdp.Device[];
 
     /**
      * Initializes a new instance of the class.
@@ -26,7 +26,7 @@ export class DiscoveryMock implements IDiscovery {
         this.disconnectedDevices = [];
 
         // Register for messages sent from the renderer
-        ipcMain.on(ChannelNames.DISCOVERY_SEARCH, () => this.onSearch());
+        ipcMain.on(DiscoveryChannelName.Search, () => this.onSearch());
 
         for (const device of this.createDevices()) {
             this.connectedDevices.push(device);
@@ -56,7 +56,7 @@ export class DiscoveryMock implements IDiscovery {
         log.info('DiscoveryMock', 'search');
 
         for (const device of this.connectedDevices) {
-            this.send(ChannelNames.DISCOVERY_DEVICE_HELLO, device);
+            this.send(DiscoveryChannelName.Hello, device);
         }
     }
 
@@ -75,7 +75,7 @@ export class DiscoveryMock implements IDiscovery {
             const disconnectedDevice = this.connectedDevices.splice(index, 1)[0];
             this.disconnectedDevices.push(disconnectedDevice);
 
-            this.send(ChannelNames.DISCOVERY_DEVICE_GOODBYE, disconnectedDevice);
+            this.send(DiscoveryChannelName.Goodbye, disconnectedDevice);
         } else if (this.disconnectedDevices.length > 0) {
             log.info('DiscoveryMock', 'simulate connection');
 
@@ -83,7 +83,7 @@ export class DiscoveryMock implements IDiscovery {
             const connectedDevice = this.disconnectedDevices.splice(index, 1)[0];
             this.connectedDevices.push(connectedDevice);
 
-            this.send(ChannelNames.DISCOVERY_DEVICE_HELLO, connectedDevice);
+            this.send(DiscoveryChannelName.Hello, connectedDevice);
         }
     }
 
@@ -93,7 +93,7 @@ export class DiscoveryMock implements IDiscovery {
         }
     }
 
-    private createDevices(): Axis.Device[] {
+    private createDevices(): ssdp.Device[] {
         return [
             this.createDevice('10.15.123.217', '000000000000', 'AXIS P7210 Group 2 - 00408CB9F75B', 'AXIS P7210', 'AXIS P7210 Video Encoder', 'P7210'),
             this.createDevice('172.25.125.59', '111111111111', 'AXIS M3014 - 00408C99C075', 'AXIS M3014', 'AXIS M3014 Network Fixed Dome Camera', 'M3014'),
@@ -121,11 +121,10 @@ export class DiscoveryMock implements IDiscovery {
         friendlyName: string,
         modelName: string,
         modelDescription: string,
-        modelNumber: string): Axis.Device {
+        modelNumber: string): ssdp.Device {
         const port = Math.random() > 0.5 ? 80 : 443;
-        return new Axis.Device(
+        return new ssdp.Device(
             address,
-            `192.168.${Math.floor(255 * Math.random())}.${Math.floor(255 * Math.random())}`,
             port,
             macAddress,
             friendlyName,

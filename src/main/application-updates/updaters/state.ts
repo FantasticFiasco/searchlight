@@ -5,25 +5,25 @@ export enum State {
     /**
      * Idling state.
      */
-    IDLE,
+    Idle,
     /**
      * Checking for avaibable application updates. This state has been preceded
-     * by IDLE.
+     * by Idle.
      */
-    CHECKING_FOR_UPDATES,
+    CheckingForUpdates,
     /**
      * Application updates are available. This state has been preceded by
-     * CHECKING_FOR_UPDATES.
+     * CheckingForUpdates.
      */
-    UPDATES_AVAILABLE,
+    UpdatesAvailable,
     /**
      * Downloading application updates. This state has been preceded by
-     * UPDATES_AVAILABLE.
+     * UpdatesAvailable.
      */
-    DOWNLOADING_UPDATES,
+    DownloadingUpdates,
     /**
      * Downloaded application updates. This state has been preceded by
-     * DOWNLOADING_UPDATES.
+     * DownloadingUpdates.
      */
-    DOWNLOADED_UPDATES,
+    DownloadedUpdates,
 }

@@ -1,8 +1,8 @@
-import * as Axis from 'axis-discovery';
+import * as ssdp from 'axis-discovery-ssdp';
 import { ipcRenderer } from 'electron';
 import { EventEmitter } from 'events';
 
-import * as ChannelNames from 'common/discovery/channel-names';
+import { DiscoveryChannelName } from 'common/discovery';
 import { Device, NetworkStatus } from '../models';
 
 /**
@@ -24,18 +24,18 @@ export class DiscoveryService {
         this.eventEmitter = new EventEmitter();
 
         ipcRenderer.on(
-            ChannelNames.DISCOVERY_DEVICE_HELLO,
-            (event: any, device: Axis.Device) => this.emitHello(device));
+            DiscoveryChannelName.Hello,
+            (event: any, device: ssdp.Device) => this.emitHello(device));
         ipcRenderer.on(
-            ChannelNames.DISCOVERY_DEVICE_GOODBYE,
-            (event: any, device: Axis.Device) => this.emitGoodbye(device));
+            DiscoveryChannelName.Goodbye,
+            (event: any, device: ssdp.Device) => this.emitGoodbye(device));
     }
 
     /**
      * Triggers a new search for devices on the network.
      */
     public search() {
-        ipcRenderer.send(ChannelNames.DISCOVERY_SEARCH);
+        ipcRenderer.send(DiscoveryChannelName.Search);
     }
 
     /**
@@ -54,15 +54,15 @@ export class DiscoveryService {
         this.eventEmitter.on('goodbye', (device) => callback(device));
     }
 
-    private emitHello(device: Axis.Device) {
+    private emitHello(device: ssdp.Device) {
         this.eventEmitter.emit('hello', this.toDevice(device, true));
     }
 
-    private emitGoodbye(device: Axis.Device) {
+    private emitGoodbye(device: ssdp.Device) {
         this.eventEmitter.emit('goodbye', this.toDevice(device, false));
     }
 
-    private toDevice(device: Axis.Device, isResponsive: boolean): Device {
+    private toDevice(device: ssdp.Device, isResponsive: boolean): Device {
         const networkStatus: NetworkStatus = {
             isResponsive,
             timestamp: new Date(),

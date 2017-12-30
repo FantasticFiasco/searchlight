@@ -1,7 +1,14 @@
-import { IHttpClient } from 'axis-discovery-ssdp';
 import { net } from 'electron';
 
-export class HttpClient implements IHttpClient {
+/**
+ * Class sending requests over HTTP.
+ */
+export class HttpClient {
+    /**
+     * Send a GET request to the specified URL.
+     * @param url The URL the request is sent to
+     * @returns The response body
+     */
     public get(url: string): Promise<string> {
         return new Promise<string>((resolve, reject) => {
             const request: Electron.ClientRequest = net.request(url);

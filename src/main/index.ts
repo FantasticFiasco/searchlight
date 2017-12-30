@@ -1,18 +1,19 @@
 import { app, BrowserWindow } from 'electron';
 import Debug from 'electron-debug';
 
-import { isDev } from 'common';
+import { isDev, platform, Platform } from 'common';
 import { Analytics } from './analytics';
 import { ApplicationUpdates } from './application-updates';
 import { Discovery, DiscoveryMock, IDiscovery } from './discovery';
 import * as log from './log';
+import { setMenu } from './menu';
 import { Store } from './store';
 
 log.info('Main', `start app with version ${app.getVersion()}`);
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let mainWindow: Electron.BrowserWindow | undefined;
+let mainWindow: BrowserWindow | undefined;
 
 // For information about Application User Model ID (AUMID), please see
 // https://github.com/electron-userland/electron-builder/wiki/NSIS
@@ -28,6 +29,7 @@ const store = new Store();
 const analytics = new Analytics(store.get('analytics.clientId'), store.get('analytics.userId'));
 analytics.reportEvent('app', 'started');
 analytics.reportEvent('app version', app.getVersion());
+analytics.reportEvent('target', process.platform);
 
 // Discovery
 let discovery: IDiscovery | undefined;
@@ -45,8 +47,8 @@ function createMainWindow() {
         show: false,
     });
 
-    // Disable menu
-    mainWindow.setMenu(null);
+    // Set menu
+    setMenu(mainWindow);
 
     // Show main window when Electron has loaded, thus preventing UI flickering
     mainWindow.on('ready-to-show', () => {
@@ -99,7 +101,7 @@ app.on('ready', createMainWindow);
 app.on('activate', () => {
     // On OS X it's common to re-create a window in the app when the dock icon
     // is clicked and there are no other windows open.
-    if (mainWindow === null) {
+    if (mainWindow === undefined) {
         createMainWindow();
     }
 });
@@ -110,7 +112,7 @@ app.on('window-all-closed', () => {
 
     // On OS X it is common for applications and their menu bar to stay active
     // until the user quits explicitly with Cmd + Q
-    if (process.platform !== 'darwin') {
+    if (platform() !== Platform.MacOS) {
         app.quit();
     }
 });

@@ -1,12 +1,11 @@
 import * as expect from '@fantasticfiasco/expect';
 import { ipcMain } from 'electron';
 
-import { isDev } from 'common';
-import * as ChannelNames from 'common/application-updates/channel-names';
+import { isDev, platform, Platform } from 'common';
+import { ApplicationUpdatesChannelName } from 'common/application-updates';
 import { Analytics } from '../analytics';
-import * as log from '../log';
 import { IApplicationUpdater } from './i-application-updater';
-import { DefaultUpdater, MockUpdater } from './updaters';
+import { DefaultUpdater, MacOSUpdater, MockUpdater } from './updaters';
 
 /**
  * Class responsible for knowing when application updates are availale, and how
@@ -27,35 +26,33 @@ export class ApplicationUpdates {
         this.updater = this.createUpdater(analytics, window);
 
         // Register for messages sent from the renderer
-        ipcMain.on(ChannelNames.APPLICATION_UPDATES_CHECK, async () => this.checkForUpdatesAsync());
-        ipcMain.on(ChannelNames.APPLICATION_UPDATES_APPLY, () => this.restartAndUpdate());
+        ipcMain.on(ApplicationUpdatesChannelName.Check, () => this.checkForUpdates());
+        ipcMain.on(ApplicationUpdatesChannelName.Apply, () => this.applyUpdates());
     }
 
     /**
      * Start application updates.
      */
     public start() {
-        log.info('ApplicationUpdates', 'start');
-
         this.updater.start();
     }
 
-    private async checkForUpdatesAsync(): Promise<void> {
-        log.info('ApplicationUpdates', 'check for updates');
-
+    private checkForUpdates(): Promise<void> {
         return this.updater.checkForUpdates();
     }
 
-    private restartAndUpdate() {
-        log.info('ApplicationUpdates', 'restart and update');
-
-        this.restartAndUpdate();
+    private applyUpdates() {
+        this.updater.applyUpdates();
     }
 
     private createUpdater(analytics: Analytics, window: Electron.BrowserWindow): IApplicationUpdater {
         // Use mocked updater in development
         if (isDev()) {
             return new MockUpdater(window);
+        }
+
+        if (platform() === Platform.MacOS) {
+            return new MacOSUpdater(analytics, window.webContents);
         }
 
         return new DefaultUpdater(analytics, window.webContents);

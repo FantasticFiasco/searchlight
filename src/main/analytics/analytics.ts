@@ -2,8 +2,7 @@ import * as expect from '@fantasticfiasco/expect';
 import { ipcMain } from 'electron';
 import * as ua from 'universal-analytics';
 
-import { ExceptionEvent, PageViewEvent, ValueEvent } from 'common/analytics';
-import * as ChannelNames from 'common/analytics/channel-names';
+import { AnalyticsChannelName, ExceptionEvent, PageViewEvent, ValueEvent } from 'common/analytics';
 import * as config from '../config.json';
 import * as log from '../log';
 
@@ -38,13 +37,13 @@ export class Analytics {
 
         // Register for messages sent from the renderer
         ipcMain.on(
-            ChannelNames.ANALYTICS_REPORT_EVENT_WITH_VALUE,
+            AnalyticsChannelName.ReportEventWithValue,
             (event: any, arg: ValueEvent) => this.reportEventWithValue(arg.category, arg.action, arg.label, arg.value));
         ipcMain.on(
-            ChannelNames.ANALYTICS_REPORT_PAGE_VIEW,
+            AnalyticsChannelName.ReportPageView,
             (event: any, arg: PageViewEvent) => this.reportPageView(arg.path));
         ipcMain.on(
-            ChannelNames.ANALYTICS_REPORT_EXCEPTION,
+            AnalyticsChannelName.ReportException,
             (event: any, arg: ExceptionEvent) => this.reportException(arg.description));
     }
 
