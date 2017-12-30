@@ -17,8 +17,8 @@ export class GitHub {
     public async getRelease(tag: string): Promise<Release> {
         expect.toExist(tag);
 
-        const httpClient = new HttpClient();
-        const body = await httpClient.get(this.taggedReleaseUrl + tag);
+        const client = new HttpClient();
+        const body = await client.get(this.taggedReleaseUrl + tag);
         const release: Release = JSON.parse(body);
 
         return release;
