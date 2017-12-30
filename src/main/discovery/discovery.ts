@@ -12,8 +12,8 @@ import { IDiscovery } from './i-discovery';
  * Class discovering Axis devices on the network.
  */
 export class Discovery implements IDiscovery {
-    private readonly discovery: ssdp.Discovery;
     private readonly cache: Cache;
+    private readonly discovery: ssdp.Discovery;
     private readonly webContents: Electron.WebContents;
 
     /**
@@ -23,10 +23,10 @@ export class Discovery implements IDiscovery {
     constructor(webContents: Electron.WebContents) {
         expect.toExist(webContents);
 
+        this.cache = new Cache();
         this.discovery = new ssdp.Discovery({ httpClient: new HttpClient() });
         this.discovery.onHello((device: ssdp.Device) => this.onHello(device));
         this.discovery.onGoodbye((device: ssdp.Device) => this.onGoodbye(device));
-        this.cache = new Cache();
         this.webContents = webContents;
 
         // Register for messages sent from the renderer
