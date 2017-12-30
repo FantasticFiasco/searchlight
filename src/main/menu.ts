@@ -18,7 +18,7 @@ export function setMenu(window: BrowserWindow) {
 function setMacOSMenu() {
     const appName = app.getName();
 
-    const appOptions: MenuItemConstructorOptions = {
+    const searchlight: MenuItemConstructorOptions = {
         label: appName,
         submenu: [
             { label: `About ${appName}`, role: 'about' },
@@ -31,14 +31,14 @@ function setMacOSMenu() {
         ],
     };
 
-    const viewOptions: MenuItemConstructorOptions = {
+    const view: MenuItemConstructorOptions = {
         label: 'View',
         submenu: [
             { role: 'togglefullscreen' },
         ],
     };
 
-    const windowOptions: MenuItemConstructorOptions = {
+    const window: MenuItemConstructorOptions = {
         role: 'window',
         submenu: [
             { role: 'minimize' },
@@ -46,10 +46,21 @@ function setMacOSMenu() {
         ],
     };
 
+    const help: MenuItemConstructorOptions = {
+        role: 'help',
+        submenu: [
+            { label: 'Join us on Twitter' },
+            { label: 'Search Feature Requests' },
+            { label: 'Report Issue' },
+            { label: 'View License' },
+        ],
+    };
+
     const menu: Menu = Menu.buildFromTemplate([
-        appOptions,
-        viewOptions,
-        windowOptions,
+        searchlight,
+        view,
+        window,
+        help,
     ]);
 
     Menu.setApplicationMenu(menu);
