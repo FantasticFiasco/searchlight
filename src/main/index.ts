@@ -6,14 +6,14 @@ import { Analytics } from './analytics';
 import { ApplicationUpdates } from './application-updates';
 import { Discovery, DiscoveryMock, IDiscovery } from './discovery';
 import * as log from './log';
-import { buildMenu } from './menu';
+import { setMenu } from './menu';
 import { Store } from './store';
 
 log.info('Main', `start app with version ${app.getVersion()}`);
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let mainWindow: Electron.BrowserWindow | undefined;
+let mainWindow: BrowserWindow | undefined;
 
 // For information about Application User Model ID (AUMID), please see
 // https://github.com/electron-userland/electron-builder/wiki/NSIS
@@ -47,7 +47,7 @@ function createMainWindow() {
     });
 
     // Set menu
-    mainWindow.setMenu(buildMenu());
+    setMenu(mainWindow);
 
     // Show main window when Electron has loaded, thus preventing UI flickering
     mainWindow.on('ready-to-show', () => {

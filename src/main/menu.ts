@@ -1,12 +1,27 @@
-import { app, Menu, MenuItemConstructorOptions } from 'electron';
+import { app, BrowserWindow, Menu, MenuItemConstructorOptions } from 'electron';
 
-export function buildMenu(): Menu {
+import { platform, Platform } from 'common';
+
+/**
+ * Sets menu on application window.
+ * @param window The main application window
+ */
+export function setMenu(window: BrowserWindow) {
+    // Only show menu on macOS
+    if (platform() === Platform.MacOS) {
+        setMacOSMenu();
+    } else {
+        removeMenu(window);
+    }
+}
+
+function setMacOSMenu() {
     const appName = app.getName();
 
     const appOptions: MenuItemConstructorOptions = {
         label: appName,
         submenu: [
-            { role: 'about' },
+            { label: `About ${appName}`, role: 'about' },
             { type: 'separator' },
             { role: 'hide' },
             { role: 'hideothers' },
@@ -36,4 +51,8 @@ export function buildMenu(): Menu {
         viewOptions,
         windowOptions,
     ]);
+}
+
+function removeMenu(window: BrowserWindow) {
+    window.setMenu(null);
 }
