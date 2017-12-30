@@ -46,11 +46,13 @@ function setMacOSMenu() {
         ],
     };
 
-    return Menu.buildFromTemplate([
+    const menu: Menu = Menu.buildFromTemplate([
         appOptions,
         viewOptions,
         windowOptions,
     ]);
+
+    Menu.setApplicationMenu(menu);
 }
 
 function removeMenu(window: BrowserWindow) {
