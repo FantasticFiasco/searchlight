@@ -3,11 +3,16 @@ import { UpdateInfo } from 'builder-util-runtime';
 import { shell } from 'electron';
 import { autoUpdater } from 'electron-updater';
 
-import { ApplicationUpdatesChannelName, NoUpdatesAvailableEvent, UpdatesAvailableEvent } from 'common/application-updates';
+import {
+    ApplicationUpdatesChannelName,
+    NoUpdatesAvailableEvent,
+    UpdatesAvailableEvent,
+} from 'common/application-updates';
+import { Asset, GitHub, Release } from 'common/git-hub';
 import { Analytics } from '../../analytics';
 import * as log from '../../log';
 import { IApplicationUpdater } from '../i-application-updater';
-import { Asset, GitHub, Release } from './git-hub';
+
 import { State } from './state';
 
 /**

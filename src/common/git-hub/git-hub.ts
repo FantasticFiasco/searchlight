@@ -1,6 +1,6 @@
 import * as expect from '@fantasticfiasco/expect';
 
-import { HttpClient } from '../../../net';
+import { HttpClient } from '../net';
 import { Release } from './release';
 
 /**

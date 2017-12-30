@@ -3,8 +3,8 @@ import * as ssdp from 'axis-discovery-ssdp';
 import { ipcMain } from 'electron';
 
 import { DiscoveryChannelName } from 'common/discovery';
+import { HttpClient } from 'common/net';
 import * as log from '../log';
-import { HttpClient } from '../net';
 import { Cache } from './cache';
 import { IDiscovery } from './i-discovery';
 
