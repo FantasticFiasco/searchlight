@@ -12,7 +12,6 @@ import { Asset, GitHub, Release } from 'common/git-hub';
 import { Analytics } from '../../analytics';
 import * as log from '../../log';
 import { IApplicationUpdater } from '../i-application-updater';
-
 import { State } from './state';
 
 /**
