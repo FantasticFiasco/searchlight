@@ -29,6 +29,7 @@ const store = new Store();
 const analytics = new Analytics(store.get('analytics.clientId'), store.get('analytics.userId'));
 analytics.reportEvent('app', 'started');
 analytics.reportEvent('app version', app.getVersion());
+analytics.reportEvent('target', process.platform);
 
 // Discovery
 let discovery: IDiscovery | undefined;
