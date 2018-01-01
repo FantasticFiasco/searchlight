@@ -4,7 +4,7 @@ import Debug from 'electron-debug';
 import { isDev, platform, Platform } from 'common';
 import { Analytics } from './analytics';
 import { ApplicationUpdates } from './application-updates';
-import { Discovery, DiscoveryMock, IDiscovery } from './discovery';
+import { Discovery } from './discovery';
 import * as log from './log';
 import { setMenu } from './menu';
 import { Store } from './store';
@@ -32,7 +32,7 @@ analytics.reportEvent('app version', app.getVersion());
 analytics.reportEvent('target', process.platform);
 
 // Discovery
-let discovery: IDiscovery | undefined;
+let discovery: Discovery | undefined;
 
 // Application updates
 let applicationUpdates: ApplicationUpdates | undefined;
@@ -58,8 +58,10 @@ function createMainWindow() {
     // Emitted when the window is closed
     mainWindow.on('closed', () => {
         // Stop discovery
-        discovery!.stop();
-        discovery = undefined;
+        if (discovery !== undefined) {
+            discovery.stop();
+            discovery = undefined;
+        }
 
         // Dereference the window object, usually you would store windows in an
         // array if your app supports multi windows, this is the time when you
@@ -77,17 +79,14 @@ function createMainWindow() {
     mainWindow.loadURL(url);
 
     // Start discovery
-    discovery = isDev() ?
-        new DiscoveryMock(mainWindow.webContents) :
-        new Discovery(mainWindow.webContents);
-
+    discovery = new Discovery(mainWindow.webContents);
     discovery.start();
 
     // Start application updates
     applicationUpdates = new ApplicationUpdates(analytics, mainWindow);
     applicationUpdates.start();
 
-    // Open the DevTools
+    // Open DevTools
     if (isDev()) {
         mainWindow.webContents.openDevTools({ mode: 'undocked' });
     }

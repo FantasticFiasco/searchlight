@@ -7,7 +7,7 @@ import {
     RestartRequiredEvent,
 } from 'common/application-updates';
 import * as log from '../../log';
-import { IApplicationUpdater } from '../i-application-updater';
+import { IApplicationUpdater } from './i-application-updater';
 
 /**
  * Class mocking application updates for development purpose.

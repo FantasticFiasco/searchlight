@@ -6,5 +6,7 @@ declare module 'bootstrap-vue' {
         public install: PluginFunction<{}>;
     }
 
-    export default new BootstrapVue();
+    let _default: BootstrapVue;
+
+    export default _default;
 }
