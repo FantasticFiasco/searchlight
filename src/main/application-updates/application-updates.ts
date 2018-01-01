@@ -4,8 +4,12 @@ import { ipcMain } from 'electron';
 import { isDev, platform, Platform } from 'common';
 import { ApplicationUpdatesChannelName } from 'common/application-updates';
 import { Analytics } from '../analytics';
-import { IApplicationUpdater } from './i-application-updater';
-import { DefaultUpdater, MacOSUpdater, MockUpdater } from './updaters';
+import {
+    DefaultUpdater,
+    IApplicationUpdater,
+    MacOSUpdater,
+    MockUpdater,
+} from './updaters';
 
 /**
  * Class responsible for knowing when application updates are availale, and how

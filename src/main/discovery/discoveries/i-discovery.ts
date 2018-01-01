@@ -12,4 +12,9 @@ export interface IDiscovery {
      * Stop listening for device advertisements.
      */
     stop(): Promise<void>;
+
+    /**
+     * Triggers a new search for devices on the network.
+     */
+    search(): Promise<void>;
 }

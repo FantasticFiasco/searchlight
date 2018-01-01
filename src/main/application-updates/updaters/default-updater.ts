@@ -10,7 +10,7 @@ import {
 } from 'common/application-updates';
 import { Analytics } from '../../analytics';
 import * as log from '../../log';
-import { IApplicationUpdater } from '../i-application-updater';
+import { IApplicationUpdater } from './i-application-updater';
 import { State } from './state';
 
 /**

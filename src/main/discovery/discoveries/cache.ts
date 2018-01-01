@@ -1,6 +1,6 @@
 import * as ssdp from 'axis-discovery-ssdp';
 
-import * as log from '../log';
+import * as log from '../../log';
 
 /**
  * Cache holding discovered devices.
