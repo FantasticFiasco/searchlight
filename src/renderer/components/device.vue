@@ -1,7 +1,7 @@
 <template>
     <b-card no-body class="device-card">
         <div :class="['card-header', isResponsive ? 'bg-success' : 'bg-danger']">
-            <img :class="isAvailableOnAxisWeb ? 'card-icon' : 'card-icon-hidden'" :src="iconUrl" @error="onInvalidIconUrl" />
+            <img :class="isIconAvailableOnAxisWeb ? 'card-icon' : 'card-icon-hidden'" :src="iconUrl" @error="onInvalidIconUrl" />
             <p v-if="!isResponsive" class="card-no-contact-text">No contact</p>
             <i :class="['card-heart', 'fa', isResponsive ? 'fa-heartbeat' : 'fa-heart-o']" />
             <Heartbeats class="card-heartbeats" :timestamps="timestamps" />
@@ -55,8 +55,12 @@ export default class Device extends Vue {
     @Inject(AXIS_WEB_SERVICE)
     private readonly axisWebService: AxisWebService;
 
+    public isIconAvailableOnAxisWeb = true;
+
     public get iconUrl(): string {
-        return this.axisWebService.iconUrl(this.device.modelNumber);
+        this.isIconAvailableOnAxisWeb = true;
+
+        return this.axisWebService.iconUrl(this.device.modelNumber);;
     }
 
     public get timestamps(): Date[] {
@@ -75,8 +79,6 @@ export default class Device extends Vue {
         return this.device.networkStatus.isResponsive;
     }
 
-    public isAvailableOnAxisWeb = true;
-
     public openLiveView(e: Event) {
         e.preventDefault();
 
@@ -91,7 +93,9 @@ export default class Device extends Vue {
     }
 
     public onInvalidIconUrl(e: Event) {
-        this.isAvailableOnAxisWeb = false;
+        e.preventDefault();
+
+        this.isIconAvailableOnAxisWeb = false;
 
         const event = new InvalidDeviceIconEvent(this.device.modelNumber || 'unknown');
         this.analyticsService.reportEventWithValue(event);
