@@ -9,7 +9,6 @@
     "camera",
     "device",
     "discovery",
-    "bonjour",
     "ssdp",
     "upnp"
   ],
