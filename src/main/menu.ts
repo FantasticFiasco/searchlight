@@ -22,8 +22,6 @@ function setMacOSMenu() {
     const searchlight: MenuItemConstructorOptions = {
         label: 'Searchlight',
         submenu: [
-            { label: `About Searchlight`, role: 'about' },
-            { type: 'separator' },
             { label: `Hide Searchlight`, role: 'hide' },
             { role: 'hideothers' },
             { role: 'unhide' },
