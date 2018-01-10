@@ -6,13 +6,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
-## Added
+## [1.1.0] - 2018-01-10
+
+### Added
 - Support for macOS
 
-## Removed
+### Removed
 - Bonjour discovery protocol. Supporting Bonjour on macOS is harder than on other platforms. Preliminary tests show that the same number of devices are found using only SSDP, thus the net loss seems negligible.
 
-## Fixed
+### Fixed
 - [#201](https://github.com/FantasticFiasco/searchlight/issues/201) No device icon displayed
 
 ## [1.0.0] - 2017-12-03
