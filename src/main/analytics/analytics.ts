@@ -23,11 +23,14 @@ export class Analytics {
         expect.toBeTrue(Analytics.IdFormat.test(clientId));
         expect.toBeTrue(Analytics.IdFormat.test(userId));
 
+        const trackingId: string = (config as any).analytics.trackingId;
+
+        log.info('Analytics', 'tracking id', trackingId.slice(0, 7) + '*******');
         log.info('Analytics', 'client id', clientId);
         log.info('Analytics', 'user id', userId);
 
         const options: ua.VisitorOptions = {
-            tid: (config as any).analytics.trackingId,
+            tid: trackingId,
             cid: clientId,
             uid: userId,
             https: true,
