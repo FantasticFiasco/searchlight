@@ -1,6 +1,6 @@
 {
   "name": "searchlight",
-  "version": "1.1.0",
+  "version": "1.2.0-beta",
   "description": "A desktop application discovering Axis network video devices on your network.",
   "keywords": [
     "searchlight",
