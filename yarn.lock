@@ -1097,9 +1097,9 @@ boom@5.x.x:
   dependencies:
     hoek "4.x.x"
 
-bootstrap-vue@1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/bootstrap-vue/-/bootstrap-vue-1.4.0.tgz#25a98116df76bda7bbae18ff3bc9cc33158b5986"
+bootstrap-vue@1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/bootstrap-vue/-/bootstrap-vue-1.4.1.tgz#9064938be4dd1d5dc3a9b880eeb558d47a097152"
   dependencies:
     lodash.startcase "^4.4.0"
     opencollective "^1.0.3"
