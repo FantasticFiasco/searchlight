@@ -79,12 +79,15 @@ const modelNumberToIconExceptions: { [key: string]: string } = {
     '215 ptz': '215-ptz',
     '243sa': '243sa-video-server',
 
+    'a9188/-ve': 'a9188-ve',
+
     'c1004-e': 'c1004-e-network-cabinet-speaker',
 
     'f34': 'f34-main-unit_0',
     'f44': 'f44-dual-audio-input_0',
     'fa54': 'fa54-main-unit',
 
+    'm1045-lw': 'axis-m1045-lw',
     'm1054': 'm1054',
     'm2026-le-mkii': 'm2026-le-mk-ii',
     'm2026-le mk ii': 'm2026-le-mk-ii',
@@ -100,6 +103,7 @@ const modelNumberToIconExceptions: { [key: string]: string } = {
     'p1346': 'p1346_0',
     'p3225-lv mk ii': 'p3225-lv',
     'p3364': 'p3364-ve',
+    'p3365': 'p3365-v',
     'p3367': 'p3367-v',
     'p3384': 'p3384-v',
     'p5635-e': 'p5635-e_0',
@@ -113,4 +117,6 @@ const modelNumberToIconExceptions: { [key: string]: string } = {
     'q7406': 'q7406-blade',
     'q7414': 'q7414-blade',
     'q7436': 'q7436-blade',
+
+    't8705': 'decoder-t8705-front-angle-left',
 };
