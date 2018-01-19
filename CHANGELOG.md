@@ -6,6 +6,31 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+### Fixed
+
+- Device icon to the following models:
+    - AXIS A8004-VE
+    - AXIS A9188-VE
+    - AXIS M1045-LW
+    - AXIS M1054
+    - AXIS M3024-LVE
+    - AXIS M3046-V
+    - AXIS M3106-L Mk II
+    - AXIS M3114-VE
+    - AXIS M3204
+    - AXIS M7014
+    - AXIS P1365 Mk II
+    - AXIS P1405-LE Mk II
+    - AXIS P3224-V Mk II
+    - AXIS P3225-V Mk II
+    - AXIS P3363-V
+    - AXIS P3365-v
+    - AXIS P5624-E Mk II
+    - AXIS Q6000-E Mk II
+    - AXIS Q6045-E Mk II
+    - AXIS Q8414-LVS
+    - AXIS T8705
+
 ## [1.1.0] - 2018-01-10
 
 ### Added
