@@ -6,9 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+## [1.1.1] - 2018-01-20
+
 ### Fixed
 
-- Device icon to the following models:
+- Device icon for the following models:
     - AXIS A8004-VE
     - AXIS A9188-VE
     - AXIS M1045-LW
