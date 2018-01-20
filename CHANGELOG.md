@@ -26,7 +26,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
     - AXIS P3224-V Mk II
     - AXIS P3225-V Mk II
     - AXIS P3363-V
-    - AXIS P3365-v
+    - AXIS P3365-V
     - AXIS P5624-E Mk II
     - AXIS Q6000-E Mk II
     - AXIS Q6045-E Mk II
