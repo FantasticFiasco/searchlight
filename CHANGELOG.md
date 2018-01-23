@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+## [1.1.2] - 2018-01-23
+
+### Fixed
+
+- Critical security vulnerability in Electron
+
 ## [1.1.1] - 2018-01-20
 
 ### Fixed
