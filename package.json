@@ -88,7 +88,7 @@
     "electron-updater": "2.20.1",
     "font-awesome": "4.7.0",
     "simple-line-icons": "2.4.1",
-    "source-map-support": "0.5.2",
+    "source-map-support": "0.5.3",
     "universal-analytics": "0.4.16",
     "uuid": "3.2.1"
   },
@@ -98,7 +98,7 @@
     "@types/universal-analytics": "0.4.2",
     "@types/uuid": "3.4.3",
     "bootstrap": "4.0.0",
-    "bootstrap-vue": "1.4.1",
+    "bootstrap-vue": "1.5.0",
     "chart.js": "2.7.1",
     "devtron": "1.4.0",
     "electron": "1.7.11",
