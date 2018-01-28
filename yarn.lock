@@ -2498,15 +2498,15 @@ electron-webpack-ts@1.2.0:
     fork-ts-checker-webpack-plugin "^0.2.8"
     ts-loader "^3.1.0"
 
-electron-webpack-vue@1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/electron-webpack-vue/-/electron-webpack-vue-1.1.0.tgz#05388db85d6dddeb781d7039e04f2b0bc170dced"
+electron-webpack-vue@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/electron-webpack-vue/-/electron-webpack-vue-1.2.0.tgz#15e757aadfd5e5c83f8bf11b8b2002745c4ab0a3"
   dependencies:
-    vue-class-component "^6.0.0"
+    vue-class-component "^6.1.2"
     vue-html-loader "^1.2.4"
-    vue-loader "^13.3.0"
+    vue-loader "^13.7.0"
     vue-style-loader "^3.0.3"
-    vue-template-compiler "^2.5.2"
+    vue-template-compiler "^2.5.13"
 
 electron-webpack@1.11.0:
   version "1.11.0"
@@ -7254,7 +7254,7 @@ vue-chartjs@2.8.7:
   dependencies:
     lodash.merge "^4.6.0"
 
-vue-class-component@6.1.2:
+vue-class-component@6.1.2, vue-class-component@^6.1.2:
   version "6.1.2"
   resolved "https://registry.yarnpkg.com/vue-class-component/-/vue-class-component-6.1.2.tgz#87ac0265b0db71a3f49f10d90e4f69f9be9c2fbd"
 
@@ -7280,9 +7280,9 @@ vue-html-loader@^1.2.4:
     loader-utils "^1.0.2"
     object-assign "^4.1.0"
 
-vue-loader@^13.3.0:
-  version "13.3.0"
-  resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-13.3.0.tgz#3bf837d490ba5dea6fc07e0835ffa6c688c8af33"
+vue-loader@^13.7.0:
+  version "13.7.0"
+  resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-13.7.0.tgz#4d6a35b169c2a0a488842fb95c85052105fa9729"
   dependencies:
     consolidate "^0.14.0"
     hash-sum "^1.0.2"
@@ -7316,9 +7316,9 @@ vue-style-loader@^3.0.0, vue-style-loader@^3.0.3:
     hash-sum "^1.0.2"
     loader-utils "^1.0.2"
 
-vue-template-compiler@^2.5.2:
-  version "2.5.2"
-  resolved "https://registry.yarnpkg.com/vue-template-compiler/-/vue-template-compiler-2.5.2.tgz#6f198ebc677b8f804315cd33b91e849315ae7177"
+vue-template-compiler@^2.5.13:
+  version "2.5.13"
+  resolved "https://registry.yarnpkg.com/vue-template-compiler/-/vue-template-compiler-2.5.13.tgz#12a2aa0ecd6158ac5e5f14d294b0993f399c3d38"
   dependencies:
     de-indent "^1.0.2"
     he "^1.1.0"
@@ -7327,9 +7327,9 @@ vue-template-es2015-compiler@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.6.0.tgz#dc42697133302ce3017524356a6c61b7b69b4a18"
 
-vue@2.5.2:
-  version "2.5.2"
-  resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.2.tgz#fd367a87bae7535e47f9dc5c9ec3b496e5feb5a4"
+vue@2.5.13:
+  version "2.5.13"
+  resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.13.tgz#95bd31e20efcf7a7f39239c9aa6787ce8cf578e1"
 
 vuex@3.0.1:
   version "3.0.1"
