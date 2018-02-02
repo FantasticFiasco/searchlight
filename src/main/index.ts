@@ -115,3 +115,7 @@ app.on('window-all-closed', () => {
         app.quit();
     }
 });
+
+(process as any).on('uncaughtException', (error: string) => {
+    analytics.reportException(error, true);
+});
