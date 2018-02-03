@@ -120,7 +120,11 @@ export class Analytics {
     public reportException(description: string, fatal: boolean = false) {
         expect.toExist(description);
 
-        log.info('Analytics', 'reportException', description, fatal);
+        if (fatal) {
+            log.error('Analytics', 'reportException', description);
+        } else {
+            log.warn('Analytics', 'reportException', description);
+        }
 
         this.visitor.exception(description, fatal, this.errorHandler);
     }
