@@ -8,14 +8,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [1.1.2] - 2018-01-23
 
-### Fixed
-
+### :policeman: Security
 - Critical security vulnerability in Electron
 
 ## [1.1.1] - 2018-01-20
 
-### Fixed
-
+### :syringe: Fixed
 - Device icon for the following models:
     - AXIS A8004-VE
     - AXIS A9188-VE
@@ -41,18 +39,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [1.1.0] - 2018-01-10
 
-### Added
+### :zap: Added
 - Support for macOS
 
-### Removed
+### :skull: Removed
 - Bonjour discovery protocol. Supporting Bonjour on macOS is harder than on other platforms. Preliminary tests show that the same number of devices are found using only SSDP, thus the net loss seems negligible.
 
-### Fixed
+### :syringe: Fixed
 - [#201](https://github.com/FantasticFiasco/searchlight/issues/201) No device icon displayed
 
 ## [1.0.0] - 2017-12-03
 
-### Added
+### :zap: Added
 - Cross compatible on Linux and Windows
 - Bonjour and SSDP (UPnP) discovery protocols
 - Monitoring of device network connectivity
