@@ -101,7 +101,7 @@
     "bootstrap-vue": "2.0.0-rc.2",
     "chart.js": "2.7.2",
     "devtron": "1.4.0",
-    "electron": "1.8.3",
+    "electron": "1.8.4",
     "electron-builder": "20.5.1",
     "electron-webpack": "1.13.0",
     "electron-webpack-ts": "1.4.0",
