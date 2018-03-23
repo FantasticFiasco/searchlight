@@ -1248,7 +1248,16 @@ builder-util-runtime@4.0.5, builder-util-runtime@^4.0.5:
     fs-extra-p "^4.5.0"
     sax "^1.2.4"
 
-builder-util-runtime@~4.2.0:
+builder-util-runtime@4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/builder-util-runtime/-/builder-util-runtime-4.1.0.tgz#7dcd042d555d2f161a5538d7a0ea8c292daa0683"
+  dependencies:
+    bluebird-lst "^1.0.5"
+    debug "^3.1.0"
+    fs-extra-p "^4.5.2"
+    sax "^1.2.4"
+
+builder-util-runtime@^4.1.0, builder-util-runtime@^4.2.0, builder-util-runtime@~4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/builder-util-runtime/-/builder-util-runtime-4.2.0.tgz#c56aa18d34390143da031c418c9d3a055fbd3522"
   dependencies:
@@ -4589,10 +4598,6 @@ lodash.memoize@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/lodash.memoize/-/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
 
-lodash.merge@^4.6.0:
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.0.tgz#69884ba144ac33fe699737a6086deffadd0f89c5"
-
 lodash.mergewith@^4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/lodash.mergewith/-/lodash.mergewith-4.6.0.tgz#150cf0a16791f5903b8891eab154609274bdea55"
@@ -7878,11 +7883,9 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
-vue-chartjs@2.8.7:
-  version "2.8.7"
-  resolved "https://registry.yarnpkg.com/vue-chartjs/-/vue-chartjs-2.8.7.tgz#bcd1cda1a1ef8ed80581638a02cf88182d437d09"
-  dependencies:
-    lodash.merge "^4.6.0"
+vue-chartjs@3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/vue-chartjs/-/vue-chartjs-3.3.0.tgz#fa1a17ffd69a05ec555bd2c4a551b997d8cee847"
 
 vue-class-component@6.2.0, vue-class-component@^6.2.0:
   version "6.2.0"
