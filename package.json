@@ -85,7 +85,7 @@
     "electron-debug": "1.5.0",
     "electron-log": "2.2.14",
     "electron-store": "1.3.0",
-    "electron-updater": "2.21.3",
+    "electron-updater": "2.21.4",
     "font-awesome": "4.7.0",
     "simple-line-icons": "2.4.1",
     "source-map-support": "0.5.4",
