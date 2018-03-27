@@ -2624,15 +2624,15 @@ electron-webpack-ts@1.4.0:
     fork-ts-checker-webpack-plugin "^0.3.0"
     ts-loader "^3.5.0"
 
-electron-webpack-vue@1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/electron-webpack-vue/-/electron-webpack-vue-1.4.0.tgz#249582aef0a539617ac176e119c5abccbb9792f4"
+electron-webpack-vue@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/electron-webpack-vue/-/electron-webpack-vue-2.0.0.tgz#920a5a53f509362783bbde19782d1d4db79dae8a"
   dependencies:
     vue-class-component "^6.2.0"
     vue-html-loader "^1.2.4"
-    vue-loader "^14.1.1"
+    vue-loader "^14.2.1"
     vue-style-loader "^4.0.2"
-    vue-template-compiler "^2.5.13"
+    vue-template-compiler "^2.5.16"
 
 electron-webpack@1.13.0:
   version "1.13.0"
@@ -7919,9 +7919,9 @@ vue-html-loader@^1.2.4:
     loader-utils "^1.0.2"
     object-assign "^4.1.0"
 
-vue-loader@^14.1.1:
-  version "14.1.1"
-  resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-14.1.1.tgz#331f197fcea790d6b8662c29b850806e7eb29342"
+vue-loader@^14.2.1:
+  version "14.2.1"
+  resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-14.2.1.tgz#3ace19f98187b1fa9e0709defa963a0a2396b6b3"
   dependencies:
     consolidate "^0.14.0"
     hash-sum "^1.0.2"
@@ -7961,9 +7961,9 @@ vue-style-loader@^4.0.1, vue-style-loader@^4.0.2:
     hash-sum "^1.0.2"
     loader-utils "^1.0.2"
 
-vue-template-compiler@^2.5.13:
-  version "2.5.13"
-  resolved "https://registry.yarnpkg.com/vue-template-compiler/-/vue-template-compiler-2.5.13.tgz#12a2aa0ecd6158ac5e5f14d294b0993f399c3d38"
+vue-template-compiler@^2.5.16:
+  version "2.5.16"
+  resolved "https://registry.yarnpkg.com/vue-template-compiler/-/vue-template-compiler-2.5.16.tgz#93b48570e56c720cdf3f051cc15287c26fbd04cb"
   dependencies:
     de-indent "^1.0.2"
     he "^1.1.0"
