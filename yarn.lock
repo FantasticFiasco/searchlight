@@ -3855,15 +3855,15 @@ humanize-plus@^1.8.1:
   version "1.8.2"
   resolved "https://registry.yarnpkg.com/humanize-plus/-/humanize-plus-1.8.2.tgz#a65b34459ad6367adbb3707a82a3c9f916167030"
 
-icon-gen@1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/icon-gen/-/icon-gen-1.2.0.tgz#d0bc768705c23964767776c4e822ff1e1657e35f"
+icon-gen@1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/icon-gen/-/icon-gen-1.2.1.tgz#1a385ad19aa416c933b7d4cba8647427bcd8bead"
   dependencies:
     del "^3.0.0"
     mkdirp "^0.5.1"
-    pngjs "^3.3.1"
+    pngjs-nozlib "^1.0.0"
     svg2png "4.1.1"
-    uuid "^3.1.0"
+    uuid "^3.2.1"
 
 iconv-lite@0.4.19, iconv-lite@^0.4.17, iconv-lite@^0.4.19, iconv-lite@~0.4.13:
   version "0.4.19"
@@ -5740,9 +5740,9 @@ pn@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/pn/-/pn-1.0.0.tgz#1cf5a30b0d806cd18f88fc41a6b5d4ad615b3ba9"
 
-pngjs@^3.3.1:
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/pngjs/-/pngjs-3.3.1.tgz#8e14e6679ee7424b544334c3b2d21cea6d8c209a"
+pngjs-nozlib@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/pngjs-nozlib/-/pngjs-nozlib-1.0.0.tgz#9e64d602cfe9cce4d9d5997d0687429a73f0b7d7"
 
 popper.js@^1.12.9:
   version "1.12.9"
@@ -7864,7 +7864,7 @@ utils-merge@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
 
-uuid@3.2.1, uuid@^3.0.1:
+uuid@3.2.1, uuid@^3.0.1, uuid@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.2.1.tgz#12c528bb9d58d0b9265d9a2f6f0fe8be17ff1f14"
 
