@@ -24,7 +24,6 @@
   "license": "GPL-3.0",
   "main": "main.js",
   "scripts": {
-    "postinstall": "electron-webpack dll",
     "compile": "electron-webpack",
     "dev": "electron-webpack dev",
     "lint": "tslint --exclude './src/**/*.d.ts' './src/**/*.ts'",
@@ -61,18 +60,7 @@
     }
   },
   "electronWebpack": {
-    "title": "Searchlight",
-    "renderer": {
-      "dll": [
-        "axis-discovery-ssdp",
-        "bootstrap",
-        "bootstrap-vue",
-        "chart.js",
-        "simple-line-icons",
-        "vue",
-        "vue-chartjs"
-      ]
-    }
+    "title": "Searchlight"
   },
   "greenkeeper": {
     "ignore": [
@@ -121,7 +109,7 @@
     "vue-property-decorator": "6.0.0",
     "vue-router": "3.0.1",
     "vuex": "3.0.1",
-    "webpack": "4.1.1",
+    "webpack": "4.4.1",
     "webpack-build-notifier": "0.1.23"
   }
 }
