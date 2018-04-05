@@ -24,7 +24,6 @@
   "license": "GPL-3.0",
   "main": "main.js",
   "scripts": {
-    "postinstall": "electron-webpack dll",
     "compile": "electron-webpack",
     "dev": "electron-webpack dev",
     "lint": "tslint --exclude './src/**/*.d.ts' './src/**/*.ts'",
@@ -61,18 +60,7 @@
     }
   },
   "electronWebpack": {
-    "title": "Searchlight",
-    "renderer": {
-      "dll": [
-        "axis-discovery-ssdp",
-        "bootstrap",
-        "bootstrap-vue",
-        "chart.js",
-        "simple-line-icons",
-        "vue",
-        "vue-chartjs"
-      ]
-    }
+    "title": "Searchlight"
   },
   "greenkeeper": {
     "ignore": [
@@ -104,9 +92,9 @@
     "devtron": "1.4.0",
     "electron": "1.8.4",
     "electron-builder": "20.8.1",
-    "electron-webpack": "1.13.0",
-    "electron-webpack-ts": "1.4.0",
-    "electron-webpack-vue": "1.4.0",
+    "electron-webpack": "2.0.1",
+    "electron-webpack-ts": "2.0.0",
+    "electron-webpack-vue": "2.1.0",
     "icon-gen": "1.2.1",
     "jquery": "3.3.0",
     "json": "9.0.6",
@@ -115,13 +103,13 @@
     "sass-loader": "6.0.7",
     "tslint": "5.9.1",
     "typescript": "2.7.2",
-    "vue": "2.5.13",
+    "vue": "2.5.16",
     "vue-chartjs": "2.8.7",
     "vue-class-component": "6.2.0",
     "vue-property-decorator": "6.0.0",
     "vue-router": "3.0.1",
     "vuex": "3.0.1",
-    "webpack": "3.11.0",
+    "webpack": "4.4.1",
     "webpack-build-notifier": "0.1.23"
   }
 }
