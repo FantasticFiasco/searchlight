@@ -4,6 +4,7 @@
     "baseUrl": "src",
     "removeComments": true,
     "strictNullChecks": true,
-    "strictFunctionTypes": false
+    "strictFunctionTypes": false,
+    "strictPropertyInitialization": false
   }
 }
