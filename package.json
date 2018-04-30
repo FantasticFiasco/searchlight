@@ -94,7 +94,7 @@
     "electron-builder": "20.11.1",
     "electron-webpack": "2.0.1",
     "electron-webpack-ts": "2.0.1",
-    "electron-webpack-vue": "2.1.0",
+    "electron-webpack-vue": "2.1.1",
     "icon-gen": "1.2.1",
     "jquery": "3.3.0",
     "json": "9.0.6",
