@@ -92,7 +92,7 @@
     "devtron": "1.4.0",
     "electron": "2.0.0",
     "electron-builder": "20.11.1",
-    "electron-webpack": "2.0.1",
+    "electron-webpack": "2.1.0",
     "electron-webpack-ts": "2.0.1",
     "electron-webpack-vue": "2.1.0",
     "icon-gen": "1.2.1",
