@@ -86,7 +86,7 @@
     "@types/universal-analytics": "0.4.2",
     "@types/uuid": "3.4.3",
     "bootstrap": "4.1.1",
-    "bootstrap-vue": "2.0.0-rc.9",
+    "bootstrap-vue": "2.0.0-rc.11",
     "chart.js": "2.7.2",
     "css-loader": "0.28.11",
     "devtron": "1.4.0",
