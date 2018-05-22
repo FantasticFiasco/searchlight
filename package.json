@@ -91,7 +91,7 @@
     "css-loader": "0.28.11",
     "devtron": "1.4.0",
     "electron": "2.0.0",
-    "electron-builder": "20.11.1",
+    "electron-builder": "20.14.7",
     "electron-webpack": "2.0.1",
     "electron-webpack-ts": "2.0.1",
     "electron-webpack-vue": "2.1.0",
