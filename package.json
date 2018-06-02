@@ -72,7 +72,7 @@
     "axis-discovery-ssdp": "5.0.0",
     "electron-debug": "2.0.0",
     "electron-log": "2.2.16",
-    "electron-store": "1.3.0",
+    "electron-store": "2.0.0",
     "electron-updater": "2.21.8",
     "font-awesome": "4.7.0",
     "simple-line-icons": "2.4.1",
