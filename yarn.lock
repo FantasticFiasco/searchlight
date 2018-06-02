@@ -9615,9 +9615,9 @@ webpack-addons@^1.1.5:
   dependencies:
     jscodeshift "^0.4.0"
 
-webpack-build-notifier@0.1.25:
-  version "0.1.25"
-  resolved "https://registry.yarnpkg.com/webpack-build-notifier/-/webpack-build-notifier-0.1.25.tgz#8493ff6c50b58932df5fc60f457c6f509b56f7c4"
+webpack-build-notifier@0.1.26:
+  version "0.1.26"
+  resolved "https://registry.yarnpkg.com/webpack-build-notifier/-/webpack-build-notifier-0.1.26.tgz#8a73c7981d2032b655d4a4f7dfd7c865d939e767"
   dependencies:
     ansi-regex "^2.0.0"
     node-notifier "5.1.2"
