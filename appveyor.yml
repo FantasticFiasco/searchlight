@@ -5,13 +5,13 @@ platform:
 
 environment:
   NODE_JS: 6
-  ELECTRON_CACHE: %USERPROFILE%\.electron
-  ELECTRON_BUILDER_CACHE: %USERPROFILE%\.electron-builder
+  ELECTRON_CACHE: '%USERPROFILE%\.electron'
+  ELECTRON_BUILDER_CACHE: '%USERPROFILE%\.electron-builder'
 
 cache:
   - node_modules
-  - %USERPROFILE%\.electron
-  - %USERPROFILE%\.electron-builder
+  - '%USERPROFILE%\.electron'
+  - '%USERPROFILE%\.electron-builder'
 
 branches:
   except:
