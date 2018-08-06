@@ -3,14 +3,14 @@ matrix:
     - os: osx
       osx_image: xcode9.4
       language: node_js
-      node_js: "8"
+      node_js: 8
       env:
         - ELECTRON_CACHE=$HOME/.cache/electron
         - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
 
     - os: linux
       language: node_js
-      node_js: "8"
+      node_js: 8
       env:
         - ELECTRON_CACHE=$HOME/.cache/electron
         - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
@@ -39,7 +39,8 @@ before_script:
 
 script:
   - echo -e "$(curl --silent https://raw.githubusercontent.com/FantasticFiasco/logo/master/logo.ansi)"
-  - yarn lint && yarn dist
+  - yarn lint
+  - yarn dist
 
 after_script:
   - greenkeeper-lockfile-upload

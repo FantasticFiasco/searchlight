@@ -1,0 +1,24 @@
+image: Visual Studio 2017
+
+platform:
+  - x64
+
+environment:
+  NODE_JS: 6
+
+branches:
+  except:
+    - gh-pages
+
+init:
+  - git config --global core.autocrlf input
+
+install:
+  - ps: Install-Product node $env:NODE_JS x64
+  - yarn
+
+build_script:
+  - yarn lint
+  - yarn dist
+
+test: off
