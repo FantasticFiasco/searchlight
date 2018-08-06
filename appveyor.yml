@@ -7,6 +7,10 @@ environment:
   NODE_JS: 8
   ELECTRON_CACHE: '%USERPROFILE%\.electron'
   ELECTRON_BUILDER_CACHE: '%USERPROFILE%\.electron-builder'
+  GH_TOKEN:
+    secure: de2wnJZf6k7NY0XriDpf9BkrQ4MR5ZfDDWMM+H/K4OK3w0GpuJAMRj5PrO6tKu0K
+  UNIVERSAL_ANALYTICS_TRACKING_ID:
+    secure: WH6qEKzg9o2K7l9DVLOyrA==
 
 cache:
   - node_modules
