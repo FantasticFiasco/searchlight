@@ -21,6 +21,9 @@ init:
   - git config --global core.autocrlf input
 
 install:
+  - ps: |
+      $logo = (Invoke-WebRequest "https://raw.githubusercontent.com/FantasticFiasco/logo/master/logo.raw").toString();
+      Write-Host "$logo" -ForegroundColor Green
   - ps: Install-Product node $env:NODE_JS x64
   - yarn
 
