@@ -1,0 +1,41 @@
+image: Visual Studio 2017
+
+platform:
+  - x64
+
+environment:
+  NODE_JS: 8
+  ELECTRON_CACHE: '%USERPROFILE%\.electron'
+  ELECTRON_BUILDER_CACHE: '%USERPROFILE%\.electron-builder'
+  GH_TOKEN:
+    secure: de2wnJZf6k7NY0XriDpf9BkrQ4MR5ZfDDWMM+H/K4OK3w0GpuJAMRj5PrO6tKu0K
+  UNIVERSAL_ANALYTICS_TRACKING_ID:
+    secure: WH6qEKzg9o2K7l9DVLOyrA==
+
+cache:
+  - node_modules
+  - '%USERPROFILE%\.electron'
+  - '%USERPROFILE%\.electron-builder'
+
+branches:
+  except:
+    - gh-pages
+
+init:
+  - git config --global core.autocrlf input
+
+install:
+  - ps: |
+      $logo = (Invoke-WebRequest "https://raw.githubusercontent.com/FantasticFiasco/logo/master/logo.raw").toString();
+      Write-Host "$logo" -ForegroundColor Green
+  - ps: Install-Product node $env:NODE_JS x64
+  - yarn
+
+build_script:
+  - yarn lint
+  - yarn dist
+
+test: off
+
+artifacts:
+  - path: dist\**
