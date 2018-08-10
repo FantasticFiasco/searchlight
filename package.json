@@ -78,7 +78,7 @@
     "simple-line-icons": "2.4.1",
     "source-map-support": "0.5.4",
     "universal-analytics": "0.4.16",
-    "uuid": "3.2.1"
+    "uuid": "3.3.2"
   },
   "devDependencies": {
     "@types/electron-debug": "1.1.0",
