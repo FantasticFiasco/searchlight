@@ -92,7 +92,7 @@
     "devtron": "1.4.0",
     "electron": "2.0.7",
     "electron-builder": "20.11.1",
-    "electron-webpack": "2.0.1",
+    "electron-webpack": "2.1.2",
     "electron-webpack-ts": "2.0.1",
     "electron-webpack-vue": "2.1.0",
     "icon-gen": "1.2.1",
@@ -106,10 +106,11 @@
     "vue": "2.5.16",
     "vue-chartjs": "2.8.7",
     "vue-class-component": "6.2.0",
+    "vue-loader": "^15.3.0",
     "vue-property-decorator": "6.0.0",
     "vue-router": "3.0.1",
     "vuex": "3.0.1",
-    "webpack": "4.6.0",
+    "webpack": "4.16.5",
     "webpack-build-notifier": "0.1.28"
   }
 }
