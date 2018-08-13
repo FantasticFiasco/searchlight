@@ -87,6 +87,8 @@ const modelNumberToProductPageExceptions: { [key: string]: string } = {
     'q3709-pve (left)': 'q3709-pve',
     'q3709-pve (right)': 'q3709-pve',
     'q6045-e-mkii': 'q6045',
+
+    't8516': 't8516-poe-network-switch',
 };
 
 const modelNumberToIconExceptions: { [key: string]: string } = {
@@ -152,5 +154,6 @@ const modelNumberToIconExceptions: { [key: string]: string } = {
     'q7436': 'q7436-blade',
     'q8414-lvs': 'q8414lvs_512',
 
+    't8516': 't8516-poe-network-switch',
     't8705': 'decoder-t8705-front-angle-left',
 };
