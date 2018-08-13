@@ -56,6 +56,7 @@ const modelNumberToProductPageExceptions: { [key: string]: string } = {
     'm3027': 'm3027-pve',
     'm3037': 'm3037-pve',
     'm3046': 'm3046-v',
+    'm3046-1-8mm': 'm3046-v',
     'm3106-l-mkii': 'm3106-l mk-ii',
     'm3114': 'm3114-ve',
 
@@ -111,6 +112,7 @@ const modelNumberToIconExceptions: { [key: string]: string } = {
     'm3027': 'm3027-pve',
     'm3037': 'm3037-pve',
     'm3046': 'm3046-v',
+    'm3046-1-8mm': 'm3046-v',
     'm3106-lve mk ii': 'm3106-lve',
     'm3106-l-mkii': 'm3106-l',
     'm3114': 'm3114-ve',
