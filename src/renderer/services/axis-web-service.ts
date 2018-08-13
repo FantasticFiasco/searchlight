@@ -74,6 +74,7 @@ const modelNumberToProductPageExceptions: { [key: string]: string } = {
     'p3905-r mk ii': 'p3905-r',
     'p5624-e-mkii': 'p5624-e',
 
+    'q1615 mk ii': 'q1615-e',
     'q3505': 'q3505-v',
     'q3517': 'q3517-lv',
     'q3617': 'q3617-ve',
@@ -135,6 +136,7 @@ const modelNumberToIconExceptions: { [key: string]: string } = {
     'p5635-e': 'p5635-e_0',
     'p8221': 'p8221-io-audio-module',
 
+    'q1615 mk ii': 'q1615e-mkii-wall-angle-left',
     'q1921': 'q1921_0',
     'q3505': 'q3505-v-mkii',
     'q3517': 'q3517-lv-ceiling-front',
