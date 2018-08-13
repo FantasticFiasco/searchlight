@@ -120,6 +120,7 @@ const modelNumberToIconExceptions: { [key: string]: string } = {
 
     'p1365 mkii': 'p1365-mk-ii',
     'p1346': 'p1346_0',
+    'p1367': 'p1367wallangle',
     'p1405-le mk ii': 'p1405-le_0',
     'p3224-v mk ii': 'p3214-v_0',
     'p3225-lv mk ii': 'p3225-lv',
