@@ -100,7 +100,6 @@ const modelNumberToIconExceptions: { [key: string]: string } = {
     'fa54': 'fa54-main-unit',
 
     'm1045-lw': 'axis-m1045-lw',
-    'm1054': 'M1054',
     'm2026-le-mkii': 'm2026-le-mk-ii',
     'm2026-le mk ii': 'm2026-le-mk-ii',
     'm3004': 'm3004-v',
