@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+### :syringe: Fixed
+
+- Device icon for the following models:
+    - AXIS M1054
+    - AXIS M3026-VE
+    - AXIS M3046-V
+    - AXIS M3058-PLVE
+    - AXIS M3204
+    - AXIS P1367
+    - AXIS P1445-LE-3
+    - AXIS Q1615-E Mk II
+    - AXIS T8516 PoE+
+
 ## [1.1.2] - 2018-01-23
 
 ### :policeman: Security
