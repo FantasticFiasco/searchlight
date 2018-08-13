@@ -121,7 +121,6 @@ const modelNumberToIconExceptions: { [key: string]: string } = {
     'm3106-lve mk ii': 'm3106-lve',
     'm3106-l-mkii': 'm3106-l',
     'm3114': 'm3114-ve',
-    'm3204': 'M3204',
     'm7014': 'M7014',
 
     'p1365 mkii': 'p1365-mk-ii',
