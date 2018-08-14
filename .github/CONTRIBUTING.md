@@ -99,4 +99,16 @@ To migrate your project, change all the commands, where you use `--port-runner`
 to `--runner-port`.
 ```
 
+## Create releases
+
+Complete the following steps to create a new release:
+
+1. Draft a new GitHub release
+1. Update version in `package.json` and create a new chapter in `CHANGELOG.md`
+1. Commit with a message like `release x.y.z` and push to remote
+1. Wait for the build agents to upload artifacts to the GitHub release
+1. Publish the GitHub release
+
+## Credit
+
 This document is based on [AngularJS Git Commit Msg Convention](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit#).
