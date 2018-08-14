@@ -53,9 +53,12 @@ const modelNumberToProductPageExceptions: { [key: string]: string } = {
     'm3007': 'm3007-p',
     'm3024': 'm3024-lve',
     'm3025': 'm3025-ve',
+    'm3026': 'm3026-ve',
     'm3027': 'm3027-pve',
     'm3037': 'm3037-pve',
     'm3046': 'm3046-v',
+    'm3046-1-8mm': 'm3046-v',
+    'm3058': 'm3058-plve',
     'm3106-l-mkii': 'm3106-l mk-ii',
     'm3114': 'm3114-ve',
 
@@ -73,6 +76,7 @@ const modelNumberToProductPageExceptions: { [key: string]: string } = {
     'p3905-r mk ii': 'p3905-r',
     'p5624-e-mkii': 'p5624-e',
 
+    'q1615 mk ii': 'q1615-e',
     'q3505': 'q3505-v',
     'q3517': 'q3517-lv',
     'q3617': 'q3617-ve',
@@ -83,6 +87,8 @@ const modelNumberToProductPageExceptions: { [key: string]: string } = {
     'q3709-pve (left)': 'q3709-pve',
     'q3709-pve (right)': 'q3709-pve',
     'q6045-e-mkii': 'q6045',
+
+    't8516': 't8516-poe-network-switch',
 };
 
 const modelNumberToIconExceptions: { [key: string]: string } = {
@@ -100,7 +106,6 @@ const modelNumberToIconExceptions: { [key: string]: string } = {
     'fa54': 'fa54-main-unit',
 
     'm1045-lw': 'axis-m1045-lw',
-    'm1054': 'M1054',
     'm2026-le-mkii': 'm2026-le-mk-ii',
     'm2026-le mk ii': 'm2026-le-mk-ii',
     'm3004': 'm3004-v',
@@ -109,18 +114,22 @@ const modelNumberToIconExceptions: { [key: string]: string } = {
     'm3007': 'm3007-p',
     'm3024': 'm3024-lve',
     'm3025': 'm3025-ve',
+    'm3026': 'm3026-ve',
     'm3027': 'm3027-pve',
     'm3037': 'm3037-pve',
     'm3046': 'm3046-v',
+    'm3046-1-8mm': 'm3046-v',
+    'm3058': 'm3058plve-ceiling-1711-hi',
     'm3106-lve mk ii': 'm3106-lve',
     'm3106-l-mkii': 'm3106-l',
     'm3114': 'm3114-ve',
-    'm3204': 'M3204',
     'm7014': 'M7014',
 
     'p1365 mkii': 'p1365-mk-ii',
     'p1346': 'p1346_0',
+    'p1367': 'p1367wallangle',
     'p1405-le mk ii': 'p1405-le_0',
+    'p1445-le-3': 'p1445le3',
     'p3224-v mk ii': 'p3214-v_0',
     'p3225-lv mk ii': 'p3225-lv',
     'p3225-v mk ii': 'p3215-v',
@@ -133,6 +142,7 @@ const modelNumberToIconExceptions: { [key: string]: string } = {
     'p5635-e': 'p5635-e_0',
     'p8221': 'p8221-io-audio-module',
 
+    'q1615 mk ii': 'q1615e-mkii-wall-angle-left',
     'q1921': 'q1921_0',
     'q3505': 'q3505-v-mkii',
     'q3517': 'q3517-lv-ceiling-front',
@@ -145,5 +155,6 @@ const modelNumberToIconExceptions: { [key: string]: string } = {
     'q7436': 'q7436-blade',
     'q8414-lvs': 'q8414lvs_512',
 
+    't8516': 't8516-poe-network-switch',
     't8705': 'decoder-t8705-front-angle-left',
 };
