@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+## [1.1.3] - 2018-08-14
+
 ### :syringe: Fixed
 
 - Device icon for the following models:
