@@ -100,10 +100,8 @@ export default class AppDetails extends Vue {
         switch (platform()) {
             case Platform.MacOS:
                 return 'New version available!<br>Download it now';
-            case Platform.Windows:
-                return 'New version available!<br>Restart to update';
             default:
-                return 'New version available!<br>Close to finish download';
+                return 'New version available!<br>Restart to update';
         }
     }
 

@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+### :wrench: Changed
+
+- Apply update button text on Linux
+
 ## [1.1.3] - 2018-08-14
 
 ### :syringe: Fixed
