@@ -90,7 +90,7 @@
     "chart.js": "2.7.2",
     "css-loader": "1.0.0",
     "devtron": "1.4.0",
-    "electron": "2.0.8",
+    "electron": "2.0.9",
     "electron-builder": "20.28.4",
     "electron-webpack": "2.3.1",
     "electron-webpack-ts": "2.1.1",
