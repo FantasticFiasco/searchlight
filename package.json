@@ -107,7 +107,7 @@
     "vue-chartjs": "2.8.7",
     "vue-class-component": "6.2.0",
     "vue-loader": "15.4.2",
-    "vue-property-decorator": "7.1.1",
+    "vue-property-decorator": "7.2.0",
     "vue-router": "3.0.1",
     "vuex": "3.0.1",
     "webpack": "4.20.2",
