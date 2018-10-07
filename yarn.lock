@@ -8407,9 +8407,9 @@ wcwidth@^1.0.0:
   dependencies:
     defaults "^1.0.3"
 
-webpack-build-notifier@0.1.29:
-  version "0.1.29"
-  resolved "https://registry.yarnpkg.com/webpack-build-notifier/-/webpack-build-notifier-0.1.29.tgz#d71f89bb94346c6b748e07aa3d117d2beb0a151f"
+webpack-build-notifier@0.1.30:
+  version "0.1.30"
+  resolved "https://registry.yarnpkg.com/webpack-build-notifier/-/webpack-build-notifier-0.1.30.tgz#837e9002d13c1d76bdf954ccafe0b824b38bb789"
   dependencies:
     ansi-regex "^2.0.0"
     node-notifier "5.2.1"
