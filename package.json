@@ -110,7 +110,7 @@
     "vue-property-decorator": "7.2.0",
     "vue-router": "3.0.1",
     "vuex": "3.0.1",
-    "webpack": "4.25.0",
+    "webpack": "4.25.1",
     "webpack-build-notifier": "0.1.30"
   }
 }
