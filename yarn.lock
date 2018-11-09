@@ -3975,9 +3975,9 @@ humanize-plus@^1.8.1:
   version "1.8.2"
   resolved "https://registry.yarnpkg.com/humanize-plus/-/humanize-plus-1.8.2.tgz#a65b34459ad6367adbb3707a82a3c9f916167030"
 
-icon-gen@1.2.3:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/icon-gen/-/icon-gen-1.2.3.tgz#698e76c3019a4d299b71c4d245a09ff99712fab1"
+icon-gen@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/icon-gen/-/icon-gen-2.0.0.tgz#2ba21902305ebafc3e500e505c5d3076dc4fb91a"
   dependencies:
     del "^3.0.0"
     mkdirp "^0.5.1"
