@@ -1,8 +1,7 @@
 {
   "extends": [
-    "config:base"
+    "github>FantasticFiasco/renovate-config"
   ],
-  "statusCheckVerify": true,
   "ignoreDeps": [
     "vue"
   ]
