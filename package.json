@@ -62,11 +62,6 @@
   "electronWebpack": {
     "title": "Searchlight"
   },
-  "greenkeeper": {
-    "ignore": [
-      "vue"
-    ]
-  },
   "dependencies": {
     "@fantasticfiasco/expect": "1.0.0",
     "axis-discovery-ssdp": "5.0.0",

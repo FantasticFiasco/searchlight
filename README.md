@@ -2,7 +2,6 @@
 
 [![Linux and Mac build status](https://travis-ci.org/FantasticFiasco/searchlight.svg?branch=master)](https://travis-ci.org/FantasticFiasco/searchlight)
 [![Windows build status](https://ci.appveyor.com/api/projects/status/am70w83rvujl4usr?svg=true)](https://ci.appveyor.com/project/FantasticFiasco/searchlight)
-[![Greenkeeper badge](https://badges.greenkeeper.io/FantasticFiasco/searchlight.svg)](https://greenkeeper.io/)
 [![dependencies Status](https://david-dm.org/FantasticFiasco/searchlight/status.svg)](https://david-dm.org/FantasticFiasco/searchlight)
 [![devDependencies Status](https://david-dm.org/FantasticFiasco/searchlight/dev-status.svg)](https://david-dm.org/FantasticFiasco/searchlight?type=dev)
 
