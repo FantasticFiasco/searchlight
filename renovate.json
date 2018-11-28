@@ -3,6 +3,7 @@
     "github>FantasticFiasco/renovate-config"
   ],
   "ignoreDeps": [
-    "vue"
+    "vue",
+    "chart.js"
   ]
 }
