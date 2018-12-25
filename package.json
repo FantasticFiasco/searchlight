@@ -83,7 +83,7 @@
     "bootstrap": "4.2.1",
     "bootstrap-vue": "2.0.0-rc.11",
     "chart.js": "2.7.3",
-    "css-loader": "2.0.2",
+    "css-loader": "2.1.0",
     "devtron": "1.4.0",
     "electron": "4.0.0",
     "electron-builder": "20.38.4",
