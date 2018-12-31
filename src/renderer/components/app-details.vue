@@ -53,7 +53,7 @@
                 <p>
                     <a @click="openLicenseWebPage" href="#">License</a>
                 </p>
-                <p>© Copyright 2017-2018 Mattias Kindborg</p>
+                <p>© Copyright 2017-2019 Mattias Kindborg</p>
             </div>
         </b-card>
     </div>
