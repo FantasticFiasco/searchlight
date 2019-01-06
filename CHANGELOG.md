@@ -10,6 +10,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 - Apply update button text on Linux
 
+### :syringe: Fixed
+
+- Copyright year
+
 ## [1.1.3] - 2018-08-14
 
 ### :syringe: Fixed
