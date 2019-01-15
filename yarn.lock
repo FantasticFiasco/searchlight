@@ -2709,12 +2709,12 @@ electron-webpack-js@~2.3.0:
     babel-loader "^8.0.4"
     babel-plugin-component "^1.1.1"
 
-electron-webpack-ts@3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/electron-webpack-ts/-/electron-webpack-ts-3.1.0.tgz#3b8e6635317af28e479b1dfbdcc188c6cbd0b845"
+electron-webpack-ts@3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/electron-webpack-ts/-/electron-webpack-ts-3.1.1.tgz#da21cc43a535fd9cb3c5a603bbca6c7c51cdb0f1"
   dependencies:
-    fork-ts-checker-webpack-plugin "^0.5.0"
-    ts-loader "^5.3.0"
+    fork-ts-checker-webpack-plugin "^0.5.2"
+    ts-loader "^5.3.3"
 
 electron-webpack-vue@2.1.3:
   version "2.1.3"
@@ -3208,9 +3208,9 @@ forever-agent@~0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/forever-agent/-/forever-agent-0.6.1.tgz#fbc71f0c41adeb37f96c577ad1ed42d8fdacca91"
 
-fork-ts-checker-webpack-plugin@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/fork-ts-checker-webpack-plugin/-/fork-ts-checker-webpack-plugin-0.5.0.tgz#39de03c2579368806478024cbce6ac7f5346d590"
+fork-ts-checker-webpack-plugin@^0.5.2:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/fork-ts-checker-webpack-plugin/-/fork-ts-checker-webpack-plugin-0.5.2.tgz#a73b3630bd0a69409a6e4824e54c03a62fe82d8f"
   dependencies:
     babel-code-frame "^6.22.0"
     chalk "^2.4.1"
@@ -7399,9 +7399,9 @@ truncate-utf8-bytes@^1.0.0:
   dependencies:
     utf8-byte-length "^1.0.1"
 
-ts-loader@^5.3.0:
-  version "5.3.0"
-  resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-5.3.0.tgz#4bac24e57bc5189391ab14987d9898ce53ef5cf7"
+ts-loader@^5.3.3:
+  version "5.3.3"
+  resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-5.3.3.tgz#8b4af042e773132d86b3c99ef0acf3b4d325f473"
   dependencies:
     chalk "^2.3.0"
     enhanced-resolve "^4.0.0"
