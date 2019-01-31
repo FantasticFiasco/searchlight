@@ -97,7 +97,7 @@
     "popper.js": "1.14.7",
     "sass-loader": "7.1.0",
     "tslint": "5.12.1",
-    "typescript": "3.2.4",
+    "typescript": "3.3.1",
     "vue": "2.5.16",
     "vue-chartjs": "2.8.7",
     "vue-class-component": "6.3.2",
