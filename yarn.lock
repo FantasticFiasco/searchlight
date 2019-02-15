@@ -655,20 +655,6 @@
   version "1.13.6"
   resolved "https://registry.yarnpkg.com/@types/webpack-env/-/webpack-env-1.13.6.tgz#128d1685a7c34d31ed17010fc87d6a12c1de6976"
 
-"@vue/component-compiler-utils@^2.0.0":
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/@vue/component-compiler-utils/-/component-compiler-utils-2.1.2.tgz#75e7cc8496baecbb0994dc8783571d9ff07737fe"
-  dependencies:
-    consolidate "^0.15.1"
-    hash-sum "^1.0.2"
-    lru-cache "^4.1.2"
-    merge-source-map "^1.1.0"
-    postcss "^6.0.20"
-    postcss-selector-parser "^3.1.1"
-    prettier "1.13.7"
-    source-map "^0.5.6"
-    vue-template-es2015-compiler "^1.6.0"
-
 "@vue/component-compiler-utils@^2.5.1":
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/@vue/component-compiler-utils/-/component-compiler-utils-2.5.1.tgz#bd9cf68d728324d7dcede80462c2c0e8fe090acb"
@@ -2554,7 +2540,7 @@ dot-case@^2.1.0:
   dependencies:
     no-case "^2.2.0"
 
-dot-prop@^4.1.0, dot-prop@^4.1.1:
+dot-prop@^4.1.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/dot-prop/-/dot-prop-4.2.0.tgz#1f19e0c2e1aa0e32797c49799f2837ac6af69c57"
   dependencies:
@@ -2732,15 +2718,16 @@ electron-webpack-ts@3.1.1:
     fork-ts-checker-webpack-plugin "^0.5.2"
     ts-loader "^5.3.3"
 
-electron-webpack-vue@2.1.3:
-  version "2.1.3"
-  resolved "https://registry.yarnpkg.com/electron-webpack-vue/-/electron-webpack-vue-2.1.3.tgz#cadb4f454b2560c1dfbbd26af8c18945e9afdd7a"
+electron-webpack-vue@2.2.3:
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/electron-webpack-vue/-/electron-webpack-vue-2.2.3.tgz#651be14d70760a86d640a11dbda83208d9aebe0b"
+  integrity sha512-ajvSvAiPZyICOzOyLa+gG/ZkbOYYGSVoBGKmFvpb94GOiMgNGnCB9Vw64UeRnnuvRIhdzb7Fu6FkIvghqFXUEw==
   dependencies:
-    vue-class-component "^6.2.0"
+    vue-class-component "^6.3.2"
     vue-html-loader "^1.2.4"
-    vue-loader "^15.0.11"
-    vue-style-loader "^4.1.0"
-    vue-template-compiler "^2.5.16"
+    vue-loader "^15.5.1"
+    vue-style-loader "^4.1.2"
+    vue-template-compiler "^2.5.22"
 
 electron-webpack@2.6.2:
   version "2.6.2"
@@ -5757,14 +5744,6 @@ postcss-selector-parser@^2.0.0, postcss-selector-parser@^2.2.2:
     indexes-of "^1.0.1"
     uniq "^1.0.1"
 
-postcss-selector-parser@^3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/postcss-selector-parser/-/postcss-selector-parser-3.1.1.tgz#4f875f4afb0c96573d5cf4d74011aee250a7e865"
-  dependencies:
-    dot-prop "^4.1.1"
-    indexes-of "^1.0.1"
-    uniq "^1.0.1"
-
 postcss-selector-parser@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/postcss-selector-parser/-/postcss-selector-parser-5.0.0.tgz#249044356697b33b64f1a8f7c80922dddee7195c"
@@ -5815,14 +5794,6 @@ postcss@^5.0.10, postcss@^5.0.11, postcss@^5.0.12, postcss@^5.0.13, postcss@^5.0
     source-map "^0.5.6"
     supports-color "^3.2.3"
 
-postcss@^6.0.20:
-  version "6.0.23"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-6.0.23.tgz#61c82cc328ac60e677645f979054eb98bc0e3324"
-  dependencies:
-    chalk "^2.4.1"
-    source-map "^0.6.1"
-    supports-color "^5.4.0"
-
 postcss@^7.0.5, postcss@^7.0.6:
   version "7.0.6"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-7.0.6.tgz#6dcaa1e999cdd4a255dcd7d4d9547f4ca010cdc2"
@@ -5862,10 +5833,6 @@ posthtml@^0.11.2, posthtml@^0.11.3:
 prepend-http@^1.0.0, prepend-http@^1.0.1:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/prepend-http/-/prepend-http-1.0.4.tgz#d4f4562b0ce3696e41ac52d0e002e57a635dc6dc"
-
-prettier@1.13.7:
-  version "1.13.7"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.13.7.tgz#850f3b8af784a49a6ea2d2eaa7ed1428a34b7281"
 
 prettier@1.16.0:
   version "1.16.0"
@@ -7086,12 +7053,6 @@ supports-color@^5.1.0, supports-color@^5.3.0:
   dependencies:
     has-flag "^3.0.0"
 
-supports-color@^5.4.0:
-  version "5.4.0"
-  resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-5.4.0.tgz#1c6b337402c2137605efe19f10fec390f6faab54"
-  dependencies:
-    has-flag "^3.0.0"
-
 supports-color@^5.5.0:
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-5.5.0.tgz#e2e69a44ac8772f78a1ec0b35b689df6530efc8f"
@@ -7723,9 +7684,10 @@ vue-chartjs@2.8.7:
   dependencies:
     lodash.merge "^4.6.0"
 
-vue-class-component@6.3.2:
+vue-class-component@6.3.2, vue-class-component@^6.3.2:
   version "6.3.2"
   resolved "https://registry.yarnpkg.com/vue-class-component/-/vue-class-component-6.3.2.tgz#e6037e84d1df2af3bde4f455e50ca1b9eec02be6"
+  integrity sha512-cH208IoM+jgZyEf/g7mnFyofwPDJTM/QvBNhYMjqGB8fCsRyTf68rH2ISw/G20tJv+5mIThQ3upKwoL4jLTr1A==
 
 vue-class-component@^6.2.0:
   version "6.2.0"
@@ -7749,21 +7711,12 @@ vue-html-loader@^1.2.4:
     loader-utils "^1.0.2"
     object-assign "^4.1.0"
 
-vue-loader@15.6.2:
+vue-loader@15.6.2, vue-loader@^15.5.1:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-15.6.2.tgz#892741d96260936ff69e892f72ec361ba4d100d2"
+  integrity sha512-T6fONodj861M3PqZ1jlbUFjeezbUnPRY2bd+3eZuDvYADgkN3VFU2H5feqySNg9XBt8rcbyBGmFWTZtrOX+v5w==
   dependencies:
     "@vue/component-compiler-utils" "^2.5.1"
-    hash-sum "^1.0.2"
-    loader-utils "^1.1.0"
-    vue-hot-reload-api "^2.3.0"
-    vue-style-loader "^4.1.0"
-
-vue-loader@^15.0.11:
-  version "15.3.0"
-  resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-15.3.0.tgz#b474d10a4e93d934a78c147fc3e314b370e9fc54"
-  dependencies:
-    "@vue/component-compiler-utils" "^2.0.0"
     hash-sum "^1.0.2"
     loader-utils "^1.1.0"
     vue-hot-reload-api "^2.3.0"
@@ -7786,9 +7739,18 @@ vue-style-loader@^4.1.0:
     hash-sum "^1.0.2"
     loader-utils "^1.0.2"
 
-vue-template-compiler@^2.5.16:
-  version "2.5.16"
-  resolved "https://registry.yarnpkg.com/vue-template-compiler/-/vue-template-compiler-2.5.16.tgz#93b48570e56c720cdf3f051cc15287c26fbd04cb"
+vue-style-loader@^4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/vue-style-loader/-/vue-style-loader-4.1.2.tgz#dedf349806f25ceb4e64f3ad7c0a44fba735fcf8"
+  integrity sha512-0ip8ge6Gzz/Bk0iHovU9XAUQaFt/G2B61bnWa2tCcqqdgfHs1lF9xXorFbE55Gmy92okFT+8bfmySuUOu13vxQ==
+  dependencies:
+    hash-sum "^1.0.2"
+    loader-utils "^1.0.2"
+
+vue-template-compiler@^2.5.22:
+  version "2.6.6"
+  resolved "https://registry.yarnpkg.com/vue-template-compiler/-/vue-template-compiler-2.6.6.tgz#a807acbf3d51971d3721d75ecb1b927b517c1a02"
+  integrity sha512-OakxDGyrmMQViCjkakQFbDZlG0NibiOzpLauOfyCUVRQc9yPmTqpiz9nF0VeA+dFkXegetw0E5x65BFhhLXO0A==
   dependencies:
     de-indent "^1.0.2"
     he "^1.1.0"
