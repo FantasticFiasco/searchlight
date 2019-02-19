@@ -100,7 +100,7 @@
     "typescript": "3.3.3",
     "vue": "2.5.16",
     "vue-chartjs": "2.8.7",
-    "vue-class-component": "6.3.2",
+    "vue-class-component": "7.0.1",
     "vue-loader": "15.6.3",
     "vue-property-decorator": "7.3.0",
     "vue-router": "3.0.2",

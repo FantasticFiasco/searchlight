@@ -7829,9 +7829,9 @@ vue-chartjs@2.8.7:
   dependencies:
     lodash.merge "^4.6.0"
 
-vue-class-component@6.3.2:
-  version "6.3.2"
-  resolved "https://registry.yarnpkg.com/vue-class-component/-/vue-class-component-6.3.2.tgz#e6037e84d1df2af3bde4f455e50ca1b9eec02be6"
+vue-class-component@7.0.1:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/vue-class-component/-/vue-class-component-7.0.1.tgz#7af2225c600667c7042b60712eefdf41dfc6de63"
 
 vue-class-component@^6.2.0:
   version "6.2.0"
