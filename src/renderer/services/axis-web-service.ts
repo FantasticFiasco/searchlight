@@ -17,7 +17,13 @@ export class AxisWebService {
         }
 
         modelNumber = modelNumber.toLowerCase();
-        modelNumber = (modelNumberToProductPageExceptions[modelNumber] || modelNumber).replace(/ /, '-');
+
+        const unconventionalUrl = modelNumberToProductPageExceptions[modelNumber];
+        if (unconventionalUrl !== undefined) {
+            return unconventionalUrl;
+        }
+
+        modelNumber = modelNumber.replace(/ /, '-');
         return `https://www.axis.com/products/axis-${modelNumber}`;
     }
 
@@ -37,58 +43,60 @@ export class AxisWebService {
 }
 
 const modelNumberToProductPageExceptions: { [key: string]: string } = {
-    '212 ptz': '212',
-    '215 ptz': '215',
-    '216fd': '216',
-    '243q(1) blade': '243q',
-    '243q(2) blade': '243q',
-    '243q(3) blade': '243q',
-    '243q(4) blade': '243q',
+    '212 ptz': 'https://www.axis.com/products/axis-212',
+    '215 ptz': 'https://www.axis.com/products/axis-215',
+    '216fd': 'https://www.axis.com/products/axis-216',
+    '243q(1) blade': 'https://www.axis.com/products/axis-243q',
+    '243q(2) blade': 'https://www.axis.com/products/axis-243q',
+    '243q(3) blade': 'https://www.axis.com/products/axis-243q',
+    '243q(4) blade': 'https://www.axis.com/products/axis-243q',
 
-    'a9188/-ve': 'a9188-ve',
+    'a9188/-ve': 'https://www.axis.com/products/axis-a9188-ve',
 
-    'm3004': 'm3004-v',
-    'm3005': 'm3005-v',
-    'm3006': 'm3006-v',
-    'm3007': 'm3007-p',
-    'm3024': 'm3024-lve',
-    'm3025': 'm3025-ve',
-    'm3026': 'm3026-ve',
-    'm3027': 'm3027-pve',
-    'm3037': 'm3037-pve',
-    'm3046': 'm3046-v',
-    'm3046-1-8mm': 'm3046-v',
-    'm3058': 'm3058-plve',
-    'm3106-l-mkii': 'm3106-l mk-ii',
-    'm3114': 'm3114-ve',
+    'c cube l': 'https://www.axis.com/companion/products-and-solutions/axis-companion-cube-l',
 
-    'p1365 mk ii': 'p1365',
-    'p1365 mkii': 'p1365',
-    'p1405-le mk ii': 'p1405-le',
-    'p1425-le mk ii': 'p1425-le',
-    'p3224-v mk ii': 'p3224-v',
-    'p3225-lv mk ii': 'p3225-lv',
-    'p3225-v mk ii': 'p3225-v',
-    'p3363': 'p3363-v',
-    'p3364': 'p3364-v',
-    'p3365': 'p3365-v',
-    'p3367': 'p3367-v',
-    'p3905-r mk ii': 'p3905-r',
-    'p5624-e-mkii': 'p5624-e',
+    'm3004': 'https://www.axis.com/products/axis-m3004-v',
+    'm3005': 'https://www.axis.com/products/axis-m3005-v',
+    'm3006': 'https://www.axis.com/products/axis-m3006-v',
+    'm3007': 'https://www.axis.com/products/axis-m3007-p',
+    'm3024': 'https://www.axis.com/products/axis-m3024-lve',
+    'm3025': 'https://www.axis.com/products/axis-m3025-ve',
+    'm3026': 'https://www.axis.com/products/axis-m3026-ve',
+    'm3027': 'https://www.axis.com/products/axis-m3027-pve',
+    'm3037': 'https://www.axis.com/products/axis-m3037-pve',
+    'm3046': 'https://www.axis.com/products/axis-m3046-v',
+    'm3046-1-8mm': 'https://www.axis.com/products/axis-m3046-v',
+    'm3058': 'https://www.axis.com/products/axis-m3058-plve',
+    'm3106-l-mkii': 'https://www.axis.com/products/axis-m3106-l mk-ii',
+    'm3114': 'https://www.axis.com/products/axis-m3114-ve',
 
-    'q1615 mk ii': 'q1615-e',
-    'q3505': 'q3505-v',
-    'q3517': 'q3517-lv',
-    'q3617': 'q3617-ve',
-    'q3709 (center)': 'q3709-pve',
-    'q3709 (left)': 'q3709-pve',
-    'q3709 (right)': 'q3709-pve',
-    'q3709-pve (center)': 'q3709-pve',
-    'q3709-pve (left)': 'q3709-pve',
-    'q3709-pve (right)': 'q3709-pve',
-    'q6045-e-mkii': 'q6045',
+    'p1365 mk ii': 'https://www.axis.com/products/axis-p1365',
+    'p1365 mkii': 'https://www.axis.com/products/axis-p1365',
+    'p1405-le mk ii': 'https://www.axis.com/products/axis-p1405-le',
+    'p1425-le mk ii': 'https://www.axis.com/products/axis-p1425-le',
+    'p3224-v mk ii': 'https://www.axis.com/products/axis-p3224-v',
+    'p3225-lv mk ii': 'https://www.axis.com/products/axis-p3225-lv',
+    'p3225-v mk ii': 'https://www.axis.com/products/axis-p3225-v',
+    'p3363': 'https://www.axis.com/products/axis-p3363-v',
+    'p3364': 'https://www.axis.com/products/axis-p3364-v',
+    'p3365': 'https://www.axis.com/products/axis-p3365-v',
+    'p3367': 'https://www.axis.com/products/axis-p3367-v',
+    'p3905-r mk ii': 'https://www.axis.com/products/axis-p3905-r',
+    'p5624-e-mkii': 'https://www.axis.com/products/axis-p5624-e',
 
-    't8516': 't8516-poe-network-switch',
+    'q1615 mk ii': 'https://www.axis.com/products/axis-q1615-e',
+    'q3505': 'https://www.axis.com/products/axis-q3505-v',
+    'q3517': 'https://www.axis.com/products/axis-q3517-lv',
+    'q3617': 'https://www.axis.com/products/axis-q3617-ve',
+    'q3709 (center)': 'https://www.axis.com/products/axis-q3709-pve',
+    'q3709 (left)': 'https://www.axis.com/products/axis-q3709-pve',
+    'q3709 (right)': 'https://www.axis.com/products/axis-q3709-pve',
+    'q3709-pve (center)': 'https://www.axis.com/products/axis-q3709-pve',
+    'q3709-pve (left)': 'https://www.axis.com/products/axis-q3709-pve',
+    'q3709-pve (right)': 'https://www.axis.com/products/axis-q3709-pve',
+    'q6045-e-mkii': 'https://www.axis.com/products/axis-q6045',
+
+    't8516': 'https://www.axis.com/products/axis-t8516-poe-network-switch',
 };
 
 const modelNumberToIconExceptions: { [key: string]: string } = {
@@ -100,6 +108,7 @@ const modelNumberToIconExceptions: { [key: string]: string } = {
     'a9188/-ve': 'a9188-ve',
 
     'c1004-e': 'c1004-e-network-cabinet-speaker',
+    'c cube l': 'companion-cube-l',
 
     'f34': 'f34-main-unit_0',
     'f44': 'f44-dual-audio-input_0',
