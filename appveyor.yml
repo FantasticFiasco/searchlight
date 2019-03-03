@@ -4,7 +4,7 @@ platform:
   - x64
 
 environment:
-  NODE_JS: 8
+  NODE_JS: 10
   ELECTRON_CACHE: '%USERPROFILE%\.electron'
   ELECTRON_BUILDER_CACHE: '%USERPROFILE%\.electron-builder'
   GH_TOKEN:
