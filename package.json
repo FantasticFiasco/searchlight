@@ -109,8 +109,10 @@
     "webpack-build-notifier": "0.1.30"
   },
   "resolutions": {
+    "bootstrap": ">=4.3.1",
     "cryptiles": ">=4.1.2",
     "deep-extend": ">=0.5.1",
+    "macaddress": ">=0.2.9",
     "upath": ">=1.1.0"
   }
 }
