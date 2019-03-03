@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+### :syringe: Fixed
+
+- Device icon for the following models:
+    - AXIS Companion Cube L
+
 ## [1.1.4] - 2019-01-06
 
 ### :wrench: Changed
