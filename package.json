@@ -85,7 +85,7 @@
     "chart.js": "2.7.3",
     "css-loader": "2.1.0",
     "devtron": "1.4.0",
-    "electron": "4.0.5",
+    "electron": "4.0.6",
     "electron-builder": "20.38.5",
     "electron-webpack": "2.6.2",
     "electron-webpack-ts": "3.1.1",
@@ -96,16 +96,19 @@
     "node-sass": "4.11.0",
     "popper.js": "1.14.7",
     "sass-loader": "7.1.0",
-    "tslint": "5.12.1",
-    "typescript": "3.3.3",
+    "tslint": "5.13.1",
+    "typescript": "3.3.3333",
     "vue": "2.6.6",
     "vue-chartjs": "2.8.7",
-    "vue-class-component": "6.3.2",
-    "vue-loader": "15.6.2",
+    "vue-class-component": "7.0.1",
+    "vue-loader": "15.7.0",
     "vue-property-decorator": "7.3.0",
     "vue-router": "3.0.2",
     "vuex": "3.1.0",
-    "webpack": "4.29.4",
+    "webpack": "4.29.6",
     "webpack-build-notifier": "0.1.30"
+  },
+  "resolutions": {
+    "upath": "^1.1.0"
   }
 }
