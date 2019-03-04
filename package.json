@@ -28,7 +28,7 @@
     "dev": "electron-webpack dev",
     "lint": "tslint --exclude './src/**/*.d.ts' './src/**/*.ts'",
     "lint:fix": "tslint --fix --exclude './src/**/*.d.ts' './src/**/*.ts'",
-    "predist": "json -I -f ./src/main/config.json -e this.analytics.trackingId='process.env.UNIVERSAL_ANALYTICS_TRACKING_ID'",
+    "predist": "node ./build/universal-analytics.js",
     "dist": "yarn compile && electron-builder --publish onTagOrDraft",
     "dist:dir": "yarn compile && electron-builder --dir -c.compression=store -c.mac.identity=null",
     "icons": "icon-gen --input ./assets/app-icon --output ./assets --type png --report"
@@ -92,7 +92,6 @@
     "electron-webpack-vue": "2.1.3",
     "icon-gen": "2.0.0",
     "jquery": "3.3.1",
-    "json": "9.0.6",
     "node-sass": "4.11.0",
     "popper.js": "1.14.7",
     "sass-loader": "7.1.0",
