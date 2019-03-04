@@ -7,24 +7,23 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ## [Unreleased]
 
 ### :syringe: Fixed
-
 - Device icon for the following models:
     - AXIS Companion Cube L
+
+### :policeman: Security
+- Security vulnerabilities in transient dependencies
 
 ## [1.1.4] - 2019-01-06
 
 ### :wrench: Changed
-
 - Apply update button text on Linux
 
 ### :syringe: Fixed
-
 - Copyright year
 
 ## [1.1.3] - 2018-08-14
 
 ### :syringe: Fixed
-
 - Device icon for the following models:
     - AXIS M1054
     - AXIS M3026-VE

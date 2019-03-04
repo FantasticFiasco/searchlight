@@ -6,5 +6,13 @@
   },
   "tslint.autoFixOnSave": true,
   "tslint.exclude": "**/test/**/*.ts",
-  "typescript.tsdk": "./node_modules/typescript/lib"
+  "typescript.tsdk": "./node_modules/typescript/lib",
+  "spellright.language": [
+    "English (American)"
+  ],
+  "spellright.documentTypes": [
+    "markdown",
+    "latex",
+    "plaintext"
+  ]
 }
