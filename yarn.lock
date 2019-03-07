@@ -619,9 +619,10 @@
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@types/electron-debug/-/electron-debug-1.1.0.tgz#b9203bad33dccc5a4ea180a89a9dbcf1961f4c3c"
 
-"@types/electron-store@1.3.0":
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/@types/electron-store/-/electron-store-1.3.0.tgz#340f780952bc98043e24ac8c7903e78665495091"
+"@types/electron-store@1.3.1":
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@types/electron-store/-/electron-store-1.3.1.tgz#6fa239b0582374308b72a8db9492645e51f64990"
+  integrity sha512-RvEAlIWcy7ATEMeyw481SdnuceN6Pd2Qh5KSW5NohwtY1t1uP0MmC3Cvoszd+ueGLqTKCpRwhCJY4qdER5QQVA==
   dependencies:
     "@types/node" "*"
 
