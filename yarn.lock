@@ -1117,9 +1117,10 @@ aws4@^1.8.0:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.8.0.tgz#f0e003d9ca9e7f59c7a508945d7b2ef9a04a542f"
 
-axis-discovery-ssdp@5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/axis-discovery-ssdp/-/axis-discovery-ssdp-5.0.1.tgz#4da302438a2112cf2017ffe3dea5dfcc165803a4"
+axis-discovery-ssdp@5.0.2:
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/axis-discovery-ssdp/-/axis-discovery-ssdp-5.0.2.tgz#4eefaed58dd33da974b04eb484245ac22e509a4a"
+  integrity sha512-nwINPR8oWpwALCC4PAExcrSoHNSRtdWvRXhtaNf7qtPH9/33PgBC6AZZiuSAmKZcexTULobTEQl4mP37UpxdOQ==
   dependencies:
     "@fantasticfiasco/expect" "1.*"
     debug "4.*"
