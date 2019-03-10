@@ -54,6 +54,10 @@ const modelNumberToProductPageExceptions: { [key: string]: string } = {
     'a9188/-ve': 'https://www.axis.com/products/axis-a9188-ve',
 
     'c cube l': 'https://www.axis.com/companion/products-and-solutions/axis-companion-cube-l',
+    'c cube lw': 'https://www.axis.com/sv-se/companion/products-and-solutions/axis-companion-cube-lw',
+    'c bullet le': 'https://www.axis.com/sv-se/companion/products-and-solutions/axis-companion-bullet-le',
+    'c bullet mini le': 'https://www.axis.com/companion/products-and-solutions/axis-companion-bullet-mini-le',
+    'c eye mini l': 'https://www.axis.com/companion/products-and-solutions/axis-companion-eye-mini-l',
 
     'm3004': 'https://www.axis.com/products/axis-m3004-v',
     'm3005': 'https://www.axis.com/products/axis-m3005-v',
@@ -108,7 +112,12 @@ const modelNumberToIconExceptions: { [key: string]: string } = {
     'a9188/-ve': 'a9188-ve',
 
     'c1004-e': 'c1004-e-network-cabinet-speaker',
+    'c2005': 'c2005-network-ceiling-speaker',
+    'c bullet le': 'companion-bullet-le',
     'c cube l': 'companion-cube-l',
+    'c cube lw': 'companion-cube-lw',
+    'c bullet mini le': 'companion-bullet-mini-le-ceiling-angle-left-1709_0',
+    'c eye mini l': 'companion-eye-mini-l-ceiling-angle-left-1703_2',
 
     'f34': 'f34-main-unit_0',
     'f44': 'f44-dual-audio-input_0',
@@ -147,11 +156,13 @@ const modelNumberToIconExceptions: { [key: string]: string } = {
     'p3365': 'p3365-v',
     'p3367': 'p3367-v',
     'p3384': 'p3384-v',
+    'p3807-pve': 'p3807pve-wall-angle-left-p38-weathershield-kit-a-1712_0',
     'p5624-e-mkii': 'p5624-e',
     'p5635-e': 'p5635-e_0',
     'p8221': 'p8221-io-audio-module',
 
     'q1615 mk ii': 'q1615e-mkii-wall-angle-left',
+    'q1785-le': 'q1785-le-network-camera',
     'q1921': 'q1921_0',
     'q3505': 'q3505-v-mkii',
     'q3517': 'q3517-lv-ceiling-front',
