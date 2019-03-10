@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+## [1.1.5] - 2019-03-10
+
 ### :syringe: Fixed
 - Device icon for the following models:
     - AXIS C2005 Network Ceiling Speaker
