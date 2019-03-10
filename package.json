@@ -63,7 +63,7 @@
     "title": "Searchlight"
   },
   "dependencies": {
-    "@fantasticfiasco/expect": "1.0.0",
+    "@fantasticfiasco/expect": "1.0.1",
     "axis-discovery-ssdp": "5.0.2",
     "electron-debug": "2.1.0",
     "electron-log": "3.0.1",

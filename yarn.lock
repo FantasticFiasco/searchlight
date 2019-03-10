@@ -607,9 +607,14 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@fantasticfiasco/expect@1.*", "@fantasticfiasco/expect@1.0.0":
+"@fantasticfiasco/expect@1.*":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@fantasticfiasco/expect/-/expect-1.0.0.tgz#fc700aee52122b3bc62a95b8ab95ffa4b65967ba"
+
+"@fantasticfiasco/expect@1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@fantasticfiasco/expect/-/expect-1.0.1.tgz#394f199a106a288ff6e07c8611b83760e5cf14cf"
+  integrity sha512-3tPq0xUdUaEEBpCF0DO5J9W9AMXaF8fp2ruAZ8/21IsnI7J7V32TdExKtqW0xP43o6lHPG6xnA67HB7zivmGSw==
 
 "@posthtml/esm@^1.0.0":
   version "1.0.0"
