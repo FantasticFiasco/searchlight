@@ -8,7 +8,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ### :syringe: Fixed
 - Device icon for the following models:
+    - AXIS C2005 Network Ceiling Speaker
+    - AXIS Companion Bullet LE
+    - AXIS Companion Bullet mini LE
     - AXIS Companion Cube L
+    - AXIS Companion Cube LW
+    - AXIS Companion Eye mini L
+    - AXIS P3807-PVE Network Camera
+    - AXIS Q1785-LE Network Camera
 
 ### :policeman: Security
 - Security vulnerabilities in transient dependencies
