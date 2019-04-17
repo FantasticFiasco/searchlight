@@ -8194,10 +8194,10 @@ wbuf@^1.1.0, wbuf@^1.7.3:
   dependencies:
     minimalistic-assert "^1.0.0"
 
-webpack-build-notifier@0.1.32:
-  version "0.1.32"
-  resolved "https://registry.yarnpkg.com/webpack-build-notifier/-/webpack-build-notifier-0.1.32.tgz#965e63334147e18716661357b08409958563899e"
-  integrity sha512-TOmYC7sSlx/N/fB4cqssfQ1VnK7LYvGjyypRetQMtODTWNJFnqmMsXItClNjlm7sM4GRlV/C9mN8KwQt+T5ijA==
+webpack-build-notifier@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/webpack-build-notifier/-/webpack-build-notifier-1.0.1.tgz#ea430aba67f311199b70339a7d53eb5c9a57cdaf"
+  integrity sha512-uk2+Ni/NRBOeYEGnqOgFOQyQVf6IRL5SozckEaMG710erFpRJS8qRJjs2ve7qGw3Wm3CEmsWDMmcNbWimsdmZA==
   dependencies:
     ansi-regex "^2.0.0"
     node-notifier "5.2.1"
