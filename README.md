@@ -1,6 +1,6 @@
 # Searchlight - A desktop application discovering Axis network video devices on your network
 
-[![Linux and Mac build status](https://travis-ci.org/FantasticFiasco/searchlight.svg?branch=master)](https://travis-ci.org/FantasticFiasco/searchlight)
+[![Linux and Mac build status](https://travis-ci.com/FantasticFiasco/searchlight.svg?branch=master)](https://travis-ci.com/FantasticFiasco/searchlight)
 [![Windows build status](https://ci.appveyor.com/api/projects/status/am70w83rvujl4usr?svg=true)](https://ci.appveyor.com/project/FantasticFiasco/searchlight)
 [![dependencies Status](https://david-dm.org/FantasticFiasco/searchlight/status.svg)](https://david-dm.org/FantasticFiasco/searchlight)
 [![devDependencies Status](https://david-dm.org/FantasticFiasco/searchlight/dev-status.svg)](https://david-dm.org/FantasticFiasco/searchlight?type=dev)
